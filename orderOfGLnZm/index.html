@@ -1,0 +1,831 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="izlyforever">
+  <meta name="keywords" content="math, cpp, python, sagemath">
+  
+    <meta name="description" content="由线性无关性，我们不难知道 $|GL_n(\mathbb{Z}_p)| &#x3D; \prod_{i&#x3D;0} ^{n-1} (p^n-p^i)$，但是 $|GL_n(\mathbb{Z}_m)|$ 却是一个相对复杂的问题，它本质上是在考虑有限 Abel 群的自同构群的阶数问题。它又跟递推数列模 $m$ 的周期密切相关。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="$GL_n(\mathbb{Z}_m)$ 的阶数">
+<meta property="og:url" content="http://izlyforever.com/orderOfGLnZm/index.html">
+<meta property="og:site_name" content="记录程序和数学的点滴">
+<meta property="og:description" content="由线性无关性，我们不难知道 $|GL_n(\mathbb{Z}_p)| &#x3D; \prod_{i&#x3D;0} ^{n-1} (p^n-p^i)$，但是 $|GL_n(\mathbb{Z}_m)|$ 却是一个相对复杂的问题，它本质上是在考虑有限 Abel 群的自同构群的阶数问题。它又跟递推数列模 $m$ 的周期密切相关。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-25T00:50:58.000Z">
+<meta property="article:modified_time" content="2022-06-25T09:14:02.554Z">
+<meta property="article:author" content="izlyforever">
+<meta property="article:tag" content="math">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>$GL_n(\mathbb{Z}_m)$ 的阶数 - 记录程序和数学的点滴</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"izlyforever.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>izlyforever</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cppTemplate/">
+                <i class="iconfont icon-book"></i>
+                cpp
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webTools/">
+                <i class="iconfont icon-briefcase"></i>
+                网页工具
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="$GL_n(\mathbb{Z}_m)$ 的阶数"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-04-25 08:50" pubdate>
+          2020年4月25日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          4.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          35 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">$GL_n(\mathbb{Z}_m)$ 的阶数</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    <!-- compatible with older versions-->
+                    最后更新于：2022年6月25日 下午
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <p>由线性无关性，我们不难知道 $|GL_n(\mathbb{Z}_p)| = \prod_{i=0} ^{n-1} (p^n-p^i)$，但是 $|GL_n(\mathbb{Z}_m)|$ 却是一个相对复杂的问题，它本质上是在考虑有限 Abel 群的自同构群的阶数问题。它又跟递推数列模 $m$ 的周期密切相关。</p>
+<span id="more"></span>
+<p>2007 年 CHRISTOPHER J. HILLAR AND DARREN L. RHEA 发表一篇论文<a href="automorphismsOfFiniteAblianGroup.pdf">《AUTOMORPHISMS OF FINITE Abelian GROUPS》</a> 完美的解决了这个问题。</p>
+<h2 id="有限生成-Abel-群结构定理"><a href="#有限生成-Abel-群结构定理" class="headerlink" title="有限生成 Abel 群结构定理"></a>有限生成 Abel 群结构定理</h2><p>设 $G$ 是一个有限 Abel 群，那么 $G$ 同构于一些</p>
+<script type="math/tex; mode=display">
+H_p = \mathbb{Z}_{p^{e_1}} \times \cdots  \mathbb{Z}_{p^{e_n}}</script><p>的乘积。其中 $p$ 是素数（$p$ 一般默认为素数），$1 \leq e_1 \leq \cdots \leq e_n$ 是正整数。</p>
+<blockquote>
+<p>证明可见任意一般抽象代数（或近世代数）书。</p>
+</blockquote>
+<h2 id="乘积的自同构"><a href="#乘积的自同构" class="headerlink" title="乘积的自同构"></a>乘积的自同构</h2><p>若 $H$ 和 $K$ 是有限群，且它们的阶数互素。那么我们就有同构：</p>
+<script type="math/tex; mode=display">
+Aut(H) \times Aut(K) \simeq Aut(H \times K)</script><p><strong>Proof</strong> ：我们构造很自然的映射：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\phi: Aut(H) \times Aut(K) \to Aut(H \times K) \\
+\phi(\alpha,\beta)(h,k) = (\alpha(h),\beta(k))
+\end{aligned}</script><p>容易验证 $\phi$  是合理的映射，并且是单射，然后我们同构构造它的逆映射来说明它是满射。</p>
+<p>我们记 $n = |H|,m = |K|$，$\pi_H,\pi_K$ 是标准投影映射： $\pi_H: H \times K \to H$，$\pi_K: H \times K \to K$ 。对于给定的 $\omega \in Aut(H \times K)$，我们定义同态 $\gamma: K \to H$， $\gamma(k) = \pi_H(\omega(1_H,k))$，注意到 $\lbrace k^n: k \in K \rbrace \subseteq \ker \gamma$。又 $m,n$是互素的，所以 $\gamma$ 是平凡的映射。同理，我们定义 $\delta: H \to K$，$\delta(h) = \pi_K(\omega(h,1_K))$ 也是平凡映射。最后我们定义$H$和$K$的自同态：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\omega_H(h) = \pi_H(w(h,1_K)) ,\quad \omega(k) = \pi_K(w(1_H,k)) \\
+\omega(h,k) = \omega(h,1_K) \omega(1_H,k) = (\omega_H(h),  \omega_K(k)) = \phi(w_H,w_k)(h,k)
+\end{aligned}</script><p>由于 $\omega_H,\omega_K$ 都是单射，并且 $H,K$ 是有限群，所以它们是自同构，证毕。</p>
+<blockquote>
+<p>所以我们考虑 $Aut(G)$，只需考虑 $Aut(H_p)$ 即可</p>
+</blockquote>
+<h2 id="H-p-的自同态"><a href="#H-p-的自同态" class="headerlink" title="$H_p$ 的自同态"></a>$H_p$ 的自同态</h2><p>我们定义，环 $E_p = End(H_p)$（加法就是映射的加法，乘法就是映射的复合）</p>
+<p>由于循环群 $C_{p^{e_i}}$ 对应的是 模 $p^{e_i}$ 的加法群。所以 $H_p$ 中的元素可以表示成列向量 $(\overline{h_1},\cdots \overline{h_n})^T$，其中 $\overline{h_i} \in \mathbb{Z}_{p^{e_i}}, \; h_i \in \mathbb{Z}$</p>
+<p>我们定义（<strong>精华所在</strong>)</p>
+<script type="math/tex; mode=display">
+R_p \doteq \lbrace (a_{ij} \in \mathbb{Z}^{n \times n}: p^{e_i - e_j}|a_{ij} \quad \forall 1 \leq j < i \leq n)</script><p>注意到 $\forall A \in R_p$，$A = P A’ P^{-1}$，其中 $P = diag(p^{e_1},\cdots,p^{e_n}), A’ \in \mathbb{Z}^{n \times n}$。从而 $R_p$ 根据加法和矩阵乘法，构成了一个环。</p>
+<p>我们定义 $\pi_i: \mathbb{Z} \to \mathbb{Z}_{p^{e_i}}$ 为标准商映射。$\pi: \mathbb{Z}^n \to H_p$ 为：</p>
+<script type="math/tex; mode=display">
+\pi(h_1,\cdots h_n)^T = (\pi_1(h_1),\cdots,\pi_n(h_n))^T = (\overline{h_1},\cdots \overline{h_n})^T</script><p>我们不难验证 $\psi: R_p \to E_p$</p>
+<script type="math/tex; mode=display">
+\psi(A)(\overline{h_1},\cdots \overline{h_n})^T = \pi(A(h_1,\cdots,h_n)^T)</script><p>是环满同态（需要验证映射合理性，环同态，满射）且 $\ker \psi = \lbrace A = (a_{ij}) \in R_p: p^{e_i} | a_{ij}$</p>
+<h2 id="H-p-的自同构-Aut-H-p"><a href="#H-p-的自同构-Aut-H-p" class="headerlink" title="$H_p$ 的自同构 $Aut(H_p)$"></a>$H_p$ 的自同构 $Aut(H_p)$</h2><p>$M = \psi(A) \in Aut(H_p)$ 当且仅当 $A \mod p \in GL_n(\mathbb{F}_p)$，即 $\det(A) \in U(H_p)$ 是 $H_p$ 中可逆元。</p>
+<p><strong>Proof</strong>：利用 $A$ 的逆矩阵推出 $M$ 是自同构，利用 $M$ 的逆映射给出 $A$ 的逆矩阵。</p>
+<h2 id="Aut-H-p"><a href="#Aut-H-p" class="headerlink" title="$| Aut(H_p)|$"></a>$| Aut(H_p)|$</h2><p>定义：$d_k = \max \lbrace l: e_l  = e_k \rbrace, c_k = \min \lbrace l: e_l  = e_k \rbrace$，显然 $c_k \leq k \leq d_k$。我们需要计算</p>
+<ul>
+<li>所有 $GL_n(\mathbb{F}_p)$ 中可以拓展成 $A \in R_p$ 的元素</li>
+<li>每个元素拓展方式</li>
+</ul>
+<p>我们找到所有 $M \in  GL_n(\mathbb{F}_p)$ 形如：</p>
+<script type="math/tex; mode=display">
+M =
+\begin{pmatrix}
+m_{11} & & & \star \\
+\vdots \\
+m_{d_1 1} \\
+& m_{d_2 2} \\
+& & \ddots \\
+0 & & & m_{d_n n}
+\end{pmatrix}</script><blockquote>
+<p>注意到 $\sum_{j=1} ^n \sum_{i=1} ^{d_j} m_{ij} = \sum_{e_i \leq e_j} m_{ij} = \sum_{i=1} ^n \sum_{j = c_i}^n m_{ij}$</p>
+</blockquote>
+<p>因为我们只考虑线性无关的，所以这种 $M$ 的数量是</p>
+<script type="math/tex; mode=display">
+\prod_{k=1} ^n (p^{d_k} - p^{k-1})</script><p>将 $m_{ij}$ 从 $\overline{m_{ij}} \in \mathbb{Z}_p$ 到 $\overline{a_{ij}} \in p^{e_i-e_j} \mathbb{Z}/p^{e_i} \mathbb{Z}$ 使得 $a_{ij} \equiv m_{ij} \mod p$ 的方案数分两种情况</p>
+<ul>
+<li>$e_i &gt; e_j$ 时， $p^{e_j}$ 种</li>
+<li>$e_i \leq e_j$ 时， $p^{e_i-1}$ 种</li>
+</ul>
+<p>从而</p>
+<script type="math/tex; mode=display">
+|Aut(H_p)| = \prod_{k=1} ^n (p^{d_k} - p^{k-1}) \prod_{j=1} ^n (p^{e_j})^{n-d_j} \prod_{i=1} ^n (p^{e_i -1})^{n-c_i+1}</script><h2 id="GL-n-mathbb-Z-m"><a href="#GL-n-mathbb-Z-m" class="headerlink" title="$|GL_n(\mathbb{Z}_m)|$"></a>$|GL_n(\mathbb{Z}_m)|$</h2><p>由 $|Aut(H_p)|$ 的公式的特殊形式，我们知道 $|GL_n(Z_{p^s})| = p^{n^2 (s-1)} \prod_{k=1} ^n (p^n - p^{k-1})$。</p>
+<p>将 $m$ 质因数分解 $m = p_1^{s_1} \cdots p_r ^{s_r}, \quad p_1 &lt; \cdots &lt; p_r$</p>
+<script type="math/tex; mode=display">
+|GL_n(\mathbb{Z}_m)| =  \prod_{i=1} ^r |GL_n(Z_{p_i^{s_i}})|</script><h2 id="mathbb-Z-m-上-n-阶给定可逆矩阵-A-的周期"><a href="#mathbb-Z-m-上-n-阶给定可逆矩阵-A-的周期" class="headerlink" title="$\mathbb{Z}_m$ 上$n$ 阶给定可逆矩阵 $A$ 的周期"></a>$\mathbb{Z}_m$ 上$n$ 阶给定可逆矩阵 $A$ 的周期</h2><p>设 $f(\lambda) = | \lambda I -A|$，$A$ 可逆等价于 $\gcd(f(\lambda),\lambda) = 1$，由于 $A^k$ 都可以由 $I,A,\cdots A^{n-1}$，线性表出，但是由于是在 $\mod m$ 的意义下，所以根据容斥原理，对任意 $k \geq m^n$ 时，必然存在 $l &lt; k$，使得 $A^k = A^l$。即 $A$ 的周期上限是 $m^n$，并且周期是 $|GL_n(\mathbb{Z}_m)|$ 的一个真因子（$n&gt;1$）。</p>
+<p>显然若 $A$ 可对角化，那么 $A$ 的周期必然是 $\phi(m)$ 的一个因子！但是注意这里 $A$ 对称并不能推出 $A$ 可对角化。</p>
+<h2 id="常系数递推数列模意义下的周期"><a href="#常系数递推数列模意义下的周期" class="headerlink" title="常系数递推数列模意义下的周期"></a>常系数递推数列模意义下的周期</h2><p>给定初值，$x_1,\cdots x_s$, 和递推关系：$x_{n+s} = a_1 x_{n+s-1} + \cdots + a_s x_n, a_s \neq 0$ 的数列 ${x_n}$可以表示成：</p>
+<script type="math/tex; mode=display">
+\begin{pmatrix}
+x_n \\
+x_{n-1} \\
+\vdots  \\
+x_{n-s+1}
+\end{pmatrix} =
+\begin{pmatrix}
+a_1 & a_2 &\cdots & a_s \\
+1 & 0 \\
+\vdots  & & & 0\\
+0 &\cdots & 1& 0
+\end{pmatrix}
+
+\begin{pmatrix}
+x_{n-1} \\
+x_{n-2} \\
+\vdots  \\
+x_{n-s}
+\end{pmatrix}</script><p>可以通过矩阵幂在 $O(s^3 \log n)$ 复杂度求出。</p>
+<blockquote>
+<p>当 $s$ 相对较大时，根据特征多项式将系数矩阵 $A^n$ 写成 $I,A,\cdots A^{s-1}$ 的线性组合，然后只考虑仅乘以第一行，就可以在 $O(s^2\log n)$ 复杂度求出</p>
+</blockquote>
+<p>我们考虑 数列 $\lbrace x_n  \mod m \rbrace$ ，由容斥原理知，数列 $\lbrace x_n  \mod m \rbrace$ 是周期数列，记它的最小正周期为 $f(m)$ ，则</p>
+<script type="math/tex; mode=display">
+f(m) = lcm(f(p_1^{s_1}),\cdots f(p_r^{s_r}))</script><p>只要 $p_i \not| \; a_s$，则 $f(p_i ^{s_i})$  是 $|GL_n(\mathbb{Z}_{p_i^{s_i}})|$ 的一个真因子（当 $n&gt;1$ 时，$GL_n(\mathbb{Z}_{p_i^{s_i}})$ 不是循环群）。</p>
+<blockquote>
+<p>精确的周期要具体问题具体分析。</p>
+</blockquote>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/math/">#math</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/SpecialNumberSequences/" title="特殊数列">
+                        <span class="hidden-mobile">特殊数列</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/twikoo/1.4.17/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"hello-cloudbase-6gua2z7k094e2b64","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+              Fluid.plugins.imageCaption(imgSelector);
+              Fluid.plugins.fancyBox(imgSelector);
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      沪ICP备2021025739号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        MathJax = {
+          tex    : {
+            inlineMath: { '[+]': [['$', '$']] }
+          },
+          loader : {
+            load: ['ui/lazy']
+          },
+          options: {
+            renderActions: {
+              findScript    : [10, doc => {
+                document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                  const display = !!node.type.match(/; *mode=display/);
+                  const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                  const text = document.createTextNode('');
+                  node.parentNode.replaceChild(text, node);
+                  math.start = { node: text, delim: '', n: 0 };
+                  math.end = { node: text, delim: '', n: 0 };
+                  doc.math.push(math);
+                });
+              }, '', false],
+              insertedScript: [200, () => {
+                document.querySelectorAll('mjx-container').forEach(node => {
+                  let target = node.parentNode;
+                  if (target.nodeName.toLowerCase() === 'li') {
+                    target.parentNode.classList.add('has-jax');
+                  }
+                });
+              }, '', false]
+            }
+          }
+        };
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

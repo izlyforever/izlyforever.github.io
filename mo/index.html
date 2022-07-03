@@ -1,0 +1,771 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="izlyforever">
+  <meta name="keywords" content="math, cpp, python, sagemath">
+  
+    <meta name="description" content="首先莫队算法是一个离散算法，复杂度 $O(n \sqrt{m})$ 一般用于 $m$ 次长为 $n$ 的区间问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="莫队算法">
+<meta property="og:url" content="http://izlyforever.com/mo/index.html">
+<meta property="og:site_name" content="记录程序和数学的点滴">
+<meta property="og:description" content="首先莫队算法是一个离散算法，复杂度 $O(n \sqrt{m})$ 一般用于 $m$ 次长为 $n$ 的区间问题">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-22T09:01:31.000Z">
+<meta property="article:modified_time" content="2022-06-25T09:14:02.553Z">
+<meta property="article:author" content="izlyforever">
+<meta property="article:tag" content="algorithm">
+<meta property="article:tag" content="cpp">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>莫队算法 - 记录程序和数学的点滴</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"izlyforever.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>izlyforever</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cppTemplate/">
+                <i class="iconfont icon-book"></i>
+                cpp
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webTools/">
+                <i class="iconfont icon-briefcase"></i>
+                网页工具
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="莫队算法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-04-22 17:01" pubdate>
+          2021年4月22日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          6.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          52 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">莫队算法</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    <!-- compatible with older versions-->
+                    最后更新于：2022年6月25日 下午
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <p>首先莫队算法是一个离散算法，复杂度 $O(n \sqrt{m})$ 一般用于 $m$ 次长为 $n$ 的区间问题</p>
+<span id="more"></span>
+<h2 id="普通莫队"><a href="#普通莫队" class="headerlink" title="普通莫队"></a><a target="_blank" rel="noopener" href="https://oi-wiki.org/misc/mo-algo/">普通莫队</a></h2><p>首先按照左端点所在的块为第一关键字，再按照右端点升序为第二关键字排序。优化：如果都是从小到大，那么由于这样两个指标都是上升的（就会来来回回好几次），因此我们可以奇偶交替排序，即奇数块从小到大排序，偶数快从大到小排序</p>
+<blockquote>
+<p>但是我们可以心中有分块，但是代码中不表现出来！（例如 OI-wiki 中示例代码），但是示例代码的做法不可避免的牵扯到除法，那还不如按照原始做法来，但是注意依然心中有块即可。</p>
+</blockquote>
+<p>注意四个循环的位置，遵寻先放大区间再缩小区间的策略即可，先动做还是先动右无区别。</p>
+<blockquote>
+<p>注意到 stl 排序中必须要保证 $a &lt; b$ 和 $b &lt; a$ 最多一个成立</p>
+</blockquote>
+<p>模板例题：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1494">LOJ 1494</a> 的优雅做法（这里 sn 可取 $\frac{n}{\sqrt{m}}$：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> watch(x) std::cout &lt;&lt; (#x) &lt;&lt; <span class="hljs-meta-string">&quot; is &quot;</span> &lt;&lt; (x) &lt;&lt; std::endl</span><br><span class="hljs-keyword">using</span> LL = <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span>;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> &#123;</span><br>  <span class="hljs-keyword">int</span> l, r, id, b;<br>  <span class="hljs-keyword">bool</span> <span class="hljs-keyword">operator</span>&lt;(<span class="hljs-keyword">const</span> Node &amp; A) <span class="hljs-keyword">const</span> &#123;<br>    <span class="hljs-keyword">if</span> (b != A.b) <span class="hljs-keyword">return</span> l &lt; A.l;<br>    <span class="hljs-keyword">if</span> (b &amp; <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> r &lt; A.r;<br>    <span class="hljs-keyword">return</span> r &gt; A.r;<br>  &#125;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>  <span class="hljs-comment">//freopen(&quot;in&quot;, &quot;r&quot;, stdin);</span><br>  std::cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>)-&gt;<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);<br>  <span class="hljs-keyword">int</span> n, m;<br>  std::cin &gt;&gt; n &gt;&gt; m;<br>  <span class="hljs-function">std::vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">a</span><span class="hljs-params">(n)</span></span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;x : a) std::cin &gt;&gt; x;<br>  <span class="hljs-keyword">int</span> sn = n / std::<span class="hljs-built_in">sqrt</span>(m);<br>  <span class="hljs-function">std::vector&lt;Node&gt; <span class="hljs-title">b</span><span class="hljs-params">(m)</span></span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; m; ++i) &#123;<br>    std::cin &gt;&gt; b[i].l &gt;&gt; b[i].r;<br>    --b[i].l; --b[i].r;<br>    b[i].b = b[i].l / sn;<br>    b[i].id = i;<br>  &#125;<br>  std::<span class="hljs-built_in">sort</span>(b.<span class="hljs-built_in">begin</span>(), b.<span class="hljs-built_in">end</span>());<br>  LL cur = <span class="hljs-number">0</span>;<br>  <span class="hljs-function">std::vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">cnt</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span></span>;<br>  <span class="hljs-keyword">auto</span> add = [&amp;](<span class="hljs-keyword">int</span> x) &#123;<br>    cur += cnt[x];<br>    ++cnt[x];<br>  &#125;;<br>  <span class="hljs-keyword">auto</span> del = [&amp;](<span class="hljs-keyword">int</span> x) &#123;<br>    --cnt[x];<br>    cur -= cnt[x];<br>  &#125;;<br>  <span class="hljs-function">std::vector&lt;LL&gt; <span class="hljs-title">f</span><span class="hljs-params">(n)</span>, <span class="hljs-title">g</span><span class="hljs-params">(n)</span></span>;<br>  <span class="hljs-keyword">int</span> l = <span class="hljs-number">0</span>, r = <span class="hljs-number">-1</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; m; ++i) &#123;<br>    <span class="hljs-keyword">if</span> (b[i].l == b[i].r) &#123;<br>      f[b[i].id] = <span class="hljs-number">0</span>, g[b[i].id] = <span class="hljs-number">1</span>;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      <span class="hljs-keyword">while</span> (l &gt; b[i].l) <span class="hljs-built_in">add</span>(a[--l]);<br>      <span class="hljs-keyword">while</span> (r &lt; b[i].r) <span class="hljs-built_in">add</span>(a[++r]);<br>      <span class="hljs-keyword">while</span> (l &lt; b[i].l) <span class="hljs-built_in">del</span>(a[l++]);<br>      <span class="hljs-keyword">while</span> (r &gt; b[i].r) <span class="hljs-built_in">del</span>(a[r--]);<br>      f[b[i].id] = cur;<br>      g[b[i].id] = <span class="hljs-built_in">LL</span>(r - l + <span class="hljs-number">1</span>) * (r - l) / <span class="hljs-number">2</span>;<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; m; ++i) &#123;<br>    <span class="hljs-keyword">if</span> (f[i]) &#123;<br>      LL d = std::__gcd(f[i], g[i]);<br>      f[i] /= d; g[i] /= d;<br>    &#125; <span class="hljs-keyword">else</span> g[i] = <span class="hljs-number">1</span>;<br>    std::cout &lt;&lt; f[i] &lt;&lt; <span class="hljs-string">&#x27;/&#x27;</span> &lt;&lt; g[i] &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;<br>  &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>带修改的莫队能做到 $O(n^{\frac{5}{3}})$，没啥学的兴趣了。树上莫队就是把树结构转化成线性结构</p>
+</blockquote>
+<h2 id="回滚莫队"><a href="#回滚莫队" class="headerlink" title="回滚莫队"></a><a target="_blank" rel="noopener" href="https://oi-wiki.org/misc/rollback-mo-algo/">回滚莫队</a></h2><p>例题：<a target="_blank" rel="noopener" href="https://loj.ac/p/2874">LibreOJ-2874</a> 的<a target="_blank" rel="noopener" href="https://vjudge.net/solution/30706159">提交</a>，如果用普通莫队的话，利用优先队列和 map 来加减操作会多加一个 log。因此我们这里使用回滚莫队。</p>
+<p>回滚莫队的策略就是：如果需要考虑的左右端点在同一个块中，那么我们就直接暴力求解，这一类区间总复杂度不会超过 $O(n \sqrt{n}$，这样分情况是为了能够做回滚，即让 l 在块的右端点，r 初始在块的右端点， l 在 r 右边挨着，然后始终保持 r 右移，l 左移动.</p>
+<blockquote>
+<p>这里不用上面的奇偶优化，是因为这里真的要分块解决。不得不说我的代码写的真的优雅</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> watch(x) std::cout &lt;&lt; (#x) &lt;&lt; <span class="hljs-meta-string">&quot; is &quot;</span> &lt;&lt; (x) &lt;&lt; std::endl</span><br><span class="hljs-keyword">using</span> LL = <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span>;<br><br><span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T&gt;</span><br><span class="hljs-function">std::vector&lt;T&gt; <span class="hljs-title">discrete</span><span class="hljs-params">(std::vector&lt;T&gt;&amp; a)</span> </span>&#123;<br>  <span class="hljs-keyword">auto</span> b = a;<br>  std::<span class="hljs-built_in">sort</span>(b.<span class="hljs-built_in">begin</span>(), b.<span class="hljs-built_in">end</span>());<br>  b.<span class="hljs-built_in">erase</span>(std::<span class="hljs-built_in">unique</span>(b.<span class="hljs-built_in">begin</span>(), b.<span class="hljs-built_in">end</span>()), b.<span class="hljs-built_in">end</span>());<br>  <span class="hljs-function">std::vector&lt;T&gt; <span class="hljs-title">r</span><span class="hljs-params">(b.size())</span></span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp; x : a) &#123;<br>    <span class="hljs-keyword">int</span> id = std::<span class="hljs-built_in">lower_bound</span>(b.<span class="hljs-built_in">begin</span>(), b.<span class="hljs-built_in">end</span>(), x) - b.<span class="hljs-built_in">begin</span>();<br>    r[id] = x;<br>    x = id;<br>  &#125;<br>  <span class="hljs-keyword">return</span> r;<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> &#123;</span><br>  <span class="hljs-keyword">int</span> l, r, id, b;<br>  <span class="hljs-comment">// 同一个块按照右端点排列，不同块按照左端点排列</span><br>  <span class="hljs-keyword">bool</span> <span class="hljs-keyword">operator</span>&lt;(<span class="hljs-keyword">const</span> Node &amp; A) <span class="hljs-keyword">const</span> &#123;<br>    <span class="hljs-keyword">if</span> (b != A.b) <span class="hljs-keyword">return</span> l &lt; A.l;<br>    <span class="hljs-keyword">return</span> r &lt; A.r;<br>  &#125;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>  <span class="hljs-comment">// freopen(&quot;in&quot;, &quot;r&quot;, stdin);</span><br>  std::cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>)-&gt;<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);<br>  <span class="hljs-keyword">int</span> n, m;<br>  std::cin &gt;&gt; n &gt;&gt; m;<br>  <span class="hljs-function">std::vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">a</span><span class="hljs-params">(n)</span></span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;x : a) std::cin &gt;&gt; x;<br>  <span class="hljs-keyword">auto</span> c = <span class="hljs-built_in">discrete</span>(a); <span class="hljs-comment">// 数据范围需要离散化一下。</span><br>  <span class="hljs-keyword">int</span> sn = n / std::<span class="hljs-built_in">sqrt</span>(m) + <span class="hljs-number">1</span>; <span class="hljs-comment">// 防止 sn 为 0，所以 + 1</span><br>  <span class="hljs-function">std::vector&lt;Node&gt; <span class="hljs-title">b</span><span class="hljs-params">(m)</span></span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; m; ++i) &#123;<br>    std::cin &gt;&gt; b[i].l &gt;&gt; b[i].r;<br>    --b[i].l; --b[i].r;<br>    b[i].b = b[i].l / sn;<br>    b[i].id = i;<br>  &#125;<br>  std::<span class="hljs-built_in">sort</span>(b.<span class="hljs-built_in">begin</span>(), b.<span class="hljs-built_in">end</span>());<br>  <span class="hljs-function">std::vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">cnt</span><span class="hljs-params">(c.size())</span>, <span class="hljs-title">tmpcnt</span><span class="hljs-params">(c.size())</span></span>;<br>  <span class="hljs-keyword">auto</span> add = [&amp;](<span class="hljs-keyword">int</span> x, LL &amp;now) &#123;<br>    ++cnt[x];<br>    now = std::<span class="hljs-built_in">max</span>(now, <span class="hljs-built_in">LL</span>(c[x]) * cnt[x]);<br>  &#125;;<br>  <span class="hljs-keyword">auto</span> del = [&amp;](<span class="hljs-keyword">int</span> x) &#123;<br>    --cnt[x];<br>  &#125;;<br>  <span class="hljs-function">std::vector&lt;LL&gt; <span class="hljs-title">ans</span><span class="hljs-params">(m)</span></span>;<br>  LL cur = <span class="hljs-number">0</span>, tmp = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, l = <span class="hljs-number">0</span>, r = <span class="hljs-number">-1</span>, lastB = <span class="hljs-number">-1</span>; i &lt; m; ++i) &#123;<br>    <span class="hljs-keyword">if</span> (b[i].b != lastB) &#123;<br>      <span class="hljs-comment">// 对于新的块，初始化让 r 有这个块的右端点, l 是再右边一个</span><br>      <span class="hljs-keyword">int</span> BL = std::<span class="hljs-built_in">min</span>((b[i].b + <span class="hljs-number">1</span>) * sn, n) - <span class="hljs-number">1</span>;<br>      <span class="hljs-keyword">while</span> (r &lt; BL) <span class="hljs-built_in">add</span>(a[++r], cur);<br>      <span class="hljs-keyword">while</span> (r &gt; BL) <span class="hljs-built_in">del</span>(a[r--]);<br>      <span class="hljs-keyword">while</span> (l &lt;= BL) <span class="hljs-built_in">del</span>(a[l++]);<br>      cur = <span class="hljs-number">0</span>;<br>      lastB = b[i].b;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (l &gt; b[i].r) &#123; <span class="hljs-comment">// 左右端点在同一块的，直接暴力</span><br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = b[i].l; j &lt;= b[i].r; ++j) ++tmpcnt[a[j]];<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = b[i].l; j &lt;= b[i].r; ++j) &#123;<br>        ans[b[i].id] = std::<span class="hljs-built_in">max</span>(ans[b[i].id], <span class="hljs-built_in">LL</span>(c[a[j]]) * tmpcnt[a[j]]);<br>      &#125;<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = b[i].l; j &lt;= b[i].r; ++j) --tmpcnt[a[j]];<br>    &#125; <span class="hljs-keyword">else</span> &#123; <span class="hljs-comment">// 剩下要求得，b[i].r 必然不在这个块中，即必然较大</span><br>      <span class="hljs-keyword">while</span> (r &lt; b[i].r) <span class="hljs-built_in">add</span>(a[++r], cur);<br>      tmp = cur;<br>      <span class="hljs-keyword">int</span> nl = l;<br>      <span class="hljs-keyword">while</span> (nl &gt; b[i].l) <span class="hljs-built_in">add</span>(a[--nl], tmp);<br>      ans[b[i].id] = tmp;<br>      <span class="hljs-keyword">while</span> (nl &lt; l) <span class="hljs-built_in">del</span>(a[nl++]);<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> x : ans) std::cout &lt;&lt; x &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>学完回滚莫队才感觉真的懂了莫队的思想</p>
+</blockquote>
+<h3 id="学习莫队的动力例题：1514D"><a href="#学习莫队的动力例题：1514D" class="headerlink" title="学习莫队的动力例题：1514D"></a>学习莫队的动力例题：<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1514/problem/D">1514D</a></h3><blockquote>
+<p>只需找到区间众数即可。</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> watch(x) std::cout &lt;&lt; (#x) &lt;&lt; <span class="hljs-meta-string">&quot; is &quot;</span> &lt;&lt; (x) &lt;&lt; std::endl</span><br><span class="hljs-keyword">using</span> LL = <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span>;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> &#123;</span><br>  <span class="hljs-keyword">int</span> l, r, id, b;<br>  <span class="hljs-comment">// 同一个块按照右端点排列，不同块按照左端点排列</span><br>  <span class="hljs-keyword">bool</span> <span class="hljs-keyword">operator</span>&lt;(<span class="hljs-keyword">const</span> Node &amp; A) <span class="hljs-keyword">const</span> &#123;<br>    <span class="hljs-keyword">if</span> (b != A.b) <span class="hljs-keyword">return</span> l &lt; A.l;<br>    <span class="hljs-keyword">return</span> r &lt; A.r;<br>  &#125;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>  <span class="hljs-comment">// freopen(&quot;in&quot;, &quot;r&quot;, stdin);</span><br>  std::cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>)-&gt;<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);<br>  <span class="hljs-keyword">int</span> n, m;<br>  std::cin &gt;&gt; n &gt;&gt; m;<br>  <span class="hljs-function">std::vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">a</span><span class="hljs-params">(n)</span></span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;x : a) std::cin &gt;&gt; x;<br>  <span class="hljs-keyword">int</span> sn = n / std::<span class="hljs-built_in">sqrt</span>(m) + <span class="hljs-number">1</span>; <span class="hljs-comment">// 防止 sn 为 0，所以 + 1</span><br>  <span class="hljs-function">std::vector&lt;Node&gt; <span class="hljs-title">b</span><span class="hljs-params">(m)</span></span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; m; ++i) &#123;<br>    std::cin &gt;&gt; b[i].l &gt;&gt; b[i].r;<br>    --b[i].l; --b[i].r;<br>    b[i].b = b[i].l / sn;<br>    b[i].id = i;<br>  &#125;<br>  std::<span class="hljs-built_in">sort</span>(b.<span class="hljs-built_in">begin</span>(), b.<span class="hljs-built_in">end</span>());<br>  <span class="hljs-function">std::vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">cnt</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span>, <span class="hljs-title">tmpcnt</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span></span>;<br>  <span class="hljs-keyword">auto</span> add = [&amp;](<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> &amp;now) &#123;<br>    now = std::<span class="hljs-built_in">max</span>(now, ++cnt[x]);<br>  &#125;;<br>  <span class="hljs-keyword">auto</span> del = [&amp;](<span class="hljs-keyword">int</span> x) &#123;<br>    --cnt[x];<br>  &#125;;<br>  <span class="hljs-function">std::vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">ans</span><span class="hljs-params">(m)</span></span>;<br>  <span class="hljs-keyword">int</span> cur = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, l = <span class="hljs-number">0</span>, r = <span class="hljs-number">-1</span>, lastB = <span class="hljs-number">-1</span>; i &lt; m; ++i) &#123;<br>    <span class="hljs-keyword">if</span> (b[i].b != lastB) &#123;<br>      <span class="hljs-comment">// 对于新的块，初始化让 r 有这个块的右端点, l 是再右边一个</span><br>      <span class="hljs-keyword">int</span> BL = std::<span class="hljs-built_in">min</span>((b[i].b + <span class="hljs-number">1</span>) * sn, n) - <span class="hljs-number">1</span>;<br>      <span class="hljs-keyword">while</span> (r &lt; BL) <span class="hljs-built_in">add</span>(a[++r], cur);<br>      <span class="hljs-keyword">while</span> (r &gt; BL) <span class="hljs-built_in">del</span>(a[r--]);<br>      <span class="hljs-keyword">while</span> (l &lt;= BL) <span class="hljs-built_in">del</span>(a[l++]);<br>      cur = <span class="hljs-number">0</span>;<br>      lastB = b[i].b;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (l &gt; b[i].r) &#123; <span class="hljs-comment">// 左右端点在同一块的，直接暴力</span><br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = b[i].l; j &lt;= b[i].r; ++j) &#123;<br>        ans[b[i].id] = std::<span class="hljs-built_in">max</span>(ans[b[i].id], ++tmpcnt[a[j]]);<br>      &#125;<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = b[i].l; j &lt;= b[i].r; ++j) --tmpcnt[a[j]];<br>    &#125; <span class="hljs-keyword">else</span> &#123; <span class="hljs-comment">// 剩下要求得，b[i].r 必然不在这个块中，即必然较大</span><br>      <span class="hljs-keyword">while</span> (r &lt; b[i].r) <span class="hljs-built_in">add</span>(a[++r], cur);<br>      <span class="hljs-keyword">int</span> tmp = cur, nl = l;<br>      <span class="hljs-keyword">while</span> (nl &gt; b[i].l) <span class="hljs-built_in">add</span>(a[--nl], tmp);<br>      ans[b[i].id] = tmp;<br>      <span class="hljs-keyword">while</span> (nl &lt; l) <span class="hljs-built_in">del</span>(a[nl++]);<br>    &#125;<br>    ans[b[i].id] = std::<span class="hljs-built_in">max</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span> * ans[b[i].id] - (b[i].r - b[i].l + <span class="hljs-number">1</span>));<br>  &#125;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> x : ans) std::cout &lt;&lt; x &lt;&lt; <span class="hljs-string">&#x27;\n&#x27;</span>;<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="后来遇到的莫队问题"><a href="#后来遇到的莫队问题" class="headerlink" title="后来遇到的莫队问题"></a>后来遇到的莫队问题</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4137">P4137</a>：普通莫队会被特殊数据 gank，带 log 的普通莫队也会被随机数据卡掉。因此只能用回滚莫队啦，并且是<strong>删除版本</strong>的回滚莫队！这里删除版本不用分情况讨论。<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/49961900">提交记录</a></li>
+</ul>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/algorithm/">#algorithm</a>
+      
+        <a href="/tags/cpp/">#cpp</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/overallDichotomy/" title="整体二分">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">整体二分</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/string/" title="字符串 cpp 模板">
+                        <span class="hidden-mobile">字符串 cpp 模板</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/twikoo/1.4.17/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"hello-cloudbase-6gua2z7k094e2b64","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+              Fluid.plugins.imageCaption(imgSelector);
+              Fluid.plugins.fancyBox(imgSelector);
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      沪ICP备2021025739号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        MathJax = {
+          tex    : {
+            inlineMath: { '[+]': [['$', '$']] }
+          },
+          loader : {
+            load: ['ui/lazy']
+          },
+          options: {
+            renderActions: {
+              findScript    : [10, doc => {
+                document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                  const display = !!node.type.match(/; *mode=display/);
+                  const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                  const text = document.createTextNode('');
+                  node.parentNode.replaceChild(text, node);
+                  math.start = { node: text, delim: '', n: 0 };
+                  math.end = { node: text, delim: '', n: 0 };
+                  doc.math.push(math);
+                });
+              }, '', false],
+              insertedScript: [200, () => {
+                document.querySelectorAll('mjx-container').forEach(node => {
+                  let target = node.parentNode;
+                  if (target.nodeName.toLowerCase() === 'li') {
+                    target.parentNode.classList.add('has-jax');
+                  }
+                });
+              }, '', false]
+            }
+          }
+        };
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

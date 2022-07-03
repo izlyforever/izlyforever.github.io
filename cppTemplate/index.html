@@ -1,0 +1,990 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="izlyforever">
+  <meta name="keywords" content="math, cpp, python, sagemath">
+  
+    <meta name="description" content="编写编译器易优化、易读、易拓展、自解释的代码，并且配套文档。  C++ 模板的 代码，文档，比赛源码 都已放在 github 上 博弈，多项式, 图论，字符串, C++ 学习笔记 单独成篇 C++11 是基本，C++14 是福报，C++17 是奢望，C++2x 在梦里，只能用 C++98 那赶紧跑路 我对 C++ 的感情，犹如对祖国一样充满希望。它自然有很多被诟病的地方，但不影响它在不断完善">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cpp 模板">
+<meta property="og:url" content="http://izlyforever.com/cppTemplate/index.html">
+<meta property="og:site_name" content="记录程序和数学的点滴">
+<meta property="og:description" content="编写编译器易优化、易读、易拓展、自解释的代码，并且配套文档。  C++ 模板的 代码，文档，比赛源码 都已放在 github 上 博弈，多项式, 图论，字符串, C++ 学习笔记 单独成篇 C++11 是基本，C++14 是福报，C++17 是奢望，C++2x 在梦里，只能用 C++98 那赶紧跑路 我对 C++ 的感情，犹如对祖国一样充满希望。它自然有很多被诟病的地方，但不影响它在不断完善">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://izlyforever.com/cppTemplate/complexAnalysis.png">
+<meta property="article:published_time" content="2020-07-17T17:20:02.000Z">
+<meta property="article:modified_time" content="2022-06-25T09:14:02.495Z">
+<meta property="article:author" content="izlyforever">
+<meta property="article:tag" content="algorithm">
+<meta property="article:tag" content="cpp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://izlyforever.com/cppTemplate/complexAnalysis.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>cpp 模板 - 记录程序和数学的点滴</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"izlyforever.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>izlyforever</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cppTemplate/">
+                <i class="iconfont icon-book"></i>
+                cpp
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webTools/">
+                <i class="iconfont icon-briefcase"></i>
+                网页工具
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="cpp 模板"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-07-18 01:20" pubdate>
+          2020年7月18日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          16k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          138 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">cpp 模板</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    <!-- compatible with older versions-->
+                    最后更新于：2022年6月25日 下午
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p>编写编译器易优化、易读、易拓展、自解释的代码，并且配套文档。</p>
+</blockquote>
+<p>C++ 模板的 <a target="_blank" rel="noopener" href="https://github.com/izlyforever/cpplibforCP">代码</a>，<a target="_blank" rel="noopener" href="https://izlyforever.github.io/cpplibforCP">文档</a>，<a target="_blank" rel="noopener" href="https://github.com/izlyforever/cf">比赛源码</a> 都已放在 <a target="_blank" rel="noopener" href="https://github.com/izlyforever/">github</a> 上</p>
+<p><a href="../gameTheory">博弈</a>，<a href="../poly">多项式</a>, <a href="../graph">图论</a>，<a href="../string">字符串</a>, <a href="../learnCpp">C++ 学习笔记</a> 单独成篇</p>
+<p><code>C++11</code> 是基本，<code>C++14</code> 是福报，<code>C++17</code> 是奢望，<code>C++2x</code> 在梦里，只能用 <code>C++98</code> 那赶紧跑路</p>
+<p>我对 C++ 的感情，犹如对祖国一样充满希望。它自然有很多被诟病的地方，但不影响它在不断完善</p>
+<blockquote>
+<p>代码风格一直在变化，存于心中</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="通用技巧"><a href="#通用技巧" class="headerlink" title="通用技巧"></a>通用技巧</h2><h3 id="递归程序防止爆栈"><a href="#递归程序防止爆栈" class="headerlink" title="递归程序防止爆栈"></a>递归程序防止爆栈</h3><ul>
+<li>在 Windows 上，通常的方法是在 <strong>编译选项</strong> 中加入 <code>-Wl,--stack=1000000000</code></li>
+<li>在 Linux 上，通常的方法是在运行程序前 <strong>在终端内</strong> 执行 <code>ulimit -s unlimited</code> （WSL1 下无法设置可惜）</li>
+</ul>
+<h3 id="C-黑魔法：-n-2-过百万，编译器优化-指令集优化"><a href="#C-黑魔法：-n-2-过百万，编译器优化-指令集优化" class="headerlink" title="C++ 黑魔法：$n^2$ 过百万，编译器优化+指令集优化"></a>C++ 黑魔法：$n^2$ 过百万，编译器优化+指令集优化</h3><p><a target="_blank" rel="noopener" href="https://ouuan.github.io/post/n%E6%96%B9%E8%BF%87%E7%99%BE%E4%B8%87-%E6%9A%B4%E5%8A%9B%E7%A2%BE%E6%A0%87%E7%AE%97%E6%8C%87%E4%BB%A4%E9%9B%86%E4%BC%98%E5%8C%96%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/">博文</a> 和 <a href="extension://oikmahiipjniocckomdccmplodldodja/pdf-viewer/web/viewer.html?file=https%3A%2F%2Fwavwing.site%2F2019%2F01%2F26%2F2019.1.25%2520trainingWeek%2Finstruction_set_elephant.pdf">ppt</a></p>
+<p>但是实际上不需要这么麻烦，仅需在头部添加下面代码（codeforces 上支持）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">pragma</span> GCC optimize(<span class="hljs-meta-string">&quot;Ofast,no-stack-protector,unroll-loops&quot;</span>)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">pragma</span> GCC target(<span class="hljs-meta-string">&quot;sse,sse2,sse3,ssse3,sse4.1,sse4.2,abm,mmx,avx,avx2,popcnt,tune=native&quot;</span>)</span><br></code></pre></td></tr></table></figure>
+<p>示例：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://codeforces.com/contest/911/problem/G">911G</a> 的<a target="_blank" rel="noopener" href="https://codeforces.com/contest/911/submission/113144618">提交</a></li>
+<li><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1511/problem/G">1151G</a> 的 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1511/submission/112897863">提交</a></li>
+</ul>
+<h3 id="bitset-高端压位卡常"><a href="#bitset-高端压位卡常" class="headerlink" title="bitset 高端压位卡常"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/RabbitHu/p/bitset.html">bitset 高端压位卡常</a></h3><p>典型应用，求传递闭包，高维偏序。bitset 还有两个好用的 <a target="_blank" rel="noopener" href="https://codeforces.com/blog/entry/43718?locale=en">builtin 函数</a>: <code>_Find_first, _Find_next</code></p>
+<h3 id="概率问题永不-TLE-的技巧"><a href="#概率问题永不-TLE-的技巧" class="headerlink" title="概率问题永不 TLE 的技巧"></a><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1523/submission/117890786">概率问题永不 TLE 的技巧</a></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 概率问题永不 TLE 的技巧</span><br><span class="hljs-keyword">auto</span> begin = std::chrono::steady_clock::<span class="hljs-built_in">now</span>();<br><span class="hljs-keyword">while</span> ((std::chrono::steady_clock::<span class="hljs-built_in">now</span>() - begin).<span class="hljs-built_in">count</span>() &lt; <span class="hljs-number">5e8</span>) &#123; <span class="hljs-comment">// 数值取时限的一半</span><br>  <span class="hljs-comment">// do something</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="Python-输入样例（以备不时之需，用-PyPy3-提交）"><a href="#Python-输入样例（以备不时之需，用-PyPy3-提交）" class="headerlink" title="Python 输入样例（以备不时之需，用 PyPy3 提交）"></a>Python 输入样例（以备不时之需，用 PyPy3 提交）</h3><p>用 Python 过的一次大数题：<a target="_blank" rel="noopener" href="https://codeforces.com/contest/490/submission/105550245">490C</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 多 case 输入</span><br><span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">int</span>(<span class="hljs-built_in">input</span>())):<br><span class="hljs-comment"># 单行输入</span><br>    n = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">input</span>())<br><span class="hljs-comment"># 两个元素一行输入</span><br>  a, b = <span class="hljs-built_in">map</span>(<span class="hljs-built_in">int</span>, <span class="hljs-built_in">input</span>().split())<br><br><span class="hljs-comment"># 提前结束</span><br>exit()<br></code></pre></td></tr></table></figure>
+<h3 id="取平均值（防溢出，C-20-就有-mid-函数了）"><a href="#取平均值（防溢出，C-20-就有-mid-函数了）" class="headerlink" title="取平均值（防溢出，C++20 就有 mid 函数了）"></a>取平均值（防溢出，C++20 就有 mid 函数了）</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cpp">(x &amp; y) + ((x ^ y) &gt;&gt; <span class="hljs-number">1</span>) <span class="hljs-comment">// 向下取整</span><br>(x | y) - ((x ^ y) &gt;&gt; <span class="hljs-number">1</span>) <span class="hljs-comment">// 向上取整</span><br></code></pre></td></tr></table></figure>
+<h3 id="交互式题目模板"><a href="#交互式题目模板" class="headerlink" title="交互式题目模板"></a><a target="_blank" rel="noopener" href="https://codeforces.com/blog/entry/45307">交互式题目模板</a></h3><p><a target="_blank" rel="noopener" href="https://codeforces.com/gym/101021/problem/1">gym101021: Guess the Number</a><br>需要 <code>fflush(stdout);</code>（对于 <code>scanf/printf</code>） 或 <code>std:::cout &lt;&lt; std::flush</code> （对于 <code>std::cin/std::cout</code>） 来刷新缓冲区，不过 <code>std::endl</code> 会自动刷新一次缓冲区，所以此时可以省略。</p>
+<blockquote>
+<p>注意 <code>std::endl</code> 和 <code>\n</code> 的区别是前一个刷新缓冲区，后一个不刷新。仅在交互问题或者 debug 的时候使用 std::endl;</p>
+</blockquote>
+<h3 id="负数下标技巧"><a href="#负数下标技巧" class="headerlink" title="负数下标技巧"></a>负数下标技巧</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e5</span> + <span class="hljs-number">2</span>;<br><span class="hljs-keyword">int</span> aa[N];<br><span class="hljs-keyword">int</span> *a = (aa + N / <span class="hljs-number">2</span>);<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>可用于 $O(1)$ 首尾插入或删除元素，访问第 $i$ 个元素。<br>当然也可以用 <code>std::deque</code> 加一个标号，实现上述操作</p>
+</blockquote>
+<h3 id="优雅的输出技巧"><a href="#优雅的输出技巧" class="headerlink" title="优雅的输出技巧"></a>优雅的输出技巧</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">int</span> n = <span class="hljs-number">10</span>;<br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i) &#123;<br>  std::cout &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot; \n&quot;</span>[i == n - <span class="hljs-number">1</span>];<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="带取整的函数取最值的技巧"><a href="#带取整的函数取最值的技巧" class="headerlink" title="带取整的函数取最值的技巧"></a>带取整的函数取最值的技巧</h3><ul>
+<li>先考虑不取整的情况，然后一般这个值是可能的最小值或者最大值</li>
+<li>然后通过循环看是否满足取整的情况</li>
+</ul>
+<h3 id="输出全排列"><a href="#输出全排列" class="headerlink" title="输出全排列"></a>输出全排列</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">permutation</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span></span>&#123;<br>  <span class="hljs-function">std::vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">x</span><span class="hljs-params">(n)</span></span>;<br>  std::<span class="hljs-built_in">iota</span>(x.<span class="hljs-built_in">begin</span>(), x.<span class="hljs-built_in">end</span>(), <span class="hljs-number">1</span>);<br>  <span class="hljs-keyword">do</span> &#123;<br>    std::for_each(x.<span class="hljs-built_in">begin</span>(), x.<span class="hljs-built_in">end</span>(),[](<span class="hljs-keyword">int</span> i)&#123;<br>      std::cout &lt;&lt; i;<br>    &#125;);<br>    std::cout &lt;&lt; std::endl;<br>  &#125; <span class="hljs-keyword">while</span> (std::<span class="hljs-built_in">next_permutation</span>(x.<span class="hljs-built_in">begin</span>(), x.<span class="hljs-built_in">end</span>()));<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="输出全排列的原理"><a href="#输出全排列的原理" class="headerlink" title="输出全排列的原理"></a>输出全排列的原理</h3><p>首先初始状态从小到大排列，然后对每一个状态考虑它的后缀，如果后缀是从大到小排列，再考虑向前一位的后缀，直到不是从大到小排列，然后找比第一个位置大的最小值放在开头，其它位置排序。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> math<br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">permutation</span>(<span class="hljs-params">n</span>):</span><br>  ans = []<br>  cnt = math.factorial(n);<br>  r = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, n + <span class="hljs-number">1</span>))<br>  ans.append(r.copy())<br>  cnt -= <span class="hljs-number">1</span><br>  <span class="hljs-keyword">while</span> cnt &gt; <span class="hljs-number">0</span>:<br>    i = n - <span class="hljs-number">1</span><br>    <span class="hljs-keyword">while</span> r[i - <span class="hljs-number">1</span>] &gt; r[i]: i -= <span class="hljs-number">1</span><br>    r[i:] = r[i:][::-<span class="hljs-number">1</span>]<br>    j = i<br>    <span class="hljs-keyword">while</span> r[j] &lt; r[i - <span class="hljs-number">1</span>]: j += <span class="hljs-number">1</span><br>    r[i - <span class="hljs-number">1</span>], r[j] = r[j], r[i - <span class="hljs-number">1</span>]<br>    ans.append(r.copy())<br>    cnt -= <span class="hljs-number">1</span><br>  <span class="hljs-keyword">return</span> ans<br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">5</span>):<br>  <span class="hljs-built_in">print</span>(permutation(i))<br></code></pre></td></tr></table></figure>
+<h2 id="通用知识"><a href="#通用知识" class="headerlink" title="通用知识"></a>通用知识</h2><h3 id="产生-log-的几个原因"><a href="#产生-log-的几个原因" class="headerlink" title="产生 log 的几个原因"></a>产生 log 的几个原因</h3><ol>
+<li>二分，三分</li>
+<li>$1 + \frac{1}{2} + \cdots \frac{1}{n} \sim \log n$</li>
+<li>$\frac{1}{2} + \cdots \frac{1}{p} \sim \log \log n$</li>
+<li>树状数组，线段树</li>
+<li>堆排序</li>
+<li>分治</li>
+<li>FFT、FWT</li>
+<li>重链剖分</li>
+<li>倍增（太好用了，特别是 nxt 数组进行加速）</li>
+</ol>
+<h3 id="产生根号的几个原因"><a href="#产生根号的几个原因" class="headerlink" title="产生根号的几个原因"></a>产生根号的几个原因</h3><ol>
+<li>朴素判断素数</li>
+<li>整除分块：$\lfloor \frac{n}{i} \rfloor$ 的值域是 $O(\sqrt{n})$ 的</li>
+<li>$\max(x + \frac{n}{x})$</li>
+<li>网络流中 HLPP（没读过这篇复杂度分析的论文，不懂）</li>
+<li>分块处理，分块打表</li>
+<li>莫队（离线算法）</li>
+</ol>
+<h2 id="O-1-额外空间复杂度算法"><a href="#O-1-额外空间复杂度算法" class="headerlink" title="$O(1)$ 额外空间复杂度算法"></a>$O(1)$ 额外空间复杂度算法</h2><h3 id="大小步-Baby-step-gain-step"><a href="#大小步-Baby-step-gain-step" class="headerlink" title="大小步(Baby step gain step)"></a>大小步(Baby step gain step)</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/linked-list-cycle-ii/">判断链表中是否有环</a></li>
+<li><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/find-the-duplicate-number/">找出给定区间唯一重复的数</a></li>
+</ul>
+<h3 id="复制链表"><a href="#复制链表" class="headerlink" title="复制链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof/">复制链表</a></h3><h3 id="二叉树遍历-Morris-算法"><a href="#二叉树遍历-Morris-算法" class="headerlink" title="二叉树遍历 Morris 算法"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-postorder-traversal/">二叉树遍历 Morris 算法</a></h3><h3 id="const-VS-constexpr"><a href="#const-VS-constexpr" class="headerlink" title="const VS constexpr"></a>const VS constexpr</h3><p>从 2021-4-27 开始使用 constexpr。对于变量而言，它们的本质区别，一个编译器初始化，一个运行时初始化。</p>
+<h3 id="int-VS-long-long"><a href="#int-VS-long-long" class="headerlink" title="int VS long long"></a>int VS long long</h3><p>以前当 int 类型出现带模乘法的时候，我们一般就直接使用 LL 了，不用强制类型转化了。但是后来转而使用 int 了。</p>
+<p>注意到 <code>LL(a) * b % n</code> 和 <code>1LL * a * b</code> 在汇编意义下没有区别。两种情况哪个方便写那个。放弃 LL 的主要理由：</p>
+<ul>
+<li>本身就是 int 型的变量，为什么用 LL 存储呢？</li>
+<li>内存减少一半</li>
+<li>在 32 位机器上更快。</li>
+</ul>
+<h3 id="最大最小值分配律"><a href="#最大最小值分配律" class="headerlink" title="最大最小值分配律"></a>最大最小值分配律</h3><script type="math/tex; mode=display">
+\begin{aligned}
+\min(\max(x, a), b) = \max(\min(x, b), \min(a, b)) \\
+\max(\min(x, a), b) = \min(\max(x, b), \max(a, b))
+\end{aligned}</script><p>例题：<a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc196/tasks/abc196_e">Atcoder abc196E</a></p>
+<h3 id="cout-cerr-clog-的区别"><a href="#cout-cerr-clog-的区别" class="headerlink" title="cout, cerr, clog 的区别"></a>cout, cerr, clog 的区别</h3><p>cerr 可看作自动刷新缓冲区的 clog。 cout 和 clog 的区别就是 clog 直接打印在屏幕上，而我们文件输入输出的时候使用 <code>freopen(&quot;out&quot;, &quot;w&quot;, stdout)</code> 后 cout 会输出到 out 文件中，而 clog 依然打印在屏幕中，这就很有用了。</p>
+<h3 id="动态规划思想"><a href="#动态规划思想" class="headerlink" title="动态规划思想"></a>动态规划思想</h3><p>动态规划的能力犹如程序员的内功</p>
+<h3 id="水涨船高技巧"><a href="#水涨船高技巧" class="headerlink" title="水涨船高技巧"></a><a target="_blank" rel="noopener" href="https://codeforces.com/blog/entry/58316">水涨船高技巧</a></h3><p>把一个集合中所有元素加一个常数，可以不操作，加在水位线上即可</p>
+<h3 id="Meet-in-Middle-拆半搜索法"><a href="#Meet-in-Middle-拆半搜索法" class="headerlink" title="Meet in Middle(拆半搜索法)"></a>Meet in Middle(拆半搜索法)</h3><blockquote>
+<p>类似于动态规划，是一种思想。特别适合处理指数复杂度。</p>
+</blockquote>
+<p>例题：<a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc184/tasks/abc184_f">AtCoder abc184F</a>，当然针对此题可以深搜剪枝法。</p>
+<h3 id="Small-to-large（把小的合并到大的里面去）"><a href="#Small-to-large（把小的合并到大的里面去）" class="headerlink" title="Small to large（把小的合并到大的里面去）"></a>Small to large（把小的合并到大的里面去）</h3><p>例子：并查集（dus），map 的合并，树上启发式合并（dus on tree)，重链剖分。</p>
+<p>例题：<a target="_blank" rel="noopener" href="https://codeforces.com/contest/600/problem/E">600E</a> 的 <a target="_blank" rel="noopener" href="https://codeforces.com/blog/entry/21827">题解</a></p>
+<h3 id="倍增思想（太强了）"><a href="#倍增思想（太强了）" class="headerlink" title="倍增思想（太强了）"></a>倍增思想（太强了）</h3><p>例子：RMQ，LCA。nxt 数组进行加速</p>
+<h3 id="大小端"><a href="#大小端" class="headerlink" title="大小端"></a><a target="_blank" rel="noopener" href="https://github.com/izlyforever/cf/blob/master/example/endian.cpp">大小端</a></h3><ul>
+<li><a target="_blank" rel="noopener" href="https://devdocs.io/cpp/types/endian">C++20 std::endian</a></li>
+<li>用一个 Union（一个 uint32 的数和一个 长为 4 的 uint8 的数组</li>
+<li>用一个 <code>char*</code> 指向一个 int 型的数，然后取指针的值</li>
+<li><code>python -c &quot;import sys; print(sys.byteorder)&quot;</code></li>
+</ul>
+<h3 id="ABI-兼容问题"><a href="#ABI-兼容问题" class="headerlink" title="ABI 兼容问题"></a>ABI 兼容问题</h3><ul>
+<li>陈硕大佬的<a target="_blank" rel="noopener" href="http://www.cppblog.com/Solstice/archive/2011/03/09/141401.aspx">博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/451603936">知乎上的一种解决方案</a></li>
+</ul>
+<h3 id="整除：C-VS-Python"><a href="#整除：C-VS-Python" class="headerlink" title="整除：C++ VS Python"></a>整除：C++ VS Python</h3><ul>
+<li><code>C/C++</code> 中，整数除法 <code>/</code> 是向 <code>0</code> 取整(<code>int(x)</code>也是向 0 取整)</li>
+<li><code>Python/Sagemath</code> 中，整数除法 <code>//</code> 是向下取整。</li>
+</ul>
+<blockquote>
+<p>在 C++ 中一定不要用 <code>(x - 1) / n + 1</code> 的姿势向上取整！</p>
+</blockquote>
+<h2 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h2><h3 id="位运算的关系"><a href="#位运算的关系" class="headerlink" title="位运算的关系"></a>位运算的关系</h3><ul>
+<li>异或 <code>1</code> 改变，异或 <code>0</code> 不变</li>
+<li>$a \oplus b$ 在某位为 0，表示在此位它们相等，反之不等。</li>
+<li>$a \oplus b = (a \mid b) \oplus (a \And b)$</li>
+<li>$a \oplus b = (a \mid b) - (a \And b)$</li>
+<li>$a + b = (a \mid b) + (a \And b)$</li>
+<li>$a + b = (a \oplus b) + 2 (a \And b)$</li>
+<li><code>(a &amp; b) | c = (a | b) &amp; (a | c)</code></li>
+<li><code>(a | b) &amp; c = (a &amp; b) | (a &amp; c)</code></li>
+<li><code>(a | b) ^ 1 = (a ^ 1) &amp; (b ^ 1)</code></li>
+<li><code>(a &amp; b) ^ 1 = (a ^ 1) | (b ^ 1)</code></li>
+<li><code>(a | b) ^ c</code> 和 <code>(a &amp; b) ^ c</code> 可以逐位转化，因此任何一个数 x 经过任意多次的<code>&amp;, |, ^</code> 运算最终都可以写成 <code>((x ^ a) &amp; b) | c</code>。</li>
+</ul>
+<h3 id="最高位后面位取反-O-1"><a href="#最高位后面位取反-O-1" class="headerlink" title="最高位后面位取反 $O(1)$"></a>最高位后面位取反 $O(1)$</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">reverseBit</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;<br>  <span class="hljs-keyword">return</span> n ^ ((<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">32</span> - __builtin_clz(n)) - <span class="hljs-number">1</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="最低位-1-置-0-x-x-amp-x-1"><a href="#最低位-1-置-0-x-x-amp-x-1" class="headerlink" title="最低位 1 置 0: x = x &amp; (x - 1)"></a>最低位 1 置 0: <code>x = x &amp; (x - 1)</code></h3><h3 id="树状数组中使用的-lowbit-x-x-amp-x-得到-x-的最大-2-的幂次因子"><a href="#树状数组中使用的-lowbit-x-x-amp-x-得到-x-的最大-2-的幂次因子" class="headerlink" title="树状数组中使用的 lowbit(x) = x &amp; (-x) 得到 x 的最大 2 的幂次因子"></a>树状数组中使用的 <code>lowbit(x) = x &amp; (-x)</code> 得到 x 的最大 2 的幂次因子</h3><h3 id="mask-位上暴力枚举"><a href="#mask-位上暴力枚举" class="headerlink" title="mask 位上暴力枚举"></a><a target="_blank" rel="noopener" href="https://cp-algorithms.com/algebra/all-submasks.html">mask 位上暴力枚举</a></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = n; i; i = (i - <span class="hljs-number">1</span>) &amp; n) &#123;<br>  <span class="hljs-comment">// do something</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="Gosper’s-Hack：n-个集合中选-k-个"><a href="#Gosper’s-Hack：n-个集合中选-k-个" class="headerlink" title="Gosper’s Hack：n 个集合中选 k 个"></a>Gosper’s Hack：n 个集合中选 k 个</h3><p>思路：想想怎么把 <code>1011100</code> 变成 <code>110011</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">GospersHack</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> k)</span> </span>&#123;<br>  <span class="hljs-keyword">int</span> cur = (<span class="hljs-number">1</span> &lt;&lt; k) - <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">int</span> limit = (<span class="hljs-number">1</span> &lt;&lt; n);<br>  std::vector&lt;<span class="hljs-keyword">int</span>&gt; r;<br>  <span class="hljs-keyword">while</span> (cur &lt; limit) &#123;<br>    <span class="hljs-comment">// do something</span><br>    <span class="hljs-keyword">int</span> lb = cur &amp; -cur;<br>    <span class="hljs-keyword">int</span> r = cur + lb;<br>    cur = (((r ^ cur) &gt;&gt; <span class="hljs-number">2</span>) / lb) | r;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>异或运算是一种很神奇用途很广的运算. 从性质上, 异或运算作为二元运算, 关于所有非负整数构成一个 Abel 群, 0 作为幺元, 每个元的逆元都是自身(等价于说 $char(N ^ \star,xor)=2$)。</p>
+<h3 id="异或找出唯一出现奇数次的数"><a href="#异或找出唯一出现奇数次的数" class="headerlink" title="异或找出唯一出现奇数次的数"></a>异或找出唯一出现奇数次的数</h3><p>把这一堆数全体直接异或即可.</p>
+<blockquote>
+<p>这个方法可以推广到找出两个只出现奇数次的, 其它出现偶数次的两个数, 方法就是先异或之后的值按照最高位进行标记然后分成两组, 再来一遍</p>
+</blockquote>
+<h2 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h2><h3 id="常用组合数公式及其直观解释"><a href="#常用组合数公式及其直观解释" class="headerlink" title="常用组合数公式及其直观解释"></a>常用组合数公式及其直观解释</h3><p>对任意实数，定义：$\binom{\alpha}{k} = \frac{\alpha(\alpha - 1) \cdots (\alpha - k + 1)}{k !}$ 所以我们有：</p>
+<script type="math/tex; mode=display">
+\binom{-n}{k} = (-1)^{k} \binom{n + k - 1}{k}</script><script type="math/tex; mode=display">
+\binom{n + 1}{k + 1} = \binom{n}{k} + \binom{n}{k + 1}</script><blockquote>
+<p>最后一个数，先还是不选，这是一个问题</p>
+</blockquote>
+<script type="math/tex; mode=display">
+{n \choose k}{k \choose i}  = {n \choose i} {n - i \choose k - i}</script><blockquote>
+<p>组合意义理解：$n$ 个人中选出 $i$ 个一流人才， $k - i$ 个二流人才</p>
+</blockquote>
+<script type="math/tex; mode=display">{n + m \choose k} = \sum_{i + j = k} {n \choose i} {m \choose j}</script><blockquote>
+<p>组合意义理解：$n, m$ 两个堆选出 $k$ 个人</p>
+</blockquote>
+<h3 id="拓展-Euler-定理"><a href="#拓展-Euler-定理" class="headerlink" title="拓展 Euler 定理"></a>拓展 Euler 定理</h3><p>数论中欧拉定义说：若 $\gcd(a, m) = 1$ 则 $a^{\phi(m)} \equiv 1 \mod m$。</p>
+<p>类似于拓展的 Fermat 小定理：$a^p \equiv a \mod p$，我们有拓展 Euler 定理：</p>
+<script type="math/tex; mode=display">
+a^n \equiv a^{n \mod \phi(m) + phi(m)} \mod m</script><p>证明对 $m$ 素因子分解，再利用 Euler 函数是可乘函数，显然。</p>
+<h3 id="求原根"><a href="#求原根" class="headerlink" title="求原根"></a>求原根</h3><p>首先，模 $m$ 有原根的充要条件是：$m=2,4,p^a,2p^a$，其中 $p$ 为奇素数。</p>
+<p>对于求模奇素数 $p$ 的原根方法：对 $p-1$ 素因子分解：$p-1 = p_1^{a_1} \cdots p_s^{a_s}$ 若恒有</p>
+<script type="math/tex; mode=display">
+g^{\frac{p-1}{p_i}} \neq 1(\mod \; p)</script><p>则 $g$ 是 模 $p$ 的原根。对于 $p^a$ 的原根 为 $g$ 或 $g + p$，若 $p^a$ 的原根为 $g_a$ 而 $2p^a$ 的原根为 $g_a$ 和 $g_a + p^a$ 的中奇数者。所有原根：可以先求出一个原根，然后所有的数便是 $g^0, g^1, \cdots, g^{\phi(m) - 1}$, 所有原根就是那些 $\gcd(i, \phi(m)) = 1$ 的 $g^i$ (证明见 P150《数论基础》潘承洞)。</p>
+<blockquote>
+<p>基于上述方法的<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/49945928">代码实现</a></p>
+</blockquote>
+<p>另外更好的做法：</p>
+<p>我们首先求出 $m = \phi(n)$，然后一个个的搜，搜索的时候附带把很多点都给剔除了，所以很快就能找到！<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/49948006">具体代码</a></p>
+<h3 id="自然数方幂和精确版"><a href="#自然数方幂和精确版" class="headerlink" title="自然数方幂和精确版"></a>自然数方幂和精确版</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;boost/multiprecision/cpp_int.hpp&gt;</span></span><br><span class="hljs-keyword">using</span> BINT = boost::multiprecision::cpp_int;<br><br>BINT f[N];<br><span class="hljs-function">BINT <span class="hljs-title">getPowSum</span><span class="hljs-params">(LL n, <span class="hljs-keyword">int</span> k)</span> </span>&#123; <span class="hljs-comment">// k&lt;1000</span><br>  <span class="hljs-keyword">if</span> (k == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-built_in">BINT</span>(n);<br>  <span class="hljs-keyword">if</span> (p[<span class="hljs-number">1</span>] != <span class="hljs-number">2</span>) <span class="hljs-built_in">spf</span>();<br>  <span class="hljs-keyword">int</span> nk = <span class="hljs-number">2</span> * k + <span class="hljs-number">1</span>;<br>  f[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;<br>  f[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">auto</span> bPow = [](BINT x, <span class="hljs-keyword">int</span> n) -&gt; BINT &#123;<br>    BINT <span class="hljs-built_in">r</span>(<span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">for</span> (; n; x *= x, n &gt;&gt;= <span class="hljs-number">1</span>) <span class="hljs-keyword">if</span> (n&amp;<span class="hljs-number">1</span>) r *= x;<br>    <span class="hljs-keyword">return</span> r;<br>  &#125;;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>; i &lt;= nk + <span class="hljs-number">1</span>; ++i) &#123;<br>    <span class="hljs-keyword">if</span> (sp[i] == i) f[i] = <span class="hljs-built_in">bPow</span>(<span class="hljs-built_in">BINT</span>(i), k);<br>    <span class="hljs-keyword">else</span> f[i] = f[sp[i]] * f[i / sp[i]];<br>  &#125;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= nk; ++i) f[i] += f[i - <span class="hljs-number">1</span>];<br>  <span class="hljs-keyword">if</span> (n &lt;= nk) <span class="hljs-keyword">return</span> f[n];<br>  BINT res = <span class="hljs-number">0</span>, tl = <span class="hljs-number">1</span>, tr = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = nk - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; --i) tr = tr * (n - i - <span class="hljs-number">1</span>) / (nk - i);<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt;= nk; ++i) &#123;<br>    <span class="hljs-keyword">if</span> ((nk - i) &amp; <span class="hljs-number">1</span>) res -= f[i] * tl * tr;<br>    <span class="hljs-keyword">else</span> res += f[i] * tl * tr;<br>    tl = tl * (n - i) / (i + <span class="hljs-number">1</span>);<br>    tr = tr * (nk - i) / (n - i - <span class="hljs-number">1</span>);<br>  &#125;<br>  <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>需要下载<a target="_blank" rel="noopener" href="https://www.boost.org/">boost 包</a> 类似的包还有 NTL，GMP</p>
+</blockquote>
+<h2 id="生成函数"><a href="#生成函数" class="headerlink" title="生成函数"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/command-block/sheng-cheng-han-shuo-za-tan">生成函数</a></h2><p>Polya 说过：生成函数就像袋子，把一个个零碎的小部件放在一个袋子里，就可以优雅高效的只关注袋子了。</p>
+<p>在 codeforces 上 <code>zscoder</code> 大佬给了一个 <a target="_blank" rel="noopener" href="https://codeforces.com/blog/entry/77468">入门教程</a> 和 <a target="_blank" rel="noopener" href="https://codeforces.com/blog/entry/77551">进阶教程</a> 还有 <code>MiFaFaOvO</code> 的 <a target="_blank" rel="noopener" href="https://codeforces.com/blog/entry/76447">终极教程</a></p>
+<p>生成函数分两种：Original generating function，Expentional generating function，选择哪一种是看问题中是否牵扯组合数。无论哪一种都能保存原数列的全部信息，并且由于级数可以使用微积分和常微分方程的技术，所以会变得更好处理。然后大概率可以优化算法复杂度 $O(n^2) \to O(n \log n)$</p>
+<p>关于生成函数多项式的处理：<a target="_blank" rel="noopener" href="https://cp-algorithms.com/algebra/polynomial.html">https://cp-algorithms.com/algebra/polynomial.html</a></p>
+<p>多项式高效运算模板：<a target="_blank" rel="noopener" href="https://github.com/e-maxx-eng/e-maxx-eng-aux/blob/master/src/polynomial.cpp">https://github.com/e-maxx-eng/e-maxx-eng-aux/blob/master/src/polynomial.cpp</a></p>
+<p><strong>生成函数一般的处理思路</strong>：计算生成函数，分解成有分母不超过二次的分式之和，然后每一个二次的分母部分找一个递推数列来搞定。</p>
+<p><a target="_blank" rel="noopener" href="https://oi-wiki.org/math/poly/intro/">OI-wiki 多项式运算</a></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/command-block/sheng-cheng-han-shuo-za-tan#">多项式计数杂谈</a> 很值得学习一下。</p>
+</blockquote>
+<h3 id="多项式取对数和指数"><a href="#多项式取对数和指数" class="headerlink" title="多项式取对数和指数"></a>多项式取对数和指数</h3><p>$B(z) = e^{A(z)}$，即 $A(z) = \ln B(z)$ (不妨假设 $A(0) = 0$ 或等价地 $B(0) = 1$)</p>
+<p>那么 $B’(z) = A’(z) \cdot B(z)$, 所以 $[z^{n - 1}] B’(z) = \sum_{k = 0}^{n - 1} [z^k] A’(z) \cdot B(z) [z^{n - 1 - k}] = \sum_{k = 1}^{n} [z^{k - 1}] A’(z) \cdot B(z) [z^{n-k}]$，从而</p>
+<script type="math/tex; mode=display">
+n [z^n] B(z) = \sum_{k = 1}^n k [z^k] A(z) \cdot B(z) [z^{n - k}]</script><p>上式等价于</p>
+<script type="math/tex; mode=display">
+n [z^n] A(z) = n [z^n] B(z) - \sum_{k = 1}^{n - 1} k [z^k] A(z) \cdot B(z) [z^{n - k}]</script><blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/Soulist/p/13758388.html">Soulist</a></p>
+</blockquote>
+<h3 id="差分约束"><a href="#差分约束" class="headerlink" title="差分约束"></a>差分约束</h3><p>$n$ 个变量，$m$ 个约束条件，每个约束条件都形如 $x_i - x_j \leq c_k$，此时我们从节点 j 向 i 连一条长度为 $c_k$ 的有向边，（如果有等于号，我们就连两条），设 <code>dist[0] = 0</code>，然后 0 节点向所有节点连一条长度为 0 的有向边。跑单源最短路，如果环中有负环，那么无解，否则 $x_i = dist[i]$ 为一组解。</p>
+<p>可用图论中 Bellman-Ford 算法，或 spfa（随笔图跑的快），例题：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1993">LOJ P1993</a>，<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/46227278">spfa 做法</a>，<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/46228308">Bellman-Ford 做法</a></p>
+<blockquote>
+<p>变式：$\frac{x_i}{x_j} \leq c_k$（取 log 即可）</p>
+</blockquote>
+<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><h3 id="逆序数"><a href="#逆序数" class="headerlink" title="逆序数"></a>逆序数</h3><ol>
+<li>直接求 $O(n^2)$ 没啥好写的。</li>
+<li>把原数组每个位置进行编号，排序，然后每次把最大的数的编号丢进树状数组中，丢进去先看这个编号前面有多少个数，累加一下就可以了，$O(n^2)$，结合下面树状数组的知识还是很简单的。</li>
+<li>带离散化的树状数组（就是如果元素的数值特别大，树状数组内存就不够了，所以需要离散化一下）</li>
+<li>归并的求（不会也不想搞 0.0）</li>
+<li>逐位处理（代码如下）</li>
+</ol>
+<h3 id="树状数组加强版（区间更新，区间求和，编号从-1-开始）"><a href="#树状数组加强版（区间更新，区间求和，编号从-1-开始）" class="headerlink" title="树状数组加强版（区间更新，区间求和，编号从 1 开始）"></a>树状数组加强版（区间更新，区间求和，编号从 1 开始）</h3><p>有了单点更新的树状数组，只需简单利用差分就可以变成区间的更新了。<br>设原始数组为 <code>a[1 ~ n]</code>， 定义 <code>c[i] = a[i] - a[i - 1], (a[0] = 0)</code> 显然</p>
+<script type="math/tex; mode=display">
+\sum_{i = 1}^m a_i = \sum_{i = 1}^m (m - i + 1) c_i = m \sum_{i = 1}^m c_i - \sum_{i = 1}^m (i - 1) c_i</script><p>比如对区间 <code>[l, r]</code> 做更新，那么就只需更新两点：<code>r + 1, l</code> ，套用之前的类就行了。</p>
+<blockquote>
+<p>注意在树状数组中搜索本来应该是 $O(\log ^2 n)$，但是因为在 $2^i$ 的位置搜索时，一步到位。所以复杂度会降到 $O(\log n)$：<a target="_blank" rel="noopener" href="https://codeforces.com/blog/entry/61364">理论依据</a></p>
+</blockquote>
+<h3 id="线段树节点上界（不管是不是左闭右开）"><a href="#线段树节点上界（不管是不是左闭右开）" class="headerlink" title="线段树节点上界（不管是不是左闭右开）"></a>线段树节点上界（不管是不是左闭右开）</h3><p>首先显然总节点 $m$ 上界为 $4n$，并且可以证明 $\frac{m}{n}$ 的上确界为 $4$，下确界为 $2$ 注意到如果 $n = 2^k + 2^{j + 1}$ 时，则 $m = 2 ^{k + 1} + 2^k + \cdots 2^{k - j} + 1$，所以 $\frac{m}{n} = \frac{4 - 2^{-j} + 2^{-k}}{1 + 2^{j + 1 - k}}$，对任意 $\epsilon &gt; 0$ 存在 $j$ 使得 $4 - 2 ^{-j} &gt; 4 - \epsilon$， 然后让 $k$ 趋于无穷，那么显然 $\frac{m}{n}$ 上极限为 $4$.（$n = 40$ 时， $\frac{m}{n} &gt; 3$，$n = 2^{20} + 2^{10} = 1049600$ 时，$\frac{m}{n} &gt; 3.99$）</p>
+<p>根据 jiangly 的做法：这里必然会得到 $m &lt; 4 \cdot 2^{\log_2 n}$ 确实如此。这与上面的结论不矛盾，只是更加精确罢了</p>
+<blockquote>
+<p>和与最大值的线段树模板（如果单纯求和，可以用树状数组），现在使用左闭右开线段树，且使用吉老师 pushTag 版本</p>
+</blockquote>
+<h3 id="三分法简单版"><a href="#三分法简单版" class="headerlink" title="三分法简单版"></a><a target="_blank" rel="noopener" href="https://codeforces.com/contest/439/problem/D">三分法简单版</a></h3><blockquote>
+<p>单峰函数可以这么做，以下为求上峰的版本</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">int</span> l = <span class="hljs-number">1</span>, r = <span class="hljs-number">1e9</span>;<br><span class="hljs-keyword">while</span> (r &gt; l) &#123;<br>  <span class="hljs-keyword">int</span> m = (r - l) / <span class="hljs-number">3</span>;<br>  <span class="hljs-keyword">int</span> lm = l + m, rm = r - m;<br>  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">f</span>(lm) &lt; <span class="hljs-built_in">f</span>(rm)) r = rm - <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">else</span> l = lm + <span class="hljs-number">1</span>;<br>&#125;<br><span class="hljs-keyword">return</span> l;<br></code></pre></td></tr></table></figure>
+<h3 id="标准三分法用黄金分割的原因"><a href="#标准三分法用黄金分割的原因" class="headerlink" title="标准三分法用黄金分割的原因"></a>标准三分法用黄金分割的原因</h3><p>我们不妨设原始区间为 <code>[0, 1]</code>，我们在其中选两个点 <code>0 &lt; a &lt; b &lt; 1</code>，然后比较 <code>f(a)</code> 和 <code>f(b)</code>，然后再相应改变区间。然后重复上述过程。如果我们能充分利用计算过的值，也就是说假设更新后的区间为 <code>[0, b]</code> 那么我们自然想让 <code>a</code> 的计算值充分被利用，所以我们想再选的两个点的其中一个是 <code>a</code>，如果更新后区间为 <code>[a, 1]</code> 同理。也就是说我们有策略</p>
+<script type="math/tex; mode=display">
+\frac{a}{b} = b, \frac{b - a}{1 - a} = a</script><p>化简可得 $b(1 + b) = 1$，即 $b = \frac{\sqrt{5} - 1}{2}, a = b ^ 2 = \frac{3 - \sqrt{5}}{2} = 1 - b$。</p>
+<blockquote>
+<p>注意到上述 $b$ 的值正好是黄金分割 0.618…</p>
+</blockquote>
+<h3 id="背包"><a href="#背包" class="headerlink" title="背包"></a>背包</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> MAX = <span class="hljs-number">1e5</span> + <span class="hljs-number">5</span>;<br><span class="hljs-keyword">int</span> r[MAX];<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">pack</span><span class="hljs-params">(<span class="hljs-keyword">int</span> cash, <span class="hljs-keyword">int</span> num, <span class="hljs-keyword">int</span> v, <span class="hljs-keyword">int</span> w)</span> </span>&#123;<br>  <span class="hljs-keyword">if</span> (num == <span class="hljs-number">0</span> || w == <span class="hljs-number">0</span> || v == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span>;<br>  <span class="hljs-keyword">if</span> (num == <span class="hljs-number">1</span>) &#123; <span class="hljs-comment">//  0-1背包</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = cash; i &gt;= v; --i)<br>      r[i] = <span class="hljs-built_in">max</span>(r[i], r[i - v] + w);<br>    <span class="hljs-keyword">return</span>;<br>  &#125;<br>  <span class="hljs-keyword">if</span> (num * v &gt;= cash - v + <span class="hljs-number">1</span>) &#123; <span class="hljs-comment">//完全背包</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = v; i &lt;= cash; ++i)<br>      r[i] = <span class="hljs-built_in">max</span>(r[i], r[i - v] + w);<br>    <span class="hljs-keyword">return</span>;<br>  &#125;<br>  <span class="hljs-keyword">int</span> q[MAX], s[MAX], head, tail;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; v; ++j) &#123; <span class="hljs-comment">//多重背包</span><br>    q[<span class="hljs-number">0</span>] = r[j];<br>    s[<span class="hljs-number">0</span>] = head = tail = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>, k = j + v; k &lt;= cash; ++i, k += v) &#123;<br>      q[i] = r[k] - i * w;<br>      <span class="hljs-keyword">while</span> (s[head] &lt; i - num) ++head;<br>      <span class="hljs-keyword">while</span> (head &lt;= tail &amp;&amp; q[tail] &lt; q[i]) --tail;<br>      s[++tail] = i;<br>      q[tail] = q[i];<br>      r[k] = q[head] + i * w;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="堆与-STL-优先队列"><a href="#堆与-STL-优先队列" class="headerlink" title="堆与 STL 优先队列"></a>堆与 STL 优先队列</h3><p>可以使用 <a target="_blank" rel="noopener" href="http://www.cplusplus.com/reference/">C++STL</a> 的 priority_queue，查找可用 lower_bound 和 upper_bound。C++ STL 中优先队列是用堆来实现的。用途十分广泛，例如加速最小生成树，拓扑排序，等等。<br>堆的实现一般是用数组。 我们可以用 1 作为树的根， 对每一个节点 $x$， 它的两个节点分别就是 $2x$ 和 $2x + 1$ 平时都用 <code>x &lt;&lt; 1, x &lt;&lt; 1 | 1</code> 表示。 堆只支持三个操作:</p>
+<ol>
+<li>插入一个节点(我们实现时是插入最尾部， 这样保证了是一个完全二叉树) $O(\log n)$</li>
+<li>删除最大键值节点（删除根元素的值） $O(\log n)$</li>
+<li>输出最大键值节点（查看根元素的值） $O(1)$</li>
+</ol>
+<h3 id="单调队列：解决滑动窗口问题（固定长度内的最值问题）"><a href="#单调队列：解决滑动窗口问题（固定长度内的最值问题）" class="headerlink" title="单调队列：解决滑动窗口问题（固定长度内的最值问题）"></a>单调队列：解决滑动窗口问题（固定长度内的最值问题）</h3><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/346354943">知乎 Pecco</a> 讲的很好（建议直接去看它的讲解）：</p>
+<blockquote>
+<p>如果一个选手比你小还比你强，你就可以退役了。——单调队列的原理</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 求每个长度为 m 的区间最大值的编号</span><br><span class="hljs-function">std::vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">monicDequeMax</span><span class="hljs-params">(std::vector&lt;<span class="hljs-keyword">int</span>&gt; &amp;a, <span class="hljs-keyword">int</span> m)</span> </span>&#123;<br>  std::vector&lt;<span class="hljs-keyword">int</span>&gt; r;<br>  std::deque&lt;<span class="hljs-keyword">int</span>&gt; Q;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; a.<span class="hljs-built_in">size</span>(); ++i) &#123;<br>    <span class="hljs-keyword">if</span> (!Q.<span class="hljs-built_in">empty</span>() &amp;&amp; i - Q.<span class="hljs-built_in">front</span>() &gt;= m) Q.<span class="hljs-built_in">pop_front</span>();<br>    <span class="hljs-comment">// 如果求最小值，大于号改成小于号即可</span><br>    <span class="hljs-keyword">while</span> (!Q.<span class="hljs-built_in">empty</span>() &amp;&amp; a[i] &gt; a[Q.<span class="hljs-built_in">back</span>()]) Q.<span class="hljs-built_in">pop_back</span>();<br>    Q.<span class="hljs-built_in">push_back</span>(i);<br>    <span class="hljs-comment">// 如果需要返回值，就在下面加入 a[Q.front()]</span><br>    <span class="hljs-keyword">if</span> (i &gt;= m - <span class="hljs-number">1</span>) r.<span class="hljs-built_in">emplace_back</span>(Q.<span class="hljs-built_in">front</span>());<br>  &#125;<br>  <span class="hljs-keyword">return</span> r;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>例题：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2216">LOJ P2216</a>：这个是二维的，我们可以一维一维的处理</p>
+<h3 id="单调队列优化-DP"><a href="#单调队列优化-DP" class="headerlink" title="单调队列优化 DP"></a>单调队列优化 DP</h3><p>例题：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2034">LOJ P2034</a>：取数字使得和最大，但是不能取连续 k 个数</p>
+<p>肯定是 dp 问题，如果把 dp[i] 定义成取第 i 个，前 i 个结果的最值，会发现很搞。<br>因此我们反过来考虑。考虑删除若干个数，且删除的间隔不超过 k，求删除的最小和。最终答案就是总和减去最小和。设 <code>dp[i]</code> 表示删除 i，且满足性质的前 i 个数的答案。那么显然   $dp[i] = a[i] i \leq k$，$dp[i] = a[i] + \min_{i - k \leq j \leq i - 1} dp[j]$。注意最终答案不是总和减去 dp 的 最小值，而是 $dp[n - k - 2, \cdots, n - 1]$ 的最小值。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> watch(x) std::cout &lt;&lt; (#x) &lt;&lt; <span class="hljs-meta-string">&quot; is &quot;</span> &lt;&lt; (x) &lt;&lt; std::endl</span><br><span class="hljs-keyword">using</span> LL = <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span>;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>  <span class="hljs-comment">// freopen(&quot;in&quot;, &quot;r&quot;, stdin);</span><br>  std::ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);<br>  std::cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>);<br>  <span class="hljs-keyword">int</span> n, k;<br>  std::cin &gt;&gt; n &gt;&gt; k;<br>  <span class="hljs-function">std::vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">a</span><span class="hljs-params">(n)</span>, <span class="hljs-title">dp</span><span class="hljs-params">(n)</span></span>;<br>  LL s = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;x : a) &#123;<br>    std::cin &gt;&gt; x;<br>    s += x;<br>  &#125;<br>  std::deque&lt;<span class="hljs-keyword">int</span>&gt; Q;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i) &#123;<br>    dp[i] = a[i];<br>    <span class="hljs-keyword">if</span> (i &gt;= k + <span class="hljs-number">1</span>) dp[i] += dp[Q.<span class="hljs-built_in">front</span>()];<br>    <span class="hljs-keyword">if</span> (!Q.<span class="hljs-built_in">empty</span>() &amp;&amp; i - Q.<span class="hljs-built_in">front</span>() &gt;= k + <span class="hljs-number">1</span>) Q.<span class="hljs-built_in">pop_front</span>();<br>    <span class="hljs-keyword">while</span> (!Q.<span class="hljs-built_in">empty</span>() &amp;&amp; dp[i] &lt;= dp[Q.<span class="hljs-built_in">back</span>()]) Q.<span class="hljs-built_in">pop_back</span>();<br>    Q.<span class="hljs-built_in">push_back</span>(i);<br>  &#125;<br>  std::cout &lt;&lt; s - *std::<span class="hljs-built_in">min_element</span>(dp.<span class="hljs-built_in">end</span>() - k - <span class="hljs-number">1</span>, dp.<span class="hljs-built_in">end</span>());<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="单调栈：形式更简单应用更广"><a href="#单调栈：形式更简单应用更广" class="headerlink" title="单调栈：形式更简单应用更广"></a>单调栈：形式更简单应用更广</h3><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/346536592">知乎 Pecco</a> 的精彩讲解：维护一个栈，当我们碰上一个新元素，我们知道，越靠近栈顶的元素离新元素位置越近。所以不断比较新元素与栈顶，如果新元素比栈顶大，则可断定新元素就是栈顶的下一个更大元素，于是弹出栈顶并继续比较。直到新元素不比栈顶大，再将新元素压入栈。显然，这样形成的栈是单调递减的。</p>
+<p>应用一：求下一个比自身大的元素位置（下可以改成上，大可以改成小）</p>
+<p>洛谷模板题：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5788">LOJ P5788</a></p>
+<p>应用二：两个元素间所有元素均（不）大/小于这二者。</p>
+<p>洛谷进阶题：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1823">LOJ P1823</a>，问有多少对元素，它们之间没有比它们都大的元素。</p>
+<h3 id="单调栈优化-DP"><a href="#单调栈优化-DP" class="headerlink" title="单调栈优化 DP"></a>单调栈优化 DP</h3><p>应用一优化 DP 例题：<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1313/problem/C2">1313C2</a>，首先最优答案肯定时先递增后递减的。相当于有一个制高点，枚举制高点，自然有 $O(n^2)$ 的算法。但是可以优化到 $O(n)$</p>
+<p>应用二优化 DP 例题：<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1407/problem/D">1407D</a>，每次跳跃，它们之间的元素都严格大于它们或者严格小于它们。首先设 <code>dp[i]</code> 为到达 i 最小跳跃数，那么显然 $\displaystyle dp[i] = \min_{j \to i} dp[j] + 1$。我们可以用两个单调栈来看那些 j 能跳到 i。</p>
+<h2 id="几何"><a href="#几何" class="headerlink" title="几何"></a>几何</h2><h3 id="分治法求平面最短距离（任何距离都适用）"><a href="#分治法求平面最短距离（任何距离都适用）" class="headerlink" title="分治法求平面最短距离（任何距离都适用）"></a>分治法求平面最短距离（任何距离都适用）</h3><p>首先根据横坐标排序，然后取中位数假设处理好了左右两边的值，然后合并中间的值，首先距离中心点的横坐标不能超过已知的最小值，然后把筛出来的点按照纵坐标排序，然后 $O(n)$ 更新答案。总题复杂度 $O(n \log^2 n)$，如果使用归并排序理论复杂度为 $O(n \log n)$，但是实际效果并不如直接排序。</p>
+<p>例题：[<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1429">https://www.luogu.com.cn/problem/P1429</a>] 和 <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6247">LOJ P6247</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">using</span> Point = std::pair&lt;<span class="hljs-keyword">double</span>, <span class="hljs-keyword">double</span>&gt;;<br><span class="hljs-comment">// 这里不要用 dist2，否则很多比较的地方都要平方，反而不优雅了。</span><br><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">dist</span> <span class="hljs-params">(<span class="hljs-keyword">const</span> Point&amp; p, <span class="hljs-keyword">const</span> Point &amp;q)</span> </span>&#123;<br>  <span class="hljs-keyword">double</span> x = q.first - p.first, y = q.second - p.second;<br>  <span class="hljs-keyword">return</span> std::<span class="hljs-built_in">sqrt</span>(x * x + y * y);<br>&#125;;<br><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">minDist</span><span class="hljs-params">(std::vector&lt;Point&gt; a)</span> </span>&#123;<br>  <span class="hljs-keyword">double</span> d = DBL_MAX;<br>  <span class="hljs-keyword">int</span> n = a.<span class="hljs-built_in">size</span>();<br>  <span class="hljs-keyword">if</span> (n &lt;= <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> d;<br>  std::<span class="hljs-built_in">sort</span>(a.<span class="hljs-built_in">begin</span>(), a.<span class="hljs-built_in">end</span>());<br>  std::function&lt;<span class="hljs-built_in"><span class="hljs-keyword">void</span></span>(<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>)&gt; merge = [&amp;](<span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r) &#123;<br>    <span class="hljs-keyword">if</span> (r - l &lt;= <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span>;<br>    <span class="hljs-keyword">if</span> (r - l == <span class="hljs-number">2</span>) &#123;<br>      d = std::<span class="hljs-built_in">min</span>(d, <span class="hljs-built_in">dist</span>(a[l], a[l + <span class="hljs-number">1</span>]));<br>      <span class="hljs-keyword">return</span>;<br>    &#125;<br>    <span class="hljs-keyword">int</span> m = (l + r) / <span class="hljs-number">2</span>;<br>    <span class="hljs-built_in">merge</span>(l, m);<br>    <span class="hljs-built_in">merge</span>(m + <span class="hljs-number">1</span>, r);<br>    std::vector&lt;Point&gt; p;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = m - <span class="hljs-number">1</span>; i &gt;= l &amp;&amp; a[m].first - a[i].first &lt; d; --i) &#123;<br>      p.<span class="hljs-built_in">emplace_back</span>(a[i].second, a[i].first);<br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = m; i &lt; r &amp;&amp; a[i].first - a[m].first &lt; d; ++i) &#123;<br>      p.<span class="hljs-built_in">emplace_back</span>(a[i].second, a[i].first);<br>    &#125;<br>    std::<span class="hljs-built_in">sort</span>(p.<span class="hljs-built_in">begin</span>(), p.<span class="hljs-built_in">end</span>());<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; p.<span class="hljs-built_in">size</span>(); ++i) &#123;<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = i + <span class="hljs-number">1</span>; j &lt; p.<span class="hljs-built_in">size</span>() &amp;&amp; p[j].first - p[i].first &lt; d; ++j) &#123;<br>        d = std::<span class="hljs-built_in">min</span>(d, <span class="hljs-built_in">dist</span>(p[i], p[j]));<br>      &#125;<br>    &#125;<br>  &#125;;<br>  <span class="hljs-built_in">merge</span>(<span class="hljs-number">0</span>, n);<br>  <span class="hljs-keyword">return</span> d;<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>分治法还能求两个点作为对交的矩阵的最大面积</p>
+</blockquote>
+<h3 id="三维偏序之陈丹琪分治（仅支持离线查询，还是直接暴力好用-）"><a href="#三维偏序之陈丹琪分治（仅支持离线查询，还是直接暴力好用-）" class="headerlink" title="三维偏序之陈丹琪分治（仅支持离线查询，还是直接暴力好用~）"></a>三维偏序之陈丹琪分治（仅支持离线查询，还是直接暴力好用~）</h3><blockquote>
+<p>如果带更新怎么处理呢？先预处理求出，之后更新一个计算一个更新？（那也不太行呀）</p>
+</blockquote>
+<p>一般地，我们考虑可以考虑 $k$ 维偏序，设有 $n$ 个 $k$ 维向量，$a_j \leq a_i$ 当且仅当所有的下标都满足小于等于关系，想知道对任意 $i$ 有多少个 $j \neq i$ 使得 $a_j \leq a_i$。</p>
+<p>有复杂度 $O(n \log^k n)$ 的算法，因此在 $k &gt; 3$ 时，我们会选择直接 $O(n^2)$ 暴力解决问题（见下小节）。</p>
+<ul>
+<li>$k = 1$ 时，我们直接排序，假设没有相同元素，那么它们排完序之后的位置就是答案，有相同的数字的话可以先合并，也可以用 <code>upper_bound</code> 查找出结果。复杂度 $O(n \log n)$</li>
+<li>$k = 2$ 时，我们先对第一个坐标偏序，再来一个树状数组，一个个的加入元素，加入之前可以查询结果。这也是求逆序数的操作(如果数据值域范围很大，可以离散化处理一下，仅需对要加入树状数组的那一维离散化，排序可以使用下标排序，就可以避免使用 tuple）。</li>
+</ul>
+<p>因此三维偏序是一个空缺的问题，就有大名鼎鼎的 cdq 分治。</p>
+<p>模板例题：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3810">LOJ P3810</a>，这个题的<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/solution/P3810">题解</a>中，有人讲的很好，echo6342：</p>
+<blockquote>
+<p>cdq 分治每次计算前一半对后一半的影响。具体地，假设三维分别是 $x, y, z$，先按 $x$ 排序。分治时每次将前半边、后半边分别按 $y$ 排序。虽然现在 $x$ 的顺序被打乱了，但是前半边还是都小于后半边的，所以要是只计算前半边对后半边的偏序关系，是不会受到 $x$ 的影响的。维护后一半的指针 i，前一半的指针 j，每次将 i 后移一位时，若 $y[j] \leq y[i]$ 则不断后移 j，并不断将 z[j] 加入树状数组。然后再查询树状数组中有多少数小于等于 z[i]。 最后要清空树状数组（注意清空的时候不能直接清空，而是根据更新的命令，反向一次命令来清空，否则一直开树状数组耗时的），还有就是要去重贼麻烦，还是弃用吧。</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> &#123;</span><br>  <span class="hljs-keyword">int</span> x, y, z, id, w;<br>  <span class="hljs-keyword">bool</span> <span class="hljs-keyword">operator</span>&lt;(<span class="hljs-keyword">const</span> Node &amp;A) <span class="hljs-keyword">const</span> &#123;<br>    <span class="hljs-keyword">if</span> (x == A.x) <span class="hljs-keyword">return</span> y == A.y ? z &lt; A.z : y &lt; A.y;<br>    <span class="hljs-keyword">return</span> x &lt; A.x;<br>  &#125;<br>&#125;;<br><span class="hljs-comment">// ans[i] 表示 小于或等于 a[i] 的元素个数</span><br><span class="hljs-function">std::vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">cdq</span><span class="hljs-params">(std::vector&lt;Node&gt; &amp;a, <span class="hljs-keyword">int</span> k)</span> </span>&#123;<br>  <span class="hljs-comment">// 先按照 y 排序，免得后面代码写的太麻烦</span><br>  <span class="hljs-function">std::vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">ans</span><span class="hljs-params">(a.size())</span></span>;<br>  std::<span class="hljs-built_in">sort</span>(a.<span class="hljs-built_in">begin</span>(), a.<span class="hljs-built_in">end</span>());<br>  <span class="hljs-comment">// 去重操作</span><br>  <span class="hljs-keyword">int</span> last = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; a.<span class="hljs-built_in">size</span>(); ++i) &#123;<br>    <span class="hljs-keyword">if</span> (a[i].x != a[i - <span class="hljs-number">1</span>].x || a[i].y != a[i - <span class="hljs-number">1</span>].y || a[i].z != a[i - <span class="hljs-number">1</span>].z) &#123;<br>      <span class="hljs-keyword">int</span> t = i - last - <span class="hljs-number">1</span>;<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = last; j &lt; i; ++j) &#123;<br>        ans[a[j].id] = t;<br>        a[j].w = <span class="hljs-number">0</span>;<br>      &#125;<br>      a[i - <span class="hljs-number">1</span>].w = i - last;<br>      last = i;<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">int</span> t = a.<span class="hljs-built_in">size</span>() - last - <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = last; i &lt; a.<span class="hljs-built_in">size</span>(); ++i) &#123;<br>    ans[a[i].id] = t;<br>    a[i].w = <span class="hljs-number">0</span>;<br>  &#125;<br>  a.<span class="hljs-built_in">back</span>().w = a.<span class="hljs-built_in">size</span>() - last;<br>  <span class="hljs-function">TreeArray <span class="hljs-title">A</span><span class="hljs-params">(k)</span></span>;<br>  <span class="hljs-keyword">auto</span> cmpy = [](<span class="hljs-keyword">const</span> Node &amp;lhs, <span class="hljs-keyword">const</span> Node &amp;rhs) &#123;<br>    <span class="hljs-keyword">return</span> lhs.y &lt; rhs.y;<br>  &#125;;<br>  std::function&lt;<span class="hljs-built_in"><span class="hljs-keyword">void</span></span>(<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>)&gt; divide = [&amp;](<span class="hljs-keyword">int</span> l, <span class="hljs-keyword">int</span> r) &#123;<br>    <span class="hljs-keyword">if</span> (r - l &lt;= <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span>;<br>    <span class="hljs-keyword">int</span> m = (l + r) / <span class="hljs-number">2</span>;<br>    <span class="hljs-built_in">divide</span>(l, m);<br>    <span class="hljs-built_in">divide</span>(m, r);<br>    std::<span class="hljs-built_in">sort</span>(a.<span class="hljs-built_in">begin</span>() + l, a.<span class="hljs-built_in">begin</span>() + m, cmpy);<br>    std::<span class="hljs-built_in">sort</span>(a.<span class="hljs-built_in">begin</span>() + m, a.<span class="hljs-built_in">begin</span>() + r, cmpy);<br>    <span class="hljs-keyword">int</span> t = l;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = m; i &lt; r; ++i) &#123;<br>      <span class="hljs-keyword">while</span> (t &lt; m &amp;&amp; a[t].y &lt;= a[i].y) &#123;<br>        A.<span class="hljs-built_in">add</span>(a[t].z, a[t].w);<br>        ++t;<br>      &#125;<br>      ans[a[i].id] += A.<span class="hljs-built_in">sum</span>(a[i].z);<br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = l; i &lt; t; ++i) A.<span class="hljs-built_in">add</span>(a[i].z, -a[i].w);<br>  &#125;;<br>  <span class="hljs-built_in">divide</span>(<span class="hljs-number">0</span>, a.<span class="hljs-built_in">size</span>());<br>  <span class="hljs-keyword">return</span> ans;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="k-维偏序（暴力-bitset-优化，分块时间换空间）-O-frac-k-n-2-w"><a href="#k-维偏序（暴力-bitset-优化，分块时间换空间）-O-frac-k-n-2-w" class="headerlink" title="k 维偏序（暴力 bitset 优化，分块时间换空间） $O(\frac{k n^2}{w})$"></a>k 维偏序（暴力 bitset 优化，分块时间换空间） $O(\frac{k n^2}{w})$</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">4e4</span> + <span class="hljs-number">2</span>;<br><span class="hljs-comment">// a 是 k * n 矩阵表示 n 个 k 维向量，输出每个小于自身的向量个数</span><br><span class="hljs-function">std::vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">partialOrder</span><span class="hljs-params">(std::vector&lt;std::vector&lt;<span class="hljs-keyword">int</span>&gt;&gt; &amp;a)</span> </span>&#123;<br><span class="hljs-comment">// 直接暴力不太行，所以需要时间换空间，具体说就是分块。</span><br>  <span class="hljs-keyword">int</span> k = a.<span class="hljs-built_in">size</span>(), n = a[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>();<br>  <span class="hljs-keyword">using</span> Node = std::vector&lt;std::pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt;&gt;;<br>  <span class="hljs-function">std::vector&lt;Node&gt; <span class="hljs-title">f</span><span class="hljs-params">(k, Node(n))</span></span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; k; ++i) &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; n; ++j) f[i][j] = &#123;a[i][j], j&#125;;<br>    std::<span class="hljs-built_in">sort</span>(f[i].<span class="hljs-built_in">begin</span>(), f[i].<span class="hljs-built_in">end</span>());<br>  &#125;<br>  <span class="hljs-keyword">int</span> sn = std::<span class="hljs-built_in">sqrt</span>(n);<br>  <span class="hljs-keyword">using</span> Data = std::vector&lt;std::bitset&lt;N&gt;&gt;;<br>  <span class="hljs-function">std::vector&lt;Data&gt; <span class="hljs-title">bs</span><span class="hljs-params">(k, Data(n / sn + <span class="hljs-number">1</span>))</span></span>;;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; k; ++i) &#123;<br>    std::bitset&lt;N&gt; now;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; n; ++j) &#123;<br>      <span class="hljs-keyword">if</span> (j % sn == <span class="hljs-number">0</span>) bs[i][j / sn] = now;<br>      now.<span class="hljs-built_in">set</span>(f[i][j].second);<br>    &#125;<br>    <span class="hljs-keyword">if</span> (n % sn == <span class="hljs-number">0</span>) bs[i][n / sn] = now;<br>  &#125;<br>  <span class="hljs-keyword">auto</span> getbst = [&amp;](<span class="hljs-keyword">int</span> i, <span class="hljs-keyword">int</span> val) -&gt; std::bitset&lt;N&gt; &#123;<br>    <span class="hljs-comment">// 如果求小于或等于的个数，这里要改成 upper_bound 并且要用 INT_MAX，还有最终答案减 1（去掉自身）</span><br>    <span class="hljs-keyword">int</span> j = std::<span class="hljs-built_in">lower_bound</span>(f[i].<span class="hljs-built_in">begin</span>(), f[i].<span class="hljs-built_in">end</span>(), std::<span class="hljs-built_in">make_pair</span>(val, INT_MIN)) - f[i].<span class="hljs-built_in">begin</span>();<br>    std::bitset&lt;N&gt; r = bs[i][j / sn];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> t = j / sn * sn; t &lt; j; ++t) r.<span class="hljs-built_in">set</span>(f[i][t].second);<br>    <span class="hljs-keyword">return</span> r;<br>  &#125;;<br>  <span class="hljs-function">std::vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">r</span><span class="hljs-params">(n)</span></span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; n; ++j) &#123;<br>    std::bitset&lt;N&gt; now; now.<span class="hljs-built_in">set</span>();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; k; ++i) &#123;<br>      now &amp;= <span class="hljs-built_in">getbst</span>(i, a[i][j]);<br>    &#125;<br>    r[j] = now.<span class="hljs-built_in">count</span>();<br>  &#125;<br>  <span class="hljs-keyword">return</span> r;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>模板例题：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/U66865">LOJ U66865</a>，可参考 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/cjyyb/p/8196312.html">小蒟蒻 yyb 的博客</a> 中的 ppt 实现。其它例题：<a target="_blank" rel="noopener" href="http://cogs.pro:8081/cogs/problem/problem.php?pid=vSJzQVejP">偏序++</a></p>
+<blockquote>
+<p>虽然三维偏序问题用 cdq 分治更好，但是用 bitset 暴力过题还是没啥问题的，例如 <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3810">LOJ P3810</a></p>
+</blockquote>
+<h2 id="递归算法复杂度定理（算法导论）"><a href="#递归算法复杂度定理（算法导论）" class="headerlink" title="递归算法复杂度定理（算法导论）"></a>递归算法复杂度定理（算法导论）</h2><p><img src="complexAnalysis.png" srcset="/img/loading.gif" lazyload alt="递归算法复杂度定理"></p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/algorithm/">#algorithm</a>
+      
+        <a href="/tags/cpp/">#cpp</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/twikoo/1.4.17/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"hello-cloudbase-6gua2z7k094e2b64","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+              Fluid.plugins.imageCaption(imgSelector);
+              Fluid.plugins.fancyBox(imgSelector);
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      沪ICP备2021025739号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        MathJax = {
+          tex    : {
+            inlineMath: { '[+]': [['$', '$']] }
+          },
+          loader : {
+            load: ['ui/lazy']
+          },
+          options: {
+            renderActions: {
+              findScript    : [10, doc => {
+                document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                  const display = !!node.type.match(/; *mode=display/);
+                  const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                  const text = document.createTextNode('');
+                  node.parentNode.replaceChild(text, node);
+                  math.start = { node: text, delim: '', n: 0 };
+                  math.end = { node: text, delim: '', n: 0 };
+                  doc.math.push(math);
+                });
+              }, '', false],
+              insertedScript: [200, () => {
+                document.querySelectorAll('mjx-container').forEach(node => {
+                  let target = node.parentNode;
+                  if (target.nodeName.toLowerCase() === 'li') {
+                    target.parentNode.classList.add('has-jax');
+                  }
+                });
+              }, '', false]
+            }
+          }
+        };
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

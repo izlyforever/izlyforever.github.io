@@ -1,0 +1,1098 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="izlyforever">
+  <meta name="keywords" content="math, cpp, python, sagemath">
+  
+    <meta name="description" content="疫情开始后不久，在苏铭和蓝莓带领下，开始学习 Python，下面是走过的坑，吐槽正式开始  Python 在代码书写上要求极高，所有很多时候代码复制过来报错。。还有代码区分空格和 Tab Python 中，对象赋值本质上是对象的引用 不要把 Python 代码写成 C&#x2F;C++ 的风格！同样 SageMath 的代码也不要迁就 Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 学习笔记">
+<meta property="og:url" content="http://izlyforever.com/learnPython/index.html">
+<meta property="og:site_name" content="记录程序和数学的点滴">
+<meta property="og:description" content="疫情开始后不久，在苏铭和蓝莓带领下，开始学习 Python，下面是走过的坑，吐槽正式开始  Python 在代码书写上要求极高，所有很多时候代码复制过来报错。。还有代码区分空格和 Tab Python 中，对象赋值本质上是对象的引用 不要把 Python 代码写成 C&#x2F;C++ 的风格！同样 SageMath 的代码也不要迁就 Python">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://izlyforever.com/learnPython/pygamecheatsheet.png">
+<meta property="og:image" content="http://izlyforever.com/learnPython/avatar.png">
+<meta property="og:image" content="http://izlyforever.com/learnPython/avatarchar.png">
+<meta property="article:published_time" content="2020-07-02T05:08:06.000Z">
+<meta property="article:modified_time" content="2022-06-25T09:14:02.545Z">
+<meta property="article:author" content="izlyforever">
+<meta property="article:tag" content="note">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://izlyforever.com/learnPython/pygamecheatsheet.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Python 学习笔记 - 记录程序和数学的点滴</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"izlyforever.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>izlyforever</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cppTemplate/">
+                <i class="iconfont icon-book"></i>
+                cpp
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webTools/">
+                <i class="iconfont icon-briefcase"></i>
+                网页工具
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Python 学习笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-07-02 13:08" pubdate>
+          2020年7月2日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          23k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          190 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Python 学习笔记</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    <!-- compatible with older versions-->
+                    最后更新于：2022年6月25日 下午
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <p>疫情开始后不久，在苏铭和蓝莓带领下，开始学习 Python，下面是走过的坑，吐槽正式开始</p>
+<blockquote>
+<p>Python 在代码书写上要求极高，所有很多时候代码复制过来报错。。还有代码区分空格和 Tab</p>
+<p>Python 中，对象赋值本质上是对象的引用</p>
+<p>不要把 Python 代码写成 C/C++ 的风格！同样 SageMath 的代码也不要迁就 Python</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="入门教程"><a href="#入门教程" class="headerlink" title="入门教程"></a>入门教程</h2><ol>
+<li>下载好 Python 后有自带文档</li>
+<li><a target="_blank" rel="noopener" href="https://www.runoob.com/Python/Python-tutorial.html">Python 菜鸟教程</a></li>
+<li>百度一下，你就知道。不行可以选择 <a href="cn.bing.com">必应</a></li>
+<li>网易公开课，我选择的是南京大学的 Python 玩转数据，用手机 app 才能看，建议观看 1-25 集和 43-50 集。 1.5 倍速。</li>
+<li>爬虫（下面示例）</li>
+<li>Pygame 库的使用（<del>PY 游戏</del>，那也才刺激了吧 0.0）</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/jackfrued/Python-100-Days">100 天学会 Python</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ageitgey/face_recognition">人脸识别</a></li>
+</ol>
+<p>基本语法掌握了之后就要掌握类了，Python 的类挺有趣的，哈哈.类中写得变量是类的属性，而每个对象的属性要加 <code>self.</code> 的，然后方法里面的变量是方法内部临时变量。</p>
+<blockquote>
+<p>pip freeze/list 查看所有安装了的包</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://pypi.org/">PyPi</a> ：Python Package Index 查看所有发布的包的索引。</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><h3 id="简单的终端-Python-程序"><a href="#简单的终端-Python-程序" class="headerlink" title="简单的终端 Python 程序"></a>简单的终端 Python 程序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># score.py</span><br>tmp = <span class="hljs-built_in">input</span>(<span class="hljs-string">&#x27;苏铭的Python分数：&#x27;</span>)<br><span class="hljs-keyword">if</span> tmp.isdigit():<br>  score = <span class="hljs-built_in">int</span>(tmp)<br>  <span class="hljs-keyword">if</span> score &gt; <span class="hljs-number">100</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;我信了你的鬼话&#x27;</span>)<br>  <span class="hljs-keyword">elif</span> score &gt;=<span class="hljs-number">60</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;可以呀苏铭&#x27;</span>)<br>  <span class="hljs-keyword">else</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;菜的呀苏铭&#x27;</span>)<br><br><span class="hljs-keyword">else</span>:<br>  <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;你输入的是什么鬼哦&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<h3 id="简单的-GUI-Python-程序"><a href="#简单的-GUI-Python-程序" class="headerlink" title="简单的 GUI Python 程序"></a>简单的 GUI Python 程序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># hello.py</span><br><span class="hljs-keyword">import</span>  wx  <span class="hljs-comment">#需要安装wxPython包，见上面pip安装</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Frame1</span>(<span class="hljs-params">wx.Frame</span>):</span><br>  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, superior</span>):</span><br>    wx.Frame.__init__(self, parent= superior, title = <span class="hljs-string">&#x27;Example&#x27;</span>,pos = (<span class="hljs-number">400</span>,<span class="hljs-number">200</span>),size=(<span class="hljs-number">350</span>,<span class="hljs-number">500</span>))<br>    panel = wx.Panel(self)<br>    text1 = wx.TextCtrl(panel,value = <span class="hljs-string">&#x27;Hello&#x27;</span>,pos = (<span class="hljs-number">250</span>,<span class="hljs-number">300</span>))<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>  app = wx.App()<br>  frame = Frame1(<span class="hljs-literal">None</span>)<br>  frame.Show(<span class="hljs-literal">True</span>)<br>  app.MainLoop()<br></code></pre></td></tr></table></figure>
+<h3 id="素数筛"><a href="#素数筛" class="headerlink" title="素数筛"></a>素数筛</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initprime</span>(<span class="hljs-params">n</span>):</span><br>  isp = [x%<span class="hljs-number">2</span>==<span class="hljs-number">1</span> <span class="hljs-keyword">for</span> x  <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(n+<span class="hljs-number">1</span>)]<br>  isp[<span class="hljs-number">1</span>] = <span class="hljs-literal">False</span>;isp[<span class="hljs-number">2</span>]= <span class="hljs-literal">True</span><br>  p = [<span class="hljs-number">2</span>]<br>  <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">3</span>,n+<span class="hljs-number">1</span>,<span class="hljs-number">2</span>):<br>    <span class="hljs-keyword">if</span> isp[i]: p.append(i)<br>    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> p:<br>      <span class="hljs-keyword">if</span>(i*j&lt;=n):  isp[i*j] = <span class="hljs-literal">False</span><br>      <span class="hljs-keyword">else</span>: <span class="hljs-keyword">break</span><br>      <span class="hljs-keyword">if</span> i%j == <span class="hljs-number">0</span>: <span class="hljs-keyword">break</span><br>  <span class="hljs-keyword">return</span> isp,p<br><br><span class="hljs-built_in">print</span>(initprime(<span class="hljs-number">100008</span>)[-<span class="hljs-number">1</span>][-<span class="hljs-number">1</span>])<br></code></pre></td></tr></table></figure>
+<h3 id="爬虫"><a href="#爬虫" class="headerlink" title="爬虫"></a>爬虫</h3><p>总结爬虫方法：</p>
+<ol>
+<li>观察想要想要爬虫的网站中特定数据的网址，用 F12（适用于 Chorme, Edge 等）打开代码检查。找到数据对应的意义和名称</li>
+<li>设计流程图和代码框架</li>
+<li>Coding</li>
+</ol>
+<p>本来就不会写，学习了 <a target="_blank" rel="noopener" href="https://leetcode-cn.com/circle/article/gy4iKU/">leetcode</a> 上的代码后，制作了青春（<del>阉割</del>）版的爬取 lol 所有壁纸到当前文件夹的 lolIamge 文件夹中，代码如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> urllib.request <span class="hljs-keyword">as</span> urlrequest<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getimage</span>(<span class="hljs-params">heroID</span>):</span><br>  heroId = <span class="hljs-built_in">str</span>(heroID)<br>  url = <span class="hljs-string">&#x27;https://game.gtimg.cn/images/lol/act/img/skin/big&#x27;</span> + heroId<br>  heroDir = <span class="hljs-string">r&#x27;lolImage\\&#x27;</span> + heroId<br>  <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> os.path.exists(heroDir):  os.mkdir(heroDir)<br>  <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">100</span>):<br>    heroEnd = <span class="hljs-string">&#x27;0&#x27;</span> + <span class="hljs-built_in">str</span>(i//<span class="hljs-number">10</span>) + <span class="hljs-built_in">str</span>(i%<span class="hljs-number">10</span>) + <span class="hljs-string">&#x27;.jpg&#x27;</span><br>    <span class="hljs-keyword">try</span>:<br>      image = urlrequest.urlopen(url + heroEnd).read()<br>    <span class="hljs-keyword">except</span>:<br>      <span class="hljs-keyword">break</span><br>    imageName = heroDir + <span class="hljs-string">r&#x27;\\&#x27;</span> + heroEnd<br>    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(imageName, <span class="hljs-string">&#x27;wb&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>      f.write(image)<br><br><span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> os.path.exists(<span class="hljs-string">&#x27;lolImage&#x27;</span>):<br>  os.mkdir(<span class="hljs-string">&#x27;lolImage&#x27;</span>)<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>,<span class="hljs-number">1000</span>):<br>  getimage(i)<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>Python 处理字符串的 <code>split</code> 函数强的不行，给爬虫提供了特别便利的条件</p>
+</blockquote>
+<h3 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a><a href="# &lt;http://open.163.com/newview/movie/free?pid=ME9KEIKS7&amp;mid=MEF16V4ED">机器学习</a></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># hello ML.py</span><br><span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> tree <span class="hljs-comment"># https://sklearn.apachecn.org/</span><br>features = [[<span class="hljs-number">140</span>,<span class="hljs-number">1</span>], [<span class="hljs-number">130</span>,<span class="hljs-number">1</span>],[<span class="hljs-number">150</span>,<span class="hljs-number">0</span>],[<span class="hljs-number">170</span>,<span class="hljs-number">0</span>]]<br>lAbels = [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]<br>clf = tree.DecisionTreeClassifier()<br>clf = clf.fit(features,lAbels)<br><span class="hljs-built_in">print</span>(clf.predict([[<span class="hljs-number">160</span>,<span class="hljs-number">0</span>]]))<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>有需求再去这里学习吧：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV164411S78V?from=search&amp;seid=1436888055285204045">B 站视频</a>，<a target="_blank" rel="noopener" href="http://www.ai-start.com/ml2014/html/">对应笔记</a></p>
+</blockquote>
+<h2 id="python-语法糖"><a href="#python-语法糖" class="headerlink" title="python 语法糖"></a>python 语法糖</h2><p>因为 Python 的语法糖，代码简洁优美，<del>越来越喜欢 Python 了</del>（C++17 永远的神）。</p>
+<blockquote>
+<p>人生苦短，请用 Python</p>
+</blockquote>
+<ul>
+<li>四则运算不会溢出</li>
+<li>乘方，排列组合数内置且不会溢出</li>
+<li>支持 <code>x,y = y,x</code> 等简单操作</li>
+<li>分号可用来分割，实现一行多句</li>
+<li>函数返回值可以是元组，列表，甚至是函数</li>
+<li>lambda 表达式</li>
+<li>列表生成式 ， 三元操作符： <code>[x//2 if x%2 == 0 else x for x in range(10)]</code></li>
+<li><code>in,  enumerate</code> 在 <code>for</code>循环中使用</li>
+<li>列表，元组反向标号从 <code>-1</code> 开始数，不用担心越界<ul>
+<li>字符串的 <code>split</code> 和 <code>join</code> 方法，<code>eval</code> 计算器。</li>
+</ul>
+</li>
+<li><code>map</code> 将一批数据同时用一个函数处理</li>
+<li><code>zip</code> 把列表或元组打包</li>
+<li><code>argv</code> 直接可用，不用再管 <code>argc</code></li>
+<li>函数可变参数 <code>*args</code>（保存元组）, <code>**kwargs</code>（保存字典）</li>
+<li><code>yield</code>  和 <code>yield from</code> 做生成器</li>
+<li><code>reduce</code> 函数计算列表内全部乘积等（需要 <code>from functools import reduce</code>）。</li>
+<li><a target="_blank" rel="noopener" href="https://raycoder.me/p/Python-exec/">exec 函数</a> 执行 Python 文件中的代码。</li>
+<li>用 list 当函数参数实现传引用（指针）的功能</li>
+<li>装饰器</li>
+<li>带 <code>*</code> 赋值： <code>a,*b,c = [1,3,4,5,6,3,6]</code></li>
+<li><code>raise ValueError(&#39;error type...&#39;)</code> 处理异常，哈哈</li>
+<li>Python 交互界面中：<code>_</code> 返回的是最近一次的值</li>
+<li>任意类有 <code>__init__</code> 和 <code>__repr__</code> 方法（不解释了，顾名思义）</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/goodlixueyong/article/details/52589979">运算符重载</a>，<a target="_blank" rel="noopener" href="https://www.yiibai.com/Python/operator-overloading.html#">运算符重载 2</a></li>
+</ul>
+<blockquote>
+<p>我始终相信极简的代码，优美的代码才是正确的编程姿势。</p>
+</blockquote>
+<h2 id="Python-特征"><a href="#Python-特征" class="headerlink" title="Python 特征"></a>Python 特征</h2><ul>
+<li>内联表达式：[i**2 for i in range(10)]</li>
+<li><a target="_blank" rel="noopener" href="https://raycoder.me/post/5mrednz2a/">exec 函数</a> 执行 Python 代码（一般用于文件读取）</li>
+<li>元组（tuple）可以做加法和乘法来改变它的值！但是本质上元组的值并没有改变，只是新开了一段连续的内存，然后用刚刚那个指针指向了这段内存！！！所以<strong>元组是不可变的</strong>这句话没毛病</li>
+<li>一个元素构成的元组要写成<code>(a,)</code>形式，是因为否则到处都是元组 0.0（因为我们在处理优先级的时候经常加<code>()</code>）</li>
+<li>上述说明了为什么内联表达式不支持用 tuple，用的是 list（列表）</li>
+<li>生成器可以用 list and tuple，搞完生成器就空了</li>
+<li><code>map(func,data)</code> 一次算一堆的值。</li>
+<li>Python 中没有<code>++,--</code> 这类自增自减运算</li>
+<li>生成器表达式中, in 子句在声明时执行, 而条件子句则是在运行时执行</li>
+</ul>
+<h2 id="Python-的坑-动态语言火葬场岂是浪得虚名"><a href="#Python-的坑-动态语言火葬场岂是浪得虚名" class="headerlink" title="Python 的坑: 动态语言火葬场岂是浪得虚名"></a><a target="_blank" rel="noopener" href="https://Python-small-examples.readthedocs.io/en/latest/chapters/p08_keng.html">Python 的坑</a>: 动态语言火葬场岂是浪得虚名</h2><ul>
+<li>列表快速复制是浅复制</li>
+<li>注意传列表等同转指针</li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xueli/p/4952063.html">深复制和浅复制</a> 一定要细心</li>
+<li>list 自带的 copy 是浅 copy</li>
+</ul>
+<h2 id="打包成可执行文件（-exe）"><a href="#打包成可执行文件（-exe）" class="headerlink" title="打包成可执行文件（.exe）"></a>打包成可执行文件（.exe）</h2><p> 最简单的方法： pip 安装 pyinstaller (借助豆瓣源，见安装段落)，然后执行</p>
+<p><code>pyinstaller -F example.py -w</code></p>
+<blockquote>
+<p>其中 <code>-F</code> 表示单个文件， <code>-w</code> 表示关闭命令行窗口</p>
+</blockquote>
+<p>问题是，一个几 kb 的 Python 程序，打包就 10M+ 。。。这谁顶得住啊，<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/281858271">解决方案</a></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ZhaDeNianQu/article/details/87717293">反解析和防止被反解析</a></p>
+</blockquote>
+<h2 id="datetime-包学习（哈哈哈）"><a href="#datetime-包学习（哈哈哈）" class="headerlink" title="datetime 包学习（哈哈哈）"></a>datetime 包学习（哈哈哈）</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> datetime<br>now = datetime.datetime.now()<br>day = now - datetime.datetime(<span class="hljs-number">2019</span>,<span class="hljs-number">10</span>,<span class="hljs-number">20</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;茶茶白喜欢茶茶子妹妹的第&#x27;</span>+<span class="hljs-built_in">str</span>(day.days)+<span class="hljs-string">&#x27;天&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<h2 id="用-Python-写-Windows-关机程序"><a href="#用-Python-写-Windows-关机程序" class="headerlink" title="用 Python 写 Windows 关机程序"></a>用 Python 写 Windows 关机程序</h2><p>用 Python 的 Tkinter GUI 做一让用户输入指定文字（比如叫我爸爸 0.0 哈哈哈），否则关机的程序(只合适 Windows 用户)</p>
+<h3 id="Windows-关机命令-shutdown"><a href="#Windows-关机命令-shutdown" class="headerlink" title="Windows 关机命令 shutdown"></a>Windows 关机命令 shutdown</h3><p>在命令行窗口输入 help shutdown 可以看到详细的参数列表</p>
+<h3 id="用-Tkinter-创建出输入框"><a href="#用-Tkinter-创建出输入框" class="headerlink" title="用 Tkinter 创建出输入框"></a>用 Tkinter 创建出输入框</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># baibai.py</span><br><span class="hljs-keyword">import</span> tkinter <span class="hljs-keyword">as</span> tk<br><span class="hljs-keyword">from</span> tkinter.simpledialog <span class="hljs-keyword">import</span> askstring<br><span class="hljs-keyword">import</span> os<br>root = tk.Tk()<br>root.withdraw() <span class="hljs-comment"># 隐藏tkinter的主界面</span><br>os.system(<span class="hljs-string">&#x27;shutdown -s -t 30&#x27;</span>) <span class="hljs-comment"># 30s内关机</span><br>x, answer = <span class="hljs-string">&#x27;&#x27;</span>,<span class="hljs-string">&#x27;白白是我爸爸&#x27;</span><br>hint = <span class="hljs-string">&#x27;输入：&#x27;</span>+ answer + <span class="hljs-string">&#x27;，否则在30s内关机！&#x27;</span><br><span class="hljs-keyword">while</span> x != answer:<br>  x = askstring(<span class="hljs-string">&#x27;askstring&#x27;</span>,hint)<br><span class="hljs-keyword">if</span>(x == answer):  os.system(<span class="hljs-string">&#x27;shutdown -a&#x27;</span>) <span class="hljs-comment"># 用户正确输入了就不关机了</span><br>root.mainloop()<br></code></pre></td></tr></table></figure>
+<h3 id="用-pyinstaller-打包"><a href="#用-pyinstaller-打包" class="headerlink" title="用 pyinstaller 打包"></a>用 pyinstaller 打包</h3><p><code>pyinstaller -F baibai.py -w</code></p>
+<p>就可以在 <code>dist</code> 文件夹中找到对应的 exe 文件了。然后发给小伙伴让 Ta 们叫你爸爸 0.0</p>
+<h2 id="虚拟环境"><a href="#虚拟环境" class="headerlink" title="虚拟环境"></a>虚拟环境</h2><p>虚拟环境特别重要，因为各个软件对包的依赖不一样，如果没有虚拟环境一团乱麻。</p>
+<p><code>python -m venv myvenv</code></p>
+<p>然后每次执行 <code>source myvenv/bin/active</code> 即可开启虚拟环境，特别好用</p>
+<h2 id="装饰器示例"><a href="#装饰器示例" class="headerlink" title="装饰器示例"></a>装饰器示例</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">log</span>(<span class="hljs-params">func</span>):</span><br>  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wrapper</span>(<span class="hljs-params">*arg, **kw</span>):</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;start %s&#x27;</span> %func)<br>    <span class="hljs-keyword">return</span> func(*arg, **kw)<br>  <span class="hljs-keyword">return</span> wrapper<br><br><span class="hljs-meta">@log</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">funcA</span>(<span class="hljs-params">arg</span>):</span><br>  <span class="hljs-built_in">print</span>(arg)<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">funB</span>(<span class="hljs-params">arg</span>):</span>   <span class="hljs-comment">#注意这里没有@</span><br>  <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;不带@的装饰器: &#x27;</span>,end=<span class="hljs-string">&#x27;&#x27;</span>)<br>  <span class="hljs-built_in">print</span>(arg)<br><br>x = funcA <span class="hljs-comment"># 函数也是对象0.0 骚操作</span><br>x(<span class="hljs-string">&#x27;xxxxx&#x27;</span>)<br>log(funB(<span class="hljs-number">12</span>))<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>看 <code>log(funB(12))</code> 就知道了！因为 log 是 return 的是函数 wrapper ，然后 12 就作为 arg 传入了。</p>
+</blockquote>
+<h3 id="类中装饰器：-自带-properity-staticmethod-classmethod"><a href="#类中装饰器：-自带-properity-staticmethod-classmethod" class="headerlink" title="类中装饰器： 自带 @properity @staticmethod @classmethod"></a>类中装饰器： 自带 <code>@properity @staticmethod @classmethod</code></h3><h2 id="python-GUI"><a href="#python-GUI" class="headerlink" title="python GUI"></a>python GUI</h2><blockquote>
+<p>一定要先写逻辑代码，再写用户界面代码</p>
+</blockquote>
+<h3 id="GUI-的共性"><a href="#GUI-的共性" class="headerlink" title="GUI 的共性"></a>GUI 的共性</h3><blockquote>
+<p>好读不好写！！！，因为一看类名函数名就知道每行代码是干嘛的，但是因为大小写还有单词选择可选的很多， 所以一定要配置 <strong>代码补全！！！</strong></p>
+</blockquote>
+<p>其实任何语言的 GUI 都是类似的，基本就是使用操作系统提供的窗口 API 接口，然后就是时间响应机制，这样就导致了语言特点其实用的特别少，然后真正开发都是使用别人的引擎。</p>
+<p>例如 C++ 开发就会用到 cocos2d， Unity 等（5 年前去游戏公司实习过），还有 MATLAB 的 GUI 开发是真的方便，框架设计特别简单，添加按钮什么的拖拽就可以了，还有就是添加响应函数的时候右键就可以自动帮你定位到要写响应函数的地方，简直就是神器。好了废话不多说了，学习 Python 的 GUI 设计，选的是 wxPython 和 pygame。学习两个库的一些基本操作，然后分别用两种包写拼图游戏。</p>
+<h3 id="wxPython-学习"><a href="#wxPython-学习" class="headerlink" title="wxPython 学习"></a>wxPython 学习</h3><p>先用 pip 安装 wxPython</p>
+<p><code>pip install wxPython -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com</code></p>
+<p>wxPython <a target="_blank" rel="noopener" href="https://wxPython.org/pages/overview/#hello-world">官网</a> 给了 hello World 两个简单示例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> wx; a=wx.App(); wx.Frame(<span class="hljs-literal">None</span>, title=<span class="hljs-string">&quot;Hello World&quot;</span>).Show(); a.MainLoop()<br></code></pre></td></tr></table></figure>
+<p>一行代码做一个 GUI 界面，可能这就叫做人生苦短，请用 Python 吧！</p>
+<p>推荐 <a target="_blank" rel="noopener" href="http://xoomer.virgilio.it/infinity77/wxPython/Widgets/wx.Bitmap.html#GetSubBitmap">wxPython 库查阅</a> 和 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/ajucs/p/3903690.html">键盘事件列表</a></p>
+<h3 id="pygame-学习"><a href="#pygame-学习" class="headerlink" title="pygame 学习"></a>pygame 学习</h3><p>这一张图就够了感觉！</p>
+<p><img src="pygamecheatsheet.png" srcset="/img/loading.gif" lazyload alt="pygame"></p>
+<p>然后还有 <a href="Python_ext pygame.pdf">ppt</a> 以及<a href="pygame_docs.pdf">库查询手册</a></p>
+<h3 id="拼图游戏开始了"><a href="#拼图游戏开始了" class="headerlink" title="拼图游戏开始了"></a>拼图游戏开始了</h3><p>本来是想用 wxPython 和 pygame 两种方式实现同一个拼图游戏，后来 wxPython 的编写（主要是函数查询）把我搞的生无可恋，就不想写 pygame 版本的实现了。下面是源码:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># JigsawGame.py writed by izlyforever at 2020/2/28  last update: 2020/3/14</span><br><span class="hljs-comment"># 这是个加注释的版本，有些望文生义的我就不注释了</span><br><span class="hljs-keyword">import</span> wx<br><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> base64<br><span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span> random <span class="hljs-keyword">import</span> randint<br><span class="hljs-keyword">import</span> urllib.request <span class="hljs-keyword">as</span> urlrequest   <span class="hljs-comment"># 用于从网上加载图片</span><br><span class="hljs-keyword">import</span> webbrowser <span class="hljs-comment">#打开网页</span><br><br><span class="hljs-keyword">import</span> tkinter <span class="hljs-keyword">as</span> tk     <span class="hljs-comment"># 用于选择文件夹</span><br><span class="hljs-keyword">from</span> tkinter <span class="hljs-keyword">import</span> filedialog <span class="hljs-comment"># 用于选择文件夹</span><br><span class="hljs-keyword">from</span> wx.lib.embeddedimage <span class="hljs-keyword">import</span> PyEmbeddedImage   <span class="hljs-comment"># 用于把数据变成位图</span><br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JigsawGame</span>(<span class="hljs-params">wx.Frame</span>):</span><br>  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self, *args, **kw</span>):</span> <span class="hljs-comment">#这个方法只会在最开始调用一次</span><br>    <span class="hljs-built_in">super</span>(JigsawGame, self).__init__(*args, **kw)<br>    self.Centre()    <span class="hljs-comment"># 整个窗口出现在屏幕正中心</span><br>    <span class="hljs-comment"># 选择文件</span><br>    self.fileOpen = <span class="hljs-literal">False</span>   <span class="hljs-comment"># 标记是否选择了正确(.png, .jpg, .jpeg, bmp)的文件</span><br>    self.fileLoad = <span class="hljs-literal">False</span>   <span class="hljs-comment"># 标记是否读取了文件(因为只需读取一次)</span><br>    self.order = [i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">9</span>)]   <span class="hljs-comment"># 0-8这9个位置的初始值都是0-8，后面会变动</span><br>    self.eB = <span class="hljs-number">8</span>   <span class="hljs-comment">#标记空白块的位置，8就是右下角</span><br>    <span class="hljs-comment"># 创建面板（面板上可以放按钮，文本框，静态文本，图层等等东西）</span><br>    <span class="hljs-comment"># style 参数设置是让他可以接收到上下左右键！</span><br>    self.pnl = wx.Panel(parent = self, style = wx.BORDER_NONE)<br>    <span class="hljs-comment"># 这个就是左下角的欢迎界面，还有字体的设置</span><br>    welcome = wx.StaticText(self.pnl, pos=(<span class="hljs-number">20</span>, <span class="hljs-number">521</span>), \<br>      lAbel = <span class="hljs-string">&#x27;欢迎来到我的博客:&#x27;</span>, \<br>      style = wx.aligned_RIGHT)<br>    blog = wx.StaticText(self.pnl, pos = (<span class="hljs-number">180</span>, <span class="hljs-number">521</span>), \<br>      lAbel = <span class="hljs-string">&#x27;izlyforever.com&#x27;</span>)<br>    blog.SetForegroundColour(<span class="hljs-string">&#x27;pink&#x27;</span>)<br>    font = blog.GetFont()<br>    font.PointSize += <span class="hljs-number">2</span><br>    font = font.Bold()<br>    welcome.SetFont(font)<br>    blog.SetFont(font)<br><br>    <span class="hljs-comment"># 这个是操作提示的静态文本</span><br>    self.hint = wx.StaticText(self.pnl, pos=(<span class="hljs-number">710</span>, <span class="hljs-number">20</span>), \<br>      lAbel = <span class="hljs-string">&#x27;操作：\n\n↑\n← ↓ →\n\n\nW\nA S D&#x27;</span>, \<br>      style = wx.aligned_CENTER)<br>    self.hint.SetFont(font)<br>    self.hint.SetForegroundColour(<span class="hljs-string">&#x27;red&#x27;</span>)<br>    self.hint.Hide()<br><br>    <span class="hljs-comment"># 一开始的界面中提示按鼠标的静态文本，贼大的那个</span><br>    self.st = wx.StaticText(self.pnl, pos =(<span class="hljs-number">200</span>, <span class="hljs-number">200</span>), \<br>      lAbel = <span class="hljs-string">&#x27;鼠标点击空白处\n选择一个照片来玩拼图吧&#x27;</span>, \<br>      style = wx.aligned_CENTER)<br>    font.PointSize += <span class="hljs-number">16</span><br>    self.font = font.Bold()<br>    self.st.SetFont(self.font)<br>    self.st.SetForegroundColour(<span class="hljs-string">&#x27;red&#x27;</span>)<br><br>    <span class="hljs-comment"># 绑定鼠标左键和下面的onleftdown方法</span><br>    self.pnl.Bind(wx.EVT_LEFT_DOWN, self.onleftdown)<br>    <span class="hljs-comment">#绑定键盘事件和下面的onkeydown方法</span><br>    self.pnl.Bind(wx.EVT_KEY_DOWN, self.onkeydown)<br><br>  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">onleftdown</span>(<span class="hljs-params">self, event</span>):</span><br>    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">not</span> self.fileOpen):<br>      self.fileName = self.myfile()<br>      <span class="hljs-keyword">if</span> os.path.basename(self.fileName).split(<span class="hljs-string">&#x27;.&#x27;</span>)[-<span class="hljs-number">1</span>] <span class="hljs-keyword">in</span> [<span class="hljs-string">&#x27;png&#x27;</span>, <span class="hljs-string">&#x27;jpg&#x27;</span>, <span class="hljs-string">&#x27;jpeg&#x27;</span>, <span class="hljs-string">&#x27;bmp&#x27;</span>]:<br>        self.fileOpen = <span class="hljs-literal">True</span><br>        self.st.Destroy()<br>        self.run()<br><br>  <span class="hljs-comment">#如果已经完成了，那就不让你再玩了，否则就开始按键检测然后还是移动</span><br>  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">onkeydown</span>(<span class="hljs-params">self, event</span>):</span><br>    <span class="hljs-keyword">if</span>(self.fileLoad <span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> self.isfinish()):<br>      myKey = [wx.WXK_LEFT, <span class="hljs-built_in">ord</span>(<span class="hljs-string">&#x27;A&#x27;</span>), wx.WXK_RIGHT, <span class="hljs-built_in">ord</span>(<span class="hljs-string">&#x27;D&#x27;</span>), wx.WXK_UP, <span class="hljs-built_in">ord</span>(<span class="hljs-string">&#x27;W&#x27;</span>), wx.WXK_DOWN, <span class="hljs-built_in">ord</span>(<span class="hljs-string">&#x27;S&#x27;</span>)]<br>      keycode = event.GetKeyCode()<br>      self.move(myKey.index(keycode)//<span class="hljs-number">2</span> <span class="hljs-keyword">if</span> (keycode <span class="hljs-keyword">in</span> myKey) <span class="hljs-keyword">else</span> -<span class="hljs-number">1</span>)<br>    self.pnl.Layout()<br>    self.isfinish()<br><br>    <span class="hljs-comment"># 出现让你选择图片的界面，返回文件绝对路径的文件名</span><br>  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">myfile</span>(<span class="hljs-params">self</span>):</span><br>    chooseFile = tk.Tk()<br>    chooseFile.withdraw()<br>    fileName = filedialog.askopenfilename()<br>    <span class="hljs-keyword">return</span> fileName<br><br>    <span class="hljs-comment"># 从网上下一个表情包，返回值是位图用来加载</span><br>  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">onlinefile</span>(<span class="hljs-params">self</span>):</span><br>    url = <span class="hljs-string">&#x27;https://izlyforever.com/learnPython/yes.png&#x27;</span><br>    image = urlrequest.urlopen(url).read()<br>    bData = base64.b64encode(image)<br>    pData = bData.decode()<br>    self.urlYes = PyEmbeddedImage(pData).GetBitmap()<br><br>    <span class="hljs-comment"># 把从本地选择出的图片进行调整大小，调整完之后切成3*3的块，然后在画板上画出来</span><br>    <span class="hljs-comment"># 并且进行标记好更新，逻辑代码很短归功于Python的短小精湛！</span><br>  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">writefile</span>(<span class="hljs-params">self</span>):</span><br>    tmp = wx.Image(self.fileName)<br>    im = tmp.ConvertToBitmap()<br>    (sizeW, sizeH) = im.GetSize()<br>    t = <span class="hljs-built_in">max</span>(<span class="hljs-number">0.2</span>, sizeW/<span class="hljs-number">720</span>, sizeH/<span class="hljs-number">521</span>)+<span class="hljs-number">0.02</span><br>    im = tmp.Scale(<span class="hljs-built_in">int</span>(sizeW/t), <span class="hljs-built_in">int</span>(sizeH/t)).ConvertToBitmap()<br>    (sizeW, sizeH) = im.GetSize()<br>    sizeW //= <span class="hljs-number">3</span>;sizeH //= <span class="hljs-number">3</span><br>    self.img = []<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">8</span>):<br>      self.img += [im.GetSubBitmap(( (i%<span class="hljs-number">3</span>)*sizeW, (i//<span class="hljs-number">3</span>)*sizeH, sizeW, sizeH))]<br>    self.img += [wx.Bitmap.FromRGBA(sizeW, sizeH, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>, <span class="hljs-number">1</span>)]<br>    self.lastPart = im.GetSubBitmap(( <span class="hljs-number">2</span>*sizeW, <span class="hljs-number">2</span>*sizeH, sizeW, sizeH))<br>    ps = [((x%<span class="hljs-number">3</span>)*(sizeW +<span class="hljs-number">1</span>), (x//<span class="hljs-number">3</span>)*(sizeH+<span class="hljs-number">1</span>)) <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">9</span>)]<br>    self.sbt = [wx.StaticBitmap(self.pnl, bitmap = self.img[i], \<br>      pos=ps[i], size=(sizeW, sizeH) ) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">9</span>)]<br><br>    <span class="hljs-comment"># 检测到鼠标左键按下，就开始看文件打开过没有，打开了就无视，没打开就开启文件选择</span><br>    <span class="hljs-comment"># 打开成功之后就把部分提示关闭，然后开始为下一步拼图做准备</span><br><br>  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span>(<span class="hljs-params">self</span>):</span><br>    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">not</span> self.fileLoad):<br>      self.fileLoad = <span class="hljs-literal">True</span><br>      self.writefile()<br>      self.disorder()<br>      self.pnl.Layout()<br>      self.hint.Show()<br>      self.pnl.SetFocus()<br><br>  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">disorder</span>(<span class="hljs-params">self</span>):</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">111</span>): self.move(randint(<span class="hljs-number">0</span>, <span class="hljs-number">3</span>))<br><br>  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">move</span>(<span class="hljs-params">self, direction</span>):</span><br>    <span class="hljs-keyword">if</span> direction == <span class="hljs-number">0</span>:   self.moveleft()<br>    <span class="hljs-keyword">elif</span> direction == <span class="hljs-number">1</span>: self.moveright()<br>    <span class="hljs-keyword">elif</span> direction == <span class="hljs-number">2</span>: self.moveup()<br>    <span class="hljs-keyword">elif</span> direction == <span class="hljs-number">3</span>: self.movedown()<br><br>    <span class="hljs-comment">#判断是否是合理移动，合理就丢给下面函数更新</span><br>  <span class="hljs-function"><span class="hljs-keyword">def</span>  <span class="hljs-title">checkmove</span>(<span class="hljs-params">self, start, end</span>):</span><br>    <span class="hljs-keyword">if</span>(end <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">9</span>)):         <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br>    <span class="hljs-keyword">if</span>(start%<span class="hljs-number">3</span> == <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> end%<span class="hljs-number">3</span> == <span class="hljs-number">2</span>): <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br>    <span class="hljs-keyword">if</span>(start%<span class="hljs-number">3</span> == <span class="hljs-number">2</span> <span class="hljs-keyword">and</span> end%<span class="hljs-number">3</span> == <span class="hljs-number">0</span>): <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br><br>  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">moveleft</span>(<span class="hljs-params">self</span>):</span><br>    <span class="hljs-keyword">if</span>(self.checkmove(self.eB, self.eB+<span class="hljs-number">1</span>)): self.sbtnew(self.eB, self.eB+<span class="hljs-number">1</span>);self.eB+=<span class="hljs-number">1</span><br>  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">moveright</span>(<span class="hljs-params">self</span>):</span><br>    <span class="hljs-keyword">if</span>(self.checkmove(self.eB, self.eB-<span class="hljs-number">1</span>)): self.sbtnew(self.eB, self.eB-<span class="hljs-number">1</span>);self.eB-=<span class="hljs-number">1</span><br>  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">moveup</span>(<span class="hljs-params">self</span>):</span><br>    <span class="hljs-keyword">if</span>(self.checkmove(self.eB, self.eB+<span class="hljs-number">3</span>)): self.sbtnew(self.eB, self.eB+<span class="hljs-number">3</span>);self.eB+=<span class="hljs-number">3</span><br>  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">movedown</span>(<span class="hljs-params">self</span>):</span><br>    <span class="hljs-keyword">if</span>(self.checkmove(self.eB, self.eB-<span class="hljs-number">3</span>)): self.sbtnew(self.eB, self.eB-<span class="hljs-number">3</span>);self.eB-=<span class="hljs-number">3</span><br><br>    <span class="hljs-comment"># 如果操作合理，那就更新每个格子上的图片，并更新order列表</span><br>  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sbtnew</span>(<span class="hljs-params">self, posB, posA</span>):</span><br>    (x, y) = self.order[posB],self.order[posA]<br>    self.order[posB], self.order[posA] = (y, x)<br>    self.sbt[posB].SetBitmap(self.img[y])<br>    self.sbt[posA].SetBitmap(self.img[x])<br><br>    <span class="hljs-comment"># 每次有按键的时候检测是否拼好了，拼好了就贴上最后一块并把表情包打印出来</span><br>  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">isfinish</span>(<span class="hljs-params">self</span>):</span><br>    <span class="hljs-keyword">if</span> self.order == [i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">9</span>)]:<br>      self.sbt[<span class="hljs-number">8</span>].SetBitmap(self.lastPart)<br>      self.onlinefile()<br>      wx.StaticBitmap(parent = self.pnl, bitmap = self.urlYes, pos=(<span class="hljs-number">500</span>, <span class="hljs-number">300</span>))<br>      <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br>    <span class="hljs-keyword">else</span>: <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br><br><br><span class="hljs-comment"># 程序入口，进入__init__ 函数后，就开始进行鼠标和键盘的监听循环中</span><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>  loveDays = datetime.now() - datetime(<span class="hljs-number">2019</span>, <span class="hljs-number">10</span>, <span class="hljs-number">20</span>)<br>  app = wx.App()<br>  <span class="hljs-comment"># 创建上面类的对象，标题是喜欢zly妹妹，窗口不允许最大化，也不能调整大小</span><br>  myGame = JigsawGame(<span class="hljs-literal">None</span>, \<br>    title=<span class="hljs-string">&#x27;茶茶白喜欢 zly 妹妹的第&#x27;</span>+<span class="hljs-built_in">str</span>(loveDays.days)+<span class="hljs-string">&#x27;天&#x27;</span>, \<br>    size = (<span class="hljs-number">800</span>, <span class="hljs-number">600</span>), \<br>    style=wx.DEFAULT_FRAME_STYLE ^ wx.RESIZE_BORDER ^ wx.MAXIMIZE_BOX)<br>  myGame.Show()<br>  app.MainLoop()<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>wx.EVT_KEY_DOWN 不响应 <code>Tab Enter → ↑ ↓ ←</code></p>
+<p>wx.EVT_KEY_UP 响应所有键</p>
+<p>wx.EVT_CHAR 仅响应<code>F1 - F12 PrintScreen  ScrollLock PauseBreak</code></p>
+<p><strong>wx.Button 和 wx.EVT_KEY_DOWN 等冲突让我懵逼了吐了</strong></p>
+</blockquote>
+<h4 id="代码解释"><a href="#代码解释" class="headerlink" title="代码解释"></a>代码解释</h4><ol>
+<li>首先创建窗口，窗口名是喜欢 zly 妹妹的第 xxx 天，日常表白 0.0</li>
+<li>窗口上放一个面板（panel）然后在上面放很多静态文本，比如我的博客呀，还有操作提示</li>
+<li>然后绑定监听鼠标左键，按下了就会让你选择一个文件来玩拼图游戏</li>
+<li>然后选择好了图片后，把图片平均切成 <code>3*3</code> 的块，最后一块（右下角)用黑白填充</li>
+<li>把这些块打乱，打乱方式是随机的移动（防止随便打乱拼不回去）</li>
+<li>监听 键盘 WASD 和上下左右键并写好相应的响应函数</li>
+<li>每次接受到监听就检测是否拼好</li>
+</ol>
+<h2 id="图片转字符串"><a href="#图片转字符串" class="headerlink" title="图片转字符串"></a>图片转字符串</h2><p>我知乎上看到 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/126669800">怎么用 Python 把图片转化为字符？</a> 挺有趣的，自己也尝试了一下，当然他也是参考 <a target="_blank" rel="noopener" href="https://github.com/RameshAditya/asciify/blob/master/asciify.py">这里</a></p>
+<p>原理就是：将图片（位图）转化成灰度图，即 0~255 的数值，然后将这些数值换成特殊符号（自定义）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># imageToChar.py 使用说明：</span><br><span class="hljs-comment"># 把图片(例如xx.png)和这个文件放在同一文件夹中</span><br><span class="hljs-comment"># 命令行进入上面的文件夹路径输入</span><br><span class="hljs-comment"># py imageTochar.py xx.png (自选宽度：78，可不填)</span><br><br><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image<br>chars = [<span class="hljs-string">&#x27;z&#x27;</span>, <span class="hljs-string">&#x27;l&#x27;</span>, <span class="hljs-string">&#x27;y&#x27;</span>, <span class="hljs-string">&#x27;#&#x27;</span>, <span class="hljs-string">&#x27;?&#x27;</span>, <span class="hljs-string">&#x27;*&#x27;</span>, <span class="hljs-string">&#x27;+&#x27;</span>, <span class="hljs-string">&#x27;;&#x27;</span>, <span class="hljs-string">&#x27;:&#x27;</span>, <span class="hljs-string">&#x27;,&#x27;</span>, <span class="hljs-string">&#x27;.&#x27;</span>]<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">resize</span>(<span class="hljs-params">image, newW</span>):</span><br>  (w, h) = image.size<br>  <span class="hljs-comment"># 0.58 大致是单个字符在DOS界面的宽高比</span><br>  newDim = (newW, <span class="hljs-built_in">int</span>(<span class="hljs-number">0.58</span>*h*newW/w))<br>  newImg = image.resize(newDim)<br>  <span class="hljs-keyword">return</span> newImg<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">garytochar</span>(<span class="hljs-params">grayImg,newW</span>):</span><br>  newPix = [];step=<span class="hljs-number">256</span>//<span class="hljs-built_in">len</span>(chars) + <span class="hljs-number">1</span><br>  <span class="hljs-keyword">for</span> i,data <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(grayImg.getdata()):<br>    <span class="hljs-keyword">if</span>(i%newW == <span class="hljs-number">0</span>): newPix.append(<span class="hljs-string">&#x27;\n&#x27;</span>)<br>    newPix.append(chars[data//step])  <span class="hljs-comment">#也可以用 data%len(chars)</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;&#x27;</span>.join(newPix)<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">imagetochar</span>(<span class="hljs-params">imgPath, newW = <span class="hljs-number">78</span></span>):</span><br>  img = Image.<span class="hljs-built_in">open</span>(imgPath)<br>  newImg = resize(img,newW)<br>  grayImg = newImg.convert(<span class="hljs-string">&#x27;L&#x27;</span>)<br>  <span class="hljs-keyword">return</span> garytochar(grayImg,newW)<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>  <span class="hljs-keyword">import</span> sys<br>  imgPath, newW, *tmp = sys.argv[<span class="hljs-number">1</span>:<span class="hljs-number">3</span>]+ [<span class="hljs-number">78</span>]<br>  charPix = imagetochar(imgPath,<span class="hljs-built_in">int</span>(newW))<br>  <span class="hljs-built_in">print</span>(charPix)<br></code></pre></td></tr></table></figure>
+<h3 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">原始图片</th>
+<th style="text-align:center">字符图片</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="avatar.png" srcset="/img/loading.gif" lazyload alt="avatar"></td>
+<td style="text-align:center"><img src="avatarchar.png" srcset="/img/loading.gif" lazyload alt="avatar"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="把图片变成数据"><a href="#把图片变成数据" class="headerlink" title="把图片变成数据"></a>把图片变成数据</h2><p>有时程序需要加载本地图片，然后打包的时候就很不方便，所以 wxPython 支持 img2png.py、img2py.py、img2xpm.py 等工具来支持这种操作，但是我调用的时候一直出错，在网上查了很多方式最后找到了解决方案：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># imageToBite.py</span><br><span class="hljs-keyword">import</span> base64<br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;avatar.png&#x27;</span>, <span class="hljs-string">&#x27;rb&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>  bData = base64.b64encode(f.read())<br>  pData = bData.decode()<br>  <span class="hljs-built_in">print</span>(pData)<br></code></pre></td></tr></table></figure>
+<p>这段代码就是把图片变成数据 bite。 相应的修改图片就可以换着用了，如果很多就批处理自己照样写。</p>
+<p>然后在命令行执行</p>
+<p><code>py imageToBite.py &gt; a.txt</code></p>
+<p>就可以把数据存下来，然后复制到下面程序的 data 中就行了。</p>
+<p>然后在 wxPython 框架下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> wx.lib.embeddedimage <span class="hljs-keyword">import</span> PyEmbeddedImage<br>bitmap = PyEmbeddedImage(data).GetBitmap()<br></code></pre></td></tr></table></figure>
+<p>就可以咯</p>
+<h2 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h2><p>堆（heap ）是一种经典的数据结构，C++ STL 中优先队列 <code>priority_queue</code> 和 Python 中的 <code>heapq</code> 都是堆的一种实现。这里说明一下堆的原理和 heapq 的使用：</p>
+<blockquote>
+<p><a href="../learnCpp">在我的这篇博客</a> 中搜索 <code>优先队列</code> 可以看到堆的简单介绍。</p>
+</blockquote>
+<h3 id="（最小）堆是满足下面条件的二叉树"><a href="#（最小）堆是满足下面条件的二叉树" class="headerlink" title="（最小）堆是满足下面条件的二叉树"></a>（最小）堆是满足下面条件的二叉树</h3><ul>
+<li>父节点小于等于子节点</li>
+<li>用列表或者数组保存（这个也不是必须的，但一般都是这样做的）</li>
+</ul>
+<blockquote>
+<p>堆根节点是最小的节点，堆的深度永远是 $O(\log n)$, 即是平衡的</p>
+</blockquote>
+<h3 id="支持的操作"><a href="#支持的操作" class="headerlink" title="支持的操作"></a>支持的操作</h3><ul>
+<li>插入一个元素： 将它放在最后面，向上更新 $O(\log n)$</li>
+<li>删除最小的元素： 将最后的元素放在根节点，向下更新 $O(\log n)$</li>
+<li>查看最小的元素（根节点）</li>
+<li>将一个列表初始化： 将列表从根更新，然后依次递归更新 $O(n)$</li>
+</ul>
+<blockquote>
+<p>从上述操作可知，堆可以用于 <strong>堆排序</strong>，整体复杂度 $O(n \log n)$</p>
+<p>实现一个堆还是挺简单的，不过我们没必要再造轮子了</p>
+</blockquote>
+<p>下面用例子看一下 Python 堆的使用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> random<br><span class="hljs-keyword">import</span> heapq<br><span class="hljs-comment"># from heapq import *</span><br>x= <span class="hljs-built_in">list</span>(<span class="hljs-built_in">range</span>(<span class="hljs-number">10</span>))<br>random.shuffle(x)<br>heapq.heapify(x)<br><span class="hljs-built_in">print</span>(x)<br>heapq.heappop()<br>heapq.heappush(x,<span class="hljs-number">3</span>)<br>heapq.heapreplace(x,-<span class="hljs-number">1</span>)<br>heapq.heappushpop(x,-<span class="hljs-number">2</span>) <span class="hljs-comment">#先push后pop，效率自然更快</span><br></code></pre></td></tr></table></figure>
+<h2 id="Python-调用-C-CPP-之-ctypes"><a href="#Python-调用-C-CPP-之-ctypes" class="headerlink" title="Python 调用 C/CPP 之 ctypes"></a>Python 调用 C/CPP 之 ctypes</h2><p>我开始想要用 Python + ctypes 满足自己的需求。由于 Windows 搞这个很麻烦，就在 Ubuntu 上搞了，不过我是在 WSL 上做的。</p>
+<h3 id="Python-调用-C-示例"><a href="#Python-调用-C-示例" class="headerlink" title="Python 调用 C 示例"></a>Python 调用 C 示例</h3><p><a target="_blank" rel="noopener" href="https://docs.Python.org/zh-cn/3.8/library/ctypes.html">ctypes 官方中文文档</a>中选择自己 Python 对应版本的文档。有很清晰的描述，然后在 <a target="_blank" rel="noopener" href="https://docs.Pythontab.com/interpy/c_extensions/ctypes/">Pythonlab.com</a> 中很直观的例子：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs C"><span class="hljs-comment">// add.c</span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">add_int</span><span class="hljs-params">(<span class="hljs-keyword">int</span> num1, <span class="hljs-keyword">int</span> num2)</span></span>&#123;<br>    <span class="hljs-keyword">return</span> num1 + num2;<br>&#125;<br><br><span class="hljs-comment">// add.cpp</span><br><span class="hljs-keyword">extern</span> <span class="hljs-string">&quot;C&quot;</span> <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">add_int</span><span class="hljs-params">(<span class="hljs-keyword">int</span> num1,<span class="hljs-keyword">int</span> num2)</span></span>; <span class="hljs-comment">// 这样就不用改之前的代码了！</span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">add_int</span><span class="hljs-params">(<span class="hljs-keyword">int</span> num1, <span class="hljs-keyword">int</span> num2)</span></span>&#123;<br>    <span class="hljs-keyword">return</span> num1 + num2;<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>由于 C++ 支持函数重载功能，在编译时会更改函数名。</p>
+<p>所以在函数声明时，前缀 <code>extern &quot;C&quot;</code> 则确保按 C 的方式编译。</p>
+</blockquote>
+<p>然后把上面 <code>add.c/add.cpp</code> 编译成 <code>.so</code> 文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">For Linux</span><br>gcc -fPIC -shared -o libadder.so add.c<br>g++ -fPIC -shared -o libadder.so add.cpp<br></code></pre></td></tr></table></figure>
+<p>再调用就好了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> ctypes <span class="hljs-keyword">import</span> *<br><br><span class="hljs-comment">#load the shared object file</span><br>adder = CDLL(<span class="hljs-string">&#x27;./libadder.so&#x27;</span>)<br><br><span class="hljs-comment">#Find sum of integers</span><br>res_int = adder.add_int(<span class="hljs-number">4</span>,<span class="hljs-number">5</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Sum of 4 and 5 = &quot;</span>, res_int)<br></code></pre></td></tr></table></figure>
+<h3 id="Python-调用自己写的-primepi-C-函数"><a href="#Python-调用自己写的-primepi-C-函数" class="headerlink" title="Python 调用自己写的 primepi C++ 函数"></a>Python 调用自己写的 primepi C++ 函数</h3><blockquote>
+<p>Python 调用自己写的 PrimePI 岂不美哉</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> LL;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e7</span> + <span class="hljs-number">2</span>;<br><span class="hljs-keyword">int</span> p[N], pi[N];<br><span class="hljs-keyword">bool</span> isp[N];<br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;math.h&gt;</span></span><br><span class="hljs-comment">// 仅对要用的做extern操作</span><br><span class="hljs-keyword">extern</span> <span class="hljs-string">&quot;C&quot;</span> &#123;<br>  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">()</span></span>;<br>  <span class="hljs-function">LL <span class="hljs-title">primepi</span><span class="hljs-params">(LL x)</span></span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">initprime</span><span class="hljs-params">()</span> </span>&#123;<br>  <span class="hljs-keyword">int</span> cnt = <span class="hljs-number">1</span>;<br>  p[<span class="hljs-number">1</span>] = <span class="hljs-number">2</span>;<br>  isp[<span class="hljs-number">2</span>] = <span class="hljs-literal">true</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">3</span>; i &lt; N; i += <span class="hljs-number">2</span>) isp[i] = <span class="hljs-literal">true</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">3</span>; i &lt; N; i += <span class="hljs-number">2</span>) &#123;<br>    <span class="hljs-keyword">if</span> (isp[i]) p[++cnt] = i;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">2</span>, t = (N - <span class="hljs-number">1</span>) / i + <span class="hljs-number">1</span>; j &lt;= cnt &amp;&amp; p[j] &lt; t; ++j) &#123;<br>      isp[i * p[j]] = <span class="hljs-literal">false</span>;<br>      <span class="hljs-keyword">if</span> (i % p[j] == <span class="hljs-number">0</span>) <span class="hljs-keyword">break</span>;<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">return</span> cnt;<br>&#125;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> M = <span class="hljs-number">7</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> PM = <span class="hljs-number">2</span> * <span class="hljs-number">3</span> * <span class="hljs-number">5</span> * <span class="hljs-number">7</span> * <span class="hljs-number">11</span> * <span class="hljs-number">13</span> * <span class="hljs-number">17</span>;<br><span class="hljs-keyword">int</span> phi[PM + <span class="hljs-number">1</span>][M + <span class="hljs-number">1</span>], sz[M + <span class="hljs-number">1</span>];<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">()</span> </span>&#123;<br>  <span class="hljs-built_in">initprime</span>();<br>  pi[<span class="hljs-number">2</span>] = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">3</span>; i &lt; N; ++i) &#123;<br>    <span class="hljs-keyword">if</span> (isp[i]) pi[i] = pi[i - <span class="hljs-number">1</span>] + <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">else</span> pi[i] = pi[i - <span class="hljs-number">1</span>];<br>  &#125;<br>  sz[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt;= PM; ++i) phi[i][<span class="hljs-number">0</span>] = i;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= M; ++i) &#123;<br>    sz[i] = p[i] * sz[i - <span class="hljs-number">1</span>];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>; j &lt;= PM; ++j) &#123;<br>      phi[j][i] = phi[j][i - <span class="hljs-number">1</span>] - phi[j / p[i]][i - <span class="hljs-number">1</span>];<br>    &#125;<br>  &#125;<br>&#125;<br><span class="hljs-function">LL <span class="hljs-title">primepi</span><span class="hljs-params">(LL x)</span></span>;<br><span class="hljs-function">LL <span class="hljs-title">primephi</span><span class="hljs-params">(LL x, <span class="hljs-keyword">int</span> s)</span> </span>&#123;<br>  <span class="hljs-keyword">if</span> (s &lt;= M) <span class="hljs-keyword">return</span> phi[x % sz[s]][s] + (x / sz[s]) * phi[sz[s]][s];<br>  <span class="hljs-keyword">if</span> (x / p[s] &lt;= p[s]) <span class="hljs-keyword">return</span> <span class="hljs-built_in">primepi</span>(x) - s + <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">if</span> (x &lt; N &amp;&amp; x / p[s] / p[s] &lt;= p[s]) &#123;<br>    <span class="hljs-keyword">int</span> s2x = pi[(<span class="hljs-keyword">int</span>)(<span class="hljs-built_in">sqrt</span>(x + <span class="hljs-number">0.2</span>))];<br>    LL ans = pi[x] - <span class="hljs-built_in">LL</span>(s2x + s - <span class="hljs-number">2</span>) * (s2x - s + <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = s + <span class="hljs-number">1</span>; i &lt;= s2x; ++i) &#123;<br>      ans += pi[x / p[i]];<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;<br>  &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-built_in">primephi</span>(x, s - <span class="hljs-number">1</span>) - <span class="hljs-built_in">primephi</span>(x / p[s], s - <span class="hljs-number">1</span>);<br>&#125;<br><span class="hljs-function">LL <span class="hljs-title">primepi</span><span class="hljs-params">(LL x)</span> </span>&#123;<br>  <span class="hljs-keyword">if</span> (x &lt; N) <span class="hljs-keyword">return</span> pi[x];<br>  <span class="hljs-keyword">int</span> ps2x = pi[<span class="hljs-built_in"><span class="hljs-keyword">int</span></span>(<span class="hljs-built_in">sqrt</span>(x + <span class="hljs-number">0.2</span>))];<br>  <span class="hljs-keyword">int</span> ps3x = pi[<span class="hljs-built_in"><span class="hljs-keyword">int</span></span>(<span class="hljs-built_in">cbrt</span>(x + <span class="hljs-number">0.2</span>))];<br>  LL ans = <span class="hljs-built_in">primephi</span>(x, ps3x) + <span class="hljs-built_in">LL</span>(ps2x + ps3x - <span class="hljs-number">2</span>) * (ps2x - ps3x + <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = ps3x + <span class="hljs-number">1</span>, ed = ps2x; i &lt;= ed; ++i) &#123;<br>    ans -= <span class="hljs-built_in">primepi</span>(x / p[i]);<br>  &#125;<br>  <span class="hljs-keyword">return</span> ans;<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>执行 <code>g++ -fPIC -shared -o libprimepi.so primepi.cpp</code> 后运行下面 Python 程序</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># test.py</span><br><span class="hljs-keyword">from</span> ctypes <span class="hljs-keyword">import</span> *<br>c = CDLL(<span class="hljs-string">&#x27;./libprimepi.so&#x27;</span>)<br>c.init()<br><span class="hljs-comment"># 再大就崩了，Segmentation fault (core dumped)</span><br><span class="hljs-built_in">print</span>(c.primepi(<span class="hljs-number">9876543210</span>))<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>C 中用 Python 老是提醒没有 <code>Python.h</code>，试了网上的方法，各种系统都不行服了。不过无所谓最在 C 中用 Python 啊</p>
+</blockquote>
+<h3 id="SageMath-调用-C-的方法"><a href="#SageMath-调用-C-的方法" class="headerlink" title="SageMath 调用 C 的方法"></a><a target="_blank" rel="noopener" href="https://doc.sagemath.org/html/en/thematic_tutorials/cython_interface.html#cython-interface">SageMath 调用 C 的方法</a></h3><h3 id="动态库和静态库"><a href="#动态库和静态库" class="headerlink" title="动态库和静态库"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/skynet/p/3372855.html">动态库和静态库</a></h3><h3 id="make"><a href="#make" class="headerlink" title="make"></a>make</h3><p>既然要混合编程了，哪必然要涉及到 makefile 了，于是我去 <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/23792247/answer/600773044">知乎</a></p>
+<p>示例源代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">// main.c</span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;hello world\n&quot;</span>);<br>  fun1();<br>  fun2();<br>&#125;<br><br><span class="hljs-comment">// fun1.c</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">fun1</span><span class="hljs-params">()</span> </span>&#123;<br>  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;this is fun1\n&quot;</span>);<br>&#125;<br><br><span class="hljs-comment">// fun2.c</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">fun2</span><span class="hljs-params">()</span> </span>&#123;<br>  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;this is fun2\n&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>示例 Makefile（注意 Makefile 一定要 Tab 缩进)</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-comment"># makefile1</span><br><span class="hljs-section">app: main.c fun1.c fun2.c</span><br>  gcc main.c fun1.c fun2.c -o app<br><br><span class="hljs-comment"># makefile2</span><br><span class="hljs-section">app: main.o fun1.o fun2.o</span><br>  gcc main.o fun1.o fun2.o -o app<br><span class="hljs-section">main.o: main.c</span><br>  gcc -c main.c -o main.o<br><span class="hljs-section">fun1.o: fun1.c</span><br>  gcc -c fun1.c -o fun1.o<br><span class="hljs-section">fun2.o: fun2.c</span><br>  gcc -c fun2.c -o fun2.o<br><br><span class="hljs-comment"># makefile3</span><br>obj = main.o fun1.o fun2.o<br>target = app<br>CC = gcc<br><span class="hljs-variable">$(target)</span>: <span class="hljs-variable">$(obj)</span><br>  <span class="hljs-variable">$(CC)</span> <span class="hljs-variable">$(obj)</span> -o <span class="hljs-variable">$(target)</span><br><span class="hljs-section">%.o: %.c</span><br>  <span class="hljs-variable">$(CC)</span> -c <span class="hljs-variable">$&lt;</span> -o <span class="hljs-variable">$@</span><br><br><span class="hljs-comment"># makefile</span><br>src = <span class="hljs-variable">$(<span class="hljs-built_in">wildcard</span> ./*.c)</span><br>obj = <span class="hljs-variable">$(<span class="hljs-built_in">patsubst</span> %.c, %.o, <span class="hljs-variable">$(src)</span>)</span> <span class="hljs-comment"># obj = $(src:%.c=%.o)</span><br>target = app<br>CC = gcc<br><span class="hljs-variable">$(target)</span>: <span class="hljs-variable">$(obj)</span><br>  <span class="hljs-variable">$(CC)</span> <span class="hljs-variable">$(obj)</span> -o <span class="hljs-variable">$(target)</span><br><span class="hljs-section">%.o: %.c</span><br>  <span class="hljs-variable">$(CC)</span> -c <span class="hljs-variable">$&lt;</span> -o <span class="hljs-variable">$@</span><br><span class="hljs-meta"><span class="hljs-meta-keyword">.PHONY</span>: clean</span><br><span class="hljs-section">clean:</span><br>  rm -rf <span class="hljs-variable">$(obj)</span> <span class="hljs-variable">$(target)</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>其中 <code>$</code> 自然是取值操作 <code>%</code> 是未定元的感觉，然后 <code>wildcard, patsubst</code> 从版本中就能看出。</p>
+<p><code>$&lt;</code>：第一个依赖文件；<code>$@</code>：目标文件；<code>$^</code>：所有不重复的依赖文件，以空格分开。</p>
+</blockquote>
+<p>依次执行 <code>make -f makefilei</code> 即可，最后 <code>make (-f makefile 可省略), make clean</code> 是最终版本</p>
+<h3 id="Make-规则"><a href="#Make-规则" class="headerlink" title="Make 规则"></a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/44267123">Make 规则</a></h3><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">目标: 预置条件</span><br>&lt;TAB&gt; 步骤<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/127335903">这里写的很详细</a></p>
+</blockquote>
+<h2 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h2><p>转义字符在任何一种编程语言中都会提到（正则表达式也是）。写这篇博客的原因是，在 <a target="_blank" rel="noopener" href="https://raycoder.me/p/Python-special-characters/">友链 Ray 的博客</a> 中无意发现：</p>
+<blockquote>
+<p>Python 自带的 shell 以及 SublimeText3 配置的环境 不支持 <code>\b</code> 和 <code>\r</code></p>
+<p>但是 C++ IDE 就支持，例如：Codeblocks</p>
+</blockquote>
+<p>以下图表来自 <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/转义字符/86397?fr=aladdin">百度百科</a></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">转义字符</th>
+<th style="text-align:left">意义</th>
+<th style="text-align:center">ASCII 码值（十进制）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>\a</code></td>
+<td style="text-align:left">响铃(BEL)</td>
+<td style="text-align:center">007</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\b</code></td>
+<td style="text-align:left">退格(BS) ，将当前位置移到前一列</td>
+<td style="text-align:center">008</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\f</code></td>
+<td style="text-align:left">换页(FF)，将当前位置移到下页开头</td>
+<td style="text-align:center">012</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\n</code></td>
+<td style="text-align:left">换行(LF) ，将当前位置移到下一行开头</td>
+<td style="text-align:center">010</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\r</code></td>
+<td style="text-align:left">回车(CR) ，将当前位置移到本行开头</td>
+<td style="text-align:center">013</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\t</code></td>
+<td style="text-align:left">水平制表(HT) （跳到下一个 TAB 位置）</td>
+<td style="text-align:center">009</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\v</code></td>
+<td style="text-align:left">垂直制表(VT)</td>
+<td style="text-align:center">011</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\\</code></td>
+<td style="text-align:left">代表一个反斜线字符 <code>\</code></td>
+<td style="text-align:center">092</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\’</code></td>
+<td style="text-align:left">代表一个单引号（撇号）字符</td>
+<td style="text-align:center">039</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\”</code></td>
+<td style="text-align:left">代表一个双引号字符</td>
+<td style="text-align:center">034</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\?</code></td>
+<td style="text-align:left">代表一个问号</td>
+<td style="text-align:center">063</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\0</code></td>
+<td style="text-align:left">空字符(NUL)</td>
+<td style="text-align:center">000</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\ddd</code></td>
+<td style="text-align:left">1 到 3 位八进制数所代表的任意字符</td>
+<td style="text-align:center">三位八进制</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>\xhh</code></td>
+<td style="text-align:left">十六进制所代表的任意字符</td>
+<td style="text-align:center">十六进制</td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>注意： 转义字符与操作系统无关！</p>
+<p>Python Shell 和无视 <code>\r</code> ,而 <code>\b</code> 会报错。</p>
+<p>Sublime 的插件无视 <code>\r</code> ，<code>\b</code> 会被输出为: <code>&lt;0x08&gt;</code></p>
+</blockquote>
+<p>下面内容摘自<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/换行符/1410821?fr=aladdin">百度百科</a>：</p>
+<p>回车 (<code>\r</code>) 本义是光标重新回到本行开头，r 代表 <code>return</code> ，控制字符可以写成 CR，即 <code>Carriage Return</code><br>换行 (<code>\n</code>) 本义是光标往下一行（不一定到下一行行首），n 代表 <code>newline</code>，控制字符可以写成 LF，即 <code>Line Feed</code></p>
+<p>在不同的操作系统这几个字符表现不同：<br>比如在 WIN 系统下，这两个字符就是表现的本义，<br>在 UNIX 类系统，换行 <code>\n</code> 就表现为光标下一行并回到行首，<br>在 MAC 上，<code>\r</code> 就表现为回到本行开头并往下一行，至于 ENTER 键的定义是与操作系统有关的。</p>
+<h2 id="自动控制"><a href="#自动控制" class="headerlink" title="自动控制"></a>自动控制</h2><p>在知乎上看到 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/115563930">使用 Python 控制自己的电脑和键盘是一种什么样的体验？</a> 里面介绍的 pyautogui，于是在 <a target="_blank" rel="noopener" href="https://pyautogui.readthedocs.io/en/latest/index.html">pyautogui 官网</a> 上查了一下，因为挺有趣的特此记录：</p>
+<blockquote>
+<p>可以用来写一个 LOL 打人机拿首胜的脚本 0.0</p>
+</blockquote>
+<h3 id="安装-pyautogui"><a href="#安装-pyautogui" class="headerlink" title="安装 pyautogui"></a>安装 pyautogui</h3><p> <code>pip install pyautogui -i https://pypi.tuna.tsinghua.edu.cn/simple</code></p>
+<h3 id="持续获取鼠标位置的示例"><a href="#持续获取鼠标位置的示例" class="headerlink" title="持续获取鼠标位置的示例"></a>持续获取鼠标位置的示例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># getMousePosition.py</span><br><span class="hljs-keyword">import</span> pyautogui <span class="hljs-keyword">as</span> pg<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Press Ctrl+C to quit.&#x27;</span>)<br><span class="hljs-keyword">try</span>:<br>  <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>    x,y = pg.position()<br>    positionStr = <span class="hljs-string">&#x27;X: &#x27;</span>+<span class="hljs-built_in">str</span>(x).rjust(<span class="hljs-number">4</span>)+ <span class="hljs-string">&#x27; Y: &#x27;</span>+<span class="hljs-built_in">str</span>(y).rjust(<span class="hljs-number">4</span>)<br>    <span class="hljs-built_in">print</span>(positionStr, end = <span class="hljs-string">&#x27;&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;\b&#x27;</span>* <span class="hljs-built_in">len</span>(positionStr), end =<span class="hljs-string">&#x27;&#x27;</span>, flush = <span class="hljs-literal">True</span>)<br><span class="hljs-keyword">except</span> KeyboardInterrupt:<br>  <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;\n&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>退格 <code>\b</code> 也太好玩了</p>
+<p>唯一新的东西就是 <code>pg.position()</code> 来获取鼠标位置</p>
+</blockquote>
+<h3 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pg <span class="hljs-keyword">as</span> pg<br>pg.PAUSE = <span class="hljs-number">1</span> <span class="hljs-comment"># 每条语句相隔1s执行</span><br><span class="hljs-comment"># 鼠标操作</span><br>pg.move(x,y,duration = num_seconds)   <span class="hljs-comment">#相对移动</span><br>pg.moveTo(x, y, duration=num_seconds) <span class="hljs-comment">#数秒内鼠标移动到(x,y)位置</span><br>pg.click(x=moveToX, y=moveToY, clicks=num_of_clicks, interval=secs_between_clicks, button=<span class="hljs-string">&#x27;left&#x27;</span>) <span class="hljs-comment"># 鼠标（默认左键）单击</span><br>pg.doubleClick(x=moveToX, y=moveToY) <span class="hljs-comment"># 鼠标双击（可以用上面的）</span><br>pg.mouseDown(x=moveToX, y=moveToY, button=<span class="hljs-string">&#x27;left&#x27;</span>) <span class="hljs-comment"># 鼠标按住</span><br>pg.mouseUp(x=moveToX, y=moveToY, button=<span class="hljs-string">&#x27;left&#x27;</span>) <span class="hljs-comment">#鼠标抬起</span><br>pg.dragTo(x, y, duration=num_seconds) <span class="hljs-comment"># 拖拽</span><br>pg.drag(x,, duration=num_seconds) <span class="hljs-comment">#相对拖拽</span><br><br><span class="hljs-comment"># 键盘操作</span><br><span class="hljs-comment"># 切屏</span><br>pg.keyDown(<span class="hljs-string">&#x27;alt&#x27;</span>)<br>pg.press(<span class="hljs-string">&#x27;tab&#x27;</span>)<br>pg.press(<span class="hljs-string">&#x27;tab&#x27;</span>)<br>pg.keyUp(<span class="hljs-string">&#x27;alt&#x27;</span>)<br><span class="hljs-comment"># 复制粘贴</span><br>pg.keyDown(<span class="hljs-string">&#x27;shift&#x27;</span>)<br>pg.press([<span class="hljs-string">&#x27;left&#x27;</span>]*<span class="hljs-number">3</span>)<br>pg.keyUp(<span class="hljs-string">&#x27;shift&#x27;</span>)<br>pg.hotkey(<span class="hljs-string">&#x27;ctrl&#x27;</span>,<span class="hljs-string">&#x27;c&#x27;</span>)<br>pg.hotkey(<span class="hljs-string">&#x27;ctrl&#x27;</span>,<span class="hljs-string">&#x27;v&#x27;</span>)<br><br><span class="hljs-comment"># 全屏浏览器中 写入 网址并前往</span><br>pg.moveTo(<span class="hljs-number">360</span>,<span class="hljs-number">52</span>)<br>pg.click()<br>pg.write(<span class="hljs-string">&#x27;izlyforever.com&#x27;</span>,interval = <span class="hljs-number">0.2</span>)<br>pg.press(<span class="hljs-string">&#x27;enter&#x27;</span>)<br><br><span class="hljs-comment"># messageBox</span><br>pg.alert(text=<span class="hljs-string">&#x27;&#x27;</span>, title=<span class="hljs-string">&#x27;&#x27;</span>, button=<span class="hljs-string">&#x27;OK&#x27;</span>) <span class="hljs-comment"># 提示消息小窗口</span><br>pg.confirm(text=<span class="hljs-string">&#x27;&#x27;</span>, title=<span class="hljs-string">&#x27;&#x27;</span>, buttons=[<span class="hljs-string">&#x27;OK&#x27;</span>, <span class="hljs-string">&#x27;Cancel&#x27;</span>]) <span class="hljs-comment"># 选择窗口，返回选择的内容</span><br>pg.prompt(text=<span class="hljs-string">&#x27;&#x27;</span>, title=<span class="hljs-string">&#x27;&#x27;</span> , default=<span class="hljs-string">&#x27;&#x27;</span>) <span class="hljs-comment"># 输入消息窗口</span><br>pg.password(text=<span class="hljs-string">&#x27;&#x27;</span>, title=<span class="hljs-string">&#x27;&#x27;</span>, default=<span class="hljs-string">&#x27;&#x27;</span>, mask=<span class="hljs-string">&#x27;*&#x27;</span>) <span class="hljs-comment"># 输入密码窗口</span><br></code></pre></td></tr></table></figure>
+<h3 id="挂机玩-LOL-上述-pyautogui-被弃用了"><a href="#挂机玩-LOL-上述-pyautogui-被弃用了" class="headerlink" title="挂机玩 LOL (上述 pyautogui 被弃用了)"></a>挂机玩 LOL (上述 pyautogui 被弃用了)</h3><p>很遗憾，LOL 拦截了虚拟键盘操作（包括 <code>pyautogui pywin32</code>）</p>
+<p><del><strong>按键盒子</strong>貌似可以解决（没试过）。最后我们需要驱动级的模拟按键：<a target="_blank" rel="noopener" href="https://github.com/starofrainnight/pywinio">pywinio</a></del></p>
+<blockquote>
+<p>键盘操作用<code>pip install keyboard</code> ： <a target="_blank" rel="noopener" href="https://github.com/boppreh/keyboard">keyboard 示例</a>。</p>
+<p>鼠标操作用<code>pip install mouse</code>： <a target="_blank" rel="noopener" href="https://github.com/boppreh/mouse">mouse 示例</a></p>
+</blockquote>
+<p><code>mouse keyboard</code> 两个项目是同一个人创建的，并且带有按键监听功能，持续更新，十分推荐。它的使用 github 上有，直接下面代码也能看懂。</p>
+<h3 id="设计者需要考虑"><a href="#设计者需要考虑" class="headerlink" title="设计者需要考虑"></a>设计者需要考虑</h3><ul>
+<li>买装备 （装备栏要注意固定）</li>
+<li>选择路线 （上中下随机，根据时间去具体的点）</li>
+<li>如何攻击 （乱打）</li>
+<li>何时回城</li>
+</ul>
+<h3 id="使用者操作步骤"><a href="#使用者操作步骤" class="headerlink" title="使用者操作步骤"></a>使用者操作步骤</h3><ol>
+<li>打开英雄联盟 训练模式或简单人机，选好英雄（建议寒冰）</li>
+<li>所有的东西恢复默认设置，装备栏<strong>左上角对齐</strong></li>
+<li>在命令行执行 <code>py lolAuto.py</code></li>
+<li>切到游戏界面</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># lolAuto.py</span><br><span class="hljs-keyword">import</span> keyboard <span class="hljs-keyword">as</span> kb<br><span class="hljs-keyword">import</span> mouse <span class="hljs-keyword">as</span> ms<br><span class="hljs-keyword">from</span> time <span class="hljs-keyword">import</span> sleep<br><span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> datetime<br><span class="hljs-keyword">from</span> random <span class="hljs-keyword">import</span> choice<br><span class="hljs-keyword">from</span> random <span class="hljs-keyword">import</span> randint<br><span class="hljs-keyword">import</span> os<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">buyequipment</span>(<span class="hljs-params">flag = <span class="hljs-literal">True</span></span>):</span><br>  sleep(<span class="hljs-number">1</span>)<br>  kb.send(<span class="hljs-string">&#x27;p&#x27;</span>)<br>  sleep(<span class="hljs-number">0.5</span>)<br>  <span class="hljs-keyword">if</span>(flag):<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">4</span>):<br>      <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">3</span>):<br>        ms.move(<span class="hljs-number">196</span>-<span class="hljs-number">65</span>*j,<span class="hljs-number">695</span>-<span class="hljs-number">125</span>*i)<br>        ms.double_click()<br>        sleep(<span class="hljs-number">0.12</span>)<br>  <span class="hljs-keyword">else</span>:<br>    ms.move(<span class="hljs-number">64</span>,<span class="hljs-number">192</span>)<br>    ms.double_click()<br>    sleep(<span class="hljs-number">0.5</span>)<br>  sleep(<span class="hljs-number">0.5</span>)<br>  kb.send(<span class="hljs-string">&#x27;p&#x27;</span>)<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">attack</span>():</span><br>  kb.send(<span class="hljs-string">&#x27;a&#x27;</span>)<br>  sleep(<span class="hljs-number">0.2</span>)<br>  ms.click()<br>  sleep(<span class="hljs-number">0.2</span>)<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">skill</span>():</span><br>  kb.send(choice(<span class="hljs-string">&#x27;qwer&#x27;</span>))<br>  ms.click()<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">upgradeskill</span>():</span><br>  kb.press(<span class="hljs-string">&#x27;ctrl&#x27;</span>)<br>  skill()<br>  kb.release(<span class="hljs-string">&#x27;ctrl&#x27;</span>)<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">infield</span>(<span class="hljs-params">road, direc</span>):</span><br>  x,y = road[<span class="hljs-number">0</span>][direc]<br>  ms.move(x,y,<span class="hljs-literal">True</span>,<span class="hljs-number">0.2</span>)<br>  sleep(<span class="hljs-number">0.2</span>)<br>  ms.click(<span class="hljs-string">&#x27;right&#x27;</span>)<br>  kb.press(<span class="hljs-string">&#x27;space&#x27;</span>)<br>  sleep(<span class="hljs-number">28</span>)<br>  <span class="hljs-keyword">if</span>(direc != <span class="hljs-string">&#x27;mid&#x27;</span>): sleep(<span class="hljs-number">6</span>)<br>  kb.release(<span class="hljs-string">&#x27;space&#x27;</span>)<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">myexit</span>(<span class="hljs-params">event</span>):</span><br>  <span class="hljs-keyword">if</span>(event.name == <span class="hljs-string">&#x27;k&#x27;</span>): os._exit(<span class="hljs-number">1</span>)<br><br><span class="hljs-keyword">try</span>:<br>  <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Welcome lolAuto designed by izlyforever&#x27;</span>)<br>  <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;请先打开 LOL 进入游戏，恢复默认设置，\n 然后把买装备的界面左上角对齐 \n 再打开次应用&#x27;</span>)<br>  <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;按 k 键 结束！&#x27;</span>)<br>  kb.hook(myexit)<br>  sleep(<span class="hljs-number">10</span>)<br>  <span class="hljs-comment"># road应该随着时间改变的！</span><br>  road = [&#123;<span class="hljs-string">&#x27;top&#x27;</span>:[<span class="hljs-number">1687</span>,<span class="hljs-number">857</span>],<span class="hljs-string">&#x27;mid&#x27;</span>:[<span class="hljs-number">1776</span>,<span class="hljs-number">944</span>],<span class="hljs-string">&#x27;ad&#x27;</span>:[<span class="hljs-number">1864</span>,<span class="hljs-number">1034</span>]&#125;]<br>  ms.click(<span class="hljs-string">&#x27;right&#x27;</span>)<br>  kb.send(<span class="hljs-string">&#x27;space&#x27;</span>)<br>  ms.move(<span class="hljs-number">960</span>,<span class="hljs-number">540</span>)<br>  ms.click(<span class="hljs-string">&#x27;right&#x27;</span>)<br>  buyequipment(<span class="hljs-literal">False</span>)<br>  sleep(<span class="hljs-number">1</span>)<br>  direc = choice([<span class="hljs-string">&#x27;top&#x27;</span>,<span class="hljs-string">&#x27;mid&#x27;</span>,<span class="hljs-string">&#x27;ad&#x27;</span>])<br>  infield(road,direc)<br>  start = timeB = timeE = timeS = datetime.now()<br>  sleep(<span class="hljs-number">50</span>)<br>  <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>    kb.press(<span class="hljs-string">&#x27;space&#x27;</span>)<br>    x = <span class="hljs-number">1920</span> + randint(-<span class="hljs-number">150</span>,<span class="hljs-number">150</span>)<br>    y = <span class="hljs-number">1080</span> + randint(-<span class="hljs-number">80</span>,<span class="hljs-number">80</span>)<br>    ms.move(x//<span class="hljs-number">2</span>,y//<span class="hljs-number">2</span>,<span class="hljs-literal">True</span>,<span class="hljs-number">0.2</span>)<br>    sleep(<span class="hljs-number">0.2</span>)<br>    kb.release(<span class="hljs-string">&#x27;space&#x27;</span>)<br>    attack()<br>    <span class="hljs-keyword">if</span>((datetime.now()-timeS).seconds &gt; <span class="hljs-number">5</span>):<br>      skill()<br>      timeS = datetime.now()<br>      sleep(<span class="hljs-number">0.5</span>)<br>    <span class="hljs-keyword">if</span>((datetime.now()-timeE).seconds &gt; <span class="hljs-number">30</span>):<br>      upgradeskill();upgradeskill()<br>      timeE = datetime.now()<br>      ms.move(road[<span class="hljs-number">0</span>][direc][<span class="hljs-number">0</span>],road[<span class="hljs-number">0</span>][direc][<span class="hljs-number">1</span>])<br>      sleep(<span class="hljs-number">0.2</span>)<br>      ms.click(<span class="hljs-string">&#x27;right&#x27;</span>)<br>      sleep(<span class="hljs-number">4</span>)<br>    <span class="hljs-keyword">if</span>((datetime.now()-timeB).seconds &gt; <span class="hljs-number">240</span>):<br>      kb.send(<span class="hljs-string">&#x27;s&#x27;</span>)<br>      kb.send(<span class="hljs-string">&#x27;b&#x27;</span>)<br>      kb.sleep(<span class="hljs-number">8</span>)<br>      buyequipment()<br>      timeB = datetime.now()<br>      infield(road,direc)<br>    sleep(<span class="hljs-number">0.5</span>)<br><span class="hljs-keyword">except</span>:<br>  <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Bye lolAuto designed by izlyforever&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>因为没法知道自己在哪，所以写的很捞。还有就是这是全局的鼠标键盘操作，而不是针对 LOL 的，哎就这样吧。</p>
+</blockquote>
+<h3 id="pywinio-安装和使用"><a href="#pywinio-安装和使用" class="headerlink" title="pywinio 安装和使用"></a>pywinio 安装和使用</h3><p>由于 pywinio 安装和使用贼搞人，在此写一下教程，先去 <a target="_blank" rel="noopener" href="https://github.com/starofrainnight/pywinio">这里</a> 下载源码，然后解压到：</p>
+<p><code>C:\Users\Administrator\AppData\Local\Programs\Python\Python38\Lib\site-packages</code></p>
+<p>打开 cmd 进入上述目录，依次安装 <a target="_blank" rel="noopener" href="https://github.com/starofrainnight/pywinio/blob/master/requirements_dev.txt">requirements_dev.txt</a> 中的依赖包，然后 <code>pip install -e ./pywinio-master</code> 就安装成功了。</p>
+<p><strong>使用</strong>： 如果是 64 位操作系统（基本都是吧），管理员身份输入：</p>
+<p><code>bcdedit.exe /set TESTSIGNING ON</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pywinio<br>g_winio = pywinio.WinIO()<br><span class="hljs-built_in">print</span>(g_winio.get_port_byte(<span class="hljs-number">0xA07</span>))<br></code></pre></td></tr></table></figure>
+<p>运行上述代码，如果报错，可参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/bkk854762363/article/details/95319962">这里</a></p>
+<blockquote>
+<p>好不容易安装好了，然后我也不会用，后来也没用了，辣鸡…</p>
+</blockquote>
+<h2 id="pyechart"><a href="#pyechart" class="headerlink" title="pyechart"></a>pyechart</h2><p>做 html 格式的折线图，直方图等等，可参考 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/81e01d43b2ba">简书</a></p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/note/">#note</a>
+      
+        <a href="/tags/python/">#python</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/twikoo/1.4.17/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"hello-cloudbase-6gua2z7k094e2b64","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+              Fluid.plugins.imageCaption(imgSelector);
+              Fluid.plugins.fancyBox(imgSelector);
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      沪ICP备2021025739号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        MathJax = {
+          tex    : {
+            inlineMath: { '[+]': [['$', '$']] }
+          },
+          loader : {
+            load: ['ui/lazy']
+          },
+          options: {
+            renderActions: {
+              findScript    : [10, doc => {
+                document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                  const display = !!node.type.match(/; *mode=display/);
+                  const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                  const text = document.createTextNode('');
+                  node.parentNode.replaceChild(text, node);
+                  math.start = { node: text, delim: '', n: 0 };
+                  math.end = { node: text, delim: '', n: 0 };
+                  doc.math.push(math);
+                });
+              }, '', false],
+              insertedScript: [200, () => {
+                document.querySelectorAll('mjx-container').forEach(node => {
+                  let target = node.parentNode;
+                  if (target.nodeName.toLowerCase() === 'li') {
+                    target.parentNode.classList.add('has-jax');
+                  }
+                });
+              }, '', false]
+            }
+          }
+        };
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,818 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="izlyforever">
+  <meta name="keywords" content="math, cpp, python, sagemath">
+  
+    <meta name="description" content="在研究一个数学对象时，我们经常会对它进行分类。比如我们通常把数分为：实数，虚数；实数又分成有理数，无理数；当然也有按照正负来分的。还有整数分成素数（也叫质数）和合数，等等。现在我们谈谈矩阵的分类，以下默认矩阵是方的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Schur 定理">
+<meta property="og:url" content="http://izlyforever.com/schurTheorem/index.html">
+<meta property="og:site_name" content="记录程序和数学的点滴">
+<meta property="og:description" content="在研究一个数学对象时，我们经常会对它进行分类。比如我们通常把数分为：实数，虚数；实数又分成有理数，无理数；当然也有按照正负来分的。还有整数分成素数（也叫质数）和合数，等等。现在我们谈谈矩阵的分类，以下默认矩阵是方的。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-12-16T14:10:14.000Z">
+<meta property="article:modified_time" content="2022-06-25T09:14:02.558Z">
+<meta property="article:author" content="izlyforever">
+<meta property="article:tag" content="math">
+<meta property="article:tag" content="matrix">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Schur 定理 - 记录程序和数学的点滴</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"izlyforever.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>izlyforever</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cppTemplate/">
+                <i class="iconfont icon-book"></i>
+                cpp
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webTools/">
+                <i class="iconfont icon-briefcase"></i>
+                网页工具
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Schur 定理"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2015-12-16 22:10" pubdate>
+          2015年12月16日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          2.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          22 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Schur 定理</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    <!-- compatible with older versions-->
+                    最后更新于：2022年6月25日 下午
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <p>在研究一个数学对象时，我们经常会对它进行分类。比如我们通常把数分为：实数，虚数；实数又分成有理数，无理数；当然也有按照正负来分的。还有整数分成素数（也叫质数）和合数，等等。现在我们谈谈矩阵的分类，以下默认矩阵是方的。</p>
+<span id="more"></span>
+<h2 id="数学中分类一般是按照等价关系划分等价类的"><a href="#数学中分类一般是按照等价关系划分等价类的" class="headerlink" title="数学中分类一般是按照等价关系划分等价类的"></a>数学中分类一般是按照等价关系划分等价类的</h2><p>所谓等价关系其实就是满足反身性，对称性，传递性的二元关系（总结一下我们等于号的全部性质就知道了）<br>矩阵中最常见的三种等价关系分别是</p>
+<ol>
+<li>相抵等价—-初等变换</li>
+<li>合同等价—-合同变换</li>
+<li>相似等价—-相似变换</li>
+</ol>
+<p>相抵等价完全由秩确定，合同变换我们一般只针对实对称矩阵处理。相似变化是我们讨论最多的也是最复杂的，我们总想把复杂的东西变简单，对于一个矩阵我们总想做变换把它变成最简单形式（称为标准型），相抵等价的标准型和对称矩阵合同等价的标准型都十分简单，但是很不幸的也是最幸运的是，并非所有的矩阵都可以相似于对角阵，相似变换标准型称为若尔当标准型，以纪念若尔当对矩阵相似变换所做的贡献。</p>
+<p>然而今天主题并不是上面的任何一种，而是由伟大的数学家 Issai Schur 提出的酉相似，酉变换的概念和相应定理。</p>
+<h2 id="任意复方阵酉相似于上三角矩阵"><a href="#任意复方阵酉相似于上三角矩阵" class="headerlink" title="任意复方阵酉相似于上三角矩阵"></a>任意复方阵酉相似于上三角矩阵</h2><h3 id="酉矩阵和酉相似"><a href="#酉矩阵和酉相似" class="headerlink" title="酉矩阵和酉相似"></a>酉矩阵和酉相似</h3><p>一个矩阵称为酉矩阵，如果它的共轭转置是它的逆。复矩阵 $A$ 与 $B$ 称为酉相似的，如果存在酉矩阵 $U$ 使得 $B=U^ \star AU$ ，这里$U^ \star$ 表示 $U$ 的共轭转置。</p>
+<h3 id="定理-1-对任意复方阵-A-，存在酉矩阵-U-使得"><a href="#定理-1-对任意复方阵-A-，存在酉矩阵-U-使得" class="headerlink" title="定理 1.  对任意复方阵 $A$，存在酉矩阵 $U$ 使得"></a>定理 1.  <strong>对任意复方阵 $A$，存在酉矩阵 $U$ 使得</strong></h3><script type="math/tex; mode=display">
+A = U \left( \begin{matrix}
+\lambda_1 & \star & \star & \star \\
+ & \lambda_2 & \star & \star \\
+ & & \ddots & \star \\
+ & & &  \lambda_n
+\end{matrix} \right)U^\star</script><p>其中$\lambda_1,\lambda_2,\cdots,\lambda_n$ 为$A$的全部特征值。</p>
+<p><strong>Proof</strong>：设 $\alpha_1$ 是$A$的特征值 $\lambda_1$ 对应的特征向量，将 $\alpha_1$ 扩充为$\mathbf{C}^n$的一组标准正交基 $P=(\alpha_1,\alpha_2,\cdots,\alpha_n)$ ，则 $A = P \left( \begin{matrix} \lambda_1 &amp; \star \\ \mathbf{0} &amp; B \end{matrix} \right)P^\star$ 。对复矩阵的阶数应用数学归纳法，存在$n-1$ 阶酉矩阵 $Q$ 使得</p>
+<script type="math/tex; mode=display">
+B = Q \left( \begin{matrix} \lambda_2 & \star & \star  \\
+ & \ddots & \star \\
+ & & \lambda_n \end{matrix} \right) Q^ \star</script><p>因此</p>
+<script type="math/tex; mode=display">
+A = U \left( \begin{matrix}
+\lambda_1 & \star & \star & \star \\
+ & \lambda_2 & \star & \star \\
+ & & \ddots & \star \\
+ & & &  \lambda_n
+\end{matrix} \right)U^\star</script><p>其中 $U = P \left( \begin{matrix} 1 &amp;  \\ &amp; Q \end{matrix} \right)$ 是 $n$ 阶酉矩阵，证毕。</p>
+<h3 id="矩阵酉相似于对角阵当且仅当它是正规矩阵"><a href="#矩阵酉相似于对角阵当且仅当它是正规矩阵" class="headerlink" title="矩阵酉相似于对角阵当且仅当它是正规矩阵"></a>矩阵酉相似于对角阵当且仅当它是正规矩阵</h3><p>矩阵 $A$ 称为正规矩阵(<strong>normal matrix</strong>)，如果$ A^ \star A=AA^ \star $。显然酉矩阵，Hermite 阵，反 Hermite 阵都是正规矩阵。</p>
+<h3 id="定理-2（Issai-Schur）矩阵-A-酉相似于对角阵的充分必要条件是-A-是正规矩阵"><a href="#定理-2（Issai-Schur）矩阵-A-酉相似于对角阵的充分必要条件是-A-是正规矩阵" class="headerlink" title="定理 2（Issai Schur）矩阵 $A$ 酉相似于对角阵的充分必要条件是 $A$ 是正规矩阵"></a>定理 2（Issai Schur）矩阵 $A$ 酉相似于对角阵的充分必要条件是 $A$ 是正规矩阵</h3><p><strong>Proof</strong>：必要性显然，下证明充分性：</p>
+<p>由定理 1 知，存在酉矩阵 $U$ 使得</p>
+<script type="math/tex; mode=display">
+A = U \left( \begin{matrix}
+\lambda_1 & \star & \star & \star \\
+ & \lambda_2 & \star & \star \\
+ & & \ddots & \star \\
+ & & &  \lambda_n
+\end{matrix} \right)U^\star</script><p>若 $A$ 是正规矩阵，则有</p>
+<script type="math/tex; mode=display">
+\left( \begin{matrix}
+\overline{\lambda_1} &  &  &  \\
+\star & \overline{\lambda_2} &  &  \\
+\star & \star & \ddots & \\
+\star & \star & \star &  \overline{\lambda_n}
+\end{matrix} \right)
+\cdot
+\left(\begin{matrix}
+\lambda_1 & \star & \star & \star \\
+ & \lambda_2 & \star & \star \\
+ & & \ddots & \star \\
+ & & &  \lambda_n
+\end{matrix} \right)
+=
+
+\left( \begin{matrix}
+\lambda_1 & \star & \star & \star \\
+ & \lambda_2 & \star & \star \\
+ & & \ddots & \star \\
+ & & &  \lambda_n
+\end{matrix} \right)
+\left( \begin{matrix}
+\overline{\lambda_1} &  &  &  \\
+\star & \overline{\lambda_2} &  &  \\
+\star & \star & \ddots & \\
+\star & \star & \star &  \overline{\lambda_n}
+\end{matrix} \right)</script><p>考虑矩阵两端$(1,1)$位置得到:</p>
+<script type="math/tex; mode=display">
+\overline{\lambda_1}\lambda_1 ＝ \lambda_1 \overline{\lambda_1}+\sigma^2</script><p>其中$ \sigma^2 $是上三角矩阵</p>
+<script type="math/tex; mode=display">
+\left( \begin{matrix}
+\lambda_1 & \star & \star & \star \\
+ & \lambda_2 & \star & \star \\
+ & & \ddots & \star \\
+ & & &  \lambda_n
+\end{matrix} \right)</script><p>的第一行的非对角元绝对值之平方和，因此由 $\sigma^2$ 可知上三角矩阵的第一行非对角元全为 0，类似的考察矩阵两端 $(2,2)$ 的位置，一直到 $(n,n)$ 的位置即可知道上面矩阵是对角阵，证毕。</p>
+<p>上述定理给出了酉相似于对角型的充分必要条件，而且条件十分易于判断。整个过程简洁优美。另外由于酉矩阵条件数恒定为 1，有其数值稳定性，因此经常用于实际计算中，例如 QR 方法涉及的两个矩阵变换 Househoulder 变换和 Givens 变换都是酉变换。</p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/math/">#math</a>
+      
+        <a href="/tags/matrix/">#matrix</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/perronFrobeniusTheory/" title="Perron-Frobenius 理论">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Perron-Frobenius 理论</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/cayleyHamiltonTheorem/" title="Cayley-Hamilton 定理">
+                        <span class="hidden-mobile">Cayley-Hamilton 定理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/twikoo/1.4.17/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"hello-cloudbase-6gua2z7k094e2b64","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+              Fluid.plugins.imageCaption(imgSelector);
+              Fluid.plugins.fancyBox(imgSelector);
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      沪ICP备2021025739号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        MathJax = {
+          tex    : {
+            inlineMath: { '[+]': [['$', '$']] }
+          },
+          loader : {
+            load: ['ui/lazy']
+          },
+          options: {
+            renderActions: {
+              findScript    : [10, doc => {
+                document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                  const display = !!node.type.match(/; *mode=display/);
+                  const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                  const text = document.createTextNode('');
+                  node.parentNode.replaceChild(text, node);
+                  math.start = { node: text, delim: '', n: 0 };
+                  math.end = { node: text, delim: '', n: 0 };
+                  doc.math.push(math);
+                });
+              }, '', false],
+              insertedScript: [200, () => {
+                document.querySelectorAll('mjx-container').forEach(node => {
+                  let target = node.parentNode;
+                  if (target.nodeName.toLowerCase() === 'li') {
+                    target.parentNode.classList.add('has-jax');
+                  }
+                });
+              }, '', false]
+            }
+          }
+        };
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

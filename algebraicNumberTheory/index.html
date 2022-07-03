@@ -1,0 +1,827 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="izlyforever">
+  <meta name="keywords" content="math, cpp, python, sagemath">
+  
+    <meta name="description" content="此笔记是按照知乎 钩里裹镓 在西安交大 2021 数论暑期学校手抄的 系列笔记 结合自己的理解写成的 markdown">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代数数论笔记">
+<meta property="og:url" content="http://izlyforever.com/algebraicNumberTheory/index.html">
+<meta property="og:site_name" content="记录程序和数学的点滴">
+<meta property="og:description" content="此笔记是按照知乎 钩里裹镓 在西安交大 2021 数论暑期学校手抄的 系列笔记 结合自己的理解写成的 markdown">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-07-25T06:25:02.000Z">
+<meta property="article:modified_time" content="2022-06-25T09:14:02.468Z">
+<meta property="article:author" content="izlyforever">
+<meta property="article:tag" content="note">
+<meta property="article:tag" content="math">
+<meta property="article:tag" content="numberTheory">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>代数数论笔记 - 记录程序和数学的点滴</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"izlyforever.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>izlyforever</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cppTemplate/">
+                <i class="iconfont icon-book"></i>
+                cpp
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webTools/">
+                <i class="iconfont icon-briefcase"></i>
+                网页工具
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="代数数论笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-07-25 14:25" pubdate>
+          2021年7月25日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          5.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          44 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">代数数论笔记</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    <!-- compatible with older versions-->
+                    最后更新于：2022年6月25日 下午
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p>此笔记是按照知乎 <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/gou-li-guo-jia-83">钩里裹镓</a> 在西安交大 2021 数论暑期学校手抄的 <a target="_blank" rel="noopener" href="https://www.zhihu.com/column/c_1398026565993807872">系列笔记</a> 结合自己的理解写成的 markdown</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="符号约定"><a href="#符号约定" class="headerlink" title="符号约定"></a>符号约定</h2><ul>
+<li>$\mathbb{N}, \mathbb{Z}, \mathbb{Q}, {\mathbb{R}}, \mathbb{C}$ 分别为 非负整数，整数，有理数，实数，复数</li>
+<li>$k$  是域，$k^{\star} = k \backslash\{x\}$</li>
+<li>$p$ 是素数</li>
+</ul>
+<blockquote>
+<p>正常人都用的记号</p>
+</blockquote>
+<h2 id="Day-1（代数数论）：首都师范，徐飞"><a href="#Day-1（代数数论）：首都师范，徐飞" class="headerlink" title="Day 1（代数数论）：首都师范，徐飞"></a>Day 1（代数数论）：首都师范，徐飞</h2><script type="math/tex; mode=display">
+\mathbb{N} \subseteq \mathbb{Z} \subseteq \mathbb{Q} \stackrel{|\cdot|_{\infty}}{\longrightarrow} \mathbb{R}</script><p>即 $\mathbb{Q}$ 在通常的 Archimede 度量下完备化为 $\mathbb{R}$，一个自然的问题，还有别的度量（绝对值）吗？</p>
+<h3 id="绝对值的定义"><a href="#绝对值的定义" class="headerlink" title="绝对值的定义"></a>绝对值的定义</h3><p>若 $\psi: k \to \mathbb{R}_{\geq 0}$ ， $\forall a, b \in k$ 满足</p>
+<ol>
+<li>$\psi(a) = 0 \Leftrightarrow a = 0$</li>
+<li>$\psi(ab) = \psi(a) \psi(b)$</li>
+<li>$\psi(a + b) \leq \psi(a) + \psi(b)$</li>
+</ol>
+<p>则称 $\psi$ 为绝对值，并且一般用 $|\cdot|$ 表示</p>
+<p>更近一步，若 $\psi(a + b) \leq \max\{\psi(a), \psi(b)\}, \quad \forall a, b \in k$，则称 $\psi$ 满足强不等式</p>
+<p>此时我们称 $\psi$ 为非 Archimede 赋值，<del>否则称为 Archimede 赋值</del></p>
+<blockquote>
+<p>一个域上的绝对值，就是它看作自己上的一维线性空间是赋范空间</p>
+</blockquote>
+<h4 id="显然结论"><a href="#显然结论" class="headerlink" title="显然结论"></a>显然结论</h4><ul>
+<li>$|-1_k| = |1_k| = 1_{R_{\geq 0}}$ （之后不再区别 $1$ 是哪里的 $1$）</li>
+<li>$|-x| = |-1||x| = |x|$</li>
+<li>对于非 Archimede 赋值，若  $|x| &gt; |y|$， 则  $|x \pm y| = |x|$（有种占优的感觉）</li>
+</ul>
+<h3 id="绝对值的等价"><a href="#绝对值的等价" class="headerlink" title="绝对值的等价"></a>绝对值的等价</h3><p>若 $k$  上两个绝对值 $\psi_1, \psi_2$ 给出了相同的拓扑，则称  $\psi_1, \psi_2$  等价</p>
+<blockquote>
+<p>根据绝对值定义的 1，3 两条就可以用 $d(x, y) = |x - y|$ 给出 $k$ 上的度量从而给出  $k$ 上的拓扑</p>
+</blockquote>
+<h3 id="平凡绝对值"><a href="#平凡绝对值" class="headerlink" title="平凡绝对值"></a>平凡绝对值</h3><p>$\forall 0 \neq x \in k$,  $|x|_0 = 1$。</p>
+<p>我们称 $|x|_0$ 为平凡绝对值，它对应的拓扑为离散拓扑</p>
+<p><strong>习题</strong>：若 $k$ 是有限域，则 $k$ 上只有平凡绝对值</p>
+<blockquote>
+<p>有限域的可逆元全体（非零元全体）关于乘法构成了有限循环群，因此有限域上只有平凡绝对值</p>
+</blockquote>
+<h3 id="非平凡绝对值的例子"><a href="#非平凡绝对值的例子" class="headerlink" title="非平凡绝对值的例子"></a>非平凡绝对值的例子</h3><p>对任意给定素数 $p$  ，$\forall 0 \neq x \in Q$ ，$x = p^l \cdot \frac{m}{n}$ ，其中 $\gcd(p, mn) = 1$ ，$l \in \mathbb{Z}$ ，则定义</p>
+<script type="math/tex; mode=display">
+|x|_p = p^{-l}</script><p>直接验证可知 $|\cdot|_p$  是  $\mathbb{Q}$ 上的绝对值。 $\mathbb{Q}$ 关于 $|\cdot|_p$ 的完备化记作 $\mathbb{Q}_p$</p>
+<blockquote>
+<p>每个特征 0 的域的极小子域同构于 $Q$，因此这个例子十分有代表性，另外注意到例子 $\max_{x \in \mathbb{Z}}|x|_p = 1$</p>
+</blockquote>
+<p>对于 $\mathbb{Q}$，我们已经有三种绝对值：$|\cdot|_{\infty}$ ，$|\cdot|_0$，$|\cdot|_p$，下面定理告诉我们， $\mathbb{Q}$ 的绝对值本质上只有这三种。</p>
+<h3 id="Ostrowski-定理"><a href="#Ostrowski-定理" class="headerlink" title="Ostrowski 定理"></a>Ostrowski 定理</h3><p>$Q$ 上的任何<strong>非平凡绝对值</strong> $|\cdot|$ 一定等价于 $|\cdot|_{\infty}$ 或 $|\cdot|_p$</p>
+<blockquote>
+<p>由绝对值定义 2，可知我们只需确定 $\psi$ 在 $\mathbb{Z}$ 上的取值就能确定它在 $Q$ 上的取值</p>
+</blockquote>
+<ul>
+<li><p>若 $|\cdot|$  为非 Archimede 赋值，则 $I = \{ x \in \mathbb{Z} \mid |x| &lt; 1 \}$  是一个素理想，若 $I = \{0 \}$ ，则为 $|\cdot| = |\cdot|_0$ ，否则 存在素数 $p$ ，使得 $I = (p)$  ，因此 $\forall 0 \neq x \in \mathbb{Z}$  且 $p \not \mid x$ ，$|x| = 1$ ，从而 $|\cdot| = |\cdot|_p^s$ ，其中 $s = - \log_p|p|$ ，即 $|\cdot|$ 与 $|\cdot|_p$ 等价</p>
+</li>
+<li><p>否则，必存在 $0 \neq m \in \mathbb{Z}$ 使得 $|m| &gt; 1$，否则，对任意 $x, y \in k$，根据二项式定理</p>
+<script type="math/tex; mode=display">
+|(x + y)^n| = |\sum_{i = 0}^n \binom{n}{i} x^i y^{n - i}| \leq \sum_{i = 0}^n |\binom{n}{i}| |x^i| |y^{n - i}| \leq (n + 1) \max \{ |x| , |y| \}^n</script><blockquote>
+<p>注意到上式仅用到 $|\binom{n}{i}| \leq 1$</p>
+</blockquote>
+<p>从而 $|x + y| \leq \sqrt[n]{n + 1} \max \{ |x| , |y| \}$，令 $n \to \infty$，可知 $|\cdot|$ 为 非 Archimede 赋值，矛盾</p>
+<p>对任意 $n , l &gt; 1$， $m^l = a_0 + a_1 n + \cdots a_t n^t, \quad 0 \leq a_i &lt; n, a_t \geq 1$ （$n$ 进制表示）从而 $m^l \geq a_t n^t \geq n^t$</p>
+<p>可知 $t \leq \frac{l \log m}{\log n}$  ，另一方面</p>
+<script type="math/tex; mode=display">
+|m|^l \leq \sum_{i = 0}^t |a_i||n|^i \leq n(t + 1) \max(1, |n|)^t \leq n (\frac{l \log m}{\log n} + 1) \max(1, |n|)^{\frac{l \log m}{\log n}}</script><p>开 $l$  次方后令 $l \to \infty$ ，可知 $|m| \leq \max\{1, |n|\}^{\frac{\log m}{\log n}}$ ，又由于我们取 $0 \neq m$  满足 $|m| &gt; 1$ ，从而 $|n| &gt; 1$ ，即对任意 $n &gt; 1$ ，$|n| &gt; 1$ ，再利用对称性 $|m| = |n|^{\frac{\log m}{\log n}}$ ，即 $\frac{\log |n|}{\log n}$ 为常量, 所以 $|n| = n^s$，从而 $|\cdot|$ 与 $|\cdot|_\infty$  等价</p>
+</li>
+</ul>
+<h3 id="非-Archimede-绝对值"><a href="#非-Archimede-绝对值" class="headerlink" title="非 Archimede 绝对值"></a>非 Archimede 绝对值</h3><p>对域 $k$ 上给定的非 Archimede 绝对值 $|\cdot|$ ，我们记</p>
+<script type="math/tex; mode=display">
+O_k = \{ x \in k \mid |x| \leq 1\}</script><p>证明：$O_k$ 是 $k$ 的子环，且 $k$  是 $O_k$  的分式域，更近一步 $O_k$ 为整闭整环，且 $m_k = \{ x \in k \mid |x| &lt; 1 \}$ 是唯一极大理想，即 $O_k$  是局部环。</p>
+<ul>
+<li>$O_k$ 是 $k$ 的子环：只需验证 $x, y \in O_k$，$x - y, xy \in O_k$</li>
+<li>$k$  是 $O_k$  的分式域：注意到 $|x|\cdot |x^{-1}| = 1$，所以 $x, x^{-1}$ 至少有一个在 $O_k$</li>
+<li>$O_k$ 为整闭整环：某个 $O_k$ 上首一的多项式 $f$，满足 $f(x) = 0$，从而 $x^n \in O_k$，从而 $x \in O_k$</li>
+<li>注意到 $O_k$ 的可逆元的全体为 $O_k \backslash m_k$，记作 $O_k^{\star} = \{ x \in k \mid |x| = 1\}$</li>
+</ul>
+<h4 id="Remark"><a href="#Remark" class="headerlink" title="Remark"></a>Remark</h4><ul>
+<li>$\mathbb{Q}$  关于 $|\cdot|_p$   的 $O_k = \{ x \mid x = p^l \cdot \frac{m}{n} \}, l \geq 0$，其中 $\gcd(p, mn) = 1$</li>
+<li>$\mathbb{Q}$ 关于 $|\cdot|_0$  的 $O_k = \mathbb{Q}$</li>
+</ul>
+<h3 id="离散绝对值"><a href="#离散绝对值" class="headerlink" title="离散绝对值"></a>离散绝对值</h3><p>域 $k$  上的一个<strong>非 Archimede 绝对值</strong> $|\cdot|$  ，称为<strong>离散赋值</strong>若  $|k^{\star}|$   是（作为 $\mathbb{R}_{\geq 0}$  的乘法子群）<strong>无限阶</strong>循环群。</p>
+<p>设 $\pi \in k$，$|\pi|$ 是 $|k^{\star}|$ 的生成元，由于 $|\pi|,|\pi^{-1}|$  都是生成元，且至少有一个在 $O_k$ 中，所以我们不妨假设 $\pi \in O_k$ ，注意到若 $|\pi| = 1$ ，$k^{\star}$  中任意元的取值都为 1，矛盾于 $|k^{\star}|$   是无限阶的，从而 $\pi \in m_k$ ，对任意 $0 \neq x \in m_k$ ，$|x| = |\pi|^n$ ，即  $|x \cdot \pi^{-n}| = 1$ ，即 $x \cdot \pi^{-n} \in O_k$ ，$x = \pi^n(x \cdot \pi^{-n})$ ， 即 $m_k = &lt;\pi&gt;$ 是主理想，且  $O_k = \pi^{\mathbb{Z}} \times O_k^{\star}$</p>
+<blockquote>
+<p>此时 $O_k$ 被称为离散赋值环</p>
+</blockquote>
+<p><strong>习题</strong>：$|\cdot|_p$ 是 $\mathbb{Q}$ 上的离散绝对值</p>
+<blockquote>
+<p>显然 $\{ p^n \mid n \in \mathbb{Z} \}$ 是循环群</p>
+</blockquote>
+<h3 id="指数赋值"><a href="#指数赋值" class="headerlink" title="指数赋值"></a>指数赋值</h3><p>我们称 $v : k \to \mathbb{Z} \cup {\infty}$ 为指数赋值，若$\forall x \in k$，$v$ 满足</p>
+<ol>
+<li>$v(x) = \infty \Leftrightarrow x = 0$</li>
+<li>$v(xy) = v(x) + v(y)$</li>
+<li>$v(x + y) \geq \min\{v(x), v(y) \}$</li>
+</ol>
+<p>显然 $v$ 是<strong>指数赋值</strong> 当且仅当 $\psi(x) \doteq 2^{-v(x)}$ 为 非 Archimede 绝对值</p>
+<p>每个 离散绝对值 都可以给出一个指数赋值：$\forall x \in K,\; x = \alpha \pi^{n_x}, \alpha \in O_k^{\star}$, 定义 $v(x) = -n_x$，$v(0) = \infty$</p>
+<p><strong>例子</strong> 设 $F = k(x)$，$\forall \frac{f(x)}{g(x)} \in k(x)$, $f(x), g(x) \in k[x]$, $g(x) \neq 0$</p>
+<script type="math/tex; mode=display">
+v(\frac{f(x)}{g(x)}) \doteq \deg g - \deg f</script><h3 id="完备化"><a href="#完备化" class="headerlink" title="完备化"></a>完备化</h3><p>$\mathbb{Q}_p$ 是 $\mathbb{Q}$ 关于 $|\cdot|_p$ 的完备化，则 $|\cdot|_p$ 可以自然的延拓到 $\mathbb{Q}_p$ 上，定义 $\mathbb{Z}_p = \{ x \in \mathbb{Q}_p \mid |x|_p \leq 1 \}$, $m_p = \{ x \in \mathbb{Q} \mid |x|_p &lt; 1 \}$，ord$_p$ 是 $|\cdot|_p$ 对应的指数赋值，则 $\mathbb{Z}_p = \{ x \in \mathbb{Q}_p \mid \text{ord}_p(x) \geq 0 \}$, $m_p = \{x \in \mathbb{Q} \mid \text{ord}_p(x) &gt; 0 \}$</p>
+<p>$\mathbb{Q}_p$ 上的拓扑：$\forall x \in \mathbb{Q}_p$，$x$ 的邻域系 $\{ x + m_p^n \}_{n \in \mathbb{N}}$</p>
+<p>习题：验证领域系即开且闭，从而 $\mathbb{Q}_p$ 为全不连通的</p>
+<p><strong>命题</strong>：$\mathbb{Z}$ 在 $\mathbb{Z}_p$ 中稠密</p>
+<p><strong>证明</strong>：对任意 $x \in \mathbb{Z}_p \backslash \mathbb{Z}$，对任意 $l &gt; \text{ord}_p(x)$，因为 $x$ 可以由 $Q$ 中元素逼近，即存在 $n, m \in \mathbb{Z}, \gcd(n, m) = 1$ 使得 $\text{ord}_p(x - \frac{n}{m} &gt; l$，则</p>
+<script type="math/tex; mode=display">
+\text{ord}_p(\frac{n}{m}) = \text{ord}_p(\frac{n}{m} - x + x) \geq \min \{ \text{ord}_p(\frac{n}{m} - x), \text{ord}_p(x) \geq 0 \}</script><p>即 $\gcd(p, m) = 1$，从而存在 $u, v \in \mathbb{Z}$，使得 $u p^{l + 1} + v m = 1$，从而 $n - nvm = n u p^{l + 1}$，取 $\alpha = nv \in mathbb{Z}$，则 $\text{ord}_p(x - \alpha) = \text{ord}_p(x - \frac{n}{m} + \frac{n}{m} - \alpha)$，由于 $\frac{n}{m} - \alpha) = \frac{n}{m} u p^{l + 1}$，所以 $\text{ord}_p(x - \alpha) \geq l + 1$，则 $\alpha \in x + p^l \mathbb{Z_p}$</p>
+<p><strong>Hasse-Minkowski 定理</strong>：$f(x_1, \cdots, x_n)$ 是有理系数多项式且 $\deg f \leq 2$，则 $f(x_1, \cdots, x_n) = 0$ 在 $\mathbb{Q}$ 上有解当且仅当 在 $R$ 以及 $\mathbb{Q}_p$ 上有解对所有 $p$ 成立（即在所有完备化下都有解）</p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/note/">#note</a>
+      
+        <a href="/tags/math/">#math</a>
+      
+        <a href="/tags/numberTheory/">#numberTheory</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/twikoo/1.4.17/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"hello-cloudbase-6gua2z7k094e2b64","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+              Fluid.plugins.imageCaption(imgSelector);
+              Fluid.plugins.fancyBox(imgSelector);
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      沪ICP备2021025739号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        MathJax = {
+          tex    : {
+            inlineMath: { '[+]': [['$', '$']] }
+          },
+          loader : {
+            load: ['ui/lazy']
+          },
+          options: {
+            renderActions: {
+              findScript    : [10, doc => {
+                document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                  const display = !!node.type.match(/; *mode=display/);
+                  const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                  const text = document.createTextNode('');
+                  node.parentNode.replaceChild(text, node);
+                  math.start = { node: text, delim: '', n: 0 };
+                  math.end = { node: text, delim: '', n: 0 };
+                  doc.math.push(math);
+                });
+              }, '', false],
+              insertedScript: [200, () => {
+                document.querySelectorAll('mjx-container').forEach(node => {
+                  let target = node.parentNode;
+                  if (target.nodeName.toLowerCase() === 'li') {
+                    target.parentNode.classList.add('has-jax');
+                  }
+                });
+              }, '', false]
+            }
+          }
+        };
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

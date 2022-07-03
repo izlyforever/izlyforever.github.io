@@ -1,0 +1,732 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="izlyforever">
+  <meta name="keywords" content="math, cpp, python, sagemath">
+  
+    <meta name="description" content="这里记录一些我的新玩具: 51 单片机 的基础常识，作为初学者，下文必然是错误百出。  很久没更新博客了,毕竟很久没写程序了。数学类的嵌套的定义又太多，很不好写。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="玩具：HC6800-ES 开发版">
+<meta property="og:url" content="http://izlyforever.com/singleChip/index.html">
+<meta property="og:site_name" content="记录程序和数学的点滴">
+<meta property="og:description" content="这里记录一些我的新玩具: 51 单片机 的基础常识，作为初学者，下文必然是错误百出。  很久没更新博客了,毕竟很久没写程序了。数学类的嵌套的定义又太多，很不好写。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://izlyforever.com/singleChip/HC6800.png">
+<meta property="og:image" content="http://izlyforever.com/singleChip/89C52.png">
+<meta property="og:image" content="http://izlyforever.com/singleChip/STC89C52_1.png">
+<meta property="og:image" content="http://izlyforever.com/singleChip/STC89C52_2.png">
+<meta property="og:image" content="http://izlyforever.com/singleChip/keyboard.png">
+<meta property="article:published_time" content="2017-03-19T06:43:27.000Z">
+<meta property="article:modified_time" content="2022-06-25T09:14:02.578Z">
+<meta property="article:author" content="izlyforever">
+<meta property="article:tag" content="note">
+<meta property="article:tag" content="cpp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://izlyforever.com/singleChip/HC6800.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>玩具：HC6800-ES 开发版 - 记录程序和数学的点滴</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"izlyforever.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>izlyforever</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cppTemplate/">
+                <i class="iconfont icon-book"></i>
+                cpp
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webTools/">
+                <i class="iconfont icon-briefcase"></i>
+                网页工具
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="玩具：HC6800-ES 开发版"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2017-03-19 14:43" pubdate>
+          2017年3月19日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          2.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          21 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">玩具：HC6800-ES 开发版</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    <!-- compatible with older versions-->
+                    最后更新于：2022年6月25日 下午
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <p>这里记录一些我的新玩具: <code>51 单片机</code> 的基础常识，作为初学者，下文必然是错误百出。</p>
+<blockquote>
+<p>很久没更新博客了,毕竟很久没写程序了。数学类的嵌套的定义又太多，很不好写。</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="新玩具"><a href="#新玩具" class="headerlink" title="新玩具"></a>新玩具</h2><p>这次淘宝买的新玩具是：HC6800-ES V2.0 开发版，内部单片机是 STC89C52。见下图</p>
+<p><img src="HC6800.png" srcset="/img/loading.gif" lazyload alt="HC6800"></p>
+<p>作为小白看了一下视频，但是呢，感觉视频什么的太慢，还是看书看手册来的爽。安装好单片机版 C 语言的 IDE Keil4 以及烧录软件之后，装一下开发版驱动，就可以在不知道单片机原理的情况下轻松的控制单片机了。例如什么 LED 灯闪烁，跑马灯，等等很基础的程序。</p>
+<p>下面是单片机的管脚图和说明：</p>
+<p><img src="89C52.png" srcset="/img/loading.gif" lazyload alt="89C52"></p>
+<p><img src="STC89C52_1.png" srcset="/img/loading.gif" lazyload alt="STC89C52_1"></p>
+<p><img src="STC89C52_2.png" srcset="/img/loading.gif" lazyload alt="STC89C52_2"></p>
+<p>从图上看知道 P0,P1,P2,P3 是重要的 I/O 口，例如我们把 P2 接到 LED 灯，那么给低电平 0，就可以使灯亮。还有 P0，P1 不仅可以作为 I/O 口，还可以作为地址，计时器、计数器来用。还有 P3，等等。由于我用的是开发版，每个口接什么基本上已经固定了，用的时候查相应的官方资料就行了。它也提供了很多程序例子，因此还是很好掌握的，只是要记点东西才能灵活操作它。</p>
+<h2 id="HC6800-ES-VS2-0-常见管脚接法"><a href="#HC6800-ES-VS2-0-常见管脚接法" class="headerlink" title="HC6800-ES-VS2.0 常见管脚接法"></a>HC6800-ES-VS2.0 常见管脚接法</h2><ol>
+<li><p>P2 口 8 个位接了 8 个 LED 灯，至 0 灯亮。</p>
+</li>
+<li><p>P1.5 接了蜂鸣器。循环至 0 至 1 发声。</p>
+</li>
+<li><p>P3.0 ~ P3.3 接了独立键盘（不过开发版上竟然接反了 K1 和 K2），使用按键的时候要软件消除抖动，一般延迟 10ms 来完成。</p>
+</li>
+<li><p>通过 P1 的数据，来判断矩阵键盘按的键。（见下图)  <img src="keyboard.png" srcset="/img/loading.gif" lazyload alt="keyboard"></p>
+</li>
+<li><p>数码管使用 P0, 通过 LSA=P2.2, LSB=P2.3, LSB=P2.4 的 0-1 指来控制显示的地方。</p>
+</li>
+<li><p>常用定时器和中断标程。</p>
+</li>
+</ol>
+<h2 id="1602-液晶显示"><a href="#1602-液晶显示" class="headerlink" title="1602 液晶显示"></a>1602 液晶显示</h2><p>这个虽然很复杂，但是生产该显示屏的会提供<code>lcd.h</code>和<code>lcd.c</code>然后我们只要先初始化 LCD：<code>LcdInit()</code>再执行字节输出函数：<code>LcdWriteData(char c)</code>即可。</p>
+<h2 id="程序示例"><a href="#程序示例" class="headerlink" title="程序示例"></a>程序示例</h2><p>程序功能: 按下 k1 键 LED 跑马灯，K2 蜂鸣器发生，K3 数码管显示 1-8。由于不会中断，所以跑马灯写的很挫。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;reg52.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;intrins.h&gt;</span></span><br><br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> u16;<br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> u8;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> led P2</span><br>sbit k1=P3^<span class="hljs-number">1</span>;<br>sbit k2=P3^<span class="hljs-number">0</span>;<br>sbit k3=P3^<span class="hljs-number">2</span>;<br>sbit LSA=P2^<span class="hljs-number">2</span>;<br>sbit LSB=P2^<span class="hljs-number">3</span>;<br>sbit LSC=P2^<span class="hljs-number">4</span>;<br>sbit beep=P1^<span class="hljs-number">5</span>;<br>u8 beepS,i,ledState = <span class="hljs-number">0</span>, DigState = <span class="hljs-number">0</span>;<br>u8 code smgduan[<span class="hljs-number">17</span>] = &#123;<span class="hljs-number">0x3f</span>,<span class="hljs-number">0x06</span>,<span class="hljs-number">0x5b</span>,<span class="hljs-number">0x4f</span>,<span class="hljs-number">0x66</span>,<span class="hljs-number">0x6d</span>,<span class="hljs-number">0x7d</span>,<span class="hljs-number">0x07</span>,<br>                       <span class="hljs-number">0x7f</span>,<span class="hljs-number">0x6f</span>,<span class="hljs-number">0x77</span>,<span class="hljs-number">0x7c</span>,<span class="hljs-number">0x39</span>,<span class="hljs-number">0x5e</span>,<span class="hljs-number">0x79</span>,<span class="hljs-number">0x71</span>&#125;; <span class="hljs-comment">//显示0~F的值</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">delay</span><span class="hljs-params">(u16 t)</span></span>&#123;   <span class="hljs-comment">//  每次约10us</span><br>  <span class="hljs-keyword">while</span>(t--);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ledStart</span><span class="hljs-params">()</span></span>&#123;<br>  ledState = <span class="hljs-number">1</span>;<br>  led=<span class="hljs-number">0xfe</span>;<br>  <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i!=<span class="hljs-number">7</span>;++i)&#123;<br>    led = _crol_(led,<span class="hljs-number">1</span>);<br>    <span class="hljs-built_in">delay</span>(<span class="hljs-number">50000</span>);<br>  &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ledStop</span><span class="hljs-params">()</span></span>&#123;<br>  ledState = <span class="hljs-number">0</span>;<br>  led = <span class="hljs-number">0xff</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">DigDisplay</span><span class="hljs-params">()</span></span>&#123;<br>  DigState = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">for</span>(i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">8</span>;i++)&#123;<br>    <span class="hljs-built_in"><span class="hljs-keyword">switch</span></span>(i)&#123;   <span class="hljs-comment">//位选，选择点亮的数码管</span><br>      <span class="hljs-built_in"><span class="hljs-keyword">case</span></span>(<span class="hljs-number">0</span>):<br>        LSA=<span class="hljs-number">0</span>;LSB=<span class="hljs-number">0</span>;LSC=<span class="hljs-number">0</span>; <span class="hljs-keyword">break</span>;<span class="hljs-comment">//显示第0位</span><br>      <span class="hljs-built_in"><span class="hljs-keyword">case</span></span>(<span class="hljs-number">1</span>):<br>        LSA=<span class="hljs-number">1</span>;LSB=<span class="hljs-number">0</span>;LSC=<span class="hljs-number">0</span>; <span class="hljs-keyword">break</span>;<span class="hljs-comment">//显示第1位</span><br>      <span class="hljs-built_in"><span class="hljs-keyword">case</span></span>(<span class="hljs-number">2</span>):<br>        LSA=<span class="hljs-number">0</span>;LSB=<span class="hljs-number">1</span>;LSC=<span class="hljs-number">0</span>; <span class="hljs-keyword">break</span>;<span class="hljs-comment">//显示第2位</span><br>      <span class="hljs-built_in"><span class="hljs-keyword">case</span></span>(<span class="hljs-number">3</span>):<br>        LSA=<span class="hljs-number">1</span>;LSB=<span class="hljs-number">1</span>;LSC=<span class="hljs-number">0</span>; <span class="hljs-keyword">break</span>;<span class="hljs-comment">//显示第3位</span><br>      <span class="hljs-built_in"><span class="hljs-keyword">case</span></span>(<span class="hljs-number">4</span>):<br>        LSA=<span class="hljs-number">0</span>;LSB=<span class="hljs-number">0</span>;LSC=<span class="hljs-number">1</span>; <span class="hljs-keyword">break</span>;<span class="hljs-comment">//显示第4位</span><br>      <span class="hljs-built_in"><span class="hljs-keyword">case</span></span>(<span class="hljs-number">5</span>):<br>        LSA=<span class="hljs-number">1</span>;LSB=<span class="hljs-number">0</span>;LSC=<span class="hljs-number">1</span>; <span class="hljs-keyword">break</span>;<span class="hljs-comment">//显示第5位</span><br>      <span class="hljs-built_in"><span class="hljs-keyword">case</span></span>(<span class="hljs-number">6</span>):<br>        LSA=<span class="hljs-number">0</span>;LSB=<span class="hljs-number">1</span>;LSC=<span class="hljs-number">1</span>; <span class="hljs-keyword">break</span>;<span class="hljs-comment">//显示第6位</span><br>      <span class="hljs-built_in"><span class="hljs-keyword">case</span></span>(<span class="hljs-number">7</span>):<br>        LSA=<span class="hljs-number">1</span>;LSB=<span class="hljs-number">1</span>;LSC=<span class="hljs-number">1</span>; <span class="hljs-keyword">break</span>;<span class="hljs-comment">//显示第7位</span><br>    &#125;<br>    P0=smgduan[i];  <span class="hljs-comment">//发送段码</span><br>    <span class="hljs-built_in">delay</span>(<span class="hljs-number">50000</span>);   <span class="hljs-comment">//间隔一段时间扫描</span><br>  &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">DigStop</span><span class="hljs-params">()</span></span>&#123;<br>  DigState = <span class="hljs-number">0</span>;<br>  P0 = <span class="hljs-number">0x00</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">keyPress</span><span class="hljs-params">()</span></span>&#123;<br>  <span class="hljs-keyword">if</span>(k1==<span class="hljs-number">0</span>)&#123;    <span class="hljs-comment">// 检测k1是否按下</span><br>    <span class="hljs-built_in">delay</span>(<span class="hljs-number">1000</span>);<span class="hljs-comment">//消除抖动 一般大约10ms</span><br>    <span class="hljs-keyword">if</span>(k1==<span class="hljs-number">0</span>)&#123;  <span class="hljs-comment">//再次判断按键是否按下</span><br>      <span class="hljs-keyword">if</span>(ledState==<span class="hljs-number">0</span>)  <span class="hljs-built_in">ledStart</span>();<br>      <span class="hljs-keyword">else</span>  <span class="hljs-built_in">ledStop</span>();<br>    &#125;<br>    <span class="hljs-keyword">while</span>(!k1);   <span class="hljs-comment">//检测按键是否松开</span><br>  &#125;<br>  <span class="hljs-keyword">if</span>(k2==<span class="hljs-number">0</span>)&#123;<br>    <span class="hljs-built_in">delay</span>(<span class="hljs-number">10</span>);<br>    <span class="hljs-keyword">if</span>(k2==<span class="hljs-number">0</span>)&#123;<br>      beepS=<span class="hljs-number">10</span>;<br>      <span class="hljs-keyword">while</span>(beepS&lt;<span class="hljs-number">200</span>)&#123;<br>        beep=~beep;<br>        <span class="hljs-built_in">delay</span>(beepS);<br>        ++beepS;<br>      &#125;<br>    &#125;<br>    <span class="hljs-keyword">while</span>(!k2);<br>  &#125;<br>  <span class="hljs-keyword">if</span>(k3==<span class="hljs-number">0</span>)&#123;<br>    <span class="hljs-built_in">delay</span>(<span class="hljs-number">10</span>);<br>    <span class="hljs-keyword">if</span>(k3==<span class="hljs-number">0</span>)&#123;<br>      <span class="hljs-keyword">if</span>(DigState == <span class="hljs-number">0</span>)  <span class="hljs-built_in">DigDisplay</span>();<br>      <span class="hljs-keyword">else</span>  <span class="hljs-built_in">DigStop</span>();<br>    &#125;<br>    <span class="hljs-keyword">while</span>(!k3);<br>  &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>  <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)  <span class="hljs-built_in">keyPress</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/note/">#note</a>
+      
+        <a href="/tags/cpp/">#cpp</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/zariskiTopologyOnKn/" title="Zariski Topology on $k^n$">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Zariski Topology on $k^n$</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/fiveLemma/" title="五引理">
+                        <span class="hidden-mobile">五引理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/twikoo/1.4.17/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"hello-cloudbase-6gua2z7k094e2b64","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+              Fluid.plugins.imageCaption(imgSelector);
+              Fluid.plugins.fancyBox(imgSelector);
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      沪ICP备2021025739号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

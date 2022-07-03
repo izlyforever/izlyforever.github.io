@@ -1,0 +1,830 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="izlyforever">
+  <meta name="keywords" content="math, cpp, python, sagemath">
+  
+    <meta name="description" content="书依然在看，笔记不是很想写了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="工作后的读书笔记">
+<meta property="og:url" content="http://izlyforever.com/readAfterWork/index.html">
+<meta property="og:site_name" content="记录程序和数学的点滴">
+<meta property="og:description" content="书依然在看，笔记不是很想写了">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-08-14T09:04:02.000Z">
+<meta property="article:modified_time" content="2022-06-25T09:14:02.558Z">
+<meta property="article:author" content="izlyforever">
+<meta property="article:tag" content="note">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>工作后的读书笔记 - 记录程序和数学的点滴</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"izlyforever.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>izlyforever</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cppTemplate/">
+                <i class="iconfont icon-book"></i>
+                cpp
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webTools/">
+                <i class="iconfont icon-briefcase"></i>
+                网页工具
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="工作后的读书笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-08-14 17:04" pubdate>
+          2021年8月14日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          2.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">工作后的读书笔记</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    <!-- compatible with older versions-->
+                    最后更新于：2022年6月25日 下午
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p>书依然在看，笔记不是很想写了</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="optim-cpp"><a href="#optim-cpp" class="headerlink" title="optim_cpp"></a>optim_cpp</h2><h3 id="为何软件经常很慢"><a href="#为何软件经常很慢" class="headerlink" title="为何软件经常很慢"></a>为何软件经常很慢</h3><ul>
+<li>硬件过去几十年飞速发展，但是现在到达了物理上的瓶颈</li>
+<li>软件速度的递减速度快于硬件的增长</li>
+</ul>
+<h4 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h4><ul>
+<li>设计多进程多线程</li>
+<li>提高代码效率</li>
+</ul>
+<h3 id="优化的代价"><a href="#优化的代价" class="headerlink" title="优化的代价"></a>优化的代价</h3><p>以前，硬件性能还不行的时候，推荐不要把单次执行的代码当作子模块来使用，但是现在工程越来越大，这种做法会带来很多的问题，如何均衡性能和可读性可维护性呢？</p>
+<ul>
+<li>隔离核心代码</li>
+<li>对具体代码的某些部分进行优化</li>
+<li>如何在不明显降低性能的情况下处理异常：边界检验，野指针等</li>
+<li>要了解哪些构造函数是开销</li>
+</ul>
+<h3 id="库的选择"><a href="#库的选择" class="headerlink" title="库的选择"></a>库的选择</h3><p>相对耗时的组件</p>
+<ul>
+<li>文件 IO</li>
+<li>音频图像处理</li>
+<li>内存和字符串处理</li>
+<li>数学函数</li>
+<li>加密解密，数据处理</li>
+</ul>
+<blockquote>
+<p>然而标准库并非对所有这些耗时的模块都很好的优化了，因此可以根据需求调用不同的库。</p>
+</blockquote>
+<h3 id="C-的缺点"><a href="#C-的缺点" class="headerlink" title="C++ 的缺点"></a>C++ 的缺点</h3><ul>
+<li>跨平台是基于语言标准以及主流平台的支持。C++ 可以直接操作硬件（当然此时就做不到跨平台了）所以基本上此时我们就需要模块分开</li>
+<li>开发时间：可用模块化和可复用的类显著降低</li>
+<li>安全：边界检测和野指针等通常是黑客攻击的地方。有必要给出一个准则来处理安全问题，但这也可能先来效率的下降。</li>
+</ul>
+<h4 id="安全详解"><a href="#安全详解" class="headerlink" title="安全详解"></a>安全详解</h4><p>比如有一个数组  $a[3]$ 和数字  $b$，那是否我访问 $a[3] = x$ 就能改变 b 的值呢？</p>
+<ul>
+<li>边界检测：用 vector（但是这会影响效率）</li>
+<li>字符串：String 也是低效的（更有效的做法是用内存池，不懂不懂不懂）</li>
+<li>（整数）溢出：C 标准未定义有符号的溢出，因此各个编译器实现不同，当然可以加参数（<code>-ftrapv, -Wstrict-overflow=2, -fwrapv, -fno-strict-overflow</code>）来处理这些溢出（或者提前 check）</li>
+</ul>
+<h3 id="内存访问"><a href="#内存访问" class="headerlink" title="内存访问"></a>内存访问</h3><ul>
+<li>L1 缓存： 8 - 64 k</li>
+<li>L2 缓存：256k - 2 M</li>
+<li>L3 缓存：1G 左右</li>
+</ul>
+<blockquote>
+<p>以上数值范围随着时间增加，但是不会很离谱的增加，mac 可通过 <code>sysctl -a | grep &quot;size&quot;</code> 查看</p>
+</blockquote>
+<h3 id="网络和硬件问题"><a href="#网络和硬件问题" class="headerlink" title="网络和硬件问题"></a>网络和硬件问题</h3><p>这些都是无法保证的，因此需要考虑失效后怎么处理，网络有指数规避策略，硬件可以申请重试。</p>
+<h3 id="流水线"><a href="#流水线" class="headerlink" title="流水线"></a>流水线</h3><p>现代计算机都是流水线设计，即使是单核的 CPU，只要执行的指令无依赖，都可以流水线完成</p>
+<blockquote>
+<p>我以前以为 <code>a = ++b</code> 比 <code>a = b++</code> 快，因为前者不需要再生成一个变量，但是其实后者快，因为后者可被流水线优化（实测发现速度没差别）</p>
+</blockquote>
+<h3 id="选择优的算法"><a href="#选择优的算法" class="headerlink" title="选择优的算法"></a>选择优的算法</h3><p><strong>反对过度优化</strong>：如果一个普通的算法就能快速解决问题，就不要用高级和复杂的算法</p>
+<h2 id="Pragmatic-Programmer"><a href="#Pragmatic-Programmer" class="headerlink" title="Pragmatic Programmer"></a>Pragmatic Programmer</h2><blockquote>
+<p>发现问题，不急不忙的分析的品质，不会？没关系，学，问别人，是成为一个程序员的自我修养</p>
+</blockquote>
+<h3 id="实事求是的哲学"><a href="#实事求是的哲学" class="headerlink" title="实事求是的哲学"></a>实事求是的哲学</h3><blockquote>
+<p>在所有的弱点中，最大的弱点就是害怕暴露弱点。  J.B.Bossuet 1709</p>
+</blockquote>
+<ul>
+<li>备份你的代码</li>
+<li>遇到问题：提供各种选择，而非找蹩脚的理由（想想别人听你的理由会怎么想）</li>
+<li>保持代码，文档的优雅</li>
+<li>让你的用户参与权衡，知道你自己想说 什么</li>
+</ul>
+<h3 id="实事求是的途径"><a href="#实事求是的途径" class="headerlink" title="实事求是的途径"></a>实事求是的途径</h3><h4 id="不要重复"><a href="#不要重复" class="headerlink" title="不要重复"></a>不要重复</h4><blockquote>
+<p>DRY(Don’t Repeat Yourself)：不要重复自己</p>
+</blockquote>
+<p>原则：系统中的每一项只是都必须具有单一，无歧义，权威的表示</p>
+<p>代码中的文档：糟糕的代码才需要注释，注释会不可避免地变得过时</p>
+<p>减少重复，但是不影响使用缓存</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Line</span> &#123;</span><br> <span class="hljs-keyword">public</span>:<br>  Point start;<br>  Point end;<br>  <span class="hljs-keyword">double</span> length;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<p>这上面就重复了，但是有时候 length 数据很难得到，这个时候为了效率我们就可能会需要缓存，即</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Line</span> &#123;</span><br>  <span class="hljs-keyword">bool</span> changed;<br>  <span class="hljs-keyword">double</span> length;<br>  Point start;<br>  Point end;<br> <span class="hljs-keyword">public</span>:<br>  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setStart</span><span class="hljs-params">(Point p)</span> </span>&#123; start = p; changed = <span class="hljs-literal">true</span>;&#125;<br>  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setEnd</span><span class="hljs-params">(Point P)</span> </span>&#123; end = p; changed = <span class="hljs-literal">true</span>;&#125;<br>  <span class="hljs-function">Point <span class="hljs-title">getStart</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>&#123; <span class="hljs-keyword">return</span> start;&#125;<br>  <span class="hljs-function">Point <span class="hljs-title">getEnd</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span> </span>&#123;<span class="hljs-keyword">return</span> end;&#125;<br>  <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">getLength</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (changed) &#123;<br>      length = start.<span class="hljs-built_in">distanceTo</span>(end);<br>      changed = <span class="hljs-literal">false</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> changed;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>但是上述做法只适用于单线程</p>
+</blockquote>
+<p>写复用性更好的代码</p>
+<h4 id="正交性"><a href="#正交性" class="headerlink" title="正交性"></a>正交性</h4><ul>
+<li>各个模块相互不影响，解耦</li>
+<li>提高生产力</li>
+<li>降低风险</li>
+<li>更利于拓展</li>
+<li>文档也可以做成满足正交性</li>
+</ul>
+<h3 id="实事求是的偏执"><a href="#实事求是的偏执" class="headerlink" title="实事求是的偏执"></a>实事求是的偏执</h3><ul>
+<li>你不可能写出完美的软件</li>
+<li>需求之坑</li>
+<li>文明通过增加文明不假思索就能完成的重要操作的数量而取得进步</li>
+</ul>
+<h3 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h3><ul>
+<li>内部版和外部版</li>
+<li>为自己的作品署名</li>
+<li>不要重复，因此自解释的代码不需要注释</li>
+</ul>
+<p>-</p>
+<h2 id="性能之巅"><a href="#性能之巅" class="headerlink" title="性能之巅"></a>性能之巅</h2><h3 id="技术工程师如何发展"><a href="#技术工程师如何发展" class="headerlink" title="技术工程师如何发展"></a>技术工程师如何发展</h3><ul>
+<li>确定自己喜欢软件技术，愿意在技术上持久发展</li>
+<li>日日新，又日新</li>
+<li>逐级攀登软件技术的三级阶梯：编码，调试，调优（张银奎）</li>
+<li>相信量变引起质变</li>
+</ul>
+<blockquote>
+<p>未知的未知：我不知道我不知道</p>
+</blockquote>
+<h3 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h3><ul>
+<li>如果一款小工具需要费力的说明，那很可能这是一个失败的设计</li>
+<li>性能这块领域是，“你知道的越多，你不知道的也就越多”。这和学习系统是一样的原理：你了解的越多，你就能意识到未知的未知就越多，然后这些未知的未知会变成你可以去查看的已知的未知</li>
+<li>性能指标不是免费的，在某些时候，会消耗一些 CPU 周期来手机和保存指标信息。对目标的性能会有负面影响，这种影响被称为观察者效应</li>
+</ul>
+<h2 id="ProGit"><a href="#ProGit" class="headerlink" title="ProGit"></a>ProGit</h2><ul>
+<li>stream of snapshots 不太现实吧！（要相信压缩的技术）</li>
+<li>git checkout</li>
+</ul>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/note/">#note</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/twikoo/1.4.17/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"hello-cloudbase-6gua2z7k094e2b64","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+              Fluid.plugins.imageCaption(imgSelector);
+              Fluid.plugins.fancyBox(imgSelector);
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      沪ICP备2021025739号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        MathJax = {
+          tex    : {
+            inlineMath: { '[+]': [['$', '$']] }
+          },
+          loader : {
+            load: ['ui/lazy']
+          },
+          options: {
+            renderActions: {
+              findScript    : [10, doc => {
+                document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                  const display = !!node.type.match(/; *mode=display/);
+                  const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                  const text = document.createTextNode('');
+                  node.parentNode.replaceChild(text, node);
+                  math.start = { node: text, delim: '', n: 0 };
+                  math.end = { node: text, delim: '', n: 0 };
+                  doc.math.push(math);
+                });
+              }, '', false],
+              insertedScript: [200, () => {
+                document.querySelectorAll('mjx-container').forEach(node => {
+                  let target = node.parentNode;
+                  if (target.nodeName.toLowerCase() === 'li') {
+                    target.parentNode.classList.add('has-jax');
+                  }
+                });
+              }, '', false]
+            }
+          }
+        };
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

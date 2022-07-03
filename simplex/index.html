@@ -1,0 +1,761 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="izlyforever">
+  <meta name="keywords" content="math, cpp, python, sagemath">
+  
+    <meta name="description" content="在 Codeforces 有人问了我两个优化问题，一个是非线性规划（具体说是凸优化问题）。一般来说非线性规划没有什么具体的算法，但是凸优化，可以转化成凸包，然后转换成线段（如果是二维的）上的最值问题就搞定了。另一个是线性规划（所有线性规划其实也是特殊的凸优化），线性规划有著名的单纯形算法，7 年前就学过，但一直没写过代码。趁这次机会重新学习一下单纯形算法，并给出代码。英文版解答  参考教材：运筹学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线性规划之单纯形法">
+<meta property="og:url" content="http://izlyforever.com/simplex/index.html">
+<meta property="og:site_name" content="记录程序和数学的点滴">
+<meta property="og:description" content="在 Codeforces 有人问了我两个优化问题，一个是非线性规划（具体说是凸优化问题）。一般来说非线性规划没有什么具体的算法，但是凸优化，可以转化成凸包，然后转换成线段（如果是二维的）上的最值问题就搞定了。另一个是线性规划（所有线性规划其实也是特殊的凸优化），线性规划有著名的单纯形算法，7 年前就学过，但一直没写过代码。趁这次机会重新学习一下单纯形算法，并给出代码。英文版解答  参考教材：运筹学">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://izlyforever.com/simplex/dual.jpg">
+<meta property="article:published_time" content="2020-11-06T12:11:03.000Z">
+<meta property="article:modified_time" content="2022-06-25T09:14:02.558Z">
+<meta property="article:author" content="izlyforever">
+<meta property="article:tag" content="algorithm">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://izlyforever.com/simplex/dual.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>线性规划之单纯形法 - 记录程序和数学的点滴</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"izlyforever.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>izlyforever</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/cppTemplate/">
+                <i class="iconfont icon-book"></i>
+                cpp
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/webTools/">
+                <i class="iconfont icon-briefcase"></i>
+                网页工具
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="线性规划之单纯形法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-11-06 20:11" pubdate>
+          2020年11月6日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          8.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          74 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">线性规划之单纯形法</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    <!-- compatible with older versions-->
+                    最后更新于：2022年6月25日 下午
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <p>在 Codeforces 有人问了我两个优化问题，一个是非线性规划（具体说是凸优化问题）。一般来说非线性规划没有什么具体的算法，但是凸优化，可以转化成凸包，然后转换成线段（如果是二维的）上的最值问题就搞定了。另一个是线性规划（所有线性规划其实也是特殊的凸优化），线性规划有著名的单纯形算法，7 年前就学过，但一直没写过代码。趁这次机会重新学习一下单纯形算法，并给出代码。<a href="../spookywooky">英文版解答</a></p>
+<blockquote>
+<p>参考教材：<a href="运筹学.pdf">运筹学 第三版 清华大学出版社</a>，另外 <a target="_blank" rel="noopener" href="https://oi-wiki.org/math/simplex/">OI-wiki</a> 上讲的简洁清晰但是不够全面。</p>
+</blockquote>
+<h2 id="Gauss-消元法"><a href="#Gauss-消元法" class="headerlink" title="Gauss 消元法"></a>Gauss 消元法</h2><blockquote>
+<p>之前一直不写这个模板的原因：可能无解，可能唯一解，可能无穷多个解，double 有判断，很烦。</p>
+</blockquote>
+<p>求解 $Ax = b$，如果无解就输出空向量，否则输出（某一个）答案向量，无穷解的话随便输出一个。</p>
+<h3 id="浮点数版"><a href="#浮点数版" class="headerlink" title="浮点数版"></a>浮点数版</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> watch(x) std::cout &lt;&lt; (#x) &lt;&lt; <span class="hljs-meta-string">&quot; is &quot;</span> &lt;&lt; (x) &lt;&lt; std::endl</span><br><span class="hljs-keyword">using</span> LL = <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span>;<br><span class="hljs-keyword">using</span> pii = std::pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt;;<br><span class="hljs-keyword">using</span> pll = std::pair&lt;LL, LL&gt;;<br><br><span class="hljs-function">std::vector&lt;<span class="hljs-keyword">double</span>&gt; <span class="hljs-title">Gauss</span><span class="hljs-params">(std::vector&lt;std::vector&lt;<span class="hljs-keyword">double</span>&gt;&gt; A, std::vector&lt;<span class="hljs-keyword">double</span>&gt; b)</span> </span>&#123;<br>  <span class="hljs-keyword">int</span> n = A.<span class="hljs-built_in">size</span>(), m = A[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>();<br>  <span class="hljs-function">std::vector&lt;<span class="hljs-keyword">double</span>&gt; <span class="hljs-title">x</span><span class="hljs-params">(m)</span></span>;<br>  <span class="hljs-function">std::vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">p</span><span class="hljs-params">(m)</span></span>;<br>  std::<span class="hljs-built_in">iota</span>(p.<span class="hljs-built_in">begin</span>(), p.<span class="hljs-built_in">end</span>(), <span class="hljs-number">0</span>);<br>  <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> eps = <span class="hljs-number">1e-12</span>;<br>  <span class="hljs-keyword">auto</span> findNonZero = [&amp;](<span class="hljs-keyword">int</span> i) &#123; <span class="hljs-comment">// 实际上找最大的比较好</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> row = i; row &lt; n; ++row) <span class="hljs-keyword">if</span> (<span class="hljs-built_in">fabs</span>(A[row][i]) &gt; eps) <span class="hljs-keyword">return</span> row;<br>    <span class="hljs-keyword">return</span> n;<br>  &#125;;<br>  <span class="hljs-keyword">auto</span> triangleGauss = [&amp;](<span class="hljs-keyword">int</span> sz) &#123; <span class="hljs-comment">// A[i][i] = 1</span><br>    std::vector&lt;<span class="hljs-keyword">double</span>&gt; <span class="hljs-built_in">x</span>(sz);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = sz - <span class="hljs-number">1</span>; i &gt;=<span class="hljs-number">0</span>; --i) &#123;<br>      x[i] = b[i];<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> row = <span class="hljs-number">0</span>; row &lt; i; ++row) b[row] -= A[row][i] * x[i];<br>    &#125;<br>    x.<span class="hljs-built_in">resize</span>(A[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>());<br>    <span class="hljs-keyword">return</span> x;<br>  &#125;;<br>  <span class="hljs-keyword">int</span> sz = n;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, row; i &lt; n; ++i) &#123;<br>    <span class="hljs-keyword">while</span> (i &lt; m) &#123;<br>      row = <span class="hljs-built_in">findNonZero</span>(i);<br>      <span class="hljs-keyword">if</span> (row != n) <span class="hljs-keyword">break</span>;<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; n; ++j) A[j][i] = A[j][m - <span class="hljs-number">1</span>];<br>      std::<span class="hljs-built_in">swap</span>(p[i], p[--m]);<br>    &#125;<br>    <span class="hljs-keyword">if</span> (i == m) &#123;<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> row = m; row &lt; n; ++row) <span class="hljs-keyword">if</span> (<span class="hljs-built_in">fabs</span>(b[row])) &#123;<br>        <span class="hljs-comment">// std::cout &lt;&lt; &quot;\nNo answer\n&quot;;</span><br>        <span class="hljs-keyword">return</span> std::vector&lt;<span class="hljs-keyword">double</span>&gt;();<br>      &#125;<br>      sz = i;<br>      <span class="hljs-keyword">break</span>;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (row != i) &#123;<br>      std::<span class="hljs-built_in">swap</span>(A[row], A[i]);<br>      std::<span class="hljs-built_in">swap</span>(b[row], b[i]);<br>    &#125;<br>    b[i] /= A[i][i];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = m - <span class="hljs-number">1</span>; j &gt;= i; --j) A[i][j] /= A[i][i];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> row = i + <span class="hljs-number">1</span>; row &lt; n; ++row) &#123;<br>      b[row] -= A[row][i] * b[i];<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = m - <span class="hljs-number">1</span>; j &gt;= i; --j) &#123;<br>        A[row][j] -= A[row][i] * A[i][j];<br>      &#125;<br>    &#125;<br>  &#125;<br>  <span class="hljs-comment">// if (sz != A[0].size()) std::cout &lt;&lt; &quot;\nInfinite answer\n&quot;;</span><br>  <span class="hljs-keyword">auto</span> xt = <span class="hljs-built_in">triangleGauss</span>(sz);<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> t = <span class="hljs-number">0</span>; t &lt; A[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>(); ++t) x[p[t]] = xt[t];<br>  <span class="hljs-keyword">return</span> x;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>  <span class="hljs-comment">// freopen(&quot;in&quot;,&quot;r&quot;,stdin);</span><br>  std::ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);<br>  std::cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>);<br>  <span class="hljs-keyword">int</span> cas = <span class="hljs-number">1</span>;<br>  std::cin &gt;&gt; cas;<br>  <span class="hljs-keyword">while</span> (cas--) &#123;<br>    <span class="hljs-keyword">int</span> n, m;<br>    std::cin &gt;&gt; n &gt;&gt; m;<br>    std::vector&lt;std::vector&lt;<span class="hljs-keyword">double</span>&gt;&gt; <span class="hljs-built_in">a</span>(n, std::vector&lt;<span class="hljs-keyword">double</span>&gt;(m, <span class="hljs-number">0</span>));<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;x : a) &#123;<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;i : x) std::cin &gt;&gt; i;<br>    &#125;<br>    <span class="hljs-function">std::vector&lt;<span class="hljs-keyword">double</span>&gt; <span class="hljs-title">b</span><span class="hljs-params">(n)</span></span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;x : b) std::cin &gt;&gt; x;<br>    <span class="hljs-keyword">auto</span> x = <span class="hljs-built_in">Gauss</span>(a, b);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> t : x) std::cout &lt;&lt; t &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;<br>  &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="有限域版"><a href="#有限域版" class="headerlink" title="有限域版"></a>有限域版</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> watch(x) std::cout &lt;&lt; (#x) &lt;&lt; <span class="hljs-meta-string">&quot; is &quot;</span> &lt;&lt; (x) &lt;&lt; std::endl</span><br><span class="hljs-keyword">using</span> LL = <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span>;<br><span class="hljs-keyword">using</span> pii = std::pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt;;<br><span class="hljs-keyword">using</span> pll = std::pair&lt;LL, LL&gt;;<br><br><span class="hljs-function">std::vector&lt;LL&gt; <span class="hljs-title">Gauss</span><span class="hljs-params">(std::vector&lt;std::vector&lt;LL&gt;&gt; A, std::vector&lt;LL&gt; b)</span> </span>&#123;<br>  <span class="hljs-keyword">int</span> n = A.<span class="hljs-built_in">size</span>(), m = A[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>();<br>  <span class="hljs-function">std::vector&lt;LL&gt; <span class="hljs-title">x</span><span class="hljs-params">(m)</span></span>;<br>  <span class="hljs-function">std::vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">p</span><span class="hljs-params">(m)</span></span>;<br>  std::<span class="hljs-built_in">iota</span>(p.<span class="hljs-built_in">begin</span>(), p.<span class="hljs-built_in">end</span>(), <span class="hljs-number">0</span>);<br>  <span class="hljs-keyword">const</span> LL M = <span class="hljs-number">998244353</span>;<br>  std::function&lt;<span class="hljs-built_in">LL</span>(LL)&gt; inv = [&amp;](LL a) -&gt; LL &#123;<br>    <span class="hljs-keyword">return</span> a == <span class="hljs-number">1</span> ? <span class="hljs-number">1</span> : (M - M / a) * <span class="hljs-built_in">inv</span>(M % a) % M;<br>  &#125;;<br>  <span class="hljs-keyword">auto</span> sub = [](LL &amp;x, LL y) &#123;<br>    (x -= y) &lt; <span class="hljs-number">0</span> &amp;&amp; (x += M);<br>  &#125;;<br>  <span class="hljs-keyword">auto</span> triangleGauss = [&amp;](<span class="hljs-keyword">int</span> sz) &#123; <span class="hljs-comment">// A[i][i] = 1</span><br>    std::vector&lt;LL&gt; <span class="hljs-built_in">x</span>(sz);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = sz - <span class="hljs-number">1</span>; i &gt;=<span class="hljs-number">0</span>; --i) &#123;<br>      x[i] = (b[i] + M) % M;<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> row = <span class="hljs-number">0</span>; row &lt; i; ++row) <span class="hljs-built_in">sub</span>(b[row], A[row][i] * x[i] % M);<br>    &#125;<br>    x.<span class="hljs-built_in">resize</span>(A[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>());<br>    <span class="hljs-keyword">return</span> x;<br>  &#125;;<br>  <span class="hljs-keyword">auto</span> findNonZero = [&amp;](<span class="hljs-keyword">int</span> i) &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> row = i; row &lt; n; ++row) <span class="hljs-keyword">if</span> (A[row][i]) <span class="hljs-keyword">return</span> row;<br>    <span class="hljs-keyword">return</span> n;<br>  &#125;;<br>  <span class="hljs-keyword">int</span> sz = n;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, row; i &lt; n; ++i) &#123;<br>    <span class="hljs-keyword">while</span> (i &lt; m) &#123;<br>      row = <span class="hljs-built_in">findNonZero</span>(i);<br>      <span class="hljs-keyword">if</span> (row != n) <span class="hljs-keyword">break</span>;<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; n; ++j) A[j][i] = A[j][m - <span class="hljs-number">1</span>];<br>      std::<span class="hljs-built_in">swap</span>(p[i], p[--m]);<br>    &#125;<br>    <span class="hljs-keyword">if</span> (i == m) &#123;<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> row = m; row &lt; n; ++row) <span class="hljs-keyword">if</span> (b[row]) &#123;<br>        <span class="hljs-comment">// std::cout &lt;&lt; &quot;\nNo answer\n&quot;;</span><br>        <span class="hljs-keyword">return</span> std::vector&lt;LL&gt;();<br>      &#125;<br>      sz = i;<br>      <span class="hljs-keyword">break</span>;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (row != i) &#123;<br>      std::<span class="hljs-built_in">swap</span>(A[i], A[row]);<br>      std::<span class="hljs-built_in">swap</span>(b[i], b[row]);<br>    &#125;<br>    LL inva = <span class="hljs-built_in">inv</span>(A[i][i]);<br>    (b[i] *= inva) %= M;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = m - <span class="hljs-number">1</span>; j &gt;= i; --j) (A[i][j] *= inva) %= M;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> row = i + <span class="hljs-number">1</span>; row &lt; n; ++row) &#123;<br>      <span class="hljs-built_in">sub</span>(b[row], A[row][i] * b[i] % M);<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = m - <span class="hljs-number">1</span>; j &gt;= i; --j) &#123;<br>        <span class="hljs-built_in">sub</span>(A[row][j], A[row][i] * A[i][j] % M);<br>      &#125;<br>    &#125;<br>  &#125;<br>  <span class="hljs-comment">// if (sz != A[0].size()) std::cout &lt;&lt; &quot;\nInfinite answer\n&quot;;</span><br>  <span class="hljs-keyword">auto</span> xt = <span class="hljs-built_in">triangleGauss</span>(sz);<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> t = <span class="hljs-number">0</span>; t &lt; A[<span class="hljs-number">0</span>].<span class="hljs-built_in">size</span>(); ++t) x[p[t]] = xt[t];<br>  <span class="hljs-keyword">return</span> x;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>  <span class="hljs-comment">// freopen(&quot;in&quot;,&quot;r&quot;,stdin);</span><br>  std::ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);<br>  std::cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>);<br>  <span class="hljs-keyword">int</span> cas = <span class="hljs-number">1</span>;<br>  std::cin &gt;&gt; cas;<br>  <span class="hljs-keyword">while</span> (cas--) &#123;<br>    <span class="hljs-keyword">int</span> n, m;<br>    std::cin &gt;&gt; n &gt;&gt; m;<br>    std::vector&lt;std::vector&lt;LL&gt;&gt; <span class="hljs-built_in">a</span>(n, std::vector&lt;LL&gt;(m, <span class="hljs-number">0</span>));<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;x : a) &#123;<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;i : x) std::cin &gt;&gt; i;<br>    &#125;<br>    <span class="hljs-function">std::vector&lt;LL&gt; <span class="hljs-title">b</span><span class="hljs-params">(n)</span></span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;x : b) std::cin &gt;&gt; x;<br>    <span class="hljs-keyword">auto</span> x = <span class="hljs-built_in">Gauss</span>(a, b);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> t : x) std::cout &lt;&lt; t &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;<br>  &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>上面做法是先化成上三角再求，其实也可以先直接化成对角的，两种都挺好，就不过不改了。</p>
+</blockquote>
+<h2 id="单纯形法"><a href="#单纯形法" class="headerlink" title="单纯形法"></a>单纯形法</h2><p>首先无论是什么样的线性规划问题，都先化成标准形式：$\max z = \sum c_i x_i$，其中 $Ax = b, x_i \geq 0$（这里输入的 $b$ 必然都是非负，否则显然无可行解），并且保证 $A$ 的左边是一个单位阵。简单的说通过 “大 M 法” 使得 ($b_1, \cdots, b_n, 0, \cdots, 0$) 是可以可行解。</p>
+<ul>
+<li>求极小值通过 $c$ 取负号解决</li>
+<li>$\geq b$ 通过加一个变量变成等号</li>
+<li>$\leq b$ 通过减一个变量变成等号</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> watch(x) std::cout &lt;&lt; (#x) &lt;&lt; <span class="hljs-meta-string">&quot; is &quot;</span> &lt;&lt; (x) &lt;&lt; std::endl</span><br><span class="hljs-keyword">using</span> LL = <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span>;<br><span class="hljs-keyword">using</span> pii = std::pair&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt;;<br><span class="hljs-keyword">using</span> pll = std::pair&lt;LL, LL&gt;;<br><br><span class="hljs-keyword">using</span> VD = std::vector&lt;<span class="hljs-keyword">double</span>&gt;;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> eps = <span class="hljs-number">1e-10</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> inf = <span class="hljs-number">1e10</span>;<br><span class="hljs-comment">// make sure that A = (I, A&#x27;) and b &gt;= 0, compute max cx</span><br><span class="hljs-function">VD <span class="hljs-title">simplexCore</span><span class="hljs-params">(VD c, std::vector&lt;VD&gt; A, VD b)</span> </span>&#123;<br>  <span class="hljs-keyword">int</span> n = A.<span class="hljs-built_in">size</span>(), m = c.<span class="hljs-built_in">size</span>();<br>  <span class="hljs-function">std::vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">p</span><span class="hljs-params">(m)</span></span>;<br>  std::<span class="hljs-built_in">iota</span>(p.<span class="hljs-built_in">begin</span>(), p.<span class="hljs-built_in">end</span>(), <span class="hljs-number">0</span>);<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i) A[i].<span class="hljs-built_in">emplace_back</span>(b[i]);<br>  c.<span class="hljs-built_in">emplace_back</span>(<span class="hljs-number">0</span>);<br>  A.<span class="hljs-built_in">emplace_back</span>(c);<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = n; j &lt;= m; ++j) &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i) &#123;<br>      A[n][j] -= A[n][i] * A[i][j];<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">auto</span> check = [&amp;]() -&gt; <span class="hljs-keyword">bool</span> &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = n; j &lt; m; ++j) <span class="hljs-keyword">if</span> (A[n][j] &gt; eps) &#123;<br>      <span class="hljs-keyword">bool</span> flag = <span class="hljs-literal">false</span>;<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i) <span class="hljs-keyword">if</span> (A[i][j] &gt; eps) &#123;<br>        flag = <span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">break</span>;<br>      &#125;<br>      <span class="hljs-keyword">if</span> (!flag) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>  &#125;;<br>  <span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>) &#123;<br>    <span class="hljs-keyword">int</span> ch = std::<span class="hljs-built_in">max_element</span>(A[n].<span class="hljs-built_in">begin</span>() + n, A[n].<span class="hljs-built_in">begin</span>() + m) - A[n].<span class="hljs-built_in">begin</span>(), hc;<br>    <span class="hljs-keyword">if</span> (A[n][ch] &lt; eps) <span class="hljs-keyword">break</span>;<br>    <span class="hljs-built_in">assert</span>(<span class="hljs-built_in">check</span>()); <span class="hljs-comment">// otherwise unbounded, no max solution</span><br>    <span class="hljs-keyword">double</span> theta = DBL_MAX;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i) <span class="hljs-keyword">if</span> (A[i][ch] &gt; eps &amp;&amp; A[i].<span class="hljs-built_in">back</span>() / A[i][ch] &lt; theta) &#123;<br>      theta = A[i].<span class="hljs-built_in">back</span>() / A[i][ch];<br>      hc = i;<br>    &#125;<br>    std::<span class="hljs-built_in">swap</span>(p[ch], p[hc]);<br>    <span class="hljs-keyword">double</span> tmp = <span class="hljs-number">1</span> / A[hc][ch];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = n; j &lt;= m; ++j) A[hc][j] *= tmp;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt;= n; ++i) <span class="hljs-keyword">if</span> (i != hc) &#123;<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = n; j &lt;= m; ++j) <span class="hljs-keyword">if</span> (j != ch) &#123;<br>        A[i][j] -= A[i][ch] * A[hc][j];<br>      &#125;<br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt;= n; ++i) A[i][ch] *= -tmp;<br>    A[hc][ch] = tmp;<br>  &#125;<br>  <span class="hljs-function">VD <span class="hljs-title">x</span><span class="hljs-params">(m)</span></span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i) x[p[i]] = A[i].<span class="hljs-built_in">back</span>();<br>  <span class="hljs-built_in">watch</span>(-A.<span class="hljs-built_in">back</span>().<span class="hljs-built_in">back</span>()); <span class="hljs-comment">// max_val</span><br>  <span class="hljs-keyword">return</span> x; <span class="hljs-comment">// point Corresponds to max_val</span><br>&#125;<br><span class="hljs-comment">// compute max cx, with Aqx = bq and Alq x &lt;= blq, end of 0 can be ommit in A and Aq</span><br><span class="hljs-function">VD <span class="hljs-title">simplex</span><span class="hljs-params">(VD c, std::vector&lt;VD&gt; Aq, VD bq, std::vector&lt;VD&gt; Alq, VD blq)</span> </span>&#123;<br>  <span class="hljs-built_in">assert</span>(Aq.<span class="hljs-built_in">size</span>() == bq.<span class="hljs-built_in">size</span>());<br>  <span class="hljs-built_in">assert</span>(Alq.<span class="hljs-built_in">size</span>() == blq.<span class="hljs-built_in">size</span>());<br>  <span class="hljs-keyword">int</span> n = Aq.<span class="hljs-built_in">size</span>() + Alq.<span class="hljs-built_in">size</span>();<br>  <span class="hljs-keyword">int</span> m = c.<span class="hljs-built_in">size</span>();<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; bq.<span class="hljs-built_in">size</span>(); ++i) <span class="hljs-keyword">if</span> (bq[i] &lt; -eps) &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;x : Aq[i]) x = -x;<br>    bq[i] = -bq[i];<br>  &#125;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; blq.<span class="hljs-built_in">size</span>(); ++i) <span class="hljs-keyword">if</span> (blq[i] &lt; -eps) &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;x : Alq[i]) x = -x;<br>    ++m;<br>  &#125;<br>  <span class="hljs-function">std::vector&lt;VD&gt; <span class="hljs-title">A</span><span class="hljs-params">(n, VD(n + m))</span></span>;<br>  <span class="hljs-function">VD <span class="hljs-title">f</span><span class="hljs-params">(n + m)</span>, <span class="hljs-title">b</span><span class="hljs-params">(n)</span></span>;<br>  <span class="hljs-keyword">int</span> now = n + c.<span class="hljs-built_in">size</span>();<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i) A[i][i] = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; Aq.<span class="hljs-built_in">size</span>(); ++i) &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; Aq[i].<span class="hljs-built_in">size</span>(); ++j) A[i][n + j] = Aq[i][j];<br>    b[i] = bq[i];<br>    f[i] = -inf;<br>  &#125;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; Alq.<span class="hljs-built_in">size</span>(); ++i) &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; Alq[i].<span class="hljs-built_in">size</span>(); ++j) A[i + Aq.<span class="hljs-built_in">size</span>()][n + j] = Alq[i][j];<br>    <span class="hljs-keyword">if</span> (blq[i] &lt; -eps) &#123;<br>      A[i + Aq.<span class="hljs-built_in">size</span>()][now++] = <span class="hljs-number">-1</span>;<br>      f[i + Aq.<span class="hljs-built_in">size</span>()] = -inf;<br>    &#125;<br>    b[i + Aq.<span class="hljs-built_in">size</span>()] = <span class="hljs-built_in">fabs</span>(blq[i]);<br>  &#125;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; c.<span class="hljs-built_in">size</span>(); ++i) f[n + i] = c[i];<br>  <span class="hljs-keyword">auto</span> x = <span class="hljs-built_in">simplexCore</span>(f, A, b);<br>  <span class="hljs-keyword">return</span> <span class="hljs-built_in">VD</span>(x.<span class="hljs-built_in">begin</span>() + n, x.<span class="hljs-built_in">begin</span>() + n + c.<span class="hljs-built_in">size</span>());<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>  <span class="hljs-comment">// freopen(&quot;in&quot;,&quot;r&quot;,stdin);</span><br>  std::ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);<br>  std::cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>);<br>  <span class="hljs-keyword">int</span> cas = <span class="hljs-number">1</span>;<br>  std::cin &gt;&gt; cas;<br>  <span class="hljs-keyword">while</span> (cas--) &#123;<br>    <span class="hljs-keyword">int</span> nlq, nq, m;<br>    std::cin &gt;&gt; nlq &gt;&gt; nq &gt;&gt; m;<br>    std::vector&lt;std::vector&lt;<span class="hljs-keyword">double</span>&gt;&gt; <span class="hljs-built_in">Alq</span>(nlq, std::vector&lt;<span class="hljs-keyword">double</span>&gt;(m, <span class="hljs-number">0</span>));<br>    std::vector&lt;std::vector&lt;<span class="hljs-keyword">double</span>&gt;&gt; <span class="hljs-built_in">Aq</span>(nq, std::vector&lt;<span class="hljs-keyword">double</span>&gt;(m, <span class="hljs-number">0</span>));<br>    <span class="hljs-function">std::vector&lt;<span class="hljs-keyword">double</span>&gt; <span class="hljs-title">blq</span><span class="hljs-params">(nlq)</span>, <span class="hljs-title">bq</span><span class="hljs-params">(nq)</span>, <span class="hljs-title">c</span><span class="hljs-params">(m)</span></span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;x : c) std::cin &gt;&gt; x;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;x : Alq) <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;i : x) std::cin &gt;&gt; i;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;x : blq) std::cin &gt;&gt; x;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;x : Aq) <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;i : x) std::cin &gt;&gt; i;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> &amp;x : bq) std::cin &gt;&gt; x;<br>    <span class="hljs-keyword">auto</span> x = <span class="hljs-built_in">simplex</span>(c, Aq, bq, Alq, blq);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> t : x) std::cout &lt;&lt; t &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;<br>  &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-comment">/* 输入样例：（和 matlab linprog 样例一致）</span><br><span class="hljs-comment">1</span><br><span class="hljs-comment">6 1 2</span><br><span class="hljs-comment">1 0.33333333</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">1 1</span><br><span class="hljs-comment">1 0.25</span><br><span class="hljs-comment">1 -1</span><br><span class="hljs-comment">-0.25 -1</span><br><span class="hljs-comment">-1 -1</span><br><span class="hljs-comment">-1 1</span><br><span class="hljs-comment">2 1 2 1 -1 2</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">1 0.25</span><br><span class="hljs-comment">0.5</span><br><span class="hljs-comment">*/</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://doc.sagemath.org/html/en/reference/numerical/sage/numerical/mip.html#sage.numerical.mip.MixedIntegerLinearProgram">SagMath 线性规划文档</a> 以及 <a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/optim/ug/linprog.html?s_tid=srchtitle">Matlab linprog 文档</a></p>
+</blockquote>
+<h3 id="对偶理论"><a href="#对偶理论" class="headerlink" title="对偶理论"></a>对偶理论</h3><p><img src="dual.jpg" srcset="/img/loading.gif" lazyload alt="对偶理论"></p>
+<p>例题：<a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/605/C">605C</a>，利用对偶理论之后，此题两种做法，一种是利用三分法搞定，当然了要特别注意精度问题，另一种利用半平面的交（可以查看 HDU 模板）。</p>
+<blockquote>
+<p>以下内容以后有空再补吧</p>
+</blockquote>
+<h2 id="整数规划"><a href="#整数规划" class="headerlink" title="整数规划"></a>整数规划</h2><h2 id="混合型规划"><a href="#混合型规划" class="headerlink" title="混合型规划"></a>混合型规划</h2>
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/algorithm/">#algorithm</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/graph/" title="图论 cpp 模板">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">图论 cpp 模板</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/twikoo/1.4.17/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"hello-cloudbase-6gua2z7k094e2b64","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+              Fluid.plugins.imageCaption(imgSelector);
+              Fluid.plugins.fancyBox(imgSelector);
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      沪ICP备2021025739号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        MathJax = {
+          tex    : {
+            inlineMath: { '[+]': [['$', '$']] }
+          },
+          loader : {
+            load: ['ui/lazy']
+          },
+          options: {
+            renderActions: {
+              findScript    : [10, doc => {
+                document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                  const display = !!node.type.match(/; *mode=display/);
+                  const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                  const text = document.createTextNode('');
+                  node.parentNode.replaceChild(text, node);
+                  math.start = { node: text, delim: '', n: 0 };
+                  math.end = { node: text, delim: '', n: 0 };
+                  doc.math.push(math);
+                });
+              }, '', false],
+              insertedScript: [200, () => {
+                document.querySelectorAll('mjx-container').forEach(node => {
+                  let target = node.parentNode;
+                  if (target.nodeName.toLowerCase() === 'li') {
+                    target.parentNode.classList.add('has-jax');
+                  }
+                });
+              }, '', false]
+            }
+          }
+        };
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
