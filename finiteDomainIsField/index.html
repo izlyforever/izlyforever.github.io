@@ -18,12 +18,12 @@
   <meta name="author" content="izlyforever">
   <meta name="keywords" content="math, cpp, python, sagemath">
   
-    <meta name="description" content="有限整环是域，这是一个相当深刻的定理，被称为 Wedderburn’s little theorem，介绍如下">
+    <meta name="description" content="有限整环是域，这是一个相当深刻的定理，被称为 Wedderburn&#39;s little theorem，介绍如下">
 <meta property="og:type" content="article">
 <meta property="og:title" content="有限整环是域">
 <meta property="og:url" content="http://izlyforever.com/finiteDomainIsField/index.html">
 <meta property="og:site_name" content="记录程序和数学的点滴">
-<meta property="og:description" content="有限整环是域，这是一个相当深刻的定理，被称为 Wedderburn’s little theorem，介绍如下">
+<meta property="og:description" content="有限整环是域，这是一个相当深刻的定理，被称为 Wedderburn&#39;s little theorem，介绍如下">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2016-03-27T14:45:40.000Z">
 <meta property="article:modified_time" content="2022-06-25T09:14:02.533Z">
@@ -222,7 +222,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.4k 字
+          1.5k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
           <!-- compatible with older versions-->
-          12 分钟
+          13 分钟
         
       </span>
     
@@ -285,25 +285,29 @@
             
             <div class="markdown-body">
               
-              <p>有限整环是域，这是一个相当深刻的定理，被称为 Wedderburn’s little theorem，介绍如下</p>
+              <p>有限整环是域，这是一个相当深刻的定理，被称为 Wedderburn's little theorem，介绍如下</p>
 <span id="more"></span>
-<h2 id="有限整环是体"><a href="#有限整环是体" class="headerlink" title="有限整环是体"></a>有限整环是体</h2><p>设 $D$ 是有限整环（不要求交换），下证 $D$ 是体。<br>证明：对任意 $0 \neq a \in D$，考虑 $a,a^2,a^3,..,a^n,…$ 由于 $D$ 是有限环，因此存在 $n,r &gt; 0$ 使得 $a^{n+r} = a^n$ 即 $a^n(a^r-1)=0$ 由于 $D$ 是整环，$a \neq 0$，因此 $a^r =1$ ，所以 $a$ 可逆，证毕。</p>
-<h2 id="有限体是域"><a href="#有限体是域" class="headerlink" title="有限体是域"></a>有限体是域</h2><p>设 $K$ 是有限体。$Z$ 是它的中心，即</p>
-<script type="math/tex; mode=display">
-Z = \lbrace z \in K \mid \forall x \in K, xz = zx \rbrace</script><p>则，$Z$ 是域。令 $|Z|=q$，则 $K$ 是 $q$ 元域上的有限维向量空间，设维数为 $n$，则 $|K|=q^n$。我们需要证明 $K=Z$, 即证明 $n=1$。<br>对任意 $a \in K$，令 $N(a) = \lbrace x \in K \mid ax = xa \rbrace$ ，这显然是 $K$ 的一个子体。并且包含 $Z$。因此 $N(a)$ 也是 $Z$ 上的有限维向量空间。从而 $N(a)=q^{n(a)},n(a) \geq 1$。由于 $K^{\star}$ 为 $q^n-1$ 阶乘法群，$N(a)^{\star}$ 为 $K^{\star}$ 的 $q^{n(a)}-1$ 阶子群，因此 $q^{n(a)}-1 \mid q^n-1$，因此 $n(a) \mid n$。<br>将乘法群 $K^{\star}$ 中的元素分成共轭类，从群论的角度，与 $a \in K^{\star}$ 共轭的元素有 $[K^{\star} :N(a)^{\star}] = \frac{q^n-1}{q^{n(a)}-1}$，从而每个共轭类取一次，共轭类集合记作$X$，我们有</p>
-<script type="math/tex; mode=display">
-q^n - 1 = q-1 + \sum_{\overline{a} \in X} \frac{q^n-1}{q^{n(a)}-1}</script><p>我们需要证明的是当 $n&gt;1$ 时上式不成立。为此我们先介绍<strong>分圆多项式</strong>的知识。</p>
-<script type="math/tex; mode=display">
-P_n(x) = \prod_{1 \leq r \leq n,(r,n)=1} (x-e^{\frac{2 \pi i r}{n}})</script><p>即 $P_n(x)$ 是以全部 $n$ 次本原单位复根（共 $\phi(n)$ 个）为根的首一多项式。易知</p>
-<script type="math/tex; mode=display">
-x^n -1 = \prod_{d \mid n} P_d(n)</script><p>由数论函数的 <a href="../DirichletProduct">Möbius 变换</a>，(取对数或指数来切换乘积和相加)可知</p>
-<script type="math/tex; mode=display">
-P_n(x) = \prod_{d \mid n} (x^d-1)^{\mu(n/d)}</script><p>于是 $P_n(x)=f(x)/g(x)$ 其中 $f(x),g(x)$ 都为 $\mathbb{Z}[x]$ 中的首一多项式。另一方面，按照定义，$P_n(x) \in \mathbb{C}[x]$ ，从而在 $\mathbb{C}[x]$ 中 $g(x) \mid f(x)$。比较系数易知，$P_n(x)$ 为 $\mathbb{Z}[x]$ 中首一多项式。</p>
-<p>因为对任意 $d \mid n,0&lt;d&lt;n,P_n(x)$ 的每个根都是 $x^n-1$ 的根，但不是 $x^d-1$ 的根，从而</p>
-<script type="math/tex; mode=display">
-P_n(x) \mid \frac{x^n-1}{x^d-1}</script><p>因此 $P_n(q) \mid q-1$, 但当 $n&gt;1$ 时，</p>
-<script type="math/tex; mode=display">
-|P_n(q))| > (q-1)^{\phi(n)} \geq q-1</script><p>矛盾，证毕。</p>
+<h2 id="有限整环是体">有限整环是体</h2>
+<p>设 <span class="math inline">\(D\)</span> 是有限整环（不要求交换），下证 <span class="math inline">\(D\)</span> 是体。 证明：对任意 <span class="math inline">\(0 \neq a \in D\)</span>，考虑 <span class="math inline">\(a,a^2,a^3,..,a^n,...\)</span> 由于 <span class="math inline">\(D\)</span> 是有限环，因此存在 <span class="math inline">\(n,r &gt; 0\)</span> 使得 <span class="math inline">\(a^{n+r} = a^n\)</span> 即 <span class="math inline">\(a^n(a^r-1)=0\)</span> 由于 <span class="math inline">\(D\)</span> 是整环，<span class="math inline">\(a \neq 0\)</span>，因此 <span class="math inline">\(a^r =1\)</span> ，所以 <span class="math inline">\(a\)</span> 可逆，证毕。</p>
+<h2 id="有限体是域">有限体是域</h2>
+<p>设 <span class="math inline">\(K\)</span> 是有限体。<span class="math inline">\(Z\)</span> 是它的中心，即 <span class="math display">\[
+Z = \lbrace z \in K \mid \forall x \in K, xz = zx \rbrace
+\]</span> 则，<span class="math inline">\(Z\)</span> 是域。令 <span class="math inline">\(|Z|=q\)</span>，则 <span class="math inline">\(K\)</span> 是 <span class="math inline">\(q\)</span> 元域上的有限维向量空间，设维数为 <span class="math inline">\(n\)</span>，则 <span class="math inline">\(|K|=q^n\)</span>。我们需要证明 <span class="math inline">\(K=Z\)</span>, 即证明 <span class="math inline">\(n=1\)</span>。 对任意 <span class="math inline">\(a \in K\)</span>，令 <span class="math inline">\(N(a) = \lbrace x \in K \mid ax = xa \rbrace\)</span> ，这显然是 <span class="math inline">\(K\)</span> 的一个子体。并且包含 <span class="math inline">\(Z\)</span>。因此 <span class="math inline">\(N(a)\)</span> 也是 <span class="math inline">\(Z\)</span> 上的有限维向量空间。从而 <span class="math inline">\(N(a)=q^{n(a)},n(a) \geq 1\)</span>。由于 <span class="math inline">\(K^{\star}\)</span> 为 <span class="math inline">\(q^n-1\)</span> 阶乘法群，<span class="math inline">\(N(a)^{\star}\)</span> 为 <span class="math inline">\(K^{\star}\)</span> 的 <span class="math inline">\(q^{n(a)}-1\)</span> 阶子群，因此 <span class="math inline">\(q^{n(a)}-1 \mid q^n-1\)</span>，因此 <span class="math inline">\(n(a) \mid n\)</span>。 将乘法群 <span class="math inline">\(K^{\star}\)</span> 中的元素分成共轭类，从群论的角度，与 <span class="math inline">\(a \in K^{\star}\)</span> 共轭的元素有 <span class="math inline">\([K^{\star} :N(a)^{\star}] = \frac{q^n-1}{q^{n(a)}-1}\)</span>，从而每个共轭类取一次，共轭类集合记作<span class="math inline">\(X\)</span>，我们有 <span class="math display">\[
+q^n - 1 = q-1 + \sum_{\overline{a} \in X} \frac{q^n-1}{q^{n(a)}-1}
+\]</span> 我们需要证明的是当 <span class="math inline">\(n&gt;1\)</span> 时上式不成立。为此我们先介绍<strong>分圆多项式</strong>的知识。 <span class="math display">\[
+P_n(x) = \prod_{1 \leq r \leq n,(r,n)=1} (x-e^{\frac{2 \pi i r}{n}})
+\]</span></p>
+<p>即 <span class="math inline">\(P_n(x)\)</span> 是以全部 <span class="math inline">\(n\)</span> 次本原单位复根（共 <span class="math inline">\(\phi(n)\)</span> 个）为根的首一多项式。易知 <span class="math display">\[
+x^n -1 = \prod_{d \mid n} P_d(n)
+\]</span> 由数论函数的 <a href="../DirichletProduct">Möbius 变换</a>，(取对数或指数来切换乘积和相加)可知 <span class="math display">\[
+P_n(x) = \prod_{d \mid n} (x^d-1)^{\mu(n/d)}
+\]</span> 于是 <span class="math inline">\(P_n(x)=f(x)/g(x)\)</span> 其中 <span class="math inline">\(f(x),g(x)\)</span> 都为 <span class="math inline">\(\mathbb{Z}[x]\)</span> 中的首一多项式。另一方面，按照定义，<span class="math inline">\(P_n(x) \in \mathbb{C}[x]\)</span> ，从而在 <span class="math inline">\(\mathbb{C}[x]\)</span> 中 <span class="math inline">\(g(x) \mid f(x)\)</span>。比较系数易知，<span class="math inline">\(P_n(x)\)</span> 为 <span class="math inline">\(\mathbb{Z}[x]\)</span> 中首一多项式。</p>
+<p>因为对任意 <span class="math inline">\(d \mid n,0&lt;d&lt;n,P_n(x)\)</span> 的每个根都是 <span class="math inline">\(x^n-1\)</span> 的根，但不是 <span class="math inline">\(x^d-1\)</span> 的根，从而</p>
+<p><span class="math display">\[
+P_n(x) \mid \frac{x^n-1}{x^d-1}
+\]</span> 因此 <span class="math inline">\(P_n(q) \mid q-1\)</span>, 但当 <span class="math inline">\(n&gt;1\)</span> 时， <span class="math display">\[
+|P_n(q))| &gt; (q-1)^{\phi(n)} \geq q-1
+\]</span> 矛盾，证毕。</p>
 <blockquote>
 <p>这个定理也可以表述为：一个有限环，如果它不是域，那么它必然存在零因子。</p>
 </blockquote>

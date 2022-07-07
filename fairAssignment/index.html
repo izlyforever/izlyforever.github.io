@@ -222,7 +222,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.9k 字
+          2k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
           <!-- compatible with older versions-->
-          16 分钟
+          17 分钟
         
       </span>
     
@@ -287,110 +287,111 @@
               
               <p>“公平”的席位分配首先本来就是不可能的，公平一般是无法达到的，我们只是尽量降低不公平度，那么我们怎么衡量不公平度呢。就像评价一个人，有不同的指标，不公平度也是一样，这里介绍一种相对合理易于接受，且好判断的方法。</p>
 <span id="more"></span>
-<h2 id="问题表述"><a href="#问题表述" class="headerlink" title="问题表述"></a>问题表述</h2><p>某学校三个系部学生共 200 名,(甲系 100,乙系 60,丙系 40)代表会议共 20 席,按比例分配三个系分别为 10、6、4 席。但是情况变为下列情况怎样分配才是最公平的,现因学生转系三系人数为 103、63、34 。</p>
-<ol>
+<h2 id="问题表述">问题表述</h2>
+<p>某学校三个系部学生共 200 名,(甲系 100,乙系 60,丙系 40)代表会议共 20 席,按比例分配三个系分别为 10、6、4 席。但是情况变为下列情况怎样分配才是最公平的,现因学生转系三系人数为 103、63、34 。</p>
+<ol type="1">
 <li>问 20 席该如何分配 ?</li>
 <li>若增加 21 席又如何分配 ?</li>
 </ol>
 <p>显然，因为无法整除无论如何分配都不公平。下面说一下几种策略。</p>
 <p><strong>策略一</strong>： 按班级人数比例乘以总人数，小数点大的分得多余的一个位子。</p>
-<div class="table-container">
 <table>
 <thead>
-<tr>
-<th style="text-align:center">某校</th>
-<th style="text-align:right">甲系</th>
-<th style="text-align:right">乙系</th>
-<th style="text-align:right">丙系</th>
+<tr class="header">
+<th style="text-align: center;">某校</th>
+<th style="text-align: right;">甲系</th>
+<th style="text-align: right;">乙系</th>
+<th style="text-align: right;">丙系</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:center">共 200 人</td>
-<td style="text-align:right">103</td>
-<td style="text-align:right">63</td>
-<td style="text-align:right">34</td>
+<tr class="odd">
+<td style="text-align: center;">共 200 人</td>
+<td style="text-align: right;">103</td>
+<td style="text-align: right;">63</td>
+<td style="text-align: right;">34</td>
 </tr>
-<tr>
-<td style="text-align:center">人数比例</td>
-<td style="text-align:right">51.3</td>
-<td style="text-align:right">31.5</td>
-<td style="text-align:right">17</td>
+<tr class="even">
+<td style="text-align: center;">人数比例</td>
+<td style="text-align: right;">51.3</td>
+<td style="text-align: right;">31.5</td>
+<td style="text-align: right;">17</td>
 </tr>
-<tr>
-<td style="text-align:center">20 席位</td>
-<td style="text-align:right">10.3</td>
-<td style="text-align:right">6.3</td>
-<td style="text-align:right">3.4</td>
+<tr class="odd">
+<td style="text-align: center;">20 席位</td>
+<td style="text-align: right;">10.3</td>
+<td style="text-align: right;">6.3</td>
+<td style="text-align: right;">3.4</td>
 </tr>
-<tr>
-<td style="text-align:center">实际分配</td>
-<td style="text-align:right">10</td>
-<td style="text-align:right">6</td>
-<td style="text-align:right">4</td>
+<tr class="even">
+<td style="text-align: center;">实际分配</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">4</td>
 </tr>
-<tr>
-<td style="text-align:center">21 席位</td>
-<td style="text-align:right">10.82</td>
-<td style="text-align:right">6.62</td>
-<td style="text-align:right">3.57</td>
+<tr class="odd">
+<td style="text-align: center;">21 席位</td>
+<td style="text-align: right;">10.82</td>
+<td style="text-align: right;">6.62</td>
+<td style="text-align: right;">3.57</td>
 </tr>
-<tr>
-<td style="text-align:center">实际分配</td>
-<td style="text-align:right">11</td>
-<td style="text-align:right">7</td>
-<td style="text-align:right">3</td>
+<tr class="even">
+<td style="text-align: center;">实际分配</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">3</td>
 </tr>
 </tbody>
 </table>
-</div>
 <p>按照上述策略，会出现席位增多而 <strong>丙系的席位却减少了一个的不合理现象</strong>，说明此方法并不合理。</p>
-<h2 id="模型建立"><a href="#模型建立" class="headerlink" title="模型建立"></a>模型建立</h2><p>假设只有 A、B 两个单位分配席位的情况，设两方人数 $m_1,m_2$ ,分配到的席位为 $n_1,n_2$。</p>
-<ol>
-<li><p>$\frac{n_1}{m_1} = \frac{n_2}{m_2}$ 公平，但是一般是不满足的。</p>
-</li>
-<li><p>$\frac{n_1}{m_1} &gt; \frac{n_2}{m_2}$ 对 A 不公平。</p>
-</li>
-<li><p>$\frac{n_1}{m_1} &lt; \frac{n_2}{m_2}$ 对 B 不公平。</p>
-</li>
+<h2 id="模型建立">模型建立</h2>
+<p>假设只有 A、B 两个单位分配席位的情况，设两方人数 <span class="math inline">\(m_1,m_2\)</span> ,分配到的席位为 <span class="math inline">\(n_1,n_2\)</span>。</p>
+<ol type="1">
+<li><p><span class="math inline">\(\frac{n_1}{m_1} = \frac{n_2}{m_2}\)</span> 公平，但是一般是不满足的。</p></li>
+<li><p><span class="math inline">\(\frac{n_1}{m_1} &gt; \frac{n_2}{m_2}\)</span> 对 A 不公平。</p></li>
+<li><p><span class="math inline">\(\frac{n_1}{m_1} &lt; \frac{n_2}{m_2}\)</span> 对 B 不公平。</p></li>
 </ol>
-<p>绝对不公平度</p>
-<script type="math/tex; mode=display">
-d = \left| \frac{n_1}{m_1} - \frac{n_2}{m_2} \right|</script><p>  但这样做还是有不足，例如<br>  某两个单位的人数和席位为 $n_1=n_2=10,m_1=120,m_2=100$ 算得  $d=2$.<br>  另两个单位的人数和席位为 $n_1=n_2=10,m_1=1020,m_2=1000$ 算得 $d=2$。<br>  但是显然，第二种情况更公平，但是（绝对）不公平度却是一样的不合理</p>
+<p>绝对不公平度 <span class="math display">\[
+d = \left| \frac{n_1}{m_1} - \frac{n_2}{m_2} \right|
+\]</span> 但这样做还是有不足，例如 某两个单位的人数和席位为 <span class="math inline">\(n_1=n_2=10,m_1=120,m_2=100\)</span> 算得 <span class="math inline">\(d=2\)</span>. 另两个单位的人数和席位为 <span class="math inline">\(n_1=n_2=10,m_1=1020,m_2=1000\)</span> 算得 <span class="math inline">\(d=2\)</span>。 但是显然，第二种情况更公平，但是（绝对）不公平度却是一样的不合理</p>
 <p>相对不公平度</p>
-<ol>
-<li><p>若 $\frac{n_1}{m_1} &lt; \frac{n_2}{m_2}$ 则</p>
-<script type="math/tex; mode=display">
-r_A(n_1,n_2) = \frac{ \frac{n_2}{m_2} - \frac{n_1}{m_1} }{ \frac{n_2}{m_2} } = 1 - \frac{n_1 m_2}{m_1 n_2}</script></li>
-<li><p>若 $\frac{n_1}{m_1} &gt; \frac{n_2}{m_2}$ 则</p>
-<script type="math/tex; mode=display">
-r_B(n_1,n_2)  = \frac{ \frac{n_1}{m_1} - \frac{n_2}{m_2} }{ \frac{n_1}{m_1} } = 1 - \frac{n_2 m_1}{m_2n_1}</script><p>我们的目标是让$r_A,r_B$(每种分配只会有一个)最小。</p>
-</li>
+<ol type="1">
+<li><p>若 <span class="math inline">\(\frac{n_1}{m_1} &lt; \frac{n_2}{m_2}\)</span> 则 <span class="math display">\[
+r_A(n_1,n_2) = \frac{ \frac{n_2}{m_2} - \frac{n_1}{m_1} }{ \frac{n_2}{m_2} } = 1 - \frac{n_1 m_2}{m_1 n_2}
+\]</span></p></li>
+<li><p>若 <span class="math inline">\(\frac{n_1}{m_1} &gt; \frac{n_2}{m_2}\)</span> 则 <span class="math display">\[
+r_B(n_1,n_2)  = \frac{ \frac{n_1}{m_1} - \frac{n_2}{m_2} }{ \frac{n_1}{m_1} } = 1 - \frac{n_2 m_1}{m_2n_1}
+\]</span> 我们的目标是让<span class="math inline">\(r_A,r_B\)</span>(每种分配只会有一个)最小。</p></li>
 </ol>
-<h3 id="策略二"><a href="#策略二" class="headerlink" title="策略二"></a><strong>策略二</strong></h3><p>假设当前 $\frac{n_1}{m_1} &lt; \frac{n_2}{m_2}$ 对 A 不公平。新增了一个席位。</p>
-<ol>
-<li>若 $\frac{n_1 + 1}{m_1} \leq  \frac{n_2}{m_2}$ 则 A 加 1 席</li>
-<li>否则此时<ul>
-<li>若分配给 A，则对 B 的不公平值(相对):<script type="math/tex; mode=display">
-r_B(n_1+1,n_2) = 1 - \frac{n_2 m_1}{m_2 (n_1 + 1)}</script></li>
-<li>若分配给 B，则对 A 的不公平值(相对):<script type="math/tex; mode=display">
-r_A(n_1,n_2+1) = 1 - \frac{n_1 m_2}{m_1(n_2 + 1)}</script></li>
-</ul>
-</li>
+<h3 id="策略二"><strong>策略二</strong></h3>
+<p>假设当前 <span class="math inline">\(\frac{n_1}{m_1} &lt; \frac{n_2}{m_2}\)</span> 对 A 不公平。新增了一个席位。</p>
+<ol type="1">
+<li>若 <span class="math inline">\(\frac{n_1 + 1}{m_1} \leq \frac{n_2}{m_2}\)</span> 则 A 加 1 席</li>
+<li>否则此时
+<ul>
+<li>若分配给 A，则对 B 的不公平值(相对): <span class="math display">\[
+r_B(n_1+1,n_2) = 1 - \frac{n_2 m_1}{m_2 (n_1 + 1)}
+\]</span></li>
+<li>若分配给 B，则对 A 的不公平值(相对): <span class="math display">\[
+r_A(n_1,n_2+1) = 1 - \frac{n_1 m_2}{m_1(n_2 + 1)}
+\]</span></li>
+</ul></li>
 </ol>
-<p>我们定义 $Q_i = \frac{m_i ^2}{n_i(n_i+1)}$，那么分配给 B 等价于 $r_A(n_1,n_2+1)&lt;r_B(n_1+1,n_2)$ 等价于$Q_1 &lt; Q_2$。即我们应该将席位分配给 $Q$ 值较大者。</p>
+<p>我们定义 <span class="math inline">\(Q_i = \frac{m_i ^2}{n_i(n_i+1)}\)</span>，那么分配给 B 等价于 <span class="math inline">\(r_A(n_1,n_2+1)&lt;r_B(n_1+1,n_2)\)</span> 等价于<span class="math inline">\(Q_1 &lt; Q_2\)</span>。即我们应该将席位分配给 <span class="math inline">\(Q\)</span> 值较大者。</p>
 <blockquote>
-<p>讲 $Q_i$ 定义成 $Q_i = \frac{n_i(n_i+1)}{m_i ^2}$ ，然后找最小的比较合理，不过这样会有小数点太长，所以没这么做</p>
+<p>讲 <span class="math inline">\(Q_i\)</span> 定义成 <span class="math inline">\(Q_i = \frac{n_i(n_i+1)}{m_i ^2}\)</span> ，然后找最小的比较合理，不过这样会有小数点太长，所以没这么做</p>
 </blockquote>
-<h3 id="模型求解"><a href="#模型求解" class="headerlink" title="模型求解"></a>模型求解</h3><p>先按照平均原则取整之后。分出了 19 席：$n_1=10,n_2=6,n_3=3$，第 20 席：</p>
-<script type="math/tex; mode=display">
-Q_1 = \frac{103^2}{10 \times 11 } \approx 96.4 \; , \;Q_2 = \frac{63^2}{6 \times 7} \approx 94.5 \; , \;Q_3 = \frac{34^2}{3 \times 4} \approx 96.3</script><p>则分配：$n_1=11,n_2=6,n_3=3$<br>第 21 席：$Q_1=80.4, Q_2 = 94.5, Q_3 = 96.3$<br>则分配：$n_1=11,n_2=6,n_3=4$.</p>
+<h3 id="模型求解">模型求解</h3>
+<p>先按照平均原则取整之后。分出了 19 席：<span class="math inline">\(n_1=10,n_2=6,n_3=3\)</span>，第 20 席： <span class="math display">\[
+Q_1 = \frac{103^2}{10 \times 11 } \approx 96.4 \; , \;Q_2 = \frac{63^2}{6 \times 7} \approx 94.5 \; , \;Q_3 = \frac{34^2}{3 \times 4} \approx 96.3
+\]</span> 则分配：<span class="math inline">\(n_1=11,n_2=6,n_3=3\)</span> 第 21 席：<span class="math inline">\(Q_1=80.4, Q_2 = 94.5, Q_3 = 96.3\)</span> 则分配：<span class="math inline">\(n_1=11,n_2=6,n_3=4\)</span>.</p>
 <blockquote>
 <p>相对不公平度有很多变种，从而 <strong>策略二有很多变种</strong>（最后计算发现都一样）</p>
 <p>莫非策略二就是天选之子 0.0</p>
 </blockquote>
-<h2 id="本文参考文库-1和文库-2，修改了其中的错误"><a href="#本文参考文库-1和文库-2，修改了其中的错误" class="headerlink" title="本文参考文库 1和文库 2，修改了其中的错误"></a>本文参考<a target="_blank" rel="noopener" href="http://wenku.baidu.com/view/396d4f6aaf1ffc4ffe47ac52.html?re=view">文库 1</a>和<a target="_blank" rel="noopener" href="http://wenku.baidu.com/view/312ef3274b35eefdc9d33304.html?re=view">文库 2</a>，修改了其中的错误</h2><blockquote>
-<p>其实作为分配者，如果你倾向 X，那你就选择让 X 收益最多的策略，反正 <strong>策略一</strong> 看上去也挺合理的，实在不行的话，再强行找花头…</p>
+<h2 id="本文参考文库-1和文库-2修改了其中的错误">本文参考<a target="_blank" rel="noopener" href="http://wenku.baidu.com/view/396d4f6aaf1ffc4ffe47ac52.html?re=view">文库 1</a>和<a target="_blank" rel="noopener" href="http://wenku.baidu.com/view/312ef3274b35eefdc9d33304.html?re=view">文库 2</a>，修改了其中的错误</h2>
+<blockquote>
+<p>其实作为分配者，如果你倾向 X，那你就选择让 X 收益最多的策略，反正 <strong>策略一</strong> 看上去也挺合理的，实在不行的话，再强行找花头...</p>
 </blockquote>
 <p>由于席位分配问题确实是一个经典问题，故在此记录。</p>
 

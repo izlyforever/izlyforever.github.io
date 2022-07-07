@@ -292,7 +292,8 @@
 <p>本博客记录着一些 有趣有用优雅的数学，算法问题，以及一些日记。</p>
 <p>写作的时候能理清很多问题，如果还能帮助到别人就更好了，如果你发现任何问题，欢迎评论，email，github 留言</p>
 <span id="more"></span>
-<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><ul>
+<h2 id="使用方法">使用方法</h2>
+<ul>
 <li>右上角可以调节 明/暗 主题</li>
 <li>右上角搜索可以全局本地搜索</li>
 <li>通过归档查看全部博文列表</li>
@@ -300,7 +301,8 @@
 <li>网页工具还是有很多有意思的东西的</li>
 <li>所有算法，模版，提交记录，题解都可以在我的 github <a target="_blank" rel="noopener" href="https://github.com/izlyforever/cf">cf 仓库</a> 中（欢迎 star）</li>
 </ul>
-<h2 id="一些注记"><a href="#一些注记" class="headerlink" title="一些注记"></a>一些注记</h2><ul>
+<h2 id="一些注记">一些注记</h2>
+<ul>
 <li>全站 https</li>
 <li>本域名：<code>izlyforever.com</code> 已经实名制</li>
 <li>mkdocs 是一个不错的 文档生成器，但是博客还是 hexo 更好一点</li>
@@ -308,12 +310,14 @@
 <li>用 <code>**</code> 而非 <code>__</code> 强调</li>
 <li>都 2021 年了 hexo 还是有 mathjax 问题</li>
 </ul>
-<h3 id="mathjax-解决方案"><a href="#mathjax-解决方案" class="headerlink" title="mathjax 解决方案"></a>mathjax 解决方案</h3><p>卸载 <code>marked</code> 改用 <code>kmarked</code></p>
+<h3 id="mathjax-解决方案">mathjax 解决方案</h3>
+<p>卸载 <code>marked</code> 改用 <code>kmarked</code></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm uninstall hexo-renderer-marked --save<br>npm install hexo-renderer-kramed --save<br></code></pre></td></tr></table></figure>
 <p>然后修改 <code>node_modules\kramed\lib\rules\inline.js</code></p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-comment">//  escape: /^\\([\\`*&#123;&#125;\[\]()#$+\-.!_&gt;])/,</span><br>  escape: /^\\([`*\[\]()#$+\-.!_&gt;])/,<br><span class="hljs-comment">//  em: /^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</span><br>  em: /^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,<br></code></pre></td></tr></table></figure>
 <p>详细<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/7ab21c7f0674">解决方案</a></p>
-<h2 id="博客历史"><a href="#博客历史" class="headerlink" title="博客历史"></a>博客历史</h2><p>2015 年 12 月 15 号，开始基于 github page + hexo + next 写数学博客</p>
+<h2 id="博客历史">博客历史</h2>
+<p>2015 年 12 月 15 号，开始基于 github page + hexo + next 写数学博客</p>
 <p>当时想做一个 GUI 界面的计算器，然后发现逻辑上并不简单，后来知道是用著名的 <strong>逆波兰式</strong> 解决，于是写了第一篇博客：计算器程序。后来陆续写了很多数学相关的短篇博客，记录着 <strong>数学和程序的点滴</strong></p>
 <p>2017 年 5 月 27 号就断更了。主要是因为电脑坏了，当时没有使用 git 备份源码，然后就没法更新</p>
 <p>2020 年 2 月，疫情开始了，在家闲着没事干，根据网站的内容结合一些工具，重新搞了一遍源码</p>
@@ -325,19 +329,22 @@
 <p>2021 年 11 月 12 号，cf repo 删除了所有非必要 fropen</p>
 <p>2022 年 2 月 2 号，更新了 Nodejs，Hexo，使用 Hide 功能（fluid 主题自带）隐藏一些水的。</p>
 <p>2022 年 5 月 16 号，做了一次大规模调整</p>
-<h2 id="隐藏的博文"><a href="#隐藏的博文" class="headerlink" title="隐藏的博文"></a>隐藏的博文</h2><p>把一些很水的，没啥意思的以及一些加密的隐藏了，以下是所有隐藏</p>
-<h3 id="私密"><a href="#私密" class="headerlink" title="私密"></a>私密</h3><ul>
+<h2 id="隐藏的博文">隐藏的博文</h2>
+<p>把一些很水的，没啥意思的以及一些加密的隐藏了，以下是所有隐藏</p>
+<h3 id="私密">私密</h3>
+<ul>
 <li><a href="../AgoraAlgorithmNotes">Agora ThunderTalks 笔记</a></li>
 <li><a href="../workRecord">工作记录</a></li>
 <li><a href="../DME">The Dixmier-Moeglin Equivalence</a></li>
-<li><a href="../primeInOperatorRing">$R, R[x; \delta]$ 的素理想关系及 Baire 空间</a></li>
-<li><a href="../primeInPolyRing">$R, R[x; \sigma], R[x^{\pm}; \sigma]$ 的素理想关系</a></li>
+<li><a href="../primeInOperatorRing"><span class="math inline">\(R, R[x; \delta]\)</span> 的素理想关系及 Baire 空间</a></li>
+<li><a href="../primeInPolyRing"><span class="math inline">\(R, R[x; \sigma], R[x^{\pm}; \sigma]\)</span> 的素理想关系</a></li>
 <li><a href="../mixed">杂记</a></li>
 <li><a href="../loveMemory">恋爱日记</a></li>
 <li><a href="../toDo">ToDo</a></li>
 <li><a href="../words">私密警句</a></li>
 </ul>
-<h3 id="学习系列"><a href="#学习系列" class="headerlink" title="学习系列"></a>学习系列</h3><ul>
+<h3 id="学习系列">学习系列</h3>
+<ul>
 <li><a href="../learnASM">汇编</a></li>
 <li><a href="../learnANSIC">ANSI C</a></li>
 <li><a href="../learnCpp">C++</a></li>
@@ -347,13 +354,15 @@
 <li><a href="../thread">多线程编程</a></li>
 <li><a href="https://izlyforever.com/algebraicNumberTheory/">代数数论笔记</a></li>
 </ul>
-<h3 id="水"><a href="#水" class="headerlink" title="水"></a>水</h3><ul>
+<h3 id="水">水</h3>
+<ul>
 <li><a href="../spookywooky">Talk with spookywooky</a></li>
 <li><a href="../workLatex">Latex 编辑的一些文档</a></li>
 <li><a href="../sageMath">上流开源免费数学软件之 SageMath</a></li>
 <li><a href="../typeStyle">书写风格</a></li>
 </ul>
-<h3 id="有待完善"><a href="#有待完善" class="headerlink" title="有待完善"></a>有待完善</h3><ul>
+<h3 id="有待完善">有待完善</h3>
+<ul>
 <li><a href="../readAfterWork">工作后的读书笔记</a></li>
 <li><a href="../preload">预加载（狸猫换太子技术）</a></li>
 <li><a href="../bigInt">大整数 cpp 版</a></li>

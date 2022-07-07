@@ -223,7 +223,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          6.3k 字
+          6.8k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
           <!-- compatible with older versions-->
-          53 分钟
+          57 分钟
         
       </span>
     
@@ -291,89 +291,107 @@
 <p>非负矩阵的谱半径（下面有定义）是它的一个特征值，并且这个特征值对应着非负特征向量。</p>
 </blockquote>
 <span id="more"></span>
-<p>两个矩阵 $X$ 和 $Y$ 称为置换相似的，若存在一个置换矩阵 $P$ 满足 $P^TXP=Y$。设$A\in M_n$.称$A$为可约的，若 $A$ 置换相似于一个形如 $\left( \begin{matrix} B &amp; 0 \\ C &amp; D \end{matrix} \right)$ 其中 $B,D$ 是方阵，否则称 $A$ 不可约。</p>
+<p>两个矩阵 <span class="math inline">\(X\)</span> 和 <span class="math inline">\(Y\)</span> 称为置换相似的，若存在一个置换矩阵 <span class="math inline">\(P\)</span> 满足 <span class="math inline">\(P^TXP=Y\)</span>。设<span class="math inline">\(A\in M_n\)</span>.称<span class="math inline">\(A\)</span>为可约的，若 <span class="math inline">\(A\)</span> 置换相似于一个形如 <span class="math inline">\(\left( \begin{matrix} B &amp; 0 \\ C &amp; D \end{matrix} \right)\)</span> 其中 <span class="math inline">\(B,D\)</span> 是方阵，否则称 <span class="math inline">\(A\)</span> 不可约。</p>
 <blockquote>
-<p>$X \geq 0$ 表示矩阵的每个元素 $\geq 0$, （对向量，或者 $&gt;0$ 等情形类似定义即可）。</p>
-<p>以下矩阵除非特别说明都是 $n \times n$ 矩阵 $n&gt;1$</p>
+<p><span class="math inline">\(X \geq 0\)</span> 表示矩阵的每个元素 <span class="math inline">\(\geq 0\)</span>, （对向量，或者 <span class="math inline">\(&gt;0\)</span> 等情形类似定义即可）。</p>
+<p>以下矩阵除非特别说明都是 <span class="math inline">\(n \times n\)</span> 矩阵 <span class="math inline">\(n&gt;1\)</span></p>
 </blockquote>
-<h2 id="引理-1-设-A-是不可约非负矩阵，-y-in-mathbf-R-n-backslash-lbrace-0-rbrace-且至少有一个分量为-0-则-I-A-y-的正分量的个数大于-y-的正分量个数"><a href="#引理-1-设-A-是不可约非负矩阵，-y-in-mathbf-R-n-backslash-lbrace-0-rbrace-且至少有一个分量为-0-则-I-A-y-的正分量的个数大于-y-的正分量个数" class="headerlink" title="引理 1 设 $A$ 是不可约非负矩阵，$y\in \mathbf{R}_+^{n} \backslash \lbrace 0 \rbrace $ 且至少有一个分量为 0, 则 $(I+A)y$ 的正分量的个数大于 $y$ 的正分量个数"></a>引理 1 设 $A$ 是不可约非负矩阵，$y\in \mathbf{R}_+^{n} \backslash \lbrace 0 \rbrace $ 且至少有一个分量为 0, 则 $(I+A)y$ 的正分量的个数大于 $y$ 的正分量个数</h2><p><strong>Proof</strong>： 设 $y$ 恰好有 $k$ 个正分量，$1 \leq k \leq n-1$。设 $P$ 是置换矩阵，使得$x=Py$的前$k$个分量为正，其它为 0，因为 $A$ 是非负矩阵，所以 $(I+A)y$的零分量个数不会超过 $n-k$。假设这个个数等于 $n-k$，则有 $y_i = 0 \Rightarrow (Ay)_i = 0$。即 $(PAP^Tx)_i = (PAy)_i = 0,\quad i=k+1,\cdots,n$，设 $B=PAP^T$. 则当 $k+1 \leq i \leq n$ 时，</p>
-<script type="math/tex; mode=display">
+<h2 id="引理-1-设-a-是不可约非负矩阵y_n-且至少有一个分量为-0-则-iay-的正分量的个数大于-y-的正分量个数">引理 1 设 <span class="math inline">\(A\)</span> 是不可约非负矩阵，$y_+^{n}  $ 且至少有一个分量为 0, 则 <span class="math inline">\((I+A)y\)</span> 的正分量的个数大于 <span class="math inline">\(y\)</span> 的正分量个数</h2>
+<p><strong>Proof</strong>： 设 <span class="math inline">\(y\)</span> 恰好有 <span class="math inline">\(k\)</span> 个正分量，<span class="math inline">\(1 \leq k \leq n-1\)</span>。设 <span class="math inline">\(P\)</span> 是置换矩阵，使得<span class="math inline">\(x=Py\)</span>的前<span class="math inline">\(k\)</span>个分量为正，其它为 0，因为 <span class="math inline">\(A\)</span> 是非负矩阵，所以 <span class="math inline">\((I+A)y\)</span>的零分量个数不会超过 <span class="math inline">\(n-k\)</span>。假设这个个数等于 <span class="math inline">\(n-k\)</span>，则有 <span class="math inline">\(y_i = 0 \Rightarrow (Ay)_i = 0\)</span>。即 <span class="math inline">\((PAP^Tx)_i = (PAy)_i = 0,\quad i=k+1,\cdots,n\)</span>，设 <span class="math inline">\(B=PAP^T\)</span>. 则当 <span class="math inline">\(k+1 \leq i \leq n\)</span> 时， <span class="math display">\[
 (Bx)_i = \sum_{j=1} ^{n} b _{ij} x_j =
-\sum _{j=1} ^{k} b_{ij} x _j = 0</script><p>但当 $1 \leq j \leq k$ 时，$x_j &gt;0$。所以 $b_{ij}=0$, 其中 $k+1 \leq i \leq n,1 \leq j \leq k$ 矛盾于 $A$ 不可约，证毕。</p>
-<h2 id="引理-2-设-A-是-n-阶不可约非负矩阵，-y-in-mathbf-R-n-backslash-lbrace-0-rbrace-则-I-A-n-1-y-gt-0"><a href="#引理-2-设-A-是-n-阶不可约非负矩阵，-y-in-mathbf-R-n-backslash-lbrace-0-rbrace-则-I-A-n-1-y-gt-0" class="headerlink" title="引理 2 设 $A$ 是 $n$ 阶不可约非负矩阵，$y\in \mathbf{R}_+^{n} \backslash \lbrace 0 \rbrace $ 则 $(I+A)^{n-1}y&gt;0$"></a>引理 2 设 $A$ 是 $n$ 阶不可约非负矩阵，$y\in \mathbf{R}_+^{n} \backslash \lbrace 0 \rbrace $ 则 $(I+A)^{n-1}y&gt;0$</h2><h2 id="引理-3-设-n-gt-1-，则-n-阶非负矩阵-A-不可约当且仅当-I-A-n-1-gt-0"><a href="#引理-3-设-n-gt-1-，则-n-阶非负矩阵-A-不可约当且仅当-I-A-n-1-gt-0" class="headerlink" title="引理 3 设 $n&gt;1$，则 $n$ 阶非负矩阵 $A$ 不可约当且仅当 $(I+A)^{n-1}&gt;0$"></a>引理 3 设 $n&gt;1$，则 $n$ 阶非负矩阵 $A$ 不可约当且仅当 $(I+A)^{n-1}&gt;0$</h2><p><strong>Proof</strong>: 应用<strong>引理 2</strong>，考虑 $(I+A)^{n-1}e_j$ 即可。</p>
-<p>若 $A$ 不可约，考虑 $(I+A)^{n-1}e_j$ 即可知 $(I+A)$ 第 $j$ 列每个元素都大于 $0$。</p>
-<p>若 $A$ 可约，按照定义存在置换矩阵 $P$ 使得 $A = P^{T} \left( \begin{matrix} B &amp; 0 \\ C &amp; D \end{matrix} \right) P$，从而 $(I + A)^{n - 1} = P^{T} \left( \begin{matrix} B + I &amp; 0 \\ C &amp; D + I \end{matrix} \right)^{n - 1} P$。</p>
-<h2 id="引理-4-一个不可约非负矩阵的非负特征向量是正特征向量"><a href="#引理-4-一个不可约非负矩阵的非负特征向量是正特征向量" class="headerlink" title="引理 4 一个不可约非负矩阵的非负特征向量是正特征向量"></a>引理 4 一个不可约非负矩阵的非负特征向量是正特征向量</h2><p><strong>Proof</strong>：设 $A$ 是不可约非负矩阵，$Ax=\lambda x, x \geq 0,x \neq 0$。显然 $\lambda \geq 0$ 我们有 $(I+A)x = (1 + \lambda)x$ ，因此$(1+A)x$与$x$有相同个数的正分量，有 <strong>引理 1</strong> 知 $x&gt;0$。</p>
-<h2 id="Collatz-Wielandt-函数"><a href="#Collatz-Wielandt-函数" class="headerlink" title="Collatz-Wielandt 函数"></a>Collatz-Wielandt 函数</h2><p>设 $A$ 是一个非负矩阵。$A$ 的 Collatz－Wielandt 函数 $f_A \colon \mathbf{R}_+ ^n \backslash \lbrace 0 \rbrace  \to \mathbf{R}_+$ 定义为：</p>
-<script type="math/tex; mode=display">
-f_A(x) = \min _{ x_i \neq 0 } \frac{(Ax) _i }{x_i}</script><h2 id="引理-5-设-A-为非负不可约矩阵，则"><a href="#引理-5-设-A-为非负不可约矩阵，则" class="headerlink" title="引理 5 设 $A$ 为非负不可约矩阵，则"></a>引理 5 设 $A$ 为非负不可约矩阵，则</h2><ol>
-<li>$f_A(tx) = f_A(x), \forall t &gt; 0$</li>
-<li>$f_A(x) = \max \lbrace \rho | Ax-\rho x \geq 0 \rbrace$</li>
-<li>设 $x \in \mathbf{R} _+ ^n \backslash \lbrace 0 \rbrace$，记 $y = (I+A)^{n-1} x$ ,则 $f_A(y) \geq f_A(x)$。</li>
+\sum _{j=1} ^{k} b_{ij} x _j = 0
+\]</span> 但当 <span class="math inline">\(1 \leq j \leq k\)</span> 时，<span class="math inline">\(x_j &gt;0\)</span>。所以 <span class="math inline">\(b_{ij}=0\)</span>, 其中 <span class="math inline">\(k+1 \leq i \leq n,1 \leq j \leq k\)</span> 矛盾于 <span class="math inline">\(A\)</span> 不可约，证毕。</p>
+<h2 id="引理-2-设-a-是-n-阶不可约非负矩阵y_n-则-ian-1y0">引理 2 设 <span class="math inline">\(A\)</span> 是 <span class="math inline">\(n\)</span> 阶不可约非负矩阵，$y_+^{n}  $ 则 <span class="math inline">\((I+A)^{n-1}y&gt;0\)</span></h2>
+<h2 id="引理-3-设-n1则-n-阶非负矩阵-a-不可约当且仅当-ian-10">引理 3 设 <span class="math inline">\(n&gt;1\)</span>，则 <span class="math inline">\(n\)</span> 阶非负矩阵 <span class="math inline">\(A\)</span> 不可约当且仅当 <span class="math inline">\((I+A)^{n-1}&gt;0\)</span></h2>
+<p><strong>Proof</strong>: 应用<strong>引理 2</strong>，考虑 <span class="math inline">\((I+A)^{n-1}e_j\)</span> 即可。</p>
+<p>若 <span class="math inline">\(A\)</span> 不可约，考虑 <span class="math inline">\((I+A)^{n-1}e_j\)</span> 即可知 <span class="math inline">\((I+A)\)</span> 第 <span class="math inline">\(j\)</span> 列每个元素都大于 <span class="math inline">\(0\)</span>。</p>
+<p>若 <span class="math inline">\(A\)</span> 可约，按照定义存在置换矩阵 <span class="math inline">\(P\)</span> 使得 <span class="math inline">\(A = P^{T} \left( \begin{matrix} B &amp; 0 \\ C &amp; D \end{matrix} \right) P\)</span>，从而 <span class="math inline">\((I + A)^{n - 1} = P^{T} \left( \begin{matrix} B + I &amp; 0 \\ C &amp; D + I \end{matrix} \right)^{n - 1} P\)</span>。</p>
+<h2 id="引理-4-一个不可约非负矩阵的非负特征向量是正特征向量">引理 4 一个不可约非负矩阵的非负特征向量是正特征向量</h2>
+<p><strong>Proof</strong>：设 <span class="math inline">\(A\)</span> 是不可约非负矩阵，<span class="math inline">\(Ax=\lambda x, x \geq 0,x \neq 0\)</span>。显然 <span class="math inline">\(\lambda \geq 0\)</span> 我们有 <span class="math inline">\((I+A)x = (1 + \lambda)x\)</span> ，因此<span class="math inline">\((1+A)x\)</span>与<span class="math inline">\(x\)</span>有相同个数的正分量，有 <strong>引理 1</strong> 知 <span class="math inline">\(x&gt;0\)</span>。</p>
+<h2 id="collatz-wielandt-函数">Collatz-Wielandt 函数</h2>
+<p>设 <span class="math inline">\(A\)</span> 是一个非负矩阵。<span class="math inline">\(A\)</span> 的 Collatz－Wielandt 函数 <span class="math inline">\(f_A \colon \mathbf{R}_+ ^n \backslash \lbrace 0 \rbrace \to \mathbf{R}_+\)</span> 定义为： <span class="math display">\[
+f_A(x) = \min _{ x_i \neq 0 } \frac{(Ax) _i }{x_i}
+\]</span></p>
+<h2 id="引理-5-设-a-为非负不可约矩阵则">引理 5 设 <span class="math inline">\(A\)</span> 为非负不可约矩阵，则</h2>
+<ol type="1">
+<li><span class="math inline">\(f_A(tx) = f_A(x), \forall t &gt; 0\)</span></li>
+<li><span class="math inline">\(f_A(x) = \max \lbrace \rho | Ax-\rho x \geq 0 \rbrace\)</span></li>
+<li>设 <span class="math inline">\(x \in \mathbf{R} _+ ^n \backslash \lbrace 0 \rbrace\)</span>，记 <span class="math inline">\(y = (I+A)^{n-1} x\)</span> ,则 <span class="math inline">\(f_A(y) \geq f_A(x)\)</span>。</li>
 </ol>
-<p><strong>Proof</strong>：(1),(2)显然。下证明(3)： 我们有$Ax- f_A(x)x \geq 0$，在等式两边左乘以$(I+A)^{n-1}$并利用$A$和$(I+A)^{n-1}$乘法可交换的性质，得到$A(I+A)^{n-1}x - f_A(x)(I+A)^{n-1}x \geq 0$ 即 $Ay - f_A(x)y\geq 0$ 再由（2）证毕。</p>
+<p><strong>Proof</strong>：(1),(2)显然。下证明(3)： 我们有<span class="math inline">\(Ax- f_A(x)x \geq 0\)</span>，在等式两边左乘以<span class="math inline">\((I+A)^{n-1}\)</span>并利用<span class="math inline">\(A\)</span>和<span class="math inline">\((I+A)^{n-1}\)</span>乘法可交换的性质，得到<span class="math inline">\(A(I+A)^{n-1}x - f_A(x)(I+A)^{n-1}x \geq 0\)</span> 即 <span class="math inline">\(Ay - f_A(x)y\geq 0\)</span> 再由（2）证毕。</p>
 <blockquote>
-<p>容易证明：$f_A$ 是有界函数，实际上，$f_A$ 非负且不超过 $A$ 的最大行和（考虑每一个 $f_A(e_j)$ 即可)。</p>
-<p>记$\Omega _n = \lbrace x \in \mathbf{R}_+ ^n | \sum _{i=1} ^n = 1 \rbrace$ 引理 5.1 说明，我们只需要在 $\Omega_n$ 上研究 $f_A$ 即可。显然$\Omega_n$是一个紧集，但是 $f_A$ 可能在 $\Omega_n$ 的边界不连续。</p>
+<p>容易证明：<span class="math inline">\(f_A\)</span> 是有界函数，实际上，<span class="math inline">\(f_A\)</span> 非负且不超过 <span class="math inline">\(A\)</span> 的最大行和（考虑每一个 <span class="math inline">\(f_A(e_j)\)</span> 即可)。</p>
+<p>记<span class="math inline">\(\Omega _n = \lbrace x \in \mathbf{R}_+ ^n | \sum _{i=1} ^n = 1 \rbrace\)</span> 引理 5.1 说明，我们只需要在 <span class="math inline">\(\Omega_n\)</span> 上研究 <span class="math inline">\(f_A\)</span> 即可。显然<span class="math inline">\(\Omega_n\)</span>是一个紧集，但是 <span class="math inline">\(f_A\)</span> 可能在 <span class="math inline">\(\Omega_n\)</span> 的边界不连续。</p>
 <p>但是我们仍然有下面 <strong>引理 6</strong>。</p>
 </blockquote>
-<h2 id="引理-6-设-A-是非负不可约矩阵，则-f-A-在-mathbf-R-n-backslash-lbrace-0-rbrace-上可以取到最大值"><a href="#引理-6-设-A-是非负不可约矩阵，则-f-A-在-mathbf-R-n-backslash-lbrace-0-rbrace-上可以取到最大值" class="headerlink" title="引理 6 设 $A$ 是非负不可约矩阵，则 $f_A$ 在 $\mathbf{R}_{+} ^n \backslash \lbrace 0 \rbrace $上可以取到最大值"></a>引理 6 设 $A$ 是非负不可约矩阵，则 $f_A$ 在 $\mathbf{R}_{+} ^n \backslash \lbrace 0 \rbrace $上可以取到最大值</h2><p><strong>Proof</strong>: 记$\Delta = (I+A)^{n-1} \Omega _n = \lbrace y \mid y=(I+A)^{n-1} x ,x \in \Omega_n \rbrace$ 则 $\Delta$ 是一个紧集， 且有 <strong>引理 2</strong> 知 $\Delta$ 中向量都是正向量，因此 $f_A$ 在 $\Delta$ 上连续，由 Weierstrass 定理，$f_A$ 在某一点 $y^0 \in \Delta$ 取得 $f_A$ 在 $\Delta$ 上的最大值。记 $z^0 = y^0/ \sum_{i=1} ^n y_i ^0 \in \Omega_ n$。$\forall x \in \Omega_n$，记 $y=(I+A)^{n-1}x$ 利用 <strong>引理 5</strong> 可知</p>
-<script type="math/tex; mode=display">
-f_A(x) \leq f_A(y) \leq f_A(y^0) = f_A(z^0)</script><p>这就证明了 $f_A$ 在 $z^0$ 上取到它在 $\Omega_n$ 上的最大值。利用对$ \forall z \in R_+ ^n \backslash \lbrace 0 \rbrace $ 和 <strong>引理 6.1</strong> 有</p>
-<script type="math/tex; mode=display">
-f_A(z) = f_A(\frac{z}{\sum_{i=1}^n z_i}) \leq f_A(z^0)</script><p>可见 $f_A$ 在 $z^0$ 处取到它在 $R _+ ^n \backslash \lbrace 0 \rbrace$ 上的最大值。</p>
-<h2 id="Perron-Frobenius-定理"><a href="#Perron-Frobenius-定理" class="headerlink" title="Perron-Frobenius 定理"></a>Perron-Frobenius 定理</h2><p><strong>矩阵 $A$ 的谱半径 $\rho(A)$ 定义成矩阵 $A$ 的所有特征值的绝对值的最大值。</strong></p>
+<h2 id="引理-6-设-a-是非负不可约矩阵则-f_a-在-_-n-上可以取到最大值">引理 6 设 <span class="math inline">\(A\)</span> 是非负不可约矩阵，则 <span class="math inline">\(f_A\)</span> 在 $_{+} ^n  $上可以取到最大值</h2>
+<p><strong>Proof</strong>: 记<span class="math inline">\(\Delta = (I+A)^{n-1} \Omega _n = \lbrace y \mid y=(I+A)^{n-1} x ,x \in \Omega_n \rbrace\)</span> 则 <span class="math inline">\(\Delta\)</span> 是一个紧集， 且有 <strong>引理 2</strong> 知 <span class="math inline">\(\Delta\)</span> 中向量都是正向量，因此 <span class="math inline">\(f_A\)</span> 在 <span class="math inline">\(\Delta\)</span> 上连续，由 Weierstrass 定理，<span class="math inline">\(f_A\)</span> 在某一点 <span class="math inline">\(y^0 \in \Delta\)</span> 取得 <span class="math inline">\(f_A\)</span> 在 <span class="math inline">\(\Delta\)</span> 上的最大值。记 <span class="math inline">\(z^0 = y^0/ \sum_{i=1} ^n y_i ^0 \in \Omega_ n\)</span>。<span class="math inline">\(\forall x \in \Omega_n\)</span>，记 <span class="math inline">\(y=(I+A)^{n-1}x\)</span> 利用 <strong>引理 5</strong> 可知 <span class="math display">\[
+f_A(x) \leq f_A(y) \leq f_A(y^0) = f_A(z^0)
+\]</span> 这就证明了 <span class="math inline">\(f_A\)</span> 在 <span class="math inline">\(z^0\)</span> 上取到它在 <span class="math inline">\(\Omega_n\)</span> 上的最大值。利用对$ z R_+ ^n  $ 和 <strong>引理 6.1</strong> 有 <span class="math display">\[
+f_A(z) = f_A(\frac{z}{\sum_{i=1}^n z_i}) \leq f_A(z^0)
+\]</span> 可见 <span class="math inline">\(f_A\)</span> 在 <span class="math inline">\(z^0\)</span> 处取到它在 <span class="math inline">\(R _+ ^n \backslash \lbrace 0 \rbrace\)</span> 上的最大值。</p>
+<h2 id="perron-frobenius-定理">Perron-Frobenius 定理</h2>
+<p><strong>矩阵 <span class="math inline">\(A\)</span> 的谱半径 <span class="math inline">\(\rho(A)\)</span> 定义成矩阵 <span class="math inline">\(A\)</span> 的所有特征值的绝对值的最大值。</strong></p>
 <p>现在万事俱备了，下面开始介绍著名的 Perron-Frobenius 定理</p>
-<h3 id="定理-7-Perron-Frobenius-设-A-是非负不可约矩阵，则下面结论成立"><a href="#定理-7-Perron-Frobenius-设-A-是非负不可约矩阵，则下面结论成立" class="headerlink" title="定理 7(Perron-Frobenius) 设$A$是非负不可约矩阵，则下面结论成立"></a>定理 7(Perron-Frobenius) 设$A$是非负不可约矩阵，则下面结论成立</h3><ol>
-<li>$\rho(A)&gt;0$ 且 $\rho(A)$ 是矩阵 $A$ 的一个单特征值</li>
-<li>$A$ 有一个对应于 $\rho(A)$ 的正特征向量</li>
-<li>$A$ 的每个非负特征向量都对应于特征值 $\rho(A)$</li>
+<h3 id="定理-7perron-frobenius-设a是非负不可约矩阵则下面结论成立">定理 7(Perron-Frobenius) 设<span class="math inline">\(A\)</span>是非负不可约矩阵，则下面结论成立</h3>
+<ol type="1">
+<li><span class="math inline">\(\rho(A)&gt;0\)</span> 且 <span class="math inline">\(\rho(A)\)</span> 是矩阵 <span class="math inline">\(A\)</span> 的一个单特征值</li>
+<li><span class="math inline">\(A\)</span> 有一个对应于 <span class="math inline">\(\rho(A)\)</span> 的正特征向量</li>
+<li><span class="math inline">\(A\)</span> 的每个非负特征向量都对应于特征值 <span class="math inline">\(\rho(A)\)</span></li>
 </ol>
-<p><strong>Proof</strong>：由 <strong>引理 6</strong> 存在 $x^0 \in R _+ ^n \backslash \lbrace 0 \rbrace$ 满足 $f_A(x^0) \geq f_A(x), \forall x \in \mathbf{R}_+ ^n \backslash \lbrace 0 \rbrace$ 记 $r=f_A(x^0)$，取 $u=(1,\cdots,1)^T$。因为 $A$ 不可约，没有零行，所以 $r \geq f_A(u) = \min \sum_{i=1} ^n a_{ij} &gt; 0$</p>
-<p>下面证明 $r$ 是 $A$ 的一个特征值，我们有: $Ax^0 - rx^0 \geq 0$，假设 $Ax^0 - rx^0 \neq 0$。由 <strong>引理 5.2</strong> 知 $(I+A)^{n-1}(Ax^0 - rx^0) &gt; 0$ 即 $Ay^0 - ry^0&gt; 0$ 其中，$y_0 = (I+A)^{n-1}x^0 &gt;0$。因此存在 $\epsilon &gt; 0$ 使得 $Ay^0 - (r+\epsilon)y^0&gt; 0$. 由<strong>引理 5.2</strong>，$f_A(y^0) \geq r+\epsilon &gt; r$ 这就与 $r=f_A(x^0)$ 的最大性矛盾。所以 $Ax^0=rx^0$。从而$r$是$A$的一个特征值，$x^0$ 是 $A$ 的一个特征向量。有 <strong>引理 4</strong> 知，$x^0$ 是正向量。<br>设 $\lambda$ 是 $A$ 的任何一个特征向量：$Ax=\lambda x$ 则 $|\lambda||x| \leq A|x|$，于是 $|\lambda| \leq f_ A(|x|) \leq r$ 这表明 $r = \rho(A)$。</p>
+<p><strong>Proof</strong>：由 <strong>引理 6</strong> 存在 <span class="math inline">\(x^0 \in R _+ ^n \backslash \lbrace 0 \rbrace\)</span> 满足 <span class="math inline">\(f_A(x^0) \geq f_A(x), \forall x \in \mathbf{R}_+ ^n \backslash \lbrace 0 \rbrace\)</span> 记 <span class="math inline">\(r=f_A(x^0)\)</span>，取 <span class="math inline">\(u=(1,\cdots,1)^T\)</span>。因为 <span class="math inline">\(A\)</span> 不可约，没有零行，所以 <span class="math inline">\(r \geq f_A(u) = \min \sum_{i=1} ^n a_{ij} &gt; 0\)</span></p>
+<p>下面证明 <span class="math inline">\(r\)</span> 是 <span class="math inline">\(A\)</span> 的一个特征值，我们有: <span class="math inline">\(Ax^0 - rx^0 \geq 0\)</span>，假设 <span class="math inline">\(Ax^0 - rx^0 \neq 0\)</span>。由 <strong>引理 5.2</strong> 知 <span class="math inline">\((I+A)^{n-1}(Ax^0 - rx^0) &gt; 0\)</span> 即 <span class="math inline">\(Ay^0 - ry^0&gt; 0\)</span> 其中，<span class="math inline">\(y_0 = (I+A)^{n-1}x^0 &gt;0\)</span>。因此存在 <span class="math inline">\(\epsilon &gt; 0\)</span> 使得 <span class="math inline">\(Ay^0 - (r+\epsilon)y^0&gt; 0\)</span>. 由<strong>引理 5.2</strong>，<span class="math inline">\(f_A(y^0) \geq r+\epsilon &gt; r\)</span> 这就与 <span class="math inline">\(r=f_A(x^0)\)</span> 的最大性矛盾。所以 <span class="math inline">\(Ax^0=rx^0\)</span>。从而<span class="math inline">\(r\)</span>是<span class="math inline">\(A\)</span>的一个特征值，<span class="math inline">\(x^0\)</span> 是 <span class="math inline">\(A\)</span> 的一个特征向量。有 <strong>引理 4</strong> 知，<span class="math inline">\(x^0\)</span> 是正向量。 设 <span class="math inline">\(\lambda\)</span> 是 <span class="math inline">\(A\)</span> 的任何一个特征向量：<span class="math inline">\(Ax=\lambda x\)</span> 则 <span class="math inline">\(|\lambda||x| \leq A|x|\)</span>，于是 <span class="math inline">\(|\lambda| \leq f_ A(|x|) \leq r\)</span> 这表明 <span class="math inline">\(r = \rho(A)\)</span>。</p>
 <blockquote>
-<p>以下关于证明 $\rho(A)$ 是单特征值的部分可以不看</p>
+<p>以下关于证明 <span class="math inline">\(\rho(A)\)</span> 是单特征值的部分可以不看</p>
 </blockquote>
-<hr>
-<p>现证明 $\rho(A)$ 是单特征值，我们先证明 $\rho(A)$ 的几何重数是 1，设 $Ay = \rho(A) y,0 \neq y \in \mathbf{C}^n$ 则 $A|y|  \geq \rho(A)|y|$ 上面证明过程表明上式是等式（细品，走一遍没毛病）且 $|y|&gt;0$。可见 $A$ 的对应于 $\rho(A)$ 的特征向量不含零分量。设 $y$ 和 $z$ 是对应 $\rho(A)$ 的特征向量。则 $|y|&gt;0,|z|&gt;0.z_1 y-y_ 1 z$ 属于 $\rho(A)$ 的特征子空间，但 $z_1 y-y_ 1 z$ 的第一个分量为 0，所以它不可能是 $\rho(A)$ 的特征值，因此，$z_1 y-y_ 1 z＝0$，$y$ 和 $z$ 线性相关，所以 $\rho(A)$ 的几何重数为 1.</p>
-<p>为了证明 $r=\rho(A)$ 是特征多项式 $\phi(\lambda) = det(\lambda I - A)$ 的单根，只需证明，导数 $\phi’(r) \neq 0$</p>
-<p>用 $adj(X)$ 表示矩阵 $X$ 的 <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BC%B4%E9%9A%8F%E7%9F%A9%E9%98%B5/10034983?fr=aladdin">伴随矩阵</a>。我们有</p>
-<script type="math/tex; mode=display">
-\phi'(\lambda) = \sum_{i=1}^n det[(\lambda I - A)(i|i)]
-=tr[adj(\lambda I - A)]</script><blockquote>
-<p>$X(i|j)$ 表示矩阵去掉第 $i$ 行和第 $j$ 列所剩下的矩阵</p>
-</blockquote>
-<p>记 $B(r)=adj(rI-A)$ 则 $\phi’(r) = tr B(r)$</p>
-<script type="math/tex; mode=display">
-(rI-A)B(r) = det(rI-A)I</script><p>因为 $r$ 的几何重数为 1，所以 $rank(rI-A)=n-1$，于是 $B(r) \neq 0$。设 $b$ 是$B(r)$的任意一个非零列，则$(rI-A)b=0$,因此 $b$ 是 $A$ 的对应于 $r$ 的特征向量，但是 $A$ 有一个对应于 $r$ 的特征向量 $x^0$，且因为 $r$ 的几何重数为 1，因此 $b$ 是 $x^0$ 的一个常数倍，从而 $b&gt;0$ 或者 $b<0$。这就证明了 $B(r)$ 的每一列要么是零列，要么是正向量，要么是负向量。考虑 $[B(r)]^T = adj(rI-A^T),r=\rho(A)=\rho(A^T)$。上面结论应用于 $[B(r)]^T$ 的列，所以 $B(r)>0$ 或者 $B(r)&lt;0$，从而 $\phi’(r)=tr[B(r)] \neq 0$，这就证明了 $\rho(A)$ 是单特征值。</p>
-<hr>
-<p>我们已经证明了(1),(2)。现在来证明(3)。设 $y&gt;0$ 是 $A^T$ 对应于 $\rho(A)$ 的特征向量，设 $x$ 是 $A$ 的任意一个非负特征向量：$Ax = \mu x$。则 $\mu y^T x = y^T Ax = \rho(A)y^Tx$, 因为 $y^Tx&gt;0$, 我们有 $\mu = \rho(A)$，证毕。</p>
+<hr />
+<p>现证明 <span class="math inline">\(\rho(A)\)</span> 是单特征值，我们先证明 <span class="math inline">\(\rho(A)\)</span> 的几何重数是 1，设 <span class="math inline">\(Ay = \rho(A) y,0 \neq y \in \mathbf{C}^n\)</span> 则 <span class="math inline">\(A|y| \geq \rho(A)|y|\)</span> 上面证明过程表明上式是等式（细品，走一遍没毛病）且 <span class="math inline">\(|y|&gt;0\)</span>。可见 <span class="math inline">\(A\)</span> 的对应于 <span class="math inline">\(\rho(A)\)</span> 的特征向量不含零分量。设 <span class="math inline">\(y\)</span> 和 <span class="math inline">\(z\)</span> 是对应 <span class="math inline">\(\rho(A)\)</span> 的特征向量。则 <span class="math inline">\(|y|&gt;0,|z|&gt;0.z_1 y-y_ 1 z\)</span> 属于 <span class="math inline">\(\rho(A)\)</span> 的特征子空间，但 <span class="math inline">\(z_1 y-y_ 1 z\)</span> 的第一个分量为 0，所以它不可能是 <span class="math inline">\(\rho(A)\)</span> 的特征值，因此，<span class="math inline">\(z_1 y-y_ 1 z＝0\)</span>，<span class="math inline">\(y\)</span> 和 <span class="math inline">\(z\)</span> 线性相关，所以 <span class="math inline">\(\rho(A)\)</span> 的几何重数为 1.</p>
+<p>为了证明 <span class="math inline">\(r=\rho(A)\)</span> 是特征多项式 <span class="math inline">\(\phi(\lambda) = det(\lambda I - A)\)</span> 的单根，只需证明，导数 <span class="math inline">\(\phi&#39;(r) \neq 0\)</span></p>
+<p>用 <span class="math inline">\(adj(X)\)</span> 表示矩阵 <span class="math inline">\(X\)</span> 的 <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BC%B4%E9%9A%8F%E7%9F%A9%E9%98%B5/10034983?fr=aladdin">伴随矩阵</a>。我们有 <span class="math display">\[
+\phi&#39;(\lambda) = \sum_{i=1}^n det[(\lambda I - A)(i|i)]
+=tr[adj(\lambda I - A)]
+\]</span> &gt; <span class="math inline">\(X(i|j)\)</span> 表示矩阵去掉第 <span class="math inline">\(i\)</span> 行和第 <span class="math inline">\(j\)</span> 列所剩下的矩阵</p>
+<p>记 <span class="math inline">\(B(r)=adj(rI-A)\)</span> 则 <span class="math inline">\(\phi&#39;(r) = tr B(r)\)</span> <span class="math display">\[
+(rI-A)B(r) = det(rI-A)I
+\]</span> 因为 <span class="math inline">\(r\)</span> 的几何重数为 1，所以 <span class="math inline">\(rank(rI-A)=n-1\)</span>，于是 <span class="math inline">\(B(r) \neq 0\)</span>。设 <span class="math inline">\(b\)</span> 是<span class="math inline">\(B(r)\)</span>的任意一个非零列，则<span class="math inline">\((rI-A)b=0\)</span>,因此 <span class="math inline">\(b\)</span> 是 <span class="math inline">\(A\)</span> 的对应于 <span class="math inline">\(r\)</span> 的特征向量，但是 <span class="math inline">\(A\)</span> 有一个对应于 <span class="math inline">\(r\)</span> 的特征向量 <span class="math inline">\(x^0\)</span>，且因为 <span class="math inline">\(r\)</span> 的几何重数为 1，因此 <span class="math inline">\(b\)</span> 是 <span class="math inline">\(x^0\)</span> 的一个常数倍，从而 <span class="math inline">\(b&gt;0\)</span> 或者 <span class="math inline">\(b&lt;0\)</span>。这就证明了 <span class="math inline">\(B(r)\)</span> 的每一列要么是零列，要么是正向量，要么是负向量。考虑 <span class="math inline">\([B(r)]^T = adj(rI-A^T),r=\rho(A)=\rho(A^T)\)</span>。上面结论应用于 <span class="math inline">\([B(r)]^T\)</span> 的列，所以 <span class="math inline">\(B(r)&gt;0\)</span> 或者 <span class="math inline">\(B(r)&lt;0\)</span>，从而 <span class="math inline">\(\phi&#39;(r)=tr[B(r)] \neq 0\)</span>，这就证明了 <span class="math inline">\(\rho(A)\)</span> 是单特征值。</p>
+<hr />
+<p>我们已经证明了(1),(2)。现在来证明(3)。设 <span class="math inline">\(y&gt;0\)</span> 是 <span class="math inline">\(A^T\)</span> 对应于 <span class="math inline">\(\rho(A)\)</span> 的特征向量，设 <span class="math inline">\(x\)</span> 是 <span class="math inline">\(A\)</span> 的任意一个非负特征向量：<span class="math inline">\(Ax = \mu x\)</span>。则 <span class="math inline">\(\mu y^T x = y^T Ax = \rho(A)y^Tx\)</span>, 因为 <span class="math inline">\(y^Tx&gt;0\)</span>, 我们有 <span class="math inline">\(\mu = \rho(A)\)</span>，证毕。</p>
 <blockquote>
-<p>由<strong>引理 4</strong>，$A$ 的非负特征向量实际上都是正向量，因此结论 3 可叙述成：在$A$ 的所有特征向量中，只有 $\rho(A)$ 有非负特征向量。上述证明还确定了以下结果：</p>
+<p>由<strong>引理 4</strong>，<span class="math inline">\(A\)</span> 的非负特征向量实际上都是正向量，因此结论 3 可叙述成：在<span class="math inline">\(A\)</span> 的所有特征向量中，只有 <span class="math inline">\(\rho(A)\)</span> 有非负特征向量。上述证明还确定了以下结果：</p>
 </blockquote>
-<h2 id="定理-8-设-A-是不可约非负矩阵，则-rho-A-max-lbrace-f-A-x-x-in-mathbf-R-n-backslash-lbrace-0-rbrace-rbrace-gt-0-若-x-in-mathbf-R-n-backslash-lbrace-0-rbrace-f-A-x-rho-A-则-x-gt-0-是对应于-rho-A-的一个特征向量"><a href="#定理-8-设-A-是不可约非负矩阵，则-rho-A-max-lbrace-f-A-x-x-in-mathbf-R-n-backslash-lbrace-0-rbrace-rbrace-gt-0-若-x-in-mathbf-R-n-backslash-lbrace-0-rbrace-f-A-x-rho-A-则-x-gt-0-是对应于-rho-A-的一个特征向量" class="headerlink" title="定理 8. 设 $A$ 是不可约非负矩阵，则 $\rho(A) = \max \lbrace f_A(x)|x\in \mathbf{R}_+ ^n \backslash \lbrace 0 \rbrace \rbrace &gt; 0$ , 若$ x \in \mathbf{R} _+ ^n \backslash \lbrace 0 \rbrace ,f_A(x) = \rho(A)$ 则$x&gt;0$ 是对应于$\rho(A)$的一个特征向量"></a>定理 8. 设 $A$ 是不可约非负矩阵，则 $\rho(A) = \max \lbrace f_A(x)|x\in \mathbf{R}_+ ^n \backslash \lbrace 0 \rbrace \rbrace &gt; 0$ , 若$ x \in \mathbf{R} _+ ^n \backslash \lbrace 0 \rbrace ,f_A(x) = \rho(A)$ 则$x&gt;0$ 是对应于$\rho(A)$的一个特征向量</h2><h2 id="定理-9-设-A-是一个非负矩阵，则-rho-A-是-A-的特征值，且-A-有一个对应于-rho-A-的非负特征向量"><a href="#定理-9-设-A-是一个非负矩阵，则-rho-A-是-A-的特征值，且-A-有一个对应于-rho-A-的非负特征向量" class="headerlink" title="定理 9. 设 $A$ 是一个非负矩阵，则 $\rho(A)$ 是 $A$ 的特征值，且 $A$ 有一个对应于$\rho(A)$的非负特征向量"></a>定理 9. 设 $A$ 是一个非负矩阵，则 $\rho(A)$ 是 $A$ 的特征值，且 $A$ 有一个对应于$\rho(A)$的非负特征向量</h2><p><strong>Proof</strong>：设$A$的阶数为$n$，定理对$n=1$是平凡地成立。下面设$n=2$，用$J$表示元素全为 1 的矩阵。<br>对于正整数 $k$，记 $A_k = A + \frac{1}{k} J$ 是一个正矩阵，由 Perron-Frobenius 定理，$A_k$ 在 $\Omega _n = \lbrace x \in \mathbf{R}_+ ^n | \sum _{i=1} ^n = 1 \rbrace$ 中有唯一一个对应于 $\rho(A_k)$ 的特征向量 $x^k$。</p>
-<p>因为向量序列 $\lbrace x^k \rbrace$ 有界因此，由 Bolzano-Weierstrass 定理,$\lbrace x^k \rbrace $ 有收敛子列 $\lbrace x^{k_i} \rbrace: \lim_{i \to \infty } x^{k_i} = x$。显然 $x \in \Omega_n$ 因此</p>
-<script type="math/tex; mode=display">
-A _{k_i}x^{k _i} = \rho(A_{k _i}) x^{k_i}</script><p>注意到当 $i \to \infty$ 时， $A _{k_i} \to A , \rho(A _{k_i}) \to \rho(A)$ 从而得到 $Ax = \rho(A)x$，证毕。</p>
+<h2 id="定理-8.-设-a-是不可约非负矩阵则-rhoa-max-lbrace-f_axxin-mathbfr_-n-backslash-lbrace-0-rbrace-rbrace-0-若-x-_-n-f_ax-a-则x0-是对应于rhoa的一个特征向量">定理 8. 设 <span class="math inline">\(A\)</span> 是不可约非负矩阵，则 <span class="math inline">\(\rho(A) = \max \lbrace f_A(x)|x\in \mathbf{R}_+ ^n \backslash \lbrace 0 \rbrace \rbrace &gt; 0\)</span> , 若$ x  _+ ^n  ,f_A(x) = (A)$ 则<span class="math inline">\(x&gt;0\)</span> 是对应于<span class="math inline">\(\rho(A)\)</span>的一个特征向量</h2>
+<h2 id="定理-9.-设-a-是一个非负矩阵则-rhoa-是-a-的特征值且-a-有一个对应于rhoa的非负特征向量">定理 9. 设 <span class="math inline">\(A\)</span> 是一个非负矩阵，则 <span class="math inline">\(\rho(A)\)</span> 是 <span class="math inline">\(A\)</span> 的特征值，且 <span class="math inline">\(A\)</span> 有一个对应于<span class="math inline">\(\rho(A)\)</span>的非负特征向量</h2>
+<p><strong>Proof</strong>：设<span class="math inline">\(A\)</span>的阶数为<span class="math inline">\(n\)</span>，定理对<span class="math inline">\(n=1\)</span>是平凡地成立。下面设<span class="math inline">\(n=2\)</span>，用<span class="math inline">\(J\)</span>表示元素全为 1 的矩阵。 对于正整数 <span class="math inline">\(k\)</span>，记 <span class="math inline">\(A_k = A + \frac{1}{k} J\)</span> 是一个正矩阵，由 Perron-Frobenius 定理，<span class="math inline">\(A_k\)</span> 在 <span class="math inline">\(\Omega _n = \lbrace x \in \mathbf{R}_+ ^n | \sum _{i=1} ^n = 1 \rbrace\)</span> 中有唯一一个对应于 <span class="math inline">\(\rho(A_k)\)</span> 的特征向量 <span class="math inline">\(x^k\)</span>。</p>
+<p>因为向量序列 <span class="math inline">\(\lbrace x^k \rbrace\)</span> 有界因此，由 Bolzano-Weierstrass 定理,$x^k $ 有收敛子列 <span class="math inline">\(\lbrace x^{k_i} \rbrace: \lim_{i \to \infty } x^{k_i} = x\)</span>。显然 <span class="math inline">\(x \in \Omega_n\)</span> 因此 <span class="math display">\[
+A _{k_i}x^{k _i} = \rho(A_{k _i}) x^{k_i}
+\]</span> 注意到当 <span class="math inline">\(i \to \infty\)</span> 时， <span class="math inline">\(A _{k_i} \to A , \rho(A _{k_i}) \to \rho(A)\)</span> 从而得到 <span class="math inline">\(Ax = \rho(A)x\)</span>，证毕。</p>
 <blockquote>
 <p>至此，Prron-Frobenius 定理介绍完毕。下面介绍一个非负矩阵特征值的界。</p>
 </blockquote>
-<h2 id="定理-10-设-A-是非负矩阵，则"><a href="#定理-10-设-A-是非负矩阵，则" class="headerlink" title="定理 10 设 $A$ 是非负矩阵，则"></a>定理 10 设 $A$ 是非负矩阵，则</h2><script type="math/tex; mode=display">
-\min_{1 \leq i \leq n} r_i \leq \rho(A) \leq \max_{1 \leq i \leq n} r_i</script><script type="math/tex; mode=display">
-\min_{1 \leq i \leq n} c_i \leq \rho(A) \leq \max_{1 \leq i \leq n} c_i</script><p>其中 $r_i, c_i$ 分别为 $A$ 的第 $i$ 行之和以及第 $i$ 列之和。</p>
-<p><strong>Proof</strong>：设 $x$ 是 $A^T$ 的一个 Perron 向量(对应于谱半径的非负特征向量)。因为 $\rho(A^T)=\rho(A)$， 从而 $A^Tx=\rho(A)x$ 得到</p>
-<script type="math/tex; mode=display">
-\rho(A)x_i = \sum_{k=1}^n a_{ki}x_k \qquad i = 1,\cdots,n.</script><p>将这些等式相加得到 $\rho(A) \sum_{i=1}^n x_i =\sum_{k=1}^n r_k x_k$ 即</p>
-<script type="math/tex; mode=display">
-\rho(A)= \frac{\sum_{k=1}^n r_k x_k }{\sum_{i=1}^n x_i}</script><p>证毕。</p>
-<h2 id="定理-11-Wielandt-设-A-是不可约非负矩阵，且-B-leq-A-则对于-B-的任何特征值-lambda-有"><a href="#定理-11-Wielandt-设-A-是不可约非负矩阵，且-B-leq-A-则对于-B-的任何特征值-lambda-有" class="headerlink" title="定理 11(Wielandt) 设$A$是不可约非负矩阵，且$|B| \leq A$ 则对于 $B$ 的任何特征值 $\lambda$有"></a>定理 11(Wielandt) 设$A$是不可约非负矩阵，且$|B| \leq A$ 则对于 $B$ 的任何特征值 $\lambda$有</h2><script type="math/tex; mode=display">
-|\lambda| \leq \rho(A)</script><p><strong>Proof</strong>：设$Bx=\lambda x$ 则 $|B||x| \geq |\lambda||x|$，但是 $|B| \leq A$，所以 $|\lambda| |x| \leq |B||x| \leq A |x|$，由 <strong>引理 5.2</strong> 和 <strong>引理 8</strong> 知</p>
-<script type="math/tex; mode=display">
-|\lambda| \leq f_A(|x|) \leq \rho(A)</script><p>证毕。</p>
+<h2 id="定理-10-设-a-是非负矩阵则">定理 10 设 <span class="math inline">\(A\)</span> 是非负矩阵，则</h2>
+<p><span class="math display">\[
+\min_{1 \leq i \leq n} r_i \leq \rho(A) \leq \max_{1 \leq i \leq n} r_i
+\]</span></p>
+<p><span class="math display">\[
+\min_{1 \leq i \leq n} c_i \leq \rho(A) \leq \max_{1 \leq i \leq n} c_i
+\]</span></p>
+<p>其中 <span class="math inline">\(r_i, c_i\)</span> 分别为 <span class="math inline">\(A\)</span> 的第 <span class="math inline">\(i\)</span> 行之和以及第 <span class="math inline">\(i\)</span> 列之和。</p>
+<p><strong>Proof</strong>：设 <span class="math inline">\(x\)</span> 是 <span class="math inline">\(A^T\)</span> 的一个 Perron 向量(对应于谱半径的非负特征向量)。因为 <span class="math inline">\(\rho(A^T)=\rho(A)\)</span>， 从而 <span class="math inline">\(A^Tx=\rho(A)x\)</span> 得到 <span class="math display">\[
+\rho(A)x_i = \sum_{k=1}^n a_{ki}x_k \qquad i = 1,\cdots,n.
+\]</span> 将这些等式相加得到 <span class="math inline">\(\rho(A) \sum_{i=1}^n x_i =\sum_{k=1}^n r_k x_k\)</span> 即 <span class="math display">\[
+\rho(A)= \frac{\sum_{k=1}^n r_k x_k }{\sum_{i=1}^n x_i}
+\]</span> 证毕。</p>
+<h2 id="定理-11wielandt-设a是不可约非负矩阵且b-leq-a-则对于-b-的任何特征值-lambda有">定理 11(Wielandt) 设<span class="math inline">\(A\)</span>是不可约非负矩阵，且<span class="math inline">\(|B| \leq A\)</span> 则对于 <span class="math inline">\(B\)</span> 的任何特征值 <span class="math inline">\(\lambda\)</span>有</h2>
+<p><span class="math display">\[
+|\lambda| \leq \rho(A)
+\]</span></p>
+<p><strong>Proof</strong>：设<span class="math inline">\(Bx=\lambda x\)</span> 则 <span class="math inline">\(|B||x| \geq |\lambda||x|\)</span>，但是 <span class="math inline">\(|B| \leq A\)</span>，所以 <span class="math inline">\(|\lambda| |x| \leq |B||x| \leq A |x|\)</span>，由 <strong>引理 5.2</strong> 和 <strong>引理 8</strong> 知 <span class="math display">\[
+|\lambda| \leq f_A(|x|) \leq \rho(A)
+\]</span> 证毕。</p>
 <p>根据谱半径的连续性，我们马上有如下推论</p>
-<ol>
-<li>若矩阵 $A$ 非负，且$|B| \leq A$，则 $\rho(B) \leq \rho(A)$</li>
-<li>对任意矩阵$A$，$\rho(A) \leq \rho(|A|)$.(这个直接证明也可以)</li>
+<ol type="1">
+<li>若矩阵 <span class="math inline">\(A\)</span> 非负，且<span class="math inline">\(|B| \leq A\)</span>，则 <span class="math inline">\(\rho(B) \leq \rho(A)\)</span></li>
+<li>对任意矩阵<span class="math inline">\(A\)</span>，<span class="math inline">\(\rho(A) \leq \rho(|A|)\)</span>.(这个直接证明也可以)</li>
 </ol>
 <blockquote>
 <p>本文源自詹兴致所著的《矩阵论》第六章。</p>

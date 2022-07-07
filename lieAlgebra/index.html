@@ -222,7 +222,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          3.1k 字
+          3.4k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
           <!-- compatible with older versions-->
-          27 分钟
+          29 分钟
         
       </span>
     
@@ -290,45 +290,53 @@
 <p>以上纯属废话 0.0</p>
 </blockquote>
 <span id="more"></span>
-<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>交换环 $K$ 上的模 $L$，以及一个运算 $L \times L \to L,(x,y) \mapsto [x,y]$ 称为 $x,y$ 的 Lie 括号，或交换子，并称 $L$ 是 $K$ 上的 Lie Algebra，如果满足如下公理。<br>L1. $[\cdot,\cdot]$ 是双线性的；<br>L2. $[x,x]=0$ 对任意 $x \in L$ 成立；<br>L3. $[x,[y,z]]+[y,[z,x]]+[z,[x,y]]=0$ (Jacobi 恒等式)</p>
-<p>若 $[L,L]=0$ 则上面结论显然成立，此时称为 Abelian Lie Algebra。</p>
+<h2 id="定义">定义</h2>
+<p>交换环 <span class="math inline">\(K\)</span> 上的模 <span class="math inline">\(L\)</span>，以及一个运算 <span class="math inline">\(L \times L \to L,(x,y) \mapsto [x,y]\)</span> 称为 <span class="math inline">\(x,y\)</span> 的 Lie 括号，或交换子，并称 <span class="math inline">\(L\)</span> 是 <span class="math inline">\(K\)</span> 上的 Lie Algebra，如果满足如下公理。 L1. <span class="math inline">\([\cdot,\cdot]\)</span> 是双线性的； L2. <span class="math inline">\([x,x]=0\)</span> 对任意 <span class="math inline">\(x \in L\)</span> 成立； L3. <span class="math inline">\([x,[y,z]]+[y,[z,x]]+[z,[x,y]]=0\)</span> (Jacobi 恒等式)</p>
+<p>若 <span class="math inline">\([L,L]=0\)</span> 则上面结论显然成立，此时称为 Abelian Lie Algebra。</p>
 <blockquote>
-<p>我们通常并不考虑 Abelian Lie Algebra。并且要求交换环 $K$ 是域 $F$，很多时候还要求 $F$ 是特征为 0 的代数闭域，另外我们大多考虑 $L$ 是 $F$ 上的有限维线性空间。</p>
+<p>我们通常并不考虑 Abelian Lie Algebra。并且要求交换环 <span class="math inline">\(K\)</span> 是域 <span class="math inline">\(F\)</span>，很多时候还要求 <span class="math inline">\(F\)</span> 是特征为 0 的代数闭域，另外我们大多考虑 <span class="math inline">\(L\)</span> 是 <span class="math inline">\(F\)</span> 上的有限维线性空间。</p>
 </blockquote>
 <p>子，理想，商，同态，表示等一系列的概念和其它代数结构几乎一致。可以划入范畴中。另外单，半单，Radical 等这些概念也于环里面的类似，就不赘述了。</p>
-<h2 id="样板-Lie-Algebra"><a href="#样板-Lie-Algebra" class="headerlink" title="样板 Lie Algebra"></a>样板 Lie Algebra</h2><p>若 $V$ 是 $F$ 上有限维线性空间，$End V$ 表示 $V$ 到 $V$ 的线性变换全体按照元素的复合构成了 $F$ 上的线性空间且 $\dim End V = (\dim V)^2$。也构成了 $End V$ 是一个结合 $F$-代数。而任何结合代数都可以诱导一个 Lie 代数： $[x,y]=xy - yx$ 。为了强调 Lie 结构，我们用 $\mathbb{gl}(V)$ 代替 $End V$，称为 general linear algebra。它在 Lie 代数中充当的角色很类似于置换群在群中的角色。我们知道半单 Lie 代数同构于 $\mathbb{gl}(V)$ 的一个子 Lie 代数。</p>
-<h2 id="导子和伴随表示"><a href="#导子和伴随表示" class="headerlink" title="导子和伴随表示"></a>导子和伴随表示</h2><p>我们称一个 $F-$代数 $A$（可以非结合）也可以借助导子(derivation)诱导一个 Lie 代数，称一个导子是指一个线性映射 $\delta: A \to A$ 满足 $\delta(ab)=\delta(a)b+a\delta(b)$。易知导子 $Der A$ 全体构成了 $End A$ 的一个子空间，由于 $[\delta,\delta’] \in Der A$，因此 $Der A$ 构成了 $\mathbb{gl}(V)$的一个子 Lie 代数。<br>由于 Lie 代数 $L$ 也是 $F$-代数,因此我们也可以定义 $Der L$。这里的导子本质上就是 Jacobi 恒等式的变形。<br>定义 $ad_x: L \to L,y \mapsto [x,y]$，实际上 $ad_x \in Der L$。$L \to Der L,x \mapsto ad_x$ 称为 $L$ 的伴随表示(adiont representation)。</p>
-<h2 id="可解和幂零"><a href="#可解和幂零" class="headerlink" title="可解和幂零"></a>可解和幂零</h2><p>对于给定 Lie 代数 $L$，我们有理想降链<br>$L^{(0)} = L,L^{(1)}=[L^{(0)},L^{(0)}],\cdots,L^{(i)}=[L^{(i-1)},L^{(i-1)}],\cdots$。若存在 $n$ 使得 $L^{(n)} = 0$ 则称 $L$ 可解(slovable)。</p>
-<ol>
-<li>若$L$ 可解，$L$ 的子代数和同态像可解</li>
-<li>$I$ 是 $L$ 的可解理想，若 $L/I$ 可解，则 $L$ 可解。</li>
-<li>$I,J$ 是 $J$ 的可解理想，则 $I+J$ 也是。</li>
+<h2 id="样板-lie-algebra">样板 Lie Algebra</h2>
+<p>若 <span class="math inline">\(V\)</span> 是 <span class="math inline">\(F\)</span> 上有限维线性空间，<span class="math inline">\(End V\)</span> 表示 <span class="math inline">\(V\)</span> 到 <span class="math inline">\(V\)</span> 的线性变换全体按照元素的复合构成了 <span class="math inline">\(F\)</span> 上的线性空间且 <span class="math inline">\(\dim End V = (\dim V)^2\)</span>。也构成了 <span class="math inline">\(End V\)</span> 是一个结合 <span class="math inline">\(F\)</span>-代数。而任何结合代数都可以诱导一个 Lie 代数： <span class="math inline">\([x,y]=xy - yx\)</span> 。为了强调 Lie 结构，我们用 <span class="math inline">\(\mathbb{gl}(V)\)</span> 代替 <span class="math inline">\(End V\)</span>，称为 general linear algebra。它在 Lie 代数中充当的角色很类似于置换群在群中的角色。我们知道半单 Lie 代数同构于 <span class="math inline">\(\mathbb{gl}(V)\)</span> 的一个子 Lie 代数。</p>
+<h2 id="导子和伴随表示">导子和伴随表示</h2>
+<p>我们称一个 <span class="math inline">\(F-\)</span>代数 <span class="math inline">\(A\)</span>（可以非结合）也可以借助导子(derivation)诱导一个 Lie 代数，称一个导子是指一个线性映射 <span class="math inline">\(\delta: A \to A\)</span> 满足 <span class="math inline">\(\delta(ab)=\delta(a)b+a\delta(b)\)</span>。易知导子 <span class="math inline">\(Der A\)</span> 全体构成了 <span class="math inline">\(End A\)</span> 的一个子空间，由于 <span class="math inline">\([\delta,\delta’] \in Der A\)</span>，因此 <span class="math inline">\(Der A\)</span> 构成了 <span class="math inline">\(\mathbb{gl}(V)\)</span>的一个子 Lie 代数。 由于 Lie 代数 <span class="math inline">\(L\)</span> 也是 <span class="math inline">\(F\)</span>-代数,因此我们也可以定义 <span class="math inline">\(Der L\)</span>。这里的导子本质上就是 Jacobi 恒等式的变形。 定义 <span class="math inline">\(ad_x: L \to L,y \mapsto [x,y]\)</span>，实际上 <span class="math inline">\(ad_x \in Der L\)</span>。<span class="math inline">\(L \to Der L,x \mapsto ad_x\)</span> 称为 <span class="math inline">\(L\)</span> 的伴随表示(adiont representation)。</p>
+<h2 id="可解和幂零">可解和幂零</h2>
+<p>对于给定 Lie 代数 <span class="math inline">\(L\)</span>，我们有理想降链 <span class="math inline">\(L^{(0)} = L,L^{(1)}=[L^{(0)},L^{(0)}],\cdots,L^{(i)}=[L^{(i-1)},L^{(i-1)}],\cdots\)</span>。若存在 <span class="math inline">\(n\)</span> 使得 <span class="math inline">\(L^{(n)} = 0\)</span> 则称 <span class="math inline">\(L\)</span> 可解(slovable)。</p>
+<ol type="1">
+<li>若<span class="math inline">\(L\)</span> 可解，<span class="math inline">\(L\)</span> 的子代数和同态像可解</li>
+<li><span class="math inline">\(I\)</span> 是 <span class="math inline">\(L\)</span> 的可解理想，若 <span class="math inline">\(L/I\)</span> 可解，则 <span class="math inline">\(L\)</span> 可解。</li>
+<li><span class="math inline">\(I,J\)</span> 是 <span class="math inline">\(J\)</span> 的可解理想，则 <span class="math inline">\(I+J\)</span> 也是。</li>
 </ol>
-<p>由上述性质可知，$L$ 有唯一的极大可解理想。即为 $Rad L$,若 $Rad L =0$ 则称之为<strong>半单</strong>的，等价于 $L$ 无非零 Abelian 理想(充分性显然，必要性是因为 $Rad L$ 可解，考虑最后一个非 0 项必然是 Abelian 理想矛盾)。另外 我们称 $x \in End V$ 半单，若 $x$ 的极小多项式无重根。</p>
-<p>对于给定 Lie 代数 $L$，我们有理想降链<br>$L^0 = L,L^1=[L, L^0],\cdots,L^i=[L, L^{i-1}],\cdots$。若存在 $n$ 使得 $L^{n} = 0$ 则称 $L$ 幂零(nilpotent)。</p>
-<ol>
-<li>若$L$ 幂零，$L$ 的子代数和同态像幂零。</li>
-<li>若 $L/Z(L)$ 幂零。则 $L$ 幂零。</li>
-<li>若 $L$ 幂零且非 0，则 $Z(L) \neq 0$。</li>
+<p>由上述性质可知，<span class="math inline">\(L\)</span> 有唯一的极大可解理想。即为 <span class="math inline">\(Rad L\)</span>,若 <span class="math inline">\(Rad L =0\)</span> 则称之为<strong>半单</strong>的，等价于 <span class="math inline">\(L\)</span> 无非零 Abelian 理想(充分性显然，必要性是因为 <span class="math inline">\(Rad L\)</span> 可解，考虑最后一个非 0 项必然是 Abelian 理想矛盾)。另外 我们称 <span class="math inline">\(x \in End V\)</span> 半单，若 <span class="math inline">\(x\)</span> 的极小多项式无重根。</p>
+<p>对于给定 Lie 代数 <span class="math inline">\(L\)</span>，我们有理想降链 <span class="math inline">\(L^0 = L,L^1=[L, L^0],\cdots,L^i=[L, L^{i-1}],\cdots\)</span>。若存在 <span class="math inline">\(n\)</span> 使得 <span class="math inline">\(L^{n} = 0\)</span> 则称 <span class="math inline">\(L\)</span> 幂零(nilpotent)。</p>
+<ol type="1">
+<li>若<span class="math inline">\(L\)</span> 幂零，<span class="math inline">\(L\)</span> 的子代数和同态像幂零。</li>
+<li>若 <span class="math inline">\(L/Z(L)\)</span> 幂零。则 <span class="math inline">\(L\)</span> 幂零。</li>
+<li>若 <span class="math inline">\(L\)</span> 幂零且非 0，则 <span class="math inline">\(Z(L) \neq 0\)</span>。</li>
 </ol>
-<p>显然由于 $L^{(i)} \subset L^i$ 因此幂零一定可解，但是反之则不尽然，例如 $\mathbb{gl}(V)$ 中对应的上三角矩阵全体构成的 Lie 代数。由 Lie 定理的推论知：</p>
+<p>显然由于 <span class="math inline">\(L^{(i)} \subset L^i\)</span> 因此幂零一定可解，但是反之则不尽然，例如 <span class="math inline">\(\mathbb{gl}(V)\)</span> 中对应的上三角矩阵全体构成的 Lie 代数。由 Lie 定理的推论知：</p>
 <blockquote>
-<p>$L$ 可解的充要条件是 $[L,L]$ 幂零。</p>
+<p><span class="math inline">\(L\)</span> 可解的充要条件是 <span class="math inline">\([L,L]\)</span> 幂零。</p>
 </blockquote>
-<h3 id="ad-nilpotent"><a href="#ad-nilpotent" class="headerlink" title="ad-nilpotent"></a>ad-nilpotent</h3><p>$L$ 是一个 Lie 代数，$x \in L$, 称 $x$ ad-nilpotent 是指 $ad_x$ 幂零。<br>易知若 $x$ 幂零，则 $ad_x$ 幂零，但是反之不尽然。然而我们有 <strong>Engel 定理</strong>：</p>
-<h3 id="L-幂零当且仅当-ad-L-幂零"><a href="#L-幂零当且仅当-ad-L-幂零" class="headerlink" title="$L$ 幂零当且仅当 $ad L$ 幂零"></a>$L$ 幂零当且仅当 $ad L$ 幂零</h3><h2 id="一些重要结果"><a href="#一些重要结果" class="headerlink" title="一些重要结果"></a>一些重要结果</h2><p>这里罗列一些定理实际上就是搞清楚 Lie 代数中的一些问题和一些好的性质。</p>
-<p><strong>THM1</strong>. 设 $L$ 是 $\mathbb{gl}(V)$ 的子代数($L$ 中的元素可理解为矩阵)，$V$ 是有限维的，若 $L$ 中元素都幂零，则存在 $v \in V$ 使得 $L(v) = 0$.<br>上面结果是讲，$L$ 中元素都幂零，则 $L$ 有公共的 $0$ 特征向量。证明是很有技巧性的。构造一个 codemension 为 1 的子代数，并证明它是 $L$ 不变子空间。然后数学归纳法完成证明。上面定理还说明我们可以取定一组基使 $L$ 同时严格上三角。</p>
-<p><strong>THM2</strong>. 若 $L$ 幂零，$K$ 是 $L$ 的非零理想,则 $K \cap Z(L) \neq 0$</p>
-<p><strong>THM3</strong>. 设 $L$ 是 $\mathbb{gl}(V)$ 可解子代数，$V$ 是有限维的，则存在 $L$ 存在公共特征向量。</p>
-<p>上面定理还说明我们可以取定一组基使得 $L$ 同时上三角。</p>
-<p><strong>THM4</strong>. 若 $x \in EndV$，则存在唯一的分解 $x = x_s+x_n$，其中 $x_s$ 是半单的， $x_n$ 是幂零的，且 $x_s,x_n$ 都能表示成 $x$ 的无常数项的多项式。将其称之为 Jordan-Chevally 分解。</p>
-<p><strong>THM5</strong>. 若 $x$ 半单，则 $ad_x$ 半单。若 $x=x_s+x_n$ 是 Jordan-Chevally 分解，则 $ad_x = ad_{x_s} + ad_{x_n}$  也是。$Der A$ 包含其元素的 半单部分和幂零部分。</p>
-<p><strong>THM6</strong>. $A \subset B \subset End V $，令 $M = \lbrace x \in \mathbb{gl}(V) \mid [x,B] \subset A\rbrace$。若 $x \in M$ 满足，$Tr(xy)=0$ 对任意 $y\in M$ 成立，则 $x$ 幂零。</p>
-<p><strong>THM7</strong> $L \subset \mathbb{gl}(V)$，$V$ 是有限维的, 则 对任意 $x \in [L,L],\;y \in L$ 有 $Tr(xy)=0$ 当且仅当 $L$ 可解。</p>
-<p><strong>THM8</strong> 设 $L$ 是 Lie 代数，对任意 $x \in [L,L],\;y \in L$ 有 $Tr(ad_x ad_y)=0$ 则 $L$ 可解。</p>
-<p><strong>THM9</strong> 若 $L$ 是半单的，则 $L$ 可唯一写成单子理想的直和且 $L=[L,L],Z(L)=0$ 且 $L$ 的理想和同态像都是半单的。</p>
-<p><strong>THM10</strong> $ad L$ 是 $Der L$ 的理想，且若 $L$ 是半单的，则 $ad L = Der L$。</p>
-<h2 id="To-be-continue"><a href="#To-be-continue" class="headerlink" title="To be continue"></a>To be continue</h2>
+<h3 id="ad-nilpotent">ad-nilpotent</h3>
+<p><span class="math inline">\(L\)</span> 是一个 Lie 代数，<span class="math inline">\(x \in L\)</span>, 称 <span class="math inline">\(x\)</span> ad-nilpotent 是指 <span class="math inline">\(ad_x\)</span> 幂零。 易知若 <span class="math inline">\(x\)</span> 幂零，则 <span class="math inline">\(ad_x\)</span> 幂零，但是反之不尽然。然而我们有 <strong>Engel 定理</strong>：</p>
+<h3 id="l-幂零当且仅当-ad-l-幂零"><span class="math inline">\(L\)</span> 幂零当且仅当 <span class="math inline">\(ad L\)</span> 幂零</h3>
+<h2 id="一些重要结果">一些重要结果</h2>
+<p>这里罗列一些定理实际上就是搞清楚 Lie 代数中的一些问题和一些好的性质。</p>
+<p><strong>THM1</strong>. 设 <span class="math inline">\(L\)</span> 是 <span class="math inline">\(\mathbb{gl}(V)\)</span> 的子代数(<span class="math inline">\(L\)</span> 中的元素可理解为矩阵)，<span class="math inline">\(V\)</span> 是有限维的，若 <span class="math inline">\(L\)</span> 中元素都幂零，则存在 <span class="math inline">\(v \in V\)</span> 使得 <span class="math inline">\(L(v) = 0\)</span>. 上面结果是讲，<span class="math inline">\(L\)</span> 中元素都幂零，则 <span class="math inline">\(L\)</span> 有公共的 <span class="math inline">\(0\)</span> 特征向量。证明是很有技巧性的。构造一个 codemension 为 1 的子代数，并证明它是 <span class="math inline">\(L\)</span> 不变子空间。然后数学归纳法完成证明。上面定理还说明我们可以取定一组基使 <span class="math inline">\(L\)</span> 同时严格上三角。</p>
+<p><strong>THM2</strong>. 若 <span class="math inline">\(L\)</span> 幂零，<span class="math inline">\(K\)</span> 是 <span class="math inline">\(L\)</span> 的非零理想,则 <span class="math inline">\(K \cap Z(L) \neq 0\)</span></p>
+<p><strong>THM3</strong>. 设 <span class="math inline">\(L\)</span> 是 <span class="math inline">\(\mathbb{gl}(V)\)</span> 可解子代数，<span class="math inline">\(V\)</span> 是有限维的，则存在 <span class="math inline">\(L\)</span> 存在公共特征向量。</p>
+<p>上面定理还说明我们可以取定一组基使得 <span class="math inline">\(L\)</span> 同时上三角。</p>
+<p><strong>THM4</strong>. 若 <span class="math inline">\(x \in EndV\)</span>，则存在唯一的分解 <span class="math inline">\(x = x_s+x_n\)</span>，其中 <span class="math inline">\(x_s\)</span> 是半单的， <span class="math inline">\(x_n\)</span> 是幂零的，且 <span class="math inline">\(x_s,x_n\)</span> 都能表示成 <span class="math inline">\(x\)</span> 的无常数项的多项式。将其称之为 Jordan-Chevally 分解。</p>
+<p><strong>THM5</strong>. 若 <span class="math inline">\(x\)</span> 半单，则 <span class="math inline">\(ad_x\)</span> 半单。若 <span class="math inline">\(x=x_s+x_n\)</span> 是 Jordan-Chevally 分解，则 <span class="math inline">\(ad_x = ad_{x_s} + ad_{x_n}\)</span> 也是。<span class="math inline">\(Der A\)</span> 包含其元素的 半单部分和幂零部分。</p>
+<p><strong>THM6</strong>. $A B End V $，令 <span class="math inline">\(M = \lbrace x \in \mathbb{gl}(V) \mid [x,B] \subset A\rbrace\)</span>。若 <span class="math inline">\(x \in M\)</span> 满足，<span class="math inline">\(Tr(xy)=0\)</span> 对任意 <span class="math inline">\(y\in M\)</span> 成立，则 <span class="math inline">\(x\)</span> 幂零。</p>
+<p><strong>THM7</strong> <span class="math inline">\(L \subset \mathbb{gl}(V)\)</span>，<span class="math inline">\(V\)</span> 是有限维的, 则 对任意 <span class="math inline">\(x \in [L,L],\;y \in L\)</span> 有 <span class="math inline">\(Tr(xy)=0\)</span> 当且仅当 <span class="math inline">\(L\)</span> 可解。</p>
+<p><strong>THM8</strong> 设 <span class="math inline">\(L\)</span> 是 Lie 代数，对任意 <span class="math inline">\(x \in [L,L],\;y \in L\)</span> 有 <span class="math inline">\(Tr(ad_x ad_y)=0\)</span> 则 <span class="math inline">\(L\)</span> 可解。</p>
+<p><strong>THM9</strong> 若 <span class="math inline">\(L\)</span> 是半单的，则 <span class="math inline">\(L\)</span> 可唯一写成单子理想的直和且 <span class="math inline">\(L=[L,L],Z(L)=0\)</span> 且 <span class="math inline">\(L\)</span> 的理想和同态像都是半单的。</p>
+<p><strong>THM10</strong> <span class="math inline">\(ad L\)</span> 是 <span class="math inline">\(Der L\)</span> 的理想，且若 <span class="math inline">\(L\)</span> 是半单的，则 <span class="math inline">\(ad L = Der L\)</span>。</p>
+<h2 id="to-be-continue">To be continue</h2>
+
               
             </div>
             <hr/>

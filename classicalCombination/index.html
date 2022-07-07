@@ -222,7 +222,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.2k 字
+          4.5k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
           <!-- compatible with older versions-->
-          11 分钟
+          38 分钟
         
       </span>
     
@@ -290,101 +290,115 @@
 <p>卡特兰数，斯特林数，放球问题，这篇<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/command-block/sheng-cheng-han-shuo-za-tan#">神作</a>，包含了几乎所有能遇到的经典组合问题</p>
 </blockquote>
 <span id="more"></span>
-<h2 id="卡特兰（Catalan-）数"><a href="#卡特兰（Catalan-）数" class="headerlink" title="卡特兰（Catalan ）数"></a><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/卡特兰数/6125746?fr=aladdin">卡特兰（Catalan ）数</a></h2><p>$n$ 个 0 和 $n$ 个 1 组成的序列中始终要保持 <strong>任意前缀中</strong> 0 的个数不超过 1 的个数的序列个数为 $\frac{1}{n+1} {2n \choose n }$</p>
+<h2 id="卡特兰catalan-数"><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/卡特兰数/6125746?fr=aladdin">卡特兰（Catalan ）数</a></h2>
+<p><span class="math inline">\(n\)</span> 个 0 和 <span class="math inline">\(n\)</span> 个 1 组成的序列中始终要保持 <strong>任意前缀中</strong> 0 的个数不超过 1 的个数的序列个数为 <span class="math inline">\(\frac{1}{n+1} {2n \choose n }\)</span></p>
 <blockquote>
 <p>这个问题跟括号合理性等一系列问题合理性有关。</p>
 </blockquote>
-<p>$n$ 个 0 和 $m$ 个 1 组成的序列（$n \leq m$) 保持 <strong>任意前缀中</strong> 0 的个数不超过 1 的个数的序列个数为：</p>
-<script type="math/tex; mode=display">
-{n+m \choose n} - {n+m \choose n-1}</script><blockquote>
-<p>把 0 当 $x$-轴，1 当 $y$-轴，不合理的情况必然经过 $y = x+1$, 在第一次不合理时，后面的路径就开始与 $y = x +1$ 对称，最终结束点为 $(n-1, m+1)$</p>
+<p><span class="math inline">\(n\)</span> 个 0 和 <span class="math inline">\(m\)</span> 个 1 组成的序列（<span class="math inline">\(n \leq m\)</span>) 保持 <strong>任意前缀中</strong> 0 的个数不超过 1 的个数的序列个数为： <span class="math display">\[
+{n+m \choose n} - {n+m \choose n-1}
+\]</span></p>
+<blockquote>
+<p>把 0 当 <span class="math inline">\(x\)</span>-轴，1 当 <span class="math inline">\(y\)</span>-轴，不合理的情况必然经过 <span class="math inline">\(y = x+1\)</span>, 在第一次不合理时，后面的路径就开始与 <span class="math inline">\(y = x +1\)</span> 对称，最终结束点为 <span class="math inline">\((n-1, m+1)\)</span></p>
 </blockquote>
-<h2 id="斯特林（Stirling）数"><a href="#斯特林（Stirling）数" class="headerlink" title="斯特林（Stirling）数"></a><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/斯特林数">斯特林（Stirling）数</a></h2><p>关于这个问题可以参考 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/gzy-cjoier/p/8426987.html">这篇博客</a></p>
-<p>第一类斯特林数：长度为 $n$ 的排列恰好可以写成 $m$ 个轮换的排列个数一般简记为 $\begin{bmatrix} n \\ m\end{bmatrix}$。递推关系式：</p>
-<script type="math/tex; mode=display">
-\begin{bmatrix} n \\ m\end{bmatrix} = \begin{bmatrix} n - 1 \\ m - 1 \end{bmatrix} + (n - 1) \begin{bmatrix} n - 1 \\ m\end{bmatrix}</script><blockquote>
+<h2 id="斯特林stirling数"><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/斯特林数">斯特林（Stirling）数</a></h2>
+<p>关于这个问题可以参考 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/gzy-cjoier/p/8426987.html">这篇博客</a></p>
+<p>第一类斯特林数：长度为 <span class="math inline">\(n\)</span> 的排列恰好可以写成 <span class="math inline">\(m\)</span> 个轮换的排列个数一般简记为 <span class="math inline">\(\begin{bmatrix} n \\ m\end{bmatrix}\)</span>。递推关系式：</p>
+<p><span class="math display">\[
+\begin{bmatrix} n \\ m\end{bmatrix} = \begin{bmatrix} n - 1 \\ m - 1 \end{bmatrix} + (n - 1) \begin{bmatrix} n - 1 \\ m\end{bmatrix}
+\]</span></p>
+<blockquote>
 <p>其它递推公式可以看<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/421861786/answer/1481845770">我在知乎上的回答</a></p>
 </blockquote>
-<p>第二类斯特林数： 将 $n$ 个不同的元素拆分成 $m$ 个非空集合的方案数 $S(n,m)$。一般简记为$\begin{Bmatrix} n \\ m\end{Bmatrix}$  显然有递推关系式：</p>
-<script type="math/tex; mode=display">
-S(n,m) = S(n-1,m-1)+mS(n-1,m)</script><p>又我们知道：</p>
-<script type="math/tex; mode=display">
-m^n = \sum _{i=0} ^ m S(n,i) \times i! \times {m \choose i}</script><p>将 $n$ 个任意的放在 $m$ 个不同盒子中。右边的枚举非空盒子数量 $i$，$i$ 个盒子因为是不同的所以要乘 $i!$ （不用担心算多了，因为一旦分配好了，盒子本身即使无区别，放了东西就有区别了）<br><a href="../inverseFormulaAndItsMatrixForm">从我的这篇博文</a> 直接可知 (把 $n$ 看作常数）：</p>
-<script type="math/tex; mode=display">
-S(n,m) m! = \sum_{i=0}^m (-1)^{m-i} {m \choose i} i^n</script><p>改写成卷积形式也就是：</p>
-<script type="math/tex; mode=display">
-S(n,m)  = \sum_{i=0}^m \frac{(-1)^{i}}{i!} \frac{(m - i)^n}{(m - i)!}</script><blockquote>
+<p>第二类斯特林数： 将 <span class="math inline">\(n\)</span> 个不同的元素拆分成 <span class="math inline">\(m\)</span> 个非空集合的方案数 <span class="math inline">\(S(n,m)\)</span>。一般简记为<span class="math inline">\(\begin{Bmatrix} n \\ m\end{Bmatrix}\)</span> 显然有递推关系式： <span class="math display">\[
+S(n,m) = S(n-1,m-1)+mS(n-1,m)
+\]</span> 又我们知道： <span class="math display">\[
+m^n = \sum _{i=0} ^ m S(n,i) \times i! \times {m \choose i}
+\]</span> 将 <span class="math inline">\(n\)</span> 个任意的放在 <span class="math inline">\(m\)</span> 个不同盒子中。右边的枚举非空盒子数量 <span class="math inline">\(i\)</span>，<span class="math inline">\(i\)</span> 个盒子因为是不同的所以要乘 <span class="math inline">\(i!\)</span> （不用担心算多了，因为一旦分配好了，盒子本身即使无区别，放了东西就有区别了） <a href="../inverseFormulaAndItsMatrixForm">从我的这篇博文</a> 直接可知 (把 <span class="math inline">\(n\)</span> 看作常数）： <span class="math display">\[
+S(n,m) m! = \sum_{i=0}^m (-1)^{m-i} {m \choose i} i^n
+\]</span></p>
+<p>改写成卷积形式也就是：</p>
+<p><span class="math display">\[
+S(n,m)  = \sum_{i=0}^m \frac{(-1)^{i}}{i!} \frac{(m - i)^n}{(m - i)!}
+\]</span></p>
+<blockquote>
 <p>补充：知乎上 <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/hzy-46-50">Hongzy</a> 写了一篇 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/150779987">斯特林数入门</a> 的文章，写的甚好。包含了两类 Stirling 的关系以及上升幂和下降幂的关系。</p>
 </blockquote>
-<h2 id="正整数分拆数"><a href="#正整数分拆数" class="headerlink" title="正整数分拆数"></a>正整数分拆数</h2><p>将正整数 $n$ 拆分成 $m$ 个非负整数之和的方案数 $f(n,m)$：</p>
-<script type="math/tex; mode=display">
+<h2 id="正整数分拆数">正整数分拆数</h2>
+<p>将正整数 <span class="math inline">\(n\)</span> 拆分成 <span class="math inline">\(m\)</span> 个非负整数之和的方案数 <span class="math inline">\(f(n,m)\)</span>： <span class="math display">\[
 f(n,m) = \left\{ \begin{array}{lr}
-1 & n=m=1 \\
-f(n,n) & n<m \\
-1+f(n,n-1) & n=m \\
-f(n,m-1)+f(n-m,m) & n>m>1
-\end{array} \right.</script><blockquote>
-<p>完整分拆可以用生成函数取 ln 再取 exp $O(n \log n)$ 复杂度<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/command-block/sheng-cheng-han-shuo-za-tan#">解决</a></p>
+1 &amp; n=m=1 \\
+f(n,n) &amp; n&lt;m \\
+1+f(n,n-1) &amp; n=m \\
+f(n,m-1)+f(n-m,m) &amp; n&gt;m&gt;1
+\end{array} \right.
+\]</span></p>
+<blockquote>
+<p>完整分拆可以用生成函数取 ln 再取 exp <span class="math inline">\(O(n \log n)\)</span> 复杂度<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/command-block/sheng-cheng-han-shuo-za-tan#">解决</a></p>
 </blockquote>
-<h2 id="正整数分拆成乘积数"><a href="#正整数分拆成乘积数" class="headerlink" title="正整数分拆成乘积数"></a><a target="_blank" rel="noopener" href="https://oeis.org/A001055">正整数分拆成乘积数</a></h2><p>记 $fcnt(n,m)$ 表示 $n$ 的乘法分解都不超过 $m$ 的数</p>
-<script type="math/tex; mode=display">
-fcnt(n,m) = \sum_{d|n} [d<=m] fcnt(\frac{n}{d},d)</script><ul>
-<li>打表时间复杂度 $O(n^{\frac{5}{2}})$，空间复杂度 $O(n^2)$ 不推荐！</li>
+<h2 id="正整数分拆成乘积数"><a target="_blank" rel="noopener" href="https://oeis.org/A001055">正整数分拆成乘积数</a></h2>
+<p>记 <span class="math inline">\(fcnt(n,m)\)</span> 表示 <span class="math inline">\(n\)</span> 的乘法分解都不超过 <span class="math inline">\(m\)</span> 的数 <span class="math display">\[
+fcnt(n,m) = \sum_{d|n} [d&lt;=m] fcnt(\frac{n}{d},d)
+\]</span></p>
+<ul>
+<li>打表时间复杂度 <span class="math inline">\(O(n^{\frac{5}{2}})\)</span>，空间复杂度 <span class="math inline">\(O(n^2)\)</span> 不推荐！</li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">10004</span>;<br><span class="hljs-keyword">int</span> fcnt[N][N]; <span class="hljs-comment">//</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">initFcnt</span><span class="hljs-params">()</span></span>&#123;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;N;++i)  fcnt[<span class="hljs-number">1</span>][i] = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i&lt;N;++i)&#123;<br>    <span class="hljs-keyword">int</span> sn = <span class="hljs-built_in">sqrt</span>(i+<span class="hljs-number">0.2</span>);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> d = <span class="hljs-number">1</span>;d&lt;=sn;++d)&#123;<br>      <span class="hljs-keyword">if</span>(i%d) <span class="hljs-keyword">continue</span>;<br>      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = N<span class="hljs-number">-1</span>;j&gt;=d;--j)  fcnt[i][j]+=fcnt[i/d][d];<br>      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=N<span class="hljs-number">-1</span>;j&gt;=i/d;--j)  fcnt[i][j]+=fcnt[d][i/d];<br>    &#125;<br>    <span class="hljs-keyword">if</span>(sn*sn == i)&#123;<br>      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = N<span class="hljs-number">-1</span>;j&gt;=sn;--j)  fcnt[i][j]-=fcnt[sn][sn];<br>    &#125;<br>  &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getFcnt</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span></span>&#123;<br>  <span class="hljs-keyword">if</span>(fcnt[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>] != <span class="hljs-number">1</span>) <span class="hljs-built_in">initFcnt</span>();<br>  <span class="hljs-keyword">return</span> fcnt[n][n];<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>  <span class="hljs-keyword">int</span> n;<br>  <span class="hljs-keyword">while</span>(cin&gt;&gt;n)&#123;<br>    <span class="hljs-keyword">time_t</span> now = <span class="hljs-built_in">time</span>(<span class="hljs-number">0</span>);<br>    cout&lt;&lt;<span class="hljs-built_in">getFcnt</span>(n)&lt;&lt;endl;<br>    cout&lt;&lt;<span class="hljs-string">&quot;Time used: &quot;</span>&lt;&lt;<span class="hljs-built_in">difftime</span>(<span class="hljs-built_in">time</span>(<span class="hljs-number">0</span>),now)&lt;&lt;endl;<br>  &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 <ul>
 <li>递归（推荐复杂度不好分析）</li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">fcnt</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n,<span class="hljs-keyword">int</span> m)</span></span>&#123;<br>  <span class="hljs-keyword">if</span>(n == <span class="hljs-number">1</span>)  <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">int</span> sn = <span class="hljs-built_in">sqrt</span>(n+<span class="hljs-number">0.2</span>),ans = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> d = <span class="hljs-number">1</span>;d&lt;=sn;++d)&#123;<br>    <span class="hljs-keyword">if</span>(n%d)  <span class="hljs-keyword">continue</span>;<br>    <span class="hljs-keyword">if</span>(d&lt;=m &amp;&amp; d&gt;<span class="hljs-number">1</span>)  ans += <span class="hljs-built_in">fcnt</span>(n/d,d);<br>    <span class="hljs-keyword">if</span>(n/d&lt;=m) ans+= <span class="hljs-built_in">fcnt</span>(d,n/d);<br>  &#125;<br>  <span class="hljs-keyword">if</span>(sn*sn == n &amp;&amp; sn&lt;=m) ans-=<span class="hljs-built_in">fcnt</span>(sn,sn);<br>  <span class="hljs-keyword">return</span> ans;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>  <span class="hljs-keyword">int</span> n;<br>  <span class="hljs-keyword">while</span>(cin&gt;&gt;n)&#123; <span class="hljs-comment">// n=98765432109876 = 9.8*10^13 用时 42s, N 大点，耗时会小点</span><br>    <span class="hljs-keyword">time_t</span> now = <span class="hljs-built_in">time</span>(<span class="hljs-number">0</span>);<br>    cout&lt;&lt;<span class="hljs-built_in">fcnt</span>(n,n)&lt;&lt;endl;<br>    cout&lt;&lt;<span class="hljs-string">&quot;Time used: &quot;</span>&lt;&lt;<span class="hljs-built_in">difftime</span>(<span class="hljs-built_in">time</span>(<span class="hljs-number">0</span>),now)&lt;&lt;endl;<br>  &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="n-个球放在-m-个盒子中"><a href="#n-个球放在-m-个盒子中" class="headerlink" title="$n$ 个球放在 $m$ 个盒子中"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39942341/article/details/80246780">$n$ 个球放在 $m$ 个盒子中</a></h2><p>球有相同和不同两种情况，盒子也是，还有盒子能空和不能空，一共八种情况：</p>
+<h2 id="n-个球放在-m-个盒子中"><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39942341/article/details/80246780"><span class="math inline">\(n\)</span> 个球放在 <span class="math inline">\(m\)</span> 个盒子中</a></h2>
+<p>球有相同和不同两种情况，盒子也是，还有盒子能空和不能空，一共八种情况：</p>
 <ul>
 <li><p>球同，盒同，非空</p>
-<p>正整数拆分数之和 $f(n,m) - f(n,m-1)$</p>
-</li>
+<p>正整数拆分数之和 <span class="math inline">\(f(n,m) - f(n,m-1)\)</span></p></li>
 <li><p>球同，盒同，能空</p>
-<p>正整数拆分数 $f(n,m)$</p>
-</li>
+<p>正整数拆分数 <span class="math inline">\(f(n,m)\)</span></p></li>
 <li><p>球同，盒异，非空</p>
-<p>等价于 $x_1 + \cdots + x_m = n$ 的正整数解，插空法知道 $n-1 \choose m-1$</p>
-</li>
+<p>等价于 <span class="math inline">\(x_1 + \cdots + x_m = n\)</span> 的正整数解，插空法知道 <span class="math inline">\(n-1 \choose m-1\)</span></p></li>
 <li><p>球同，盒异，能空</p>
-<p>同上，$n+m-1 \choose m-1$</p>
-</li>
+<p>同上，<span class="math inline">\(n+m-1 \choose m-1\)</span></p></li>
 <li><p>球异，盒同，非空</p>
-<p>第二类斯特林数： $S(n,m)$</p>
-</li>
+<p>第二类斯特林数： <span class="math inline">\(S(n,m)\)</span></p></li>
 <li><p>球异，盒同，能空</p>
-<p>同上， $\sum_{i=1} ^m S(n,i)$</p>
-</li>
-<li><p>球异，盒异，非空：$m!S(n,m)$</p>
-</li>
-<li><p>球异，盒异，能空：$m^n$</p>
-</li>
+<p>同上， <span class="math inline">\(\sum_{i=1} ^m S(n,i)\)</span></p></li>
+<li><p>球异，盒异，非空：<span class="math inline">\(m!S(n,m)\)</span></p></li>
+<li><p>球异，盒异，能空：<span class="math inline">\(m^n\)</span></p></li>
 </ul>
-<h2 id="有限制的线性方程组的解"><a href="#有限制的线性方程组的解" class="headerlink" title="有限制的线性方程组的解"></a>有限制的线性方程组的解</h2><p>$x_1+ \cdots +x_n = m, c_i &lt; x_i \leq d_i$ 的正整数解的个数？（通过平移不妨设 $c_i = 0$）</p>
-<h3 id="m-较小时，动态规划直接做复杂度-O-m-2-n"><a href="#m-较小时，动态规划直接做复杂度-O-m-2-n" class="headerlink" title="$m$ 较小时，动态规划直接做复杂度 $O(m^2 n)$"></a>$m$ 较小时，动态规划直接做复杂度 $O(m^2 n)$</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> x = d[i]; x &gt; c[i]; --x)&#123;<br>    dp[i][j] += dp[i<span class="hljs-number">-1</span>][j-x];<br>&#125;<br></code></pre></td></tr></table></figure>
-<h3 id="n-较小时，直接暴力做"><a href="#n-较小时，直接暴力做" class="headerlink" title="$n$ 较小时，直接暴力做"></a>$n$ 较小时，直接暴力做</h3><blockquote>
-<p>首先化简为求解：$x_1+ \cdots +x_n = m, 0 \leq x_i \leq a_i$ 的正整数解的个数记作 f(n)</p>
+<h2 id="有限制的线性方程组的解">有限制的线性方程组的解</h2>
+<p><span class="math inline">\(x_1+ \cdots +x_n = m, c_i &lt; x_i \leq d_i\)</span> 的正整数解的个数？（通过平移不妨设 <span class="math inline">\(c_i = 0\)</span>）</p>
+<h3 id="m-较小时动态规划直接做复杂度-om2-n"><span class="math inline">\(m\)</span> 较小时，动态规划直接做复杂度 <span class="math inline">\(O(m^2 n)\)</span></h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> x = d[i]; x &gt; c[i]; --x)&#123;<br>    dp[i][j] += dp[i<span class="hljs-number">-1</span>][j-x];<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="n-较小时直接暴力做"><span class="math inline">\(n\)</span> 较小时，直接暴力做</h3>
+<blockquote>
+<p>首先化简为求解：<span class="math inline">\(x_1+ \cdots +x_n = m, 0 \leq x_i \leq a_i\)</span> 的正整数解的个数记作 f(n)</p>
 </blockquote>
-<p>我们先考虑 $n = 2$ 的情形，并且不妨设 $a_1 &lt; a_2$，我们分情况讨论可得</p>
-<script type="math/tex; mode=display">
+<p>我们先考虑 <span class="math inline">\(n = 2\)</span> 的情形，并且不妨设 <span class="math inline">\(a_1 &lt; a_2\)</span>，我们分情况讨论可得 <span class="math display">\[
 f(2) = \left\{ \begin{array}{ll}
-1 + m & m \leq a_1 \\
-1 + a_1 & a_1 < m < a_2 \\
-\max(1 + a_1 + a_2 - m, 0) & a_2 \leq m
-\end{array} \right.</script><p>记 $g(m, x, y) = \max(0, 1 + \min(m, x) + \min(0, y - m)$ (定义域：$x \leq y$) 则显然此时有（不妨设 $a_{2i + 1} &lt; a_{2i}$）：</p>
-<p>$f(1) = 1$, $f(2) = g(m, a_1, a_2)$, $f(3) = \sum_{x_3 = 0}^{\min(k, a_3)} g(k - x_3, a_1, a_2)$, $f(4) = \sum_{x = 0}^m g(x, a_1, a_2) \cdot g(m - x, a_3, a_4)$，可以一致这样搞下去（$n = 5, 6$ 可以依然可以用此方法），但是此时还不如直接用动态规划做法来做。</p>
-<h3 id="d-i-c-i-为一个常数时，用包容排斥原理"><a href="#d-i-c-i-为一个常数时，用包容排斥原理" class="headerlink" title="$d_i - c_i$ 为一个常数时，用包容排斥原理"></a>$d_i - c_i$ 为一个常数时，用包容排斥原理</h3><blockquote>
-<p>不妨设 $c_i = 0, d_i = k$</p>
+1 + m &amp; m \leq a_1 \\
+1 + a_1 &amp; a_1 &lt; m &lt; a_2 \\
+\max(1 + a_1 + a_2 - m, 0) &amp; a_2 \leq m
+\end{array} \right.
+\]</span> 记 <span class="math inline">\(g(m, x, y) = \max(0, 1 + \min(m, x) + \min(0, y - m)\)</span> (定义域：<span class="math inline">\(x \leq y\)</span>) 则显然此时有（不妨设 <span class="math inline">\(a_{2i + 1} &lt; a_{2i}\)</span>）：</p>
+<p><span class="math inline">\(f(1) = 1\)</span>, <span class="math inline">\(f(2) = g(m, a_1, a_2)\)</span>, <span class="math inline">\(f(3) = \sum_{x_3 = 0}^{\min(k, a_3)} g(k - x_3, a_1, a_2)\)</span>, <span class="math inline">\(f(4) = \sum_{x = 0}^m g(x, a_1, a_2) \cdot g(m - x, a_3, a_4)\)</span>，可以一致这样搞下去（<span class="math inline">\(n = 5, 6\)</span> 可以依然可以用此方法），但是此时还不如直接用动态规划做法来做。</p>
+<h3 id="d_i---c_i-为一个常数时用包容排斥原理"><span class="math inline">\(d_i - c_i\)</span> 为一个常数时，用包容排斥原理</h3>
+<blockquote>
+<p>不妨设 <span class="math inline">\(c_i = 0, d_i = k\)</span></p>
 </blockquote>
-<script type="math/tex; mode=display">
-{m-1 \choose n-1} - {n \choose 1} {m-k-1 \choose n-1} + \cdots (-1)^n {n \choose n} {m-nk-1 \choose n-1} = \sum_{i=0} ^ n (-1)^i {n \choose i} {m-ik-1 \choose n-1}</script><h2 id="求和式"><a href="#求和式" class="headerlink" title="求和式"></a>求和式</h2><script type="math/tex; mode=display">
-\sum_{\sum c_i x_i = m} \frac{(\sum x_i)!}{\prod (x_i !)}</script><p>其中 $m, c_i$ 是正整数，$x_i$ 是待定非负整数。考虑其组合意义如下：</p>
+<p><span class="math display">\[
+{m-1 \choose n-1} - {n \choose 1} {m-k-1 \choose n-1} + \cdots (-1)^n {n \choose n} {m-nk-1 \choose n-1} = \sum_{i=0} ^ n (-1)^i {n \choose i} {m-ik-1 \choose n-1}
+\]</span></p>
+<h2 id="求和式">求和式</h2>
+<p><span class="math display">\[
+\sum_{\sum c_i x_i = m} \frac{(\sum x_i)!}{\prod (x_i !)}
+\]</span></p>
+<p>其中 <span class="math inline">\(m, c_i\)</span> 是正整数，<span class="math inline">\(x_i\)</span> 是待定非负整数。考虑其组合意义如下：</p>
 <ul>
-<li>首先特殊情况 $c_i = 1$，此时可以理解为有 m 个洞，每个洞都要选择 n 个物体（每个物体占一个洞）中的一种的总方案数: $n^m$</li>
-<li>一般情况，m 个洞，每个洞有且仅有一个物体覆盖（第 i 个物体的长度为 $c_i$)的总方案数，直接 DP 即可（求和式表示洞中有 $x_i$ 个 $i$ 物体）</li>
+<li>首先特殊情况 <span class="math inline">\(c_i = 1\)</span>，此时可以理解为有 m 个洞，每个洞都要选择 n 个物体（每个物体占一个洞）中的一种的总方案数: <span class="math inline">\(n^m\)</span></li>
+<li>一般情况，m 个洞，每个洞有且仅有一个物体覆盖（第 i 个物体的长度为 <span class="math inline">\(c_i\)</span>)的总方案数，直接 DP 即可（求和式表示洞中有 <span class="math inline">\(x_i\)</span> 个 <span class="math inline">\(i\)</span> 物体）</li>
 </ul>
-<p>复杂度：$O(nm)$</p>
+<p>复杂度：<span class="math inline">\(O(nm)\)</span></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// \sum_&#123;\sum c_i x_i = m&#125; \frac&#123;(\sum x_i)!&#125;&#123;\prod (x_i !)&#125;</span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">sumNum</span><span class="hljs-params">(std::vector&lt;<span class="hljs-keyword">int</span>&gt; c, <span class="hljs-keyword">int</span> m, <span class="hljs-keyword">int</span> M)</span> </span>&#123;<br>  <span class="hljs-function">std::vector&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(m + <span class="hljs-number">1</span>)</span></span>;<br>  dp[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= m; ++i) &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> x : c) <span class="hljs-keyword">if</span> (x &lt;= i) &#123;<br>      dp[i] += dp[i - x];<br>      <span class="hljs-keyword">if</span> (dp[i] &gt;= M) dp[i] -= M;<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">return</span> dp[m];<br>&#125;<br></code></pre></td></tr></table></figure>
 
               

@@ -18,12 +18,12 @@
   <meta name="author" content="izlyforever">
   <meta name="keywords" content="math, cpp, python, sagemath">
   
-    <meta name="description" content="$\pi(x)$ 表示不超过 $x$ 的素数个数。容易看出可以在 $O(N)$ 时间复杂度，$O(N)$ 空间复杂度离线预处理求出小于 $N$ 的素数全体。但是如果 $N&#x3D;10^{14}$ 或者更大，这种做法必然是不现实的。因此下面给出高效的求解方法… 理论基础: 参考潘承洞《数论基础》以及论文包.zip">
+    <meta name="description" content="\(\pi(x)\) 表示不超过 \(x\) 的素数个数。容易看出可以在 \(O(N)\) 时间复杂度，\(O(N)\) 空间复杂度离线预处理求出小于 \(N\) 的素数全体。但是如果 \(N&#x3D;10^{14}\) 或者更大，这种做法必然是不现实的。因此下面给出高效的求解方法... 理论基础: 参考潘承洞《数论基础》以及论文包.zip">
 <meta property="og:type" content="article">
 <meta property="og:title" content="$\pi(x)$ 的计算">
 <meta property="og:url" content="http://izlyforever.com/computationOfPiX/index.html">
 <meta property="og:site_name" content="记录程序和数学的点滴">
-<meta property="og:description" content="$\pi(x)$ 表示不超过 $x$ 的素数个数。容易看出可以在 $O(N)$ 时间复杂度，$O(N)$ 空间复杂度离线预处理求出小于 $N$ 的素数全体。但是如果 $N&#x3D;10^{14}$ 或者更大，这种做法必然是不现实的。因此下面给出高效的求解方法… 理论基础: 参考潘承洞《数论基础》以及论文包.zip">
+<meta property="og:description" content="\(\pi(x)\) 表示不超过 \(x\) 的素数个数。容易看出可以在 \(O(N)\) 时间复杂度，\(O(N)\) 空间复杂度离线预处理求出小于 \(N\) 的素数全体。但是如果 \(N&#x3D;10^{14}\) 或者更大，这种做法必然是不现实的。因此下面给出高效的求解方法... 理论基础: 参考潘承洞《数论基础》以及论文包.zip">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2016-04-21T08:37:56.000Z">
 <meta property="article:modified_time" content="2022-06-25T09:14:02.470Z">
@@ -224,7 +224,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          4.9k 字
+          7.4k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
           <!-- compatible with older versions-->
-          41 分钟
+          62 分钟
         
       </span>
     
@@ -287,186 +287,238 @@
             
             <div class="markdown-body">
               
-              <p>$\pi(x)$ 表示不超过 $x$ 的素数个数。容易看出可以在 $O(N)$ 时间复杂度，$O(N)$ 空间复杂度离线预处理求出小于 $N$ 的素数全体。但是如果 $N=10^{14}$ 或者更大，这种做法必然是不现实的。因此下面给出高效的求解方法…</p>
+              <p><span class="math inline">\(\pi(x)\)</span> 表示不超过 <span class="math inline">\(x\)</span> 的素数个数。容易看出可以在 <span class="math inline">\(O(N)\)</span> 时间复杂度，<span class="math inline">\(O(N)\)</span> 空间复杂度离线预处理求出小于 <span class="math inline">\(N\)</span> 的素数全体。但是如果 <span class="math inline">\(N=10^{14}\)</span> 或者更大，这种做法必然是不现实的。因此下面给出高效的求解方法...</p>
 <p>理论基础: 参考潘承洞《数论基础》以及<a href="countPrime.zip">论文包.zip</a></p>
 <span id="more"></span>
-<h2 id="psi-x-s"><a href="#psi-x-s" class="headerlink" title="$\psi(x,s)$"></a>$\psi(x,s)$</h2><p>$\psi(x,s)$ 表示不超过 $x$ 且能不能被前 $s$ 个素数整除的正整数个数。即</p>
-<script type="math/tex; mode=display">
-\psi(x,s) = \sum_{n \leq x} \sum_{d|(n,m_s)} \mu(d) = \sum_{d|m_s} u(d)\lfloor \frac{x}{d} \rfloor</script><p>其中 $m_s = p_1 \cdots p_s$ 为前 $s$ 个素数的积。</p>
-<p>另一方面，显然我们有</p>
-<script type="math/tex; mode=display">
-\psi(x,s) = \psi(x,s-1) - \psi(\frac{x}{p_s},s-1)</script><h2 id="pi-x"><a href="#pi-x" class="headerlink" title="$\pi(x)$"></a>$\pi(x)$</h2><p>我们知道一个数 $n&gt;1$ 是素数当且仅当不存在素数 $p \leq \sqrt{n}$ 使得 $p \mid n$。因此当 $s \geq \pi(\sqrt{x})$ 时，</p>
-<script type="math/tex; mode=display">
-\psi(x,s) = \pi(x) - s + 1</script><h2 id="P-k-x-s"><a href="#P-k-x-s" class="headerlink" title="$P_k(x,s)$"></a>$P_k(x,s)$</h2><p>设 $P_k(x,s)$ 为 <strong>不超过 $x$ 且每个素因子都大于 $p_s$ 且素因子(按重根计)个数为 $k$</strong> 的整数个数（方法属于 Lehmer）。<br>进一步设 $P_0(x,s)=1$。则</p>
-<script type="math/tex; mode=display">
-\psi(x,s) = \sum_{k=0} ^{\infty} P_k(x,s)</script><p>显然 $P_1(x,s) = \pi(x)-s$。</p>
-<p>若 $\pi(\sqrt[3]{x}) \leq s \leq \pi(\sqrt{x})$ 则 $P_k(x,s)=0,k \geq 3$ 此时</p>
-<script type="math/tex; mode=display">
-\psi(x,s) = 1 + \pi(x)-s + P_2(x,s)</script><p>其中</p>
-<script type="math/tex; mode=display">
-P_2(x,s) = \sum_{k=s+1}^{\pi(\sqrt{x})} \left( \pi(\frac{x}{p_k}) - k + 1 \right)</script><blockquote>
-<p>注意到上式中 $\frac{x}{p_k} &lt;  x^{\frac{2}{3}}$</p>
+<h2 id="psixs"><span class="math inline">\(\psi(x,s)\)</span></h2>
+<p><span class="math inline">\(\psi(x,s)\)</span> 表示不超过 <span class="math inline">\(x\)</span> 且能不能被前 <span class="math inline">\(s\)</span> 个素数整除的正整数个数。即 <span class="math display">\[
+\psi(x,s) = \sum_{n \leq x} \sum_{d|(n,m_s)} \mu(d) = \sum_{d|m_s} u(d)\lfloor \frac{x}{d} \rfloor
+\]</span> 其中 <span class="math inline">\(m_s = p_1 \cdots p_s\)</span> 为前 <span class="math inline">\(s\)</span> 个素数的积。</p>
+<p>另一方面，显然我们有 <span class="math display">\[
+\psi(x,s) = \psi(x,s-1) - \psi(\frac{x}{p_s},s-1)
+\]</span></p>
+<h2 id="pix"><span class="math inline">\(\pi(x)\)</span></h2>
+<p>我们知道一个数 <span class="math inline">\(n&gt;1\)</span> 是素数当且仅当不存在素数 <span class="math inline">\(p \leq \sqrt{n}\)</span> 使得 <span class="math inline">\(p \mid n\)</span>。因此当 <span class="math inline">\(s \geq \pi(\sqrt{x})\)</span> 时， <span class="math display">\[
+\psi(x,s) = \pi(x) - s + 1
+\]</span></p>
+<h2 id="p_kxs"><span class="math inline">\(P_k(x,s)\)</span></h2>
+<p>设 <span class="math inline">\(P_k(x,s)\)</span> 为 <strong>不超过 <span class="math inline">\(x\)</span> 且每个素因子都大于 <span class="math inline">\(p_s\)</span> 且素因子(按重根计)个数为 <span class="math inline">\(k\)</span></strong> 的整数个数（方法属于 Lehmer）。 进一步设 <span class="math inline">\(P_0(x,s)=1\)</span>。则 <span class="math display">\[
+\psi(x,s) = \sum_{k=0} ^{\infty} P_k(x,s)
+\]</span> 显然 <span class="math inline">\(P_1(x,s) = \pi(x)-s\)</span>。</p>
+<p>若 <span class="math inline">\(\pi(\sqrt[3]{x}) \leq s \leq \pi(\sqrt{x})\)</span> 则 <span class="math inline">\(P_k(x,s)=0,k \geq 3\)</span> 此时 <span class="math display">\[
+\psi(x,s) = 1 + \pi(x)-s + P_2(x,s)
+\]</span> 其中 <span class="math display">\[
+P_2(x,s) = \sum_{k=s+1}^{\pi(\sqrt{x})} \left( \pi(\frac{x}{p_k}) - k + 1 \right)
+\]</span></p>
+<blockquote>
+<p>注意到上式中 <span class="math inline">\(\frac{x}{p_k} &lt; x^{\frac{2}{3}}\)</span></p>
 </blockquote>
-<h2 id="pi-x-的计算公式"><a href="#pi-x-的计算公式" class="headerlink" title="$\pi(x)$ 的计算公式"></a>$\pi(x)$ 的计算公式</h2><script type="math/tex; mode=display">
-\pi(x) = \psi(x,s) + \frac{(\pi(\sqrt{x})+s-2)(\pi(\sqrt{x})- s+1)}{2} - \sum_{k=s+1}^{\pi(\sqrt{x})} \pi(\frac{x}{p_k})</script><blockquote>
-<p>取上面 $s = \pi(\sqrt[3]{x}) $<br>因此问题最终转化成求 $\psi(x,\pi(\sqrt[3]{x}))$。它可以利用</p>
+<h2 id="pix-的计算公式"><span class="math inline">\(\pi(x)\)</span> 的计算公式</h2>
+<p><span class="math display">\[
+\pi(x) = \psi(x,s) + \frac{(\pi(\sqrt{x})+s-2)(\pi(\sqrt{x})- s+1)}{2} - \sum_{k=s+1}^{\pi(\sqrt{x})} \pi(\frac{x}{p_k})
+\]</span></p>
+<blockquote>
+<p>取上面 $s = () $ 因此问题最终转化成求 <span class="math inline">\(\psi(x,\pi(\sqrt[3]{x}))\)</span>。它可以利用</p>
 </blockquote>
-<ol>
-<li>$\psi(x,0) = \lfloor x \rfloor$</li>
-<li>$\psi(x,s) = \psi(x,s-1) - \psi(\frac{x}{p_s},s-1)$</li>
+<ol type="1">
+<li><span class="math inline">\(\psi(x,0) = \lfloor x \rfloor\)</span></li>
+<li><span class="math inline">\(\psi(x,s) = \psi(x,s-1) - \psi(\frac{x}{p_s},s-1)\)</span></li>
 </ol>
 <p>至此问题貌似就这么解决了。但是由于这个递归会使得程序效率大大降低，因此需要一些预处理操作。</p>
-<ol>
-<li>若 $x&lt;p_s$ 则 $\psi(x,s) ＝ 1$</li>
-<li>给定一个小整数 M，预处理出 $\psi(x,s)$,其中 $x &lt; q=p_1 \cdots p_s,\quad s&lt;=M$<br>则 $\psi(x,s) = \psi(x \mod q,s) + \lfloor \frac{x}{q} \rfloor \psi(q,s)$</li>
+<ol type="1">
+<li>若 <span class="math inline">\(x&lt;p_s\)</span> 则 <span class="math inline">\(\psi(x,s) ＝ 1\)</span></li>
+<li>给定一个小整数 M，预处理出 <span class="math inline">\(\psi(x,s)\)</span>,其中 <span class="math inline">\(x &lt; q=p_1 \cdots p_s,\quad s&lt;=M\)</span> 则 <span class="math inline">\(\psi(x,s) = \psi(x \mod q,s) + \lfloor \frac{x}{q} \rfloor \psi(q,s)\)</span></li>
 </ol>
-<h2 id="lehmer-计算公式"><a href="#lehmer-计算公式" class="headerlink" title="lehmer 计算公式"></a>lehmer 计算公式</h2><blockquote>
+<h2 id="lehmer-计算公式">lehmer 计算公式</h2>
+<blockquote>
 <p>我自己写的代码没有上面的快，两种计算各有优势</p>
 </blockquote>
-<p>令 $s = \pi(\sqrt[4]{x}), t= \pi(\sqrt[3]{x})$。则，对任意 $i&gt;3, P_i(x,s) = 0$,</p>
-<script type="math/tex; mode=display">
+<p>令 <span class="math inline">\(s = \pi(\sqrt[4]{x}), t= \pi(\sqrt[3]{x})\)</span>。则，对任意 <span class="math inline">\(i&gt;3, P_i(x,s) = 0\)</span>, <span class="math display">\[
 \begin{array}{rl}
-\psi(x,s) &= 1 + \pi(x) - s + P_2(x,s) + P_3(x,s) \\
-&= 1+ \pi(x) - s  + P_2(x,s) + \sum_{k=s+1}^{t} P_2(\frac{x}{p_k},k-1) \\
-\end{array}</script><p>即：</p>
-<script type="math/tex; mode=display">
-\pi(x) = \psi(x,s)-1+s-P_2(x,s) - \sum_{k=s+1}^{t} P_2(\frac{x}{p_k},k-1)</script><blockquote>
-<p>注意到 $\frac{x}{p_k} &lt; \sqrt{x}$ ，所以最后一个式子可以用下式求，最后计算复杂度在于 $P_2(x,s)$</p>
-</blockquote>
-<script type="math/tex; mode=display">
-\sum_{k=s+1}^{t} P_2(\frac{x}{p_k},k-1) = \sum_{k=s+1}^{t}  \sum_{j=k}^{\pi(\sqrt{\frac{x}{p_k}})} \pi(\frac{x}{p_k p_j}) - j+1</script><h2 id="稳定简洁的-DP-做法"><a href="#稳定简洁的-DP-做法" class="headerlink" title="稳定简洁的 DP 做法"></a>稳定简洁的 DP 做法</h2><p>我们令 $dp(x,s) = \psi(x,s)+s-1$ 它的意义是，$2～x$ 中被前 $s$ 个素数筛完后的伪素数个数。因此我们有 $dp(0,0)=0,dp(x,0)=x-1,x&gt;1,dp(x,\pi(\sqrt{x})) = \pi(x)$ 且有状态转移</p>
-<script type="math/tex; mode=display">
-dp(x,s) = dp(x,s-1)-dp(\frac{x}{p_s},s-1)+s-1</script><p>因为 $dp(p_{s-1},s-1) = s-1$，最后一项可以写成 $dp(p_{s-1},s-1)$。虽然上面需要二维数组，但是实际上我们可以优化成一维数组的情况。因为</p>
-<script type="math/tex; mode=display">
-dp(x,s) = dp(x,s-1)-dp(\frac{x}{p_s},s-1)+ dp(p_{s-1},s-1)</script><p>另外我们也不可能开 $O(n)$ 的数组，但是可以利用一种黑科技开 $O(\sqrt{n})$ 的数组即可达到我们的目的。<br>即我们用 $L[x]$ 表示 $dp(x,s)$ 用 $R[x]$ 表示 $dp(\frac{n}{x},s)$。</p>
+\psi(x,s) &amp;= 1 + \pi(x) - s + P_2(x,s) + P_3(x,s) \\
+&amp;= 1+ \pi(x) - s  + P_2(x,s) + \sum_{k=s+1}^{t} P_2(\frac{x}{p_k},k-1) \\
+\end{array}
+\]</span></p>
+<p>即： <span class="math display">\[
+\pi(x) = \psi(x,s)-1+s-P_2(x,s) - \sum_{k=s+1}^{t} P_2(\frac{x}{p_k},k-1)
+\]</span></p>
 <blockquote>
-<p>若$L[m]!=L[m-1]$ ，则说明 $m$ 不能被前 $s$  个素数整除是第 $s+1$ 个素数。</p>
-<p>我们需要的是 $R[1]$</p>
+<p>注意到 <span class="math inline">\(\frac{x}{p_k} &lt; \sqrt{x}\)</span> ，所以最后一个式子可以用下式求，最后计算复杂度在于 <span class="math inline">\(P_2(x,s)\)</span></p>
 </blockquote>
-<p>上述做法的时间复杂度为 $O(\frac{n}{\log n})$ 且常数特别小，代码十分简洁。</p>
+<p><span class="math display">\[
+\sum_{k=s+1}^{t} P_2(\frac{x}{p_k},k-1) = \sum_{k=s+1}^{t}  \sum_{j=k}^{\pi(\sqrt{\frac{x}{p_k}})} \pi(\frac{x}{p_k p_j}) - j+1
+\]</span></p>
+<h2 id="稳定简洁的-dp-做法">稳定简洁的 DP 做法</h2>
+<p>我们令 <span class="math inline">\(dp(x,s) = \psi(x,s)+s-1\)</span> 它的意义是，<span class="math inline">\(2～x\)</span> 中被前 <span class="math inline">\(s\)</span> 个素数筛完后的伪素数个数。因此我们有 <span class="math inline">\(dp(0,0)=0,dp(x,0)=x-1,x&gt;1,dp(x,\pi(\sqrt{x})) = \pi(x)\)</span> 且有状态转移 <span class="math display">\[
+dp(x,s) = dp(x,s-1)-dp(\frac{x}{p_s},s-1)+s-1
+\]</span> 因为 <span class="math inline">\(dp(p_{s-1},s-1) = s-1\)</span>，最后一项可以写成 <span class="math inline">\(dp(p_{s-1},s-1)\)</span>。虽然上面需要二维数组，但是实际上我们可以优化成一维数组的情况。因为 <span class="math display">\[
+dp(x,s) = dp(x,s-1)-dp(\frac{x}{p_s},s-1)+ dp(p_{s-1},s-1)
+\]</span> 另外我们也不可能开 <span class="math inline">\(O(n)\)</span> 的数组，但是可以利用一种黑科技开 <span class="math inline">\(O(\sqrt{n})\)</span> 的数组即可达到我们的目的。 即我们用 <span class="math inline">\(L[x]\)</span> 表示 <span class="math inline">\(dp(x,s)\)</span> 用 <span class="math inline">\(R[x]\)</span> 表示 <span class="math inline">\(dp(\frac{n}{x},s)\)</span>。</p>
+<blockquote>
+<p>若<span class="math inline">\(L[m]!=L[m-1]\)</span> ，则说明 <span class="math inline">\(m\)</span> 不能被前 <span class="math inline">\(s\)</span> 个素数整除是第 <span class="math inline">\(s+1\)</span> 个素数。</p>
+<p>我们需要的是 <span class="math inline">\(R[1]\)</span></p>
+</blockquote>
+<p>上述做法的时间复杂度为 <span class="math inline">\(O(\frac{n}{\log n})\)</span> 且常数特别小，代码十分简洁。</p>
 <blockquote>
 <p>这个骚方法还目前还没有找到其它的应用 0.0</p>
 <p>主要还没法对它用树状数组</p>
 </blockquote>
-<h2 id="求第-n-个素数的方法"><a href="#求第-n-个素数的方法" class="headerlink" title="求第 n 个素数的方法"></a>求第 n 个素数的方法</h2><ul>
+<h2 id="求第-n-个素数的方法">求第 n 个素数的方法</h2>
+<ul>
 <li>根据概率分布找到大致界限</li>
-<li>再牛顿梯度法（或者二分查找）使得 $\pi(m)= n$</li>
-<li>素数判断递减 $m$ 直到 $m$ 为素数</li>
+<li>再牛顿梯度法（或者二分查找）使得 <span class="math inline">\(\pi(m)= n\)</span></li>
+<li>素数判断递减 <span class="math inline">\(m\)</span> 直到 <span class="math inline">\(m\)</span> 为素数</li>
 <li><a href="p/nthPrimeNumber.html">参考这里</a></li>
 </ul>
-<h2 id="psi-x-s-计算太慢了，需要优化"><a href="#psi-x-s-计算太慢了，需要优化" class="headerlink" title="$\psi(x,s)$ 计算太慢了，需要优化"></a>$\psi(x,s)$ 计算太慢了，需要优化</h2><p>我们知道，若 $\pi(\sqrt[3]{x}) \leq s \leq \pi(\sqrt{x})$ 则</p>
-<script type="math/tex; mode=display">
-\psi(x,s) = 1 + \pi(x)-s + P_2(x,s)</script><p>其中</p>
-<script type="math/tex; mode=display">
-P_2(x,s) = \sum_{k=s+1}^{\pi(\sqrt{x})} \left( \pi(\frac{x}{p_k}) - k + 1 \right) =  \sum_{k=s+1}^{\pi(\sqrt{x})} \left( \psi(\frac{x}{p_k},s)+ s - k \right)</script><blockquote>
-<p>注意到上式中 $\frac{x}{p_k} &lt;  x^{\frac{2}{3}} $</p>
-</blockquote>
-<p>我们之前的操作本质是递归让 $x,s$ 变小，通过打表预处理来加速递归使得满足一定的效率需要。</p>
-<p>现在我们来直接计算得到我们的答案。</p>
-<h3 id="符号约定"><a href="#符号约定" class="headerlink" title="符号约定"></a>符号约定</h3><p>取定整数 $\sqrt[3]{x} \leq y = x^{\frac{1}{3}+\epsilon }&lt; \sqrt{x}, z = \frac{x}{y}, s = \pi(y)$ ，约定 $p, q$ 是素数。 预处理 $y$ 以内的数组：<code>isp[], p[], mu[], pi[]</code> ，对 $[1,z]$ 内的 $\psi(x,s)$ 用树状数组（可以在我的博客网站搜索：<code>树状数组</code>）维护（注意到这需要 $O(z)$ 的内存，单次维护不现实，所以我们可以一段段的维护，保证每一段的长度为 $2^{\lfloor \log_2(y) \rfloor +1}$ 来提高效率）</p>
+<h2 id="psixs-计算太慢了需要优化"><span class="math inline">\(\psi(x,s)\)</span> 计算太慢了，需要优化</h2>
+<p>我们知道，若 <span class="math inline">\(\pi(\sqrt[3]{x}) \leq s \leq \pi(\sqrt{x})\)</span> 则 <span class="math display">\[
+\psi(x,s) = 1 + \pi(x)-s + P_2(x,s)
+\]</span> 其中 <span class="math display">\[
+P_2(x,s) = \sum_{k=s+1}^{\pi(\sqrt{x})} \left( \pi(\frac{x}{p_k}) - k + 1 \right) =  \sum_{k=s+1}^{\pi(\sqrt{x})} \left( \psi(\frac{x}{p_k},s)+ s - k \right)
+\]</span></p>
 <blockquote>
-<p>做完上面的预处理后，我们发现 $P_2(x,s)$ 可以直接计算了。</p>
+<p>注意到上式中 $ &lt; x^{} $</p>
 </blockquote>
-<h3 id="psi-x-s-直接计算"><a href="#psi-x-s-直接计算" class="headerlink" title="$\psi(x,s)$  直接计算"></a>$\psi(x,s)$  直接计算</h3><p>在本博文的最开始有：</p>
-<script type="math/tex; mode=display">
-\psi(x,s) = \sum_{n \leq x} \sum_{d|(n,p)} \mu(d) = \sum_{d|p} u(d)\lfloor \frac{x}{d} \rfloor</script><p>其中 $p$ 为前 $s$ 个素数的积。</p>
+<p>我们之前的操作本质是递归让 <span class="math inline">\(x,s\)</span> 变小，通过打表预处理来加速递归使得满足一定的效率需要。</p>
+<p>现在我们来直接计算得到我们的答案。</p>
+<h3 id="符号约定">符号约定</h3>
+<p>取定整数 <span class="math inline">\(\sqrt[3]{x} \leq y = x^{\frac{1}{3}+\epsilon }&lt; \sqrt{x}, z = \frac{x}{y}, s = \pi(y)\)</span> ，约定 <span class="math inline">\(p, q\)</span> 是素数。 预处理 <span class="math inline">\(y\)</span> 以内的数组：<code>isp[], p[], mu[], pi[]</code> ，对 <span class="math inline">\([1,z]\)</span> 内的 <span class="math inline">\(\psi(x,s)\)</span> 用树状数组（可以在我的博客网站搜索：<code>树状数组</code>）维护（注意到这需要 <span class="math inline">\(O(z)\)</span> 的内存，单次维护不现实，所以我们可以一段段的维护，保证每一段的长度为 <span class="math inline">\(2^{\lfloor \log_2(y) \rfloor +1}\)</span> 来提高效率）</p>
+<blockquote>
+<p>做完上面的预处理后，我们发现 <span class="math inline">\(P_2(x,s)\)</span> 可以直接计算了。</p>
+</blockquote>
+<h3 id="psixs-直接计算"><span class="math inline">\(\psi(x,s)\)</span> 直接计算</h3>
+<p>在本博文的最开始有： <span class="math display">\[
+\psi(x,s) = \sum_{n \leq x} \sum_{d|(n,p)} \mu(d) = \sum_{d|p} u(d)\lfloor \frac{x}{d} \rfloor
+\]</span> 其中 <span class="math inline">\(p\)</span> 为前 <span class="math inline">\(s\)</span> 个素数的积。</p>
 <blockquote>
 <p>但是最右边本质上有很多项，所以直接算，其实复杂度特别高。</p>
 </blockquote>
-<p>我们还有递归公式：</p>
-<script type="math/tex; mode=display">
+<p>我们还有递归公式： <span class="math display">\[
 \begin{array}{cl}
-\psi(x,s) &= \psi(x,s-1) - \psi(\frac{x}{p_s},s-1) \\
-&= \psi(x,s-2) - \psi(\frac{x}{p_{s-1}},s-2) - \psi(\frac{x}{p_s},s-2)  + \psi(\frac{x}{p_sp_{s-1}},s-2)
-\end{array}</script><p>可以一直分解下去，如果一直分解下去就可以得到最上面的公式了。</p>
-<p>所以我们约定：对于节点 $\mu(n) \psi(\frac{x}{n},b)$ ，如果满足</p>
+\psi(x,s) &amp;= \psi(x,s-1) - \psi(\frac{x}{p_s},s-1) \\
+&amp;= \psi(x,s-2) - \psi(\frac{x}{p_{s-1}},s-2) - \psi(\frac{x}{p_s},s-2)  + \psi(\frac{x}{p_sp_{s-1}},s-2)
+\end{array}
+\]</span> 可以一直分解下去，如果一直分解下去就可以得到最上面的公式了。</p>
+<p>所以我们约定：对于节点 <span class="math inline">\(\mu(n) \psi(\frac{x}{n},b)\)</span> ，如果满足</p>
 <ul>
-<li>原始节点： $b = c, n \leq y$</li>
-<li>特殊节点：$n &gt; y$</li>
+<li>原始节点： <span class="math inline">\(b = c, n \leq y\)</span></li>
+<li>特殊节点：<span class="math inline">\(n &gt; y\)</span></li>
 </ul>
-<p>就不再分解。这也等价于说 如果  $n &lt; y$ 且 $b&gt;c$  就分解。因为一开始 $n=1,b=a&gt;c$。而且 $n$ 会增大，$b$ 会减小，所以节点一定会有限步内，落入上述两种框架中的一种。并且 <strong>特殊节点的父节点 $-\mu(n) \psi(\frac{x}{\frac{n}{p_{d+1}}},b+1)$</strong> 必然满足 $\frac{n}{ p_{d+1} } \leq y <n$  且 $b+1>c$。综上：</p>
+<p>就不再分解。这也等价于说 如果 <span class="math inline">\(n &lt; y\)</span> 且 <span class="math inline">\(b&gt;c\)</span> 就分解。因为一开始 <span class="math inline">\(n=1,b=a&gt;c\)</span>。而且 <span class="math inline">\(n\)</span> 会增大，<span class="math inline">\(b\)</span> 会减小，所以节点一定会有限步内，落入上述两种框架中的一种。并且 <strong>特殊节点的父节点 <span class="math inline">\(-\mu(n) \psi(\frac{x}{\frac{n}{p_{d+1}}},b+1)\)</span></strong> 必然满足 <span class="math inline">\(\frac{n}{ p_{d+1} } \leq y &lt;n\)</span> 且 <span class="math inline">\(b+1&gt;c\)</span>。综上：</p>
 <blockquote>
-<p>以前设置 $c = 7$，但是后来发现没必要，$c=0$ 就挺好。</p>
+<p>以前设置 <span class="math inline">\(c = 7\)</span>，但是后来发现没必要，<span class="math inline">\(c=0\)</span> 就挺好。</p>
 </blockquote>
-<script type="math/tex; mode=display">
-\psi(x,s) = \sum_{n=1} ^y \mu(n) \lfloor \frac{x}{n} \rfloor +  \sum_{\frac{n}{\delta(n)} \leq y < n} \mu(n) \psi(\frac{x}{n}, \pi(\delta(n))-1) = S_0 + S</script><p>$S_0$ 很好处理，计算 $S$： 对 $p = \delta(n)$ 一起求：</p>
-<script type="math/tex; mode=display">
-S = - \sum_{p \leq y} \sum_{\begin{array}{c} \delta(m) >p \\ m \leq y < mp \end{array}} \mu(m) \psi(\frac{x}{mp},\pi(p)-1)</script><p>注意到：$\frac{x}{mp} &lt; z$ ，所以我们已经可以把 $\psi(x,s)$ 直接计算出来了。</p>
+<p><span class="math display">\[
+\psi(x,s) = \sum_{n=1} ^y \mu(n) \lfloor \frac{x}{n} \rfloor +  \sum_{\frac{n}{\delta(n)} \leq y &lt; n} \mu(n) \psi(\frac{x}{n}, \pi(\delta(n))-1) = S_0 + S
+\]</span></p>
+<p><span class="math inline">\(S_0\)</span> 很好处理，计算 <span class="math inline">\(S\)</span>： 对 <span class="math inline">\(p = \delta(n)\)</span> 一起求： <span class="math display">\[
+S = - \sum_{p \leq y} \sum_{\begin{array}{c} \delta(m) &gt;p \\ m \leq y &lt; mp \end{array}} \mu(m) \psi(\frac{x}{mp},\pi(p)-1)
+\]</span> 注意到：<span class="math inline">\(\frac{x}{mp} &lt; z\)</span> ，所以我们已经可以把 <span class="math inline">\(\psi(x,s)\)</span> 直接计算出来了。</p>
 <blockquote>
 <p>但是我们可以避免很多计算来提高效率。于是我们有下列一系列的操作</p>
 </blockquote>
 <ul>
-<li>$p \geq \sqrt{y}$，则 $m$ 为素数 ，且此时 $mp &gt; p^2 \geq y$ (若 $m$ 为合数，则 $m \geq \delta(m) ^2 &gt;p^2 \geq y$ 矛盾)</li>
-<li>$\frac{x}{mp} &lt; p$ 时，$\psi(\frac{x}{mp},\pi(p)-1) = 1$</li>
-<li>$\sqrt{\frac{x}{mp}} &lt; p$ 时，$\psi(\frac{x}{mp},\pi(p)-1) = \pi(\frac{x}{mp}) - \pi(p) +2$</li>
-<li>$\sqrt{y} &lt; \sqrt{z} &lt;  x^{\frac{1}{4}}  &lt; x^{\frac{1}{3}} &lt; y$</li>
+<li><span class="math inline">\(p \geq \sqrt{y}\)</span>，则 <span class="math inline">\(m\)</span> 为素数 ，且此时 <span class="math inline">\(mp &gt; p^2 \geq y\)</span> (若 <span class="math inline">\(m\)</span> 为合数，则 <span class="math inline">\(m \geq \delta(m) ^2 &gt;p^2 \geq y\)</span> 矛盾)</li>
+<li><span class="math inline">\(\frac{x}{mp} &lt; p\)</span> 时，<span class="math inline">\(\psi(\frac{x}{mp},\pi(p)-1) = 1\)</span></li>
+<li><span class="math inline">\(\sqrt{\frac{x}{mp}} &lt; p\)</span> 时，<span class="math inline">\(\psi(\frac{x}{mp},\pi(p)-1) = \pi(\frac{x}{mp}) - \pi(p) +2\)</span></li>
+<li><span class="math inline">\(\sqrt{y} &lt; \sqrt{z} &lt; x^{\frac{1}{4}} &lt; x^{\frac{1}{3}} &lt; y\)</span></li>
 </ul>
-<h4 id="由此对-S-分段计算"><a href="#由此对-S-分段计算" class="headerlink" title="由此对$S$分段计算"></a>由此对$S$分段计算</h4><script type="math/tex; mode=display">
-S_1 = - \sum_{\sqrt[3]{x} < p \leq y} \sum_{\begin{array}{c} \delta(m) >p \\ m \leq y < mp \end{array}} \mu(m) \psi(\frac{x}{mp},\pi(p)-1)</script><script type="math/tex; mode=display">
-S_2 = - \sum_{\sqrt{z} < p \leq \sqrt[3]{x}} \sum_{\begin{array}{c} \delta(m) >p \\ m \leq y < mp \end{array}} \mu(m) \psi(\frac{x}{mp},\pi(p)-1)</script><script type="math/tex; mode=display">
-S_3 = - \sum_{\sqrt{y} < p \leq \sqrt{z}} \sum_{\begin{array}{c} \delta(m) >p \\ m \leq y < mp \end{array}} \mu(m) \psi(\frac{x}{mp},\pi(p)-1)</script><script type="math/tex; mode=display">
-S_4 = - \sum_{p \leq \sqrt{y}} \sum_{\begin{array}{c} \delta(m) >p \\ m \leq y < mp \end{array}} \mu(m) \psi(\frac{x}{mp},\pi(p)-1)</script><p>由限制关系式，我们化简 $S_1, S_2, S_3$</p>
-<script type="math/tex; mode=display">
+<h4 id="由此对s分段计算">由此对<span class="math inline">\(S\)</span>分段计算</h4>
+<p><span class="math display">\[
+S_1 = - \sum_{\sqrt[3]{x} &lt; p \leq y} \sum_{\begin{array}{c} \delta(m) &gt;p \\ m \leq y &lt; mp \end{array}} \mu(m) \psi(\frac{x}{mp},\pi(p)-1)
+\]</span></p>
+<p><span class="math display">\[
+S_2 = - \sum_{\sqrt{z} &lt; p \leq \sqrt[3]{x}} \sum_{\begin{array}{c} \delta(m) &gt;p \\ m \leq y &lt; mp \end{array}} \mu(m) \psi(\frac{x}{mp},\pi(p)-1)
+\]</span></p>
+<p><span class="math display">\[
+S_3 = - \sum_{\sqrt{y} &lt; p \leq \sqrt{z}} \sum_{\begin{array}{c} \delta(m) &gt;p \\ m \leq y &lt; mp \end{array}} \mu(m) \psi(\frac{x}{mp},\pi(p)-1)
+\]</span></p>
+<p><span class="math display">\[
+S_4 = - \sum_{p \leq \sqrt{y}} \sum_{\begin{array}{c} \delta(m) &gt;p \\ m \leq y &lt; mp \end{array}} \mu(m) \psi(\frac{x}{mp},\pi(p)-1)
+\]</span></p>
+<p>由限制关系式，我们化简 <span class="math inline">\(S_1, S_2, S_3\)</span> <span class="math display">\[
 \begin{array}{cl}
-S_1 &= - \sum_{\sqrt[3]{x} < p \leq y} \sum_{p<q \leq y} \mu(q) \psi(\frac{x}{pq},\pi(p)-1) \\
-&=  \sum_{\sqrt[3]{x} < p < q \leq y} 1 \\
-&= {\pi(y)-\pi(\sqrt[3]{x}) \choose 2}
-\end{array}</script><script type="math/tex; mode=display">
+S_1 &amp;= - \sum_{\sqrt[3]{x} &lt; p \leq y} \sum_{p&lt;q \leq y} \mu(q) \psi(\frac{x}{pq},\pi(p)-1) \\
+&amp;=  \sum_{\sqrt[3]{x} &lt; p &lt; q \leq y} 1 \\
+&amp;= {\pi(y)-\pi(\sqrt[3]{x}) \choose 2}
+\end{array}
+\]</span></p>
+<p><span class="math display">\[
 \begin{array}{cl}
-S_2 &= - \sum_{\sqrt{z} < p \leq \sqrt[3]{x}} \sum_{p<q \leq y} \mu(q) \psi(\frac{x}{pq},\pi(p)-1) \\
-&=  \sum_{\sqrt{z} < p \leq \sqrt[3]{x}} \sum_{p<q \leq y} \pi(\frac{x}{pq}) - \pi(p) +2 \\
-&= \sum_{\sqrt{z} < p \leq \sqrt[3]{x}} \sum_{p<q \leq y} \pi(\frac{x}{pq}) + \sum_{\sqrt{z} < p \leq \sqrt[3]{x}} (\pi(p)-\pi(y))(\pi(p)-2)
-\end{array}</script><script type="math/tex; mode=display">
+S_2 &amp;= - \sum_{\sqrt{z} &lt; p \leq \sqrt[3]{x}} \sum_{p&lt;q \leq y} \mu(q) \psi(\frac{x}{pq},\pi(p)-1) \\
+&amp;=  \sum_{\sqrt{z} &lt; p \leq \sqrt[3]{x}} \sum_{p&lt;q \leq y} \pi(\frac{x}{pq}) - \pi(p) +2 \\
+&amp;= \sum_{\sqrt{z} &lt; p \leq \sqrt[3]{x}} \sum_{p&lt;q \leq y} \pi(\frac{x}{pq}) + \sum_{\sqrt{z} &lt; p \leq \sqrt[3]{x}} (\pi(p)-\pi(y))(\pi(p)-2)
+\end{array}
+\]</span></p>
+<p><span class="math display">\[
 \begin{array}{cl}
-S_3 &= - \sum_{\sqrt{y} < p \leq \sqrt{z}} \sum_{p < q \leq y} \mu(q) \psi(\frac{x}{pq},\pi(p)-1) \\
-&=  \sum_{\sqrt{y} < p \leq \sqrt{z}}  \sum_{p < q \leq y} \psi(\frac{x}{pq},\pi(p)-1)
-\end{array}</script><blockquote>
-<p>$S_2$ 也可以用 $S_3$ 的式子求，只是效率不高。</p>
-<p>$S_2$ 中 $\frac{x}{pq}, p&lt;y$，即可以直接求。</p>
+S_3 &amp;= - \sum_{\sqrt{y} &lt; p \leq \sqrt{z}} \sum_{p &lt; q \leq y} \mu(q) \psi(\frac{x}{pq},\pi(p)-1) \\
+&amp;=  \sum_{\sqrt{y} &lt; p \leq \sqrt{z}}  \sum_{p &lt; q \leq y} \psi(\frac{x}{pq},\pi(p)-1)
+\end{array}
+\]</span></p>
+<blockquote>
+<p><span class="math inline">\(S_2\)</span> 也可以用 <span class="math inline">\(S_3\)</span> 的式子求，只是效率不高。</p>
+<p><span class="math inline">\(S_2\)</span> 中 <span class="math inline">\(\frac{x}{pq}, p&lt;y\)</span>，即可以直接求。</p>
 </blockquote>
 <p><strong>当然了还可以继续细化，但是我嫌麻烦就不想再细化了！</strong></p>
 <blockquote>
-<p>也就是现在的核心就是树状数组分段维护数据，然后每一段的总值要用数组存起来就好了。然后用这个数据结果计算 $S_2,S_3,S_4,P_2(x,s)$，然后就大功告成了 0.0</p>
-<p>用 $\psi(x,s)$ 计算 $\pi(x)$，还是用 $\pi(x)$ 计算 $\psi(x,s)$ ，这是一个问题。</p>
-<p>用树状数组维护的时候会有一个很大的问题就是：求和式中 每此动 $p$ 整个维护就要从 $1 \to p$ 重新维护一次很麻烦。这个问题没解决所以我不想写代码。</p>
-<p>想把 $\frac{x}{pq}$ 的所有可能的值单调递增排列但是又不现实。</p>
+<p>也就是现在的核心就是树状数组分段维护数据，然后每一段的总值要用数组存起来就好了。然后用这个数据结果计算 <span class="math inline">\(S_2,S_3,S_4,P_2(x,s)\)</span>，然后就大功告成了 0.0</p>
+<p>用 <span class="math inline">\(\psi(x,s)\)</span> 计算 <span class="math inline">\(\pi(x)\)</span>，还是用 <span class="math inline">\(\pi(x)\)</span> 计算 <span class="math inline">\(\psi(x,s)\)</span> ，这是一个问题。</p>
+<p>用树状数组维护的时候会有一个很大的问题就是：求和式中 每此动 <span class="math inline">\(p\)</span> 整个维护就要从 <span class="math inline">\(1 \to p\)</span> 重新维护一次很麻烦。这个问题没解决所以我不想写代码。</p>
+<p>想把 <span class="math inline">\(\frac{x}{pq}\)</span> 的所有可能的值单调递增排列但是又不现实。</p>
 </blockquote>
-<h2 id="第-n-个素数"><a href="#第-n-个素数" class="headerlink" title="第 n 个素数"></a>第 n 个素数</h2><blockquote>
-<p>做法依赖于 $\pi(x)$ 的计算</p>
+<h2 id="第-n-个素数">第 n 个素数</h2>
+<blockquote>
+<p>做法依赖于 <span class="math inline">\(\pi(x)\)</span> 的计算</p>
 </blockquote>
-<h3 id="素数定理-这里就不证了"><a href="#素数定理-这里就不证了" class="headerlink" title="素数定理( 这里就不证了)"></a>素数定理( 这里就不证了)</h3><script type="math/tex; mode=display">
-\lim _{x \to \infty} \frac{\pi(x)}{x/\ln x} = 1</script><p>从而我们知道：</p>
-<script type="math/tex; mode=display">
-\lim _{x \to \infty} \frac{p_n}{n \ln n} = 1</script><p>其中，$p_n$ 为第 $n$ 个素数，显然 $p_n$ 是 $\pi(x) = n$ 最小的解。</p>
-<h3 id="p-n-求解"><a href="#p-n-求解" class="headerlink" title="$p_n$ 求解"></a>$p_n$ 求解</h3><ul>
-<li>预处理小于 $N$ 的素数</li>
-<li>初始值 $n\ln n$</li>
+<h3 id="素数定理-这里就不证了">素数定理( 这里就不证了)</h3>
+<p><span class="math display">\[
+\lim _{x \to \infty} \frac{\pi(x)}{x/\ln x} = 1
+\]</span></p>
+<p>从而我们知道： <span class="math display">\[
+\lim _{x \to \infty} \frac{p_n}{n \ln n} = 1
+\]</span> 其中，<span class="math inline">\(p_n\)</span> 为第 <span class="math inline">\(n\)</span> 个素数，显然 <span class="math inline">\(p_n\)</span> 是 <span class="math inline">\(\pi(x) = n\)</span> 最小的解。</p>
+<h3 id="p_n-求解"><span class="math inline">\(p_n\)</span> 求解</h3>
+<ul>
+<li>预处理小于 <span class="math inline">\(N\)</span> 的素数</li>
+<li>初始值 <span class="math inline">\(n\ln n\)</span></li>
 <li>牛顿梯度法</li>
 </ul>
-<p><a target="_blank" rel="noopener" href="https://primes.utm.edu/nthprime/index.php#nth">第 $n$ 个素数和 $\pi(x)$ 的网站</a></p>
+<p><a target="_blank" rel="noopener" href="https://primes.utm.edu/nthprime/index.php#nth">第 <span class="math inline">\(n\)</span> 个素数和 <span class="math inline">\(\pi(x)\)</span> 的网站</a></p>
 <p><a target="_blank" rel="noopener" href="https://github.com/kimwalisch/primecount">世界纪录保持者的求法</a></p>
-<h2 id="sum-p-leq-n-p-text-is-prime-p"><a href="#sum-p-leq-n-p-text-is-prime-p" class="headerlink" title="$\sum_{p \leq n, p \text{ is prime}} p$"></a>$\sum_{p \leq n, p \text{ is prime}} p$</h2><p>我们可以在不求出 <strong>不超过 $x$ 的所有素数</strong> 的情况下，求出最终结果。</p>
-<script type="math/tex; mode=display">
-f_k(x) \doteq \sum_{p \leq x} p^k</script><ul>
-<li>$f_0(x) = \pi(x)$</li>
-<li>$f_1(x) = \sum_{p \leq x} p$ 这是我们关心的结果</li>
-<li>对于一般的 $k$ 借助自然数方幂和快速算法也可以求</li>
+<h2 id="sum_p-leq-n-p-text-is-prime-p"><span class="math inline">\(\sum_{p \leq n, p \text{ is prime}} p\)</span></h2>
+<p>我们可以在不求出 <strong>不超过 <span class="math inline">\(x\)</span> 的所有素数</strong> 的情况下，求出最终结果。</p>
+<p><span class="math display">\[
+f_k(x) \doteq \sum_{p \leq x} p^k
+\]</span></p>
+<ul>
+<li><span class="math inline">\(f_0(x) = \pi(x)\)</span></li>
+<li><span class="math inline">\(f_1(x) = \sum_{p \leq x} p\)</span> 这是我们关心的结果</li>
+<li>对于一般的 <span class="math inline">\(k\)</span> 借助自然数方幂和快速算法也可以求</li>
 </ul>
-<h3 id="f-k-x-s-：最小素因子大于-p-s-且不超过-x-的数的-k-次方和"><a href="#f-k-x-s-：最小素因子大于-p-s-且不超过-x-的数的-k-次方和" class="headerlink" title="$f_k(x,s)$：最小素因子大于 $p_s$ 且不超过 $x$ 的数的 $k$ 次方和"></a>$f_k(x,s)$：最小素因子大于 $p_s$ 且不超过 $x$ 的数的 $k$ 次方和</h3><script type="math/tex; mode=display">
-f_k(x,s) = \sum_{m \leq x, \delta(m)>p_s} m^k</script><p>其中，$\delta(m)$ 表示 $m$ 的最小素因子（约定 $\delta(1) = + \infty$）。</p>
-<h3 id="f-k-x-s-的递推公式"><a href="#f-k-x-s-的递推公式" class="headerlink" title="$f_k(x,s)$ 的递推公式"></a>$f_k(x,s)$ 的递推公式</h3><script type="math/tex; mode=display">
+<h3 id="f_kxs最小素因子大于-p_s-且不超过-x-的数的-k-次方和"><span class="math inline">\(f_k(x,s)\)</span>：最小素因子大于 <span class="math inline">\(p_s\)</span> 且不超过 <span class="math inline">\(x\)</span> 的数的 <span class="math inline">\(k\)</span> 次方和</h3>
+<p><span class="math display">\[
+f_k(x,s) = \sum_{m \leq x, \delta(m)&gt;p_s} m^k
+\]</span> 其中，<span class="math inline">\(\delta(m)\)</span> 表示 <span class="math inline">\(m\)</span> 的最小素因子（约定 <span class="math inline">\(\delta(1) = + \infty\)</span>）。</p>
+<h3 id="f_kxs-的递推公式"><span class="math inline">\(f_k(x,s)\)</span> 的递推公式</h3>
+<p><span class="math display">\[
 \begin{aligned}
-f_k(x,s) &= \sum_{m \leq x, \delta(m)>p_s} m^k \\
-&= f(x,s-1) - \sum_{m \leq x, \delta(m) = p_s} m^k \\
-&= f(x,s-1) - p_s ^k f(\frac{x}{p_s},s-1)
-\end{aligned}</script><blockquote>
-<p>$\displaystyle f_k(x,0) = \sum_{i=1} ^ {\lfloor x \rfloor} i^k$</p>
+f_k(x,s) &amp;= \sum_{m \leq x, \delta(m)&gt;p_s} m^k \\
+&amp;= f(x,s-1) - \sum_{m \leq x, \delta(m) = p_s} m^k \\
+&amp;= f(x,s-1) - p_s ^k f(\frac{x}{p_s},s-1)
+\end{aligned}
+\]</span></p>
+<blockquote>
+<p><span class="math inline">\(\displaystyle f_k(x,0) = \sum_{i=1} ^ {\lfloor x \rfloor} i^k\)</span></p>
 </blockquote>
-<h3 id="f-k-x-s-和-f-k-x-的关系"><a href="#f-k-x-s-和-f-k-x-的关系" class="headerlink" title="$f_k(x,s)$ 和 $f_k(x)$ 的关系"></a>$f_k(x,s)$ 和 $f_k(x)$ 的关系</h3><p>若 $s &gt;= \pi(\sqrt{x})$，则</p>
-<script type="math/tex; mode=display">
-f_k(x) = f_k(x,s) - 1  + f_k(p_s)</script><p>其实我们还可以，类似于 $\pi(x)$ 的计算一样, 取 $\pi(\sqrt[3]{x}) \leq s \leq \pi(\sqrt{x})$</p>
-<script type="math/tex; mode=display">
-f_k(x) = f_k(x,s) - 1  + f_k(p_s) - \sum_{i=s+1} ^ {\pi(\sqrt{x})} (f(\frac{x}{p_i})-f(p_{i-1})) p_i ^k</script>
+<h3 id="f_kxs-和-f_kx-的关系"><span class="math inline">\(f_k(x,s)\)</span> 和 <span class="math inline">\(f_k(x)\)</span> 的关系</h3>
+<p>若 <span class="math inline">\(s &gt;= \pi(\sqrt{x})\)</span>，则 <span class="math display">\[
+f_k(x) = f_k(x,s) - 1  + f_k(p_s)
+\]</span></p>
+<p>其实我们还可以，类似于 <span class="math inline">\(\pi(x)\)</span> 的计算一样, 取 <span class="math inline">\(\pi(\sqrt[3]{x}) \leq s \leq \pi(\sqrt{x})\)</span> <span class="math display">\[
+f_k(x) = f_k(x,s) - 1  + f_k(p_s) - \sum_{i=s+1} ^ {\pi(\sqrt{x})} (f(\frac{x}{p_i})-f(p_{i-1})) p_i ^k
+\]</span></p>
+
               
             </div>
             <hr/>

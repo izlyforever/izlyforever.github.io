@@ -18,12 +18,12 @@
   <meta name="author" content="izlyforever">
   <meta name="keywords" content="math, cpp, python, sagemath">
   
-    <meta name="description" content="由线性无关性，我们不难知道 $|GL_n(\mathbb{Z}_p)| &#x3D; \prod_{i&#x3D;0} ^{n-1} (p^n-p^i)$，但是 $|GL_n(\mathbb{Z}_m)|$ 却是一个相对复杂的问题，它本质上是在考虑有限 Abel 群的自同构群的阶数问题。它又跟递推数列模 $m$ 的周期密切相关。">
+    <meta name="description" content="由线性无关性，我们不难知道 \(|GL_n(\mathbb{Z}_p)| &#x3D; \prod_{i&#x3D;0} ^{n-1} (p^n-p^i)\)，但是 \(|GL_n(\mathbb{Z}_m)|\) 却是一个相对复杂的问题，它本质上是在考虑有限 Abel 群的自同构群的阶数问题。它又跟递推数列模 \(m\) 的周期密切相关。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="$GL_n(\mathbb{Z}_m)$ 的阶数">
 <meta property="og:url" content="http://izlyforever.com/orderOfGLnZm/index.html">
 <meta property="og:site_name" content="记录程序和数学的点滴">
-<meta property="og:description" content="由线性无关性，我们不难知道 $|GL_n(\mathbb{Z}_p)| &#x3D; \prod_{i&#x3D;0} ^{n-1} (p^n-p^i)$，但是 $|GL_n(\mathbb{Z}_m)|$ 却是一个相对复杂的问题，它本质上是在考虑有限 Abel 群的自同构群的阶数问题。它又跟递推数列模 $m$ 的周期密切相关。">
+<meta property="og:description" content="由线性无关性，我们不难知道 \(|GL_n(\mathbb{Z}_p)| &#x3D; \prod_{i&#x3D;0} ^{n-1} (p^n-p^i)\)，但是 \(|GL_n(\mathbb{Z}_m)|\) 却是一个相对复杂的问题，它本质上是在考虑有限 Abel 群的自同构群的阶数问题。它又跟递推数列模 \(m\) 的周期密切相关。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-04-25T00:50:58.000Z">
 <meta property="article:modified_time" content="2022-06-25T09:14:02.554Z">
@@ -222,7 +222,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          4.1k 字
+          4.5k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
           <!-- compatible with older versions-->
-          35 分钟
+          38 分钟
         
       </span>
     
@@ -285,103 +285,113 @@
             
             <div class="markdown-body">
               
-              <p>由线性无关性，我们不难知道 $|GL_n(\mathbb{Z}_p)| = \prod_{i=0} ^{n-1} (p^n-p^i)$，但是 $|GL_n(\mathbb{Z}_m)|$ 却是一个相对复杂的问题，它本质上是在考虑有限 Abel 群的自同构群的阶数问题。它又跟递推数列模 $m$ 的周期密切相关。</p>
+              <p>由线性无关性，我们不难知道 <span class="math inline">\(|GL_n(\mathbb{Z}_p)| = \prod_{i=0} ^{n-1} (p^n-p^i)\)</span>，但是 <span class="math inline">\(|GL_n(\mathbb{Z}_m)|\)</span> 却是一个相对复杂的问题，它本质上是在考虑有限 Abel 群的自同构群的阶数问题。它又跟递推数列模 <span class="math inline">\(m\)</span> 的周期密切相关。</p>
 <span id="more"></span>
 <p>2007 年 CHRISTOPHER J. HILLAR AND DARREN L. RHEA 发表一篇论文<a href="automorphismsOfFiniteAblianGroup.pdf">《AUTOMORPHISMS OF FINITE Abelian GROUPS》</a> 完美的解决了这个问题。</p>
-<h2 id="有限生成-Abel-群结构定理"><a href="#有限生成-Abel-群结构定理" class="headerlink" title="有限生成 Abel 群结构定理"></a>有限生成 Abel 群结构定理</h2><p>设 $G$ 是一个有限 Abel 群，那么 $G$ 同构于一些</p>
-<script type="math/tex; mode=display">
-H_p = \mathbb{Z}_{p^{e_1}} \times \cdots  \mathbb{Z}_{p^{e_n}}</script><p>的乘积。其中 $p$ 是素数（$p$ 一般默认为素数），$1 \leq e_1 \leq \cdots \leq e_n$ 是正整数。</p>
+<h2 id="有限生成-abel-群结构定理">有限生成 Abel 群结构定理</h2>
+<p>设 <span class="math inline">\(G\)</span> 是一个有限 Abel 群，那么 <span class="math inline">\(G\)</span> 同构于一些 <span class="math display">\[
+H_p = \mathbb{Z}_{p^{e_1}} \times \cdots  \mathbb{Z}_{p^{e_n}}
+\]</span> 的乘积。其中 <span class="math inline">\(p\)</span> 是素数（<span class="math inline">\(p\)</span> 一般默认为素数），<span class="math inline">\(1 \leq e_1 \leq \cdots \leq e_n\)</span> 是正整数。</p>
 <blockquote>
 <p>证明可见任意一般抽象代数（或近世代数）书。</p>
 </blockquote>
-<h2 id="乘积的自同构"><a href="#乘积的自同构" class="headerlink" title="乘积的自同构"></a>乘积的自同构</h2><p>若 $H$ 和 $K$ 是有限群，且它们的阶数互素。那么我们就有同构：</p>
-<script type="math/tex; mode=display">
-Aut(H) \times Aut(K) \simeq Aut(H \times K)</script><p><strong>Proof</strong> ：我们构造很自然的映射：</p>
-<script type="math/tex; mode=display">
+<h2 id="乘积的自同构">乘积的自同构</h2>
+<p>若 <span class="math inline">\(H\)</span> 和 <span class="math inline">\(K\)</span> 是有限群，且它们的阶数互素。那么我们就有同构： <span class="math display">\[
+Aut(H) \times Aut(K) \simeq Aut(H \times K)
+\]</span> <strong>Proof</strong> ：我们构造很自然的映射： <span class="math display">\[
 \begin{aligned}
 \phi: Aut(H) \times Aut(K) \to Aut(H \times K) \\
 \phi(\alpha,\beta)(h,k) = (\alpha(h),\beta(k))
-\end{aligned}</script><p>容易验证 $\phi$  是合理的映射，并且是单射，然后我们同构构造它的逆映射来说明它是满射。</p>
-<p>我们记 $n = |H|,m = |K|$，$\pi_H,\pi_K$ 是标准投影映射： $\pi_H: H \times K \to H$，$\pi_K: H \times K \to K$ 。对于给定的 $\omega \in Aut(H \times K)$，我们定义同态 $\gamma: K \to H$， $\gamma(k) = \pi_H(\omega(1_H,k))$，注意到 $\lbrace k^n: k \in K \rbrace \subseteq \ker \gamma$。又 $m,n$是互素的，所以 $\gamma$ 是平凡的映射。同理，我们定义 $\delta: H \to K$，$\delta(h) = \pi_K(\omega(h,1_K))$ 也是平凡映射。最后我们定义$H$和$K$的自同态：</p>
-<script type="math/tex; mode=display">
+\end{aligned}
+\]</span> 容易验证 <span class="math inline">\(\phi\)</span> 是合理的映射，并且是单射，然后我们同构构造它的逆映射来说明它是满射。</p>
+<p>我们记 <span class="math inline">\(n = |H|,m = |K|\)</span>，<span class="math inline">\(\pi_H,\pi_K\)</span> 是标准投影映射： <span class="math inline">\(\pi_H: H \times K \to H\)</span>，<span class="math inline">\(\pi_K: H \times K \to K\)</span> 。对于给定的 <span class="math inline">\(\omega \in Aut(H \times K)\)</span>，我们定义同态 <span class="math inline">\(\gamma: K \to H\)</span>， <span class="math inline">\(\gamma(k) = \pi_H(\omega(1_H,k))\)</span>，注意到 <span class="math inline">\(\lbrace k^n: k \in K \rbrace \subseteq \ker \gamma\)</span>。又 <span class="math inline">\(m,n\)</span>是互素的，所以 <span class="math inline">\(\gamma\)</span> 是平凡的映射。同理，我们定义 <span class="math inline">\(\delta: H \to K\)</span>，<span class="math inline">\(\delta(h) = \pi_K(\omega(h,1_K))\)</span> 也是平凡映射。最后我们定义<span class="math inline">\(H\)</span>和<span class="math inline">\(K\)</span>的自同态： <span class="math display">\[
 \begin{aligned}
 \omega_H(h) = \pi_H(w(h,1_K)) ,\quad \omega(k) = \pi_K(w(1_H,k)) \\
 \omega(h,k) = \omega(h,1_K) \omega(1_H,k) = (\omega_H(h),  \omega_K(k)) = \phi(w_H,w_k)(h,k)
-\end{aligned}</script><p>由于 $\omega_H,\omega_K$ 都是单射，并且 $H,K$ 是有限群，所以它们是自同构，证毕。</p>
+\end{aligned}
+\]</span> 由于 <span class="math inline">\(\omega_H,\omega_K\)</span> 都是单射，并且 <span class="math inline">\(H,K\)</span> 是有限群，所以它们是自同构，证毕。</p>
 <blockquote>
-<p>所以我们考虑 $Aut(G)$，只需考虑 $Aut(H_p)$ 即可</p>
+<p>所以我们考虑 <span class="math inline">\(Aut(G)\)</span>，只需考虑 <span class="math inline">\(Aut(H_p)\)</span> 即可</p>
 </blockquote>
-<h2 id="H-p-的自同态"><a href="#H-p-的自同态" class="headerlink" title="$H_p$ 的自同态"></a>$H_p$ 的自同态</h2><p>我们定义，环 $E_p = End(H_p)$（加法就是映射的加法，乘法就是映射的复合）</p>
-<p>由于循环群 $C_{p^{e_i}}$ 对应的是 模 $p^{e_i}$ 的加法群。所以 $H_p$ 中的元素可以表示成列向量 $(\overline{h_1},\cdots \overline{h_n})^T$，其中 $\overline{h_i} \in \mathbb{Z}_{p^{e_i}}, \; h_i \in \mathbb{Z}$</p>
-<p>我们定义（<strong>精华所在</strong>)</p>
-<script type="math/tex; mode=display">
-R_p \doteq \lbrace (a_{ij} \in \mathbb{Z}^{n \times n}: p^{e_i - e_j}|a_{ij} \quad \forall 1 \leq j < i \leq n)</script><p>注意到 $\forall A \in R_p$，$A = P A’ P^{-1}$，其中 $P = diag(p^{e_1},\cdots,p^{e_n}), A’ \in \mathbb{Z}^{n \times n}$。从而 $R_p$ 根据加法和矩阵乘法，构成了一个环。</p>
-<p>我们定义 $\pi_i: \mathbb{Z} \to \mathbb{Z}_{p^{e_i}}$ 为标准商映射。$\pi: \mathbb{Z}^n \to H_p$ 为：</p>
-<script type="math/tex; mode=display">
-\pi(h_1,\cdots h_n)^T = (\pi_1(h_1),\cdots,\pi_n(h_n))^T = (\overline{h_1},\cdots \overline{h_n})^T</script><p>我们不难验证 $\psi: R_p \to E_p$</p>
-<script type="math/tex; mode=display">
-\psi(A)(\overline{h_1},\cdots \overline{h_n})^T = \pi(A(h_1,\cdots,h_n)^T)</script><p>是环满同态（需要验证映射合理性，环同态，满射）且 $\ker \psi = \lbrace A = (a_{ij}) \in R_p: p^{e_i} | a_{ij}$</p>
-<h2 id="H-p-的自同构-Aut-H-p"><a href="#H-p-的自同构-Aut-H-p" class="headerlink" title="$H_p$ 的自同构 $Aut(H_p)$"></a>$H_p$ 的自同构 $Aut(H_p)$</h2><p>$M = \psi(A) \in Aut(H_p)$ 当且仅当 $A \mod p \in GL_n(\mathbb{F}_p)$，即 $\det(A) \in U(H_p)$ 是 $H_p$ 中可逆元。</p>
-<p><strong>Proof</strong>：利用 $A$ 的逆矩阵推出 $M$ 是自同构，利用 $M$ 的逆映射给出 $A$ 的逆矩阵。</p>
-<h2 id="Aut-H-p"><a href="#Aut-H-p" class="headerlink" title="$| Aut(H_p)|$"></a>$| Aut(H_p)|$</h2><p>定义：$d_k = \max \lbrace l: e_l  = e_k \rbrace, c_k = \min \lbrace l: e_l  = e_k \rbrace$，显然 $c_k \leq k \leq d_k$。我们需要计算</p>
+<h2 id="h_p-的自同态"><span class="math inline">\(H_p\)</span> 的自同态</h2>
+<p>我们定义，环 <span class="math inline">\(E_p = End(H_p)\)</span>（加法就是映射的加法，乘法就是映射的复合）</p>
+<p>由于循环群 <span class="math inline">\(C_{p^{e_i}}\)</span> 对应的是 模 <span class="math inline">\(p^{e_i}\)</span> 的加法群。所以 <span class="math inline">\(H_p\)</span> 中的元素可以表示成列向量 <span class="math inline">\((\overline{h_1},\cdots \overline{h_n})^T\)</span>，其中 <span class="math inline">\(\overline{h_i} \in \mathbb{Z}_{p^{e_i}}, \; h_i \in \mathbb{Z}\)</span></p>
+<p>我们定义（<strong>精华所在</strong>) <span class="math display">\[
+R_p \doteq \lbrace (a_{ij} \in \mathbb{Z}^{n \times n}: p^{e_i - e_j}|a_{ij} \quad \forall 1 \leq j &lt; i \leq n)
+\]</span></p>
+<p>注意到 <span class="math inline">\(\forall A \in R_p\)</span>，<span class="math inline">\(A = P A&#39; P^{-1}\)</span>，其中 <span class="math inline">\(P = diag(p^{e_1},\cdots,p^{e_n}), A&#39; \in \mathbb{Z}^{n \times n}\)</span>。从而 <span class="math inline">\(R_p\)</span> 根据加法和矩阵乘法，构成了一个环。</p>
+<p>我们定义 <span class="math inline">\(\pi_i: \mathbb{Z} \to \mathbb{Z}_{p^{e_i}}\)</span> 为标准商映射。<span class="math inline">\(\pi: \mathbb{Z}^n \to H_p\)</span> 为： <span class="math display">\[
+\pi(h_1,\cdots h_n)^T = (\pi_1(h_1),\cdots,\pi_n(h_n))^T = (\overline{h_1},\cdots \overline{h_n})^T
+\]</span> 我们不难验证 <span class="math inline">\(\psi: R_p \to E_p\)</span> <span class="math display">\[
+\psi(A)(\overline{h_1},\cdots \overline{h_n})^T = \pi(A(h_1,\cdots,h_n)^T)
+\]</span> 是环满同态（需要验证映射合理性，环同态，满射）且 <span class="math inline">\(\ker \psi = \lbrace A = (a_{ij}) \in R_p: p^{e_i} | a_{ij}\)</span></p>
+<h2 id="h_p-的自同构-auth_p"><span class="math inline">\(H_p\)</span> 的自同构 <span class="math inline">\(Aut(H_p)\)</span></h2>
+<p><span class="math inline">\(M = \psi(A) \in Aut(H_p)\)</span> 当且仅当 <span class="math inline">\(A \mod p \in GL_n(\mathbb{F}_p)\)</span>，即 <span class="math inline">\(\det(A) \in U(H_p)\)</span> 是 <span class="math inline">\(H_p\)</span> 中可逆元。</p>
+<p><strong>Proof</strong>：利用 <span class="math inline">\(A\)</span> 的逆矩阵推出 <span class="math inline">\(M\)</span> 是自同构，利用 <span class="math inline">\(M\)</span> 的逆映射给出 <span class="math inline">\(A\)</span> 的逆矩阵。</p>
+<h2 id="auth_p"><span class="math inline">\(| Aut(H_p)|\)</span></h2>
+<p>定义：<span class="math inline">\(d_k = \max \lbrace l: e_l = e_k \rbrace, c_k = \min \lbrace l: e_l = e_k \rbrace\)</span>，显然 <span class="math inline">\(c_k \leq k \leq d_k\)</span>。我们需要计算</p>
 <ul>
-<li>所有 $GL_n(\mathbb{F}_p)$ 中可以拓展成 $A \in R_p$ 的元素</li>
+<li>所有 <span class="math inline">\(GL_n(\mathbb{F}_p)\)</span> 中可以拓展成 <span class="math inline">\(A \in R_p\)</span> 的元素</li>
 <li>每个元素拓展方式</li>
 </ul>
-<p>我们找到所有 $M \in  GL_n(\mathbb{F}_p)$ 形如：</p>
-<script type="math/tex; mode=display">
+<p>我们找到所有 <span class="math inline">\(M \in GL_n(\mathbb{F}_p)\)</span> 形如： <span class="math display">\[
 M =
 \begin{pmatrix}
-m_{11} & & & \star \\
+m_{11} &amp; &amp; &amp; \star \\
 \vdots \\
 m_{d_1 1} \\
-& m_{d_2 2} \\
-& & \ddots \\
-0 & & & m_{d_n n}
-\end{pmatrix}</script><blockquote>
-<p>注意到 $\sum_{j=1} ^n \sum_{i=1} ^{d_j} m_{ij} = \sum_{e_i \leq e_j} m_{ij} = \sum_{i=1} ^n \sum_{j = c_i}^n m_{ij}$</p>
-</blockquote>
-<p>因为我们只考虑线性无关的，所以这种 $M$ 的数量是</p>
-<script type="math/tex; mode=display">
-\prod_{k=1} ^n (p^{d_k} - p^{k-1})</script><p>将 $m_{ij}$ 从 $\overline{m_{ij}} \in \mathbb{Z}_p$ 到 $\overline{a_{ij}} \in p^{e_i-e_j} \mathbb{Z}/p^{e_i} \mathbb{Z}$ 使得 $a_{ij} \equiv m_{ij} \mod p$ 的方案数分两种情况</p>
+&amp; m_{d_2 2} \\
+&amp; &amp; \ddots \\
+0 &amp; &amp; &amp; m_{d_n n}
+\end{pmatrix}
+\]</span> &gt; 注意到 <span class="math inline">\(\sum_{j=1} ^n \sum_{i=1} ^{d_j} m_{ij} = \sum_{e_i \leq e_j} m_{ij} = \sum_{i=1} ^n \sum_{j = c_i}^n m_{ij}\)</span></p>
+<p>因为我们只考虑线性无关的，所以这种 <span class="math inline">\(M\)</span> 的数量是 <span class="math display">\[
+\prod_{k=1} ^n (p^{d_k} - p^{k-1})
+\]</span> 将 <span class="math inline">\(m_{ij}\)</span> 从 <span class="math inline">\(\overline{m_{ij}} \in \mathbb{Z}_p\)</span> 到 <span class="math inline">\(\overline{a_{ij}} \in p^{e_i-e_j} \mathbb{Z}/p^{e_i} \mathbb{Z}\)</span> 使得 <span class="math inline">\(a_{ij} \equiv m_{ij} \mod p\)</span> 的方案数分两种情况</p>
 <ul>
-<li>$e_i &gt; e_j$ 时， $p^{e_j}$ 种</li>
-<li>$e_i \leq e_j$ 时， $p^{e_i-1}$ 种</li>
+<li><span class="math inline">\(e_i &gt; e_j\)</span> 时， <span class="math inline">\(p^{e_j}\)</span> 种</li>
+<li><span class="math inline">\(e_i \leq e_j\)</span> 时， <span class="math inline">\(p^{e_i-1}\)</span> 种</li>
 </ul>
-<p>从而</p>
-<script type="math/tex; mode=display">
-|Aut(H_p)| = \prod_{k=1} ^n (p^{d_k} - p^{k-1}) \prod_{j=1} ^n (p^{e_j})^{n-d_j} \prod_{i=1} ^n (p^{e_i -1})^{n-c_i+1}</script><h2 id="GL-n-mathbb-Z-m"><a href="#GL-n-mathbb-Z-m" class="headerlink" title="$|GL_n(\mathbb{Z}_m)|$"></a>$|GL_n(\mathbb{Z}_m)|$</h2><p>由 $|Aut(H_p)|$ 的公式的特殊形式，我们知道 $|GL_n(Z_{p^s})| = p^{n^2 (s-1)} \prod_{k=1} ^n (p^n - p^{k-1})$。</p>
-<p>将 $m$ 质因数分解 $m = p_1^{s_1} \cdots p_r ^{s_r}, \quad p_1 &lt; \cdots &lt; p_r$</p>
-<script type="math/tex; mode=display">
-|GL_n(\mathbb{Z}_m)| =  \prod_{i=1} ^r |GL_n(Z_{p_i^{s_i}})|</script><h2 id="mathbb-Z-m-上-n-阶给定可逆矩阵-A-的周期"><a href="#mathbb-Z-m-上-n-阶给定可逆矩阵-A-的周期" class="headerlink" title="$\mathbb{Z}_m$ 上$n$ 阶给定可逆矩阵 $A$ 的周期"></a>$\mathbb{Z}_m$ 上$n$ 阶给定可逆矩阵 $A$ 的周期</h2><p>设 $f(\lambda) = | \lambda I -A|$，$A$ 可逆等价于 $\gcd(f(\lambda),\lambda) = 1$，由于 $A^k$ 都可以由 $I,A,\cdots A^{n-1}$，线性表出，但是由于是在 $\mod m$ 的意义下，所以根据容斥原理，对任意 $k \geq m^n$ 时，必然存在 $l &lt; k$，使得 $A^k = A^l$。即 $A$ 的周期上限是 $m^n$，并且周期是 $|GL_n(\mathbb{Z}_m)|$ 的一个真因子（$n&gt;1$）。</p>
-<p>显然若 $A$ 可对角化，那么 $A$ 的周期必然是 $\phi(m)$ 的一个因子！但是注意这里 $A$ 对称并不能推出 $A$ 可对角化。</p>
-<h2 id="常系数递推数列模意义下的周期"><a href="#常系数递推数列模意义下的周期" class="headerlink" title="常系数递推数列模意义下的周期"></a>常系数递推数列模意义下的周期</h2><p>给定初值，$x_1,\cdots x_s$, 和递推关系：$x_{n+s} = a_1 x_{n+s-1} + \cdots + a_s x_n, a_s \neq 0$ 的数列 ${x_n}$可以表示成：</p>
-<script type="math/tex; mode=display">
-\begin{pmatrix}
+<p>从而 <span class="math display">\[
+|Aut(H_p)| = \prod_{k=1} ^n (p^{d_k} - p^{k-1}) \prod_{j=1} ^n (p^{e_j})^{n-d_j} \prod_{i=1} ^n (p^{e_i -1})^{n-c_i+1}
+\]</span></p>
+<h2 id="gl_nmathbbz_m"><span class="math inline">\(|GL_n(\mathbb{Z}_m)|\)</span></h2>
+<p>由 <span class="math inline">\(|Aut(H_p)|\)</span> 的公式的特殊形式，我们知道 <span class="math inline">\(|GL_n(Z_{p^s})| = p^{n^2 (s-1)} \prod_{k=1} ^n (p^n - p^{k-1})\)</span>。</p>
+<p>将 <span class="math inline">\(m\)</span> 质因数分解 <span class="math inline">\(m = p_1^{s_1} \cdots p_r ^{s_r}, \quad p_1 &lt; \cdots &lt; p_r\)</span> <span class="math display">\[
+|GL_n(\mathbb{Z}_m)| =  \prod_{i=1} ^r |GL_n(Z_{p_i^{s_i}})|
+\]</span></p>
+<h2 id="mathbbz_m-上n-阶给定可逆矩阵-a-的周期"><span class="math inline">\(\mathbb{Z}_m\)</span> 上<span class="math inline">\(n\)</span> 阶给定可逆矩阵 <span class="math inline">\(A\)</span> 的周期</h2>
+<p>设 <span class="math inline">\(f(\lambda) = | \lambda I -A|\)</span>，<span class="math inline">\(A\)</span> 可逆等价于 <span class="math inline">\(\gcd(f(\lambda),\lambda) = 1\)</span>，由于 <span class="math inline">\(A^k\)</span> 都可以由 <span class="math inline">\(I,A,\cdots A^{n-1}\)</span>，线性表出，但是由于是在 <span class="math inline">\(\mod m\)</span> 的意义下，所以根据容斥原理，对任意 <span class="math inline">\(k \geq m^n\)</span> 时，必然存在 <span class="math inline">\(l &lt; k\)</span>，使得 <span class="math inline">\(A^k = A^l\)</span>。即 <span class="math inline">\(A\)</span> 的周期上限是 <span class="math inline">\(m^n\)</span>，并且周期是 <span class="math inline">\(|GL_n(\mathbb{Z}_m)|\)</span> 的一个真因子（<span class="math inline">\(n&gt;1\)</span>）。</p>
+<p>显然若 <span class="math inline">\(A\)</span> 可对角化，那么 <span class="math inline">\(A\)</span> 的周期必然是 <span class="math inline">\(\phi(m)\)</span> 的一个因子！但是注意这里 <span class="math inline">\(A\)</span> 对称并不能推出 <span class="math inline">\(A\)</span> 可对角化。</p>
+<h2 id="常系数递推数列模意义下的周期">常系数递推数列模意义下的周期</h2>
+给定初值，<span class="math inline">\(x_1,\cdots x_s\)</span>, 和递推关系：<span class="math inline">\(x_{n+s} = a_1 x_{n+s-1} + \cdots + a_s x_n, a_s \neq 0\)</span> 的数列 <span class="math inline">\({x_n}\)</span>可以表示成： $$
+<span class="math display">\[\begin{pmatrix}
 x_n \\
 x_{n-1} \\
 \vdots  \\
 x_{n-s+1}
-\end{pmatrix} =
-\begin{pmatrix}
-a_1 & a_2 &\cdots & a_s \\
-1 & 0 \\
-\vdots  & & & 0\\
-0 &\cdots & 1& 0
-\end{pmatrix}
-
-\begin{pmatrix}
+\end{pmatrix}\]</span>
+=
+<span class="math display">\[\begin{pmatrix}
+a_1 &amp; a_2 &amp;\cdots &amp; a_s \\
+1 &amp; 0 \\
+\vdots  &amp; &amp; &amp; 0\\
+0 &amp;\cdots &amp; 1&amp; 0
+\end{pmatrix}\]</span>
+<span class="math display">\[\begin{pmatrix}
 x_{n-1} \\
 x_{n-2} \\
 \vdots  \\
 x_{n-s}
-\end{pmatrix}</script><p>可以通过矩阵幂在 $O(s^3 \log n)$ 复杂度求出。</p>
+\end{pmatrix}\]</span>
+<p>$$</p>
+<p>可以通过矩阵幂在 <span class="math inline">\(O(s^3 \log n)\)</span> 复杂度求出。</p>
 <blockquote>
-<p>当 $s$ 相对较大时，根据特征多项式将系数矩阵 $A^n$ 写成 $I,A,\cdots A^{s-1}$ 的线性组合，然后只考虑仅乘以第一行，就可以在 $O(s^2\log n)$ 复杂度求出</p>
+<p>当 <span class="math inline">\(s\)</span> 相对较大时，根据特征多项式将系数矩阵 <span class="math inline">\(A^n\)</span> 写成 <span class="math inline">\(I,A,\cdots A^{s-1}\)</span> 的线性组合，然后只考虑仅乘以第一行，就可以在 <span class="math inline">\(O(s^2\log n)\)</span> 复杂度求出</p>
 </blockquote>
-<p>我们考虑 数列 $\lbrace x_n  \mod m \rbrace$ ，由容斥原理知，数列 $\lbrace x_n  \mod m \rbrace$ 是周期数列，记它的最小正周期为 $f(m)$ ，则</p>
-<script type="math/tex; mode=display">
-f(m) = lcm(f(p_1^{s_1}),\cdots f(p_r^{s_r}))</script><p>只要 $p_i \not| \; a_s$，则 $f(p_i ^{s_i})$  是 $|GL_n(\mathbb{Z}_{p_i^{s_i}})|$ 的一个真因子（当 $n&gt;1$ 时，$GL_n(\mathbb{Z}_{p_i^{s_i}})$ 不是循环群）。</p>
+<p>我们考虑 数列 <span class="math inline">\(\lbrace x_n \mod m \rbrace\)</span> ，由容斥原理知，数列 <span class="math inline">\(\lbrace x_n \mod m \rbrace\)</span> 是周期数列，记它的最小正周期为 <span class="math inline">\(f(m)\)</span> ，则 <span class="math display">\[
+f(m) = lcm(f(p_1^{s_1}),\cdots f(p_r^{s_r}))
+\]</span> 只要 <span class="math inline">\(p_i \not| \; a_s\)</span>，则 <span class="math inline">\(f(p_i ^{s_i})\)</span> 是 <span class="math inline">\(|GL_n(\mathbb{Z}_{p_i^{s_i}})|\)</span> 的一个真因子（当 <span class="math inline">\(n&gt;1\)</span> 时，<span class="math inline">\(GL_n(\mathbb{Z}_{p_i^{s_i}})\)</span> 不是循环群）。</p>
 <blockquote>
 <p>精确的周期要具体问题具体分析。</p>
 </blockquote>

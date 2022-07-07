@@ -289,12 +289,14 @@
 <p>首先写博客是一个梳理的过程，回顾的过程。我们很多是有应该 通过 google 搜索到关键词，通过 <a target="_blank" rel="noopener" href="https://akaedu.github.io/book/ch03s03.html">man 查询</a> 到具体用法和实例，然后对应的去使用。但是如果是这样我们还学啥呢？用的时候搜就行了呀。所以书籍很多时候是一门艺术，知识点只是里面的血肉，我们通过摸索血肉，了解骨架，加油吧！</p>
 <p>越是底层的东西，更新迭代的速度慢，所以读 20 年前的东西也未曾不可，要有大局观有架构，不要深陷具体的泥潭</p>
 <p>学完王爽老师《汇编语言》后，根据好友的提示，我又开始学习<a target="_blank" rel="noopener" href="http://jyywiki.cn/">操作系统（蒋老师 yyds）</a>，但是奈何基础太差，马上学习这个的曲线太陡峭，于是我花了一天扫了一遍《The C programing Language》，有两个目的：1. 了解 C 和 C++ 的边界 2.拜读下经典，了解 C 的历史。在学 C 要做 task 的时候发现这也没有那也没有，很难搞。然后又注意到以前一些被 C++ 淘汰的技术，例如链式前向星在 C 中还是有用武之地的。看完之后还是觉得太浅了，然后开始学习 <a target="_blank" rel="noopener" href="https://akaedu.github.io/book/index.html">Linux C编程一站式学习</a></p>
-<h2 id="和-C-的差异"><a href="#和-C-的差异" class="headerlink" title="和 C++ 的差异"></a>和 C++ 的差异</h2><ul>
+<h2 id="和-c-的差异">和 C++ 的差异</h2>
+<ul>
 <li><code>f()</code> 是声明，而非函数原型，所以函数的最终定义实现可以是任意参数的（当然 C 中没有重载，所以只能是某一个）。正因如此在 C 语言中不应该出现 <code>f()</code>，无参数应该使用 <code>f(void)</code>（C++ 不推荐这个写法，因为它们在这里差异具体，且 C++ 支持重载也是重要原因）</li>
 <li>struct 定义完后，使用时要带着 struct（而 C++ 显然不需要），这也是为什么在 C 中有这么多 typedef struct 的写法</li>
 <li>C99 支持变量作为数组个数来定义，但是 C++ 不允许，这是考虑到此时应该用 <code>vector</code></li>
 </ul>
-<h2 id="一些知识点"><a href="#一些知识点" class="headerlink" title="一些知识点"></a>一些知识点</h2><ul>
+<h2 id="一些知识点">一些知识点</h2>
+<ul>
 <li>整型提升是 <code>C/C++</code> 共有的“坑”</li>
 <li><code>C/C++</code> 中多维数组只是语法上的概念，硬件层面依然是一段连续的内存</li>
 <li><code>C/C++</code> 中递归都可以用 struct 中保存 frame 的方式来实现，只是这个工作编译器帮我们做了</li>
@@ -302,33 +304,36 @@
 <li>C 中 无命名空间（所以有些函数名很长）、无模版、函数无重载（所以常会有 <code>void*, char*</code> 作为参数）、无 STL（素有宏比较泛滥）</li>
 <li>C 的变参列表使用，为什么 <code>printf, scanf</code> 可以完美的接受这些，正是因为 <code>%</code> 给它提示了数据类型，让其好处理</li>
 </ul>
-<h2 id="思考的问题汇总"><a href="#思考的问题汇总" class="headerlink" title="思考的问题汇总"></a>思考的问题汇总</h2><div class="table-container">
+<h2 id="思考的问题汇总">思考的问题汇总</h2>
 <table>
 <thead>
-<tr>
-<th style="text-align:left">Q</th>
-<th style="text-align:left">A</th>
-<th style="text-align:left">获取答案的方式</th>
+<tr class="header">
+<th style="text-align: left;">Q</th>
+<th style="text-align: left;">A</th>
+<th style="text-align: left;">获取答案的方式</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left">C99 为什么可以支持动态长度的数组吗？原理是什么</td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
+<tr class="odd">
+<td style="text-align: left;">C99 为什么可以支持动态长度的数组吗？原理是什么</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 </tr>
-<tr>
-<td style="text-align:left">alloca 在 stack 上申请内存（效率更快，大小受限），malloc 在栈上申请内存。如何确定一个 C 语言变量定义分配的内存方式</td>
-<td style="text-align:left"></td>
+<tr class="even">
+<td style="text-align: left;">alloca 在 stack 上申请内存（效率更快，大小受限），malloc 在栈上申请内存。如何确定一个 C 语言变量定义分配的内存方式</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 </tr>
 </tbody>
 </table>
-</div>
-<h2 id="gdb-的一些基本使用（直接-help，然后-help-具体项目更好）"><a href="#gdb-的一些基本使用（直接-help，然后-help-具体项目更好）" class="headerlink" title="gdb 的一些基本使用（直接 help，然后 help 具体项目更好）"></a>gdb 的一些基本使用（直接 help，然后 help 具体项目更好）</h2><p>gcc 生成 <code>.out</code> 时的参数记得带 <code>-g</code></p>
-<p>进入 gdb 后可以 调用 layout 查看 debug 到了哪里，具体 <code>layout asm</code> 和  <code>layout src</code>（如果不限时，就 list 下），<a target="_blank" rel="noopener" href="https://akaedu.github.io/book/ch10s01.html">文末第一张表</a>。当然了还有 starti 这种停在最最最开始的地方，再看<a target="_blank" rel="noopener" href="https://akaedu.github.io/book/ch10s02.html">文末第二张表</a> ，然后还有 watch 等功能。相对而言确实没有 VSCode + codelldb 方便，但是在无图形界面时还是很有用的。就如同 vim 相对于 VScode 有一项可以只在 termianl 中工作的优势</p>
+<h2 id="gdb-的一些基本使用直接-help然后-help-具体项目更好">gdb 的一些基本使用（直接 help，然后 help 具体项目更好）</h2>
+<p>gcc 生成 <code>.out</code> 时的参数记得带 <code>-g</code></p>
+<p>进入 gdb 后可以 调用 layout 查看 debug 到了哪里，具体 <code>layout asm</code> 和 <code>layout src</code>（如果不限时，就 list 下），<a target="_blank" rel="noopener" href="https://akaedu.github.io/book/ch10s01.html">文末第一张表</a>。当然了还有 starti 这种停在最最最开始的地方，再看<a target="_blank" rel="noopener" href="https://akaedu.github.io/book/ch10s02.html">文末第二张表</a> ，然后还有 watch 等功能。相对而言确实没有 VSCode + codelldb 方便，但是在无图形界面时还是很有用的。就如同 vim 相对于 VScode 有一项可以只在 termianl 中工作的优势</p>
 <p>除了malloc之外，C标准库还提供了另外两个在堆空间分配内存的函数：void <em>calloc(size_t nmemb, size_t size);void </em>realloc(void *ptr, size_t size);，它们分配的内存同样由free释放。alloca函数不是在堆上分配空间，而是在调用者函数的栈帧上分配空间，类似于C99的变长数组，当调用者函数返回时自动释放栈帧，所以不需要free。这个函数不属于C标准库，而是在POSIX标准中定义的。</p>
-<h2 id="ELF"><a href="#ELF" class="headerlink" title="ELF"></a>ELF</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/arnoldlu/p/7136701.html">ELF格式文件分析以及运用</a></p>
-<h2 id="Unicode-和-UTF-8"><a href="#Unicode-和-UTF-8" class="headerlink" title="Unicode 和 UTF-8"></a>Unicode 和 UTF-8</h2><p><a target="_blank" rel="noopener" href="https://akaedu.github.io/book/apas02.html">Unicode 和 UTF-8</a>，<a target="_blank" rel="noopener" href="https://www.cl.cam.ac.uk/~mgk25/unicode.html">详细版</a></p>
+<h2 id="elf">ELF</h2>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/arnoldlu/p/7136701.html">ELF格式文件分析以及运用</a></p>
+<h2 id="unicode-和-utf-8">Unicode 和 UTF-8</h2>
+<p><a target="_blank" rel="noopener" href="https://akaedu.github.io/book/apas02.html">Unicode 和 UTF-8</a>，<a target="_blank" rel="noopener" href="https://www.cl.cam.ac.uk/~mgk25/unicode.html">详细版</a></p>
 <p><a target="_blank" rel="noopener" href="https://bbs.csdn.net/topics/340135066">历史上“丢失”的十天——编程中的日期问题</a></p>
 <p>我发现了一个优雅的使用模版的方式：比如我写了个函数，只需要支持 int32 和 int64，我可以在 .h 中声明这两个函数，然后反手在 .cpp 中用模板给实现，然后 int32 和 int64 的实现就是这个模板实现的套娃。</p>
 <p>既保证了编译速度，也避免了重复，还提供纯 c 的调用！</p>

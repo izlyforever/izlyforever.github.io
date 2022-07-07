@@ -222,7 +222,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.7k 字
+          1.8k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
           <!-- compatible with older versions-->
-          14 分钟
+          15 分钟
         
       </span>
     
@@ -287,36 +287,30 @@
               
               <p>Fermat 平方和定理的表述为：奇质数能表示为两个平方数之和的充分必要条件是该质数被 4 除余 1（必要性显然）。这个结论首次由 Euler 在 1747 年给出证明。详细叙述如下：</p>
 <span id="more"></span>
-<p>为方便起见,记</p>
-<script type="math/tex; mode=display">
-A = \lbrace a^2 + b^2 \mid a,b \in \mathbb{Z} \rbrace</script><p>证明分五步完成</p>
-<ol>
-<li><p>$(a^2+b^2)(c^2+d^2)=(ac \pm bd)^2 +(ad \mp bc)^2 $<br>proof: 计算即知。</p>
-</li>
-<li><p>若 $a^2+b^2 \mid c^2+d^2$, $a^2+b^2$ 为素数，则</p>
-<script type="math/tex; mode=display">
-\frac{c^2+d^2}{a^2+b^2} \in A</script><p><strong>proof</strong>: 由于 $(ac-bd)(ac+bd) = (a^2+b^2)c^2-(c^2+d^2)b^2$ 因此 $(a^2+b^2) \mid (ac-bd)(ac+bd)$ 而 $(a^2+b^2)$ 是素数，因此必然整除其中一个。假设 $(a^2+b^2)|(ac-bd)$，则由 1 知 $(a^2+b^2)｜(ad+bc)$ 因此</p>
-<script type="math/tex; mode=display">
-\frac{c^2+d^2}{a^2+b^2}=(\frac{ac - bd}{a^2+b^2})^2 +(\frac{ad + bc}{a^2+b^2})^2</script><p>​类似的，假设 $(a^2+b^2) \mid (ac＋bd)$ 则有</p>
-<script type="math/tex; mode=display">
-\frac{c^2+d^2}{a^2+b^2}=(\frac{ac + bd}{a^2+b^2})^2 +(\frac{ad - bc}{a^2+b^2})^2</script></li>
-<li><p>$x \mid a^2+b^2,x \notin A$，则 $\exists y| \frac{a^2+b^2}{x}$ 使得 $y \notin A$</p>
-<p>反证：设 $a^2+b^2 = x p_1 p_2 \cdots p_n$ 则 $\forall y| \frac{a^2+b^2}{x},y \in A$ 则由 2，经过 $n$ 次除法，最终 $x \in A$ 矛盾。</p>
-</li>
-<li><p>若 $(a,b)=1$ 则 $\forall x | a^2+b^2 \Rightarrow x \in A$</p>
-<p>假设 $\exists x| a^2+b^2,x \notin A$ 则，我们设 $a = mx + c,b = mx + d$,其中 $|c|,|d| \leq \frac{x}{2}$。则<br>$a^2+b^2=(mx+c)^2+(mx+d)^2=tx+(c^2+d^2)$，因此 $x \mid c^2+d^2$。又 $(a,b)=1$ ，因此 $((c,d),x)=1$。因此不妨设 $(c,d)=1$（否则，两边同除它的平方）则 $\exists z, zx = c^2+d^2 \leq \frac{x^2}{2}$。即 $z\leq \frac{x}{2}$。由引理 3 知道 $z$ 有一个因子 $w \notin A$。即我们由 $x \mid a^2+b^2,x \notin A$ 得到了 $w \mid c^2+d^2, w \notin A ,w \leq  \frac{x}{2}$ 这样一直下去必然会在有限步结束，矛盾，即必然有 $x \in A$ 。</p>
-</li>
-<li><p>若素数 $p=4n+1$，则 $p\in A$。</p>
-<p>由 Fermat 小定理知 $1,2^{4n},\cdots,(4n)^{4n}$ 除以 $p$ 模 1.因此 $2^{4n}－1,3^{4n}－2^{4n},\cdots,(4n)^{4n}-(4n-1)^{4n}$ 都是 $p$ 的倍数。这些差都有分解</p>
-<script type="math/tex; mode=display">
-a^{4n} - b^{4n} = (a^{2n}+b^{2n})(a^{2n}-b^{2n})</script><p>由于上述 $a,b$ 相差为 1，必然互素，因此若 $p|a^{2n}+b^{2n}$ 则由 4 命题得证。否则 $2^{2n}-1,3^{2n}-2^{2n},\cdots,(2n)^{2n}-(2n-1)^{2n}$ 都是 $p$ 的倍数。<br>因此 1.对上面式子做 $2n$ 阶差得到 $(2n)!$ 是 $p$ 的倍数，显然是不可能的。<br>或者 2.由于上面序列的前 $d$ 项和 $d^{2n}-1$ 是 $p$ 的倍数，因此素数 $p$ 无原根，矛盾与原根存在定理。</p>
-<blockquote>
-<p>$1^k,2^k, \cdots, k^k, (k+1)^k$ 的 $k$ 阶差为 $k!$</p>
-</blockquote>
-</li>
+<p>为方便起见,记 <span class="math display">\[
+A = \lbrace a^2 + b^2 \mid a,b \in \mathbb{Z} \rbrace
+\]</span> 证明分五步完成</p>
+<ol type="1">
+<li><p>$(a<sup>2+b</sup>2)(c<sup>2+d</sup>2)=(ac bd)^2 +(ad bc)^2 $ proof: 计算即知。</p></li>
+<li><p>若 <span class="math inline">\(a^2+b^2 \mid c^2+d^2\)</span>, <span class="math inline">\(a^2+b^2\)</span> 为素数，则 <span class="math display">\[
+\frac{c^2+d^2}{a^2+b^2} \in A
+\]</span> <strong>proof</strong>: 由于 <span class="math inline">\((ac-bd)(ac+bd) = (a^2+b^2)c^2-(c^2+d^2)b^2\)</span> 因此 <span class="math inline">\((a^2+b^2) \mid (ac-bd)(ac+bd)\)</span> 而 <span class="math inline">\((a^2+b^2)\)</span> 是素数，因此必然整除其中一个。假设 <span class="math inline">\((a^2+b^2)|(ac-bd)\)</span>，则由 1 知 <span class="math inline">\((a^2+b^2)｜(ad+bc)\)</span> 因此 <span class="math display">\[
+\frac{c^2+d^2}{a^2+b^2}=(\frac{ac - bd}{a^2+b^2})^2 +(\frac{ad + bc}{a^2+b^2})^2
+\]</span> ​类似的，假设 <span class="math inline">\((a^2+b^2) \mid (ac＋bd)\)</span> 则有 <span class="math display">\[
+\frac{c^2+d^2}{a^2+b^2}=(\frac{ac + bd}{a^2+b^2})^2 +(\frac{ad - bc}{a^2+b^2})^2
+\]</span></p></li>
+<li><p><span class="math inline">\(x \mid a^2+b^2,x \notin A\)</span>，则 <span class="math inline">\(\exists y| \frac{a^2+b^2}{x}\)</span> 使得 <span class="math inline">\(y \notin A\)</span></p>
+<p>反证：设 <span class="math inline">\(a^2+b^2 = x p_1 p_2 \cdots p_n\)</span> 则 <span class="math inline">\(\forall y| \frac{a^2+b^2}{x},y \in A\)</span> 则由 2，经过 <span class="math inline">\(n\)</span> 次除法，最终 <span class="math inline">\(x \in A\)</span> 矛盾。</p></li>
+<li><p>若 <span class="math inline">\((a,b)=1\)</span> 则 <span class="math inline">\(\forall x | a^2+b^2 \Rightarrow x \in A\)</span></p>
+<p>假设 <span class="math inline">\(\exists x| a^2+b^2,x \notin A\)</span> 则，我们设 <span class="math inline">\(a = mx + c,b = mx + d\)</span>,其中 <span class="math inline">\(|c|,|d| \leq \frac{x}{2}\)</span>。则 <span class="math inline">\(a^2+b^2=(mx+c)^2+(mx+d)^2=tx+(c^2+d^2)\)</span>，因此 <span class="math inline">\(x \mid c^2+d^2\)</span>。又 <span class="math inline">\((a,b)=1\)</span> ，因此 <span class="math inline">\(((c,d),x)=1\)</span>。因此不妨设 <span class="math inline">\((c,d)=1\)</span>（否则，两边同除它的平方）则 <span class="math inline">\(\exists z, zx = c^2+d^2 \leq \frac{x^2}{2}\)</span>。即 <span class="math inline">\(z\leq \frac{x}{2}\)</span>。由引理 3 知道 <span class="math inline">\(z\)</span> 有一个因子 <span class="math inline">\(w \notin A\)</span>。即我们由 <span class="math inline">\(x \mid a^2+b^2,x \notin A\)</span> 得到了 <span class="math inline">\(w \mid c^2+d^2, w \notin A ,w \leq \frac{x}{2}\)</span> 这样一直下去必然会在有限步结束，矛盾，即必然有 <span class="math inline">\(x \in A\)</span> 。</p></li>
+<li><p>若素数 <span class="math inline">\(p=4n+1\)</span>，则 <span class="math inline">\(p\in A\)</span>。</p>
+<p>由 Fermat 小定理知 <span class="math inline">\(1,2^{4n},\cdots,(4n)^{4n}\)</span> 除以 <span class="math inline">\(p\)</span> 模 1.因此 <span class="math inline">\(2^{4n}－1,3^{4n}－2^{4n},\cdots,(4n)^{4n}-(4n-1)^{4n}\)</span> 都是 <span class="math inline">\(p\)</span> 的倍数。这些差都有分解 <span class="math display">\[
+a^{4n} - b^{4n} = (a^{2n}+b^{2n})(a^{2n}-b^{2n})
+\]</span> 由于上述 <span class="math inline">\(a,b\)</span> 相差为 1，必然互素，因此若 <span class="math inline">\(p|a^{2n}+b^{2n}\)</span> 则由 4 命题得证。否则 <span class="math inline">\(2^{2n}-1,3^{2n}-2^{2n},\cdots,(2n)^{2n}-(2n-1)^{2n}\)</span> 都是 <span class="math inline">\(p\)</span> 的倍数。 因此 1.对上面式子做 <span class="math inline">\(2n\)</span> 阶差得到 <span class="math inline">\((2n)!\)</span> 是 <span class="math inline">\(p\)</span> 的倍数，显然是不可能的。 或者 2.由于上面序列的前 <span class="math inline">\(d\)</span> 项和 <span class="math inline">\(d^{2n}-1\)</span> 是 <span class="math inline">\(p\)</span> 的倍数，因此素数 <span class="math inline">\(p\)</span> 无原根，矛盾与原根存在定理。 &gt; <span class="math inline">\(1^k,2^k, \cdots, k^k, (k+1)^k\)</span> 的 <span class="math inline">\(k\)</span> 阶差为 <span class="math inline">\(k!\)</span></p></li>
 </ol>
-<h2 id="用现代语言，Fermat-平方和定理也可以表达为"><a href="#用现代语言，Fermat-平方和定理也可以表达为" class="headerlink" title="用现代语言，Fermat 平方和定理也可以表达为"></a>用现代语言，Fermat 平方和定理也可以表达为</h2><blockquote>
-<p>奇素数 $p$ 在 $\mathbb{Z}[i]$ 中不可约元当且仅当 $p  \equiv 3 \mod 4$</p>
+<h2 id="用现代语言fermat-平方和定理也可以表达为">用现代语言，Fermat 平方和定理也可以表达为</h2>
+<blockquote>
+<p>奇素数 <span class="math inline">\(p\)</span> 在 <span class="math inline">\(\mathbb{Z}[i]\)</span> 中不可约元当且仅当 <span class="math inline">\(p \equiv 3 \mod 4\)</span></p>
 </blockquote>
 
               

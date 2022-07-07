@@ -18,12 +18,12 @@
   <meta name="author" content="izlyforever">
   <meta name="keywords" content="math, cpp, python, sagemath">
   
-    <meta name="description" content="Windows 工具软件 Typora（用于一些复杂的 markdown 内容，例如表格） VSCode（登录 Github 账号同步） Go （为了使用 cf-tool） MSYS2 （为了提供 C++17，gdb 和 python) Git（将 cnblog 源码存到 github） WSL（无法访问音视频设备，能力有限，但是依然很有意义），双系统还是必须的   不再推荐 MSYS2，推荐下载">
+    <meta name="description" content="Windows 工具软件  Typora（用于一些复杂的 markdown 内容，例如表格） VSCode（登录 Github 账号同步） Go （为了使用 cf-tool） MSYS2 （为了提供 C++17，gdb 和 python) Git（将 cnblog 源码存到 github） WSL（无法访问音视频设备，能力有限，但是依然很有意义），双系统还是必须的   不再推荐 MSYS2，推荐下">
 <meta property="og:type" content="article">
 <meta property="og:title" content="准备工具">
 <meta property="og:url" content="http://izlyforever.com/tools/index.html">
 <meta property="og:site_name" content="记录程序和数学的点滴">
-<meta property="og:description" content="Windows 工具软件 Typora（用于一些复杂的 markdown 内容，例如表格） VSCode（登录 Github 账号同步） Go （为了使用 cf-tool） MSYS2 （为了提供 C++17，gdb 和 python) Git（将 cnblog 源码存到 github） WSL（无法访问音视频设备，能力有限，但是依然很有意义），双系统还是必须的   不再推荐 MSYS2，推荐下载">
+<meta property="og:description" content="Windows 工具软件  Typora（用于一些复杂的 markdown 内容，例如表格） VSCode（登录 Github 账号同步） Go （为了使用 cf-tool） MSYS2 （为了提供 C++17，gdb 和 python) Git（将 cnblog 源码存到 github） WSL（无法访问音视频设备，能力有限，但是依然很有意义），双系统还是必须的   不再推荐 MSYS2，推荐下">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://izlyforever.com/img/izlyforever_qrcode.png">
 <meta property="article:published_time" content="2021-07-27T10:59:02.000Z">
@@ -287,7 +287,8 @@
             
             <div class="markdown-body">
               
-              <h2 id="Windows-工具软件"><a href="#Windows-工具软件" class="headerlink" title="Windows 工具软件"></a>Windows 工具软件</h2><ul>
+              <h2 id="windows-工具软件">Windows 工具软件</h2>
+<ul>
 <li>Typora（用于一些复杂的 markdown 内容，例如表格）</li>
 <li>VSCode（登录 Github 账号同步）</li>
 <li>Go （为了使用 cf-tool）</li>
@@ -298,33 +299,41 @@
 <blockquote>
 <p>不再推荐 MSYS2，推荐下载带 mingw 的 codeblocks 然后将 mingw 下的 bin 目录添加到环境变量</p>
 </blockquote>
-<h2 id="terminal-设置代理"><a href="#terminal-设置代理" class="headerlink" title="terminal 设置代理"></a>terminal 设置代理</h2><p>一般 vpn 默认只是网页版本的，然后免费的 vpn 都不提供端口，所以做不了 terminal 的代理设置</p>
-<h3 id="Mac-Unix-设置"><a href="#Mac-Unix-设置" class="headerlink" title="Mac/Unix 设置"></a>Mac/Unix 设置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">export https_proxy=127.0.0.1:xxx<br>export http_proxy=127.0.0.1:xxx<br></code></pre></td></tr></table></figure>
+<h2 id="terminal-设置代理">terminal 设置代理</h2>
+<p>一般 vpn 默认只是网页版本的，然后免费的 vpn 都不提供端口，所以做不了 terminal 的代理设置</p>
+<h3 id="macunix-设置">Mac/Unix 设置</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">export https_proxy=127.0.0.1:xxx<br>export http_proxy=127.0.0.1:xxx<br></code></pre></td></tr></table></figure>
 <blockquote>
 <p>其中 xxx 是看自己 vpn 软件的设置中 提供的 http(s) 端口号，例如我的 41091</p>
 </blockquote>
-<h3 id="Win"><a href="#Win" class="headerlink" title="Win"></a>Win</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">set https_proxy=127.0.0.1:xxx<br>set http_proxy=127.0.0.1:xxx<br></code></pre></td></tr></table></figure>
-<h3 id="WSL-设置"><a href="#WSL-设置" class="headerlink" title="WSL 设置"></a>WSL 设置</h3><p>首先在 windows cmd/powershell 中输入 ipconfig 查看 WSL 的 ipv4 值，例如我的 <code>127.17.176.1</code>，然后在 WSL 中</p>
+<h3 id="win">Win</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">set https_proxy=127.0.0.1:xxx<br>set http_proxy=127.0.0.1:xxx<br></code></pre></td></tr></table></figure>
+<h3 id="wsl-设置">WSL 设置</h3>
+<p>首先在 windows cmd/powershell 中输入 ipconfig 查看 WSL 的 ipv4 值，例如我的 <code>127.17.176.1</code>，然后在 WSL 中</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">export https_proxy=127.17.176.1:41091<br>export http_proxy=127.17.176.1:41091<br></code></pre></td></tr></table></figure>
 <blockquote>
 <p>对应的换成自己 WSL 的 ip 和 vpn 的端口号，注意 WSL 中的 ip 每次 windows 重启后可能就不一样了，需要再搞一次</p>
 </blockquote>
-<h2 id="WSL"><a href="#WSL" class="headerlink" title="WSL"></a>WSL</h2><p>根据<a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/wsl/install-win10">官方教程</a> 开启 wsl 功能再去 MS store 下载 ubuntu，然后<a target="_blank" rel="noopener" href="https://blog.csdn.net/john1337/article/details/111310445">配置阿里镜像源(在前面 + sudo)</a>，最后 <code>sudo apt update</code>，<code>sudo apt upgrade</code> 更新 apt 缓存</p>
+<h2 id="wsl">WSL</h2>
+<p>根据<a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/wsl/install-win10">官方教程</a> 开启 wsl 功能再去 MS store 下载 ubuntu，然后<a target="_blank" rel="noopener" href="https://blog.csdn.net/john1337/article/details/111310445">配置阿里镜像源(在前面 + sudo)</a>，最后 <code>sudo apt update</code>，<code>sudo apt upgrade</code> 更新 apt 缓存</p>
 <ul>
 <li>安装 pip（自带 python3 却不带 pip）并配置 pip 清华镜像：<code>pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></li>
 <li>安装 gcc</li>
 <li>安装 SageMath：Ubuntu 的快乐就是 <code>apt install sagemath</code></li>
 <li>安装 jupyter notebook</li>
 </ul>
-<h2 id="Docker-使用"><a href="#Docker-使用" class="headerlink" title="Docker 使用"></a>Docker 使用</h2><ul>
+<h2 id="docker-使用">Docker 使用</h2>
+<ul>
 <li>docker search ubuntu</li>
 <li>docker pull ubuntu</li>
-<li>docker run -it —name izlyforever ubuntu bash</li>
+<li>docker run -it --name izlyforever ubuntu bash</li>
 <li>然后用 GUI 点击 terminal 开启，然后 换成 bash 打开</li>
-<li>exit 或 ctrl + d 关闭。或者  ctrl + p 后 ctrl + q 暂时退出不关闭</li>
+<li>exit 或 ctrl + d 关闭。或者 ctrl + p 后 ctrl + q 暂时退出不关闭</li>
 </ul>
-<h2 id="编译器的一些参数"><a href="#编译器的一些参数" class="headerlink" title="编译器的一些参数"></a>编译器的一些参数</h2><p>很多可以设置的，然后越严格越能检测出不少的错误，当然了版本越高的编译器，默认要求越严格，这也是为什么很多工程不能升级编译器的版本，不然会很麻烦。</p>
-<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><p>在 VScode 中</p>
+<h2 id="编译器的一些参数">编译器的一些参数</h2>
+<p>很多可以设置的，然后越严格越能检测出不少的错误，当然了版本越高的编译器，默认要求越严格，这也是为什么很多工程不能升级编译器的版本，不然会很麻烦。</p>
+<h2 id="正则表达式">正则表达式</h2>
+<p>在 VScode 中</p>
 <ul>
 <li>把单行 <code>&#123;</code> 风格去掉的正则表达式 <code>\n[ ]+\&#123;</code>（但是有注释就有点尴尬了）</li>
 <li>强制让 <code>if</code> 的内容包起来: <code>[ ]+if .*[\)|;]$</code> (但是分成多行就尴尬了)</li>
@@ -332,33 +341,47 @@
 <blockquote>
 <p>不要企图全局替换，format 全部代码是大忌！</p>
 </blockquote>
-<h2 id="Git-常见命令"><a href="#Git-常见命令" class="headerlink" title="Git 常见命令"></a>Git 常见命令</h2><h3 id="添加-SSH-并复制到剪切板"><a href="#添加-SSH-并复制到剪切板" class="headerlink" title="添加 SSH 并复制到剪切板"></a>添加 SSH 并复制到剪切板</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs git">ssh-keygen -t rsa -C &quot;your_email@example.com&quot;<br><br>clip &lt; ~/.ssh/id_rsa.pub<br></code></pre></td></tr></table></figure>
+<h2 id="git-常见命令">Git 常见命令</h2>
+<h3 id="添加-ssh-并复制到剪切板">添加 SSH 并复制到剪切板</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs git">ssh-keygen -t rsa -C &quot;your_email@example.com&quot;<br><br>clip &lt; ~/.ssh/id_rsa.pub<br></code></pre></td></tr></table></figure>
 <p>然后把它粘贴到自己的 setting 的 SSH 中</p>
-<h3 id="unset"><a href="#unset" class="headerlink" title="unset"></a>unset</h3><p>取消 config，例如</p>
+<h3 id="unset">unset</h3>
+<p>取消 config，例如</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs git">git config --global --unset user.name<br>git config --global --unset user.email<br></code></pre></td></tr></table></figure>
-<h3 id="多账号-git"><a href="#多账号-git" class="headerlink" title="多账号 git"></a>多账号 git</h3><blockquote>
+<h3 id="多账号-git">多账号 git</h3>
+<blockquote>
 <p>可参考：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1774890">腾讯云社区</a></p>
 </blockquote>
 <p>但是更好的方式就是一个 ssh 多用，然后用 <code>ssh-add ~/.ssh/id_rsa</code> 后提交，然后后来提交失败，再 add 一次即可</p>
-<h3 id="配置全局用户"><a href="#配置全局用户" class="headerlink" title="配置全局用户"></a>配置全局用户</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs git">git config --global user.name &quot;yourName&quot;<br>git config --global user.email &quot;yourName@example.com&quot;<br></code></pre></td></tr></table></figure>
+<h3 id="配置全局用户">配置全局用户</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs git">git config --global user.name &quot;yourName&quot;<br>git config --global user.email &quot;yourName@example.com&quot;<br></code></pre></td></tr></table></figure>
 <blockquote>
 <p>这是不提倡的，应该每一个 git 仓库设置各自的 user.name 和 user.email</p>
 </blockquote>
 <p>根据需要配置 <code>.gitignore</code> 文件</p>
-<h3 id="第一次提交"><a href="#第一次提交" class="headerlink" title="第一次提交"></a>第一次提交</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs git">git init<br>git add .<br>git commit -m &quot;first commit&quot;<br>git remote add origin https://github.com/izlyforever/blog.git<br>git push -u origin master<br></code></pre></td></tr></table></figure>
-<h3 id="利用-Python-一键更新（弃用，这个习惯并不好）"><a href="#利用-Python-一键更新（弃用，这个习惯并不好）" class="headerlink" title="利用 Python 一键更新（弃用，这个习惯并不好）"></a>利用 Python 一键更新（弃用，这个习惯并不好）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#os.system(&#x27;git init&#x27;)</span><br><span class="hljs-comment">#os.system(&#x27;git remote rm origin&#x27;)</span><br><span class="hljs-comment">#os.system(&#x27;git remote add origin git@github.com:chachabai/blogSource.git&#x27;)</span><br><span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(sys.argv) &lt; <span class="hljs-number">2</span>:<br>  os.system(<span class="hljs-string">&#x27;git commit -a -m &quot;update&quot;&#x27;</span>)<br><span class="hljs-keyword">else</span>:<br>  os.system(<span class="hljs-string">&#x27;git commit -a -m &quot;&#x27;</span> + <span class="hljs-string">&#x27; &#x27;</span>.join(sys.argv[<span class="hljs-number">1</span>:]) + <span class="hljs-string">&#x27;&quot;&#x27;</span>)<br>os.system(<span class="hljs-string">&#x27;git push origin master&#x27;</span>)<br></code></pre></td></tr></table></figure>
-<h3 id="强制提交"><a href="#强制提交" class="headerlink" title="强制提交"></a>强制提交</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs git">git push -f -u origin master<br></code></pre></td></tr></table></figure>
-<h3 id="使本地文件和远程一致"><a href="#使本地文件和远程一致" class="headerlink" title="使本地文件和远程一致"></a>使本地文件和远程一致</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs git">git fetch --all<br>git reset --hard origin/master<br></code></pre></td></tr></table></figure>
-<h3 id="删除已经被跟踪但要放在-gitignore-的文件"><a href="#删除已经被跟踪但要放在-gitignore-的文件" class="headerlink" title="删除已经被跟踪但要放在 .gitignore 的文件"></a>删除已经被跟踪但要放在 <code>.gitignore</code> 的文件</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs git">git rm --cached FileName<br></code></pre></td></tr></table></figure>
-<h3 id="删除-untracked-files"><a href="#删除-untracked-files" class="headerlink" title="删除 untracked files"></a>删除 untracked files</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs git">git clean -f<br>git clean -fd<br>git clean -nfd<br></code></pre></td></tr></table></figure>
-<h3 id="回档"><a href="#回档" class="headerlink" title="回档"></a>回档</h3><p>三种方式：</p>
+<h3 id="第一次提交">第一次提交</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs git">git init<br>git add .<br>git commit -m &quot;first commit&quot;<br>git remote add origin https://github.com/izlyforever/blog.git<br>git push -u origin master<br></code></pre></td></tr></table></figure>
+<h3 id="利用-python-一键更新弃用这个习惯并不好">利用 Python 一键更新（弃用，这个习惯并不好）</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#os.system(&#x27;git init&#x27;)</span><br><span class="hljs-comment">#os.system(&#x27;git remote rm origin&#x27;)</span><br><span class="hljs-comment">#os.system(&#x27;git remote add origin git@github.com:chachabai/blogSource.git&#x27;)</span><br><span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(sys.argv) &lt; <span class="hljs-number">2</span>:<br>  os.system(<span class="hljs-string">&#x27;git commit -a -m &quot;update&quot;&#x27;</span>)<br><span class="hljs-keyword">else</span>:<br>  os.system(<span class="hljs-string">&#x27;git commit -a -m &quot;&#x27;</span> + <span class="hljs-string">&#x27; &#x27;</span>.join(sys.argv[<span class="hljs-number">1</span>:]) + <span class="hljs-string">&#x27;&quot;&#x27;</span>)<br>os.system(<span class="hljs-string">&#x27;git push origin master&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<h3 id="强制提交">强制提交</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs git">git push -f -u origin master<br></code></pre></td></tr></table></figure>
+<h3 id="使本地文件和远程一致">使本地文件和远程一致</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs git">git fetch --all<br>git reset --hard origin/master<br></code></pre></td></tr></table></figure>
+<h3 id="删除已经被跟踪但要放在-.gitignore-的文件">删除已经被跟踪但要放在 <code>.gitignore</code> 的文件</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs git">git rm --cached FileName<br></code></pre></td></tr></table></figure>
+<h3 id="删除-untracked-files">删除 untracked files</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs git">git clean -f<br>git clean -fd<br>git clean -nfd<br></code></pre></td></tr></table></figure>
+<h3 id="回档">回档</h3>
+<p>三种方式：</p>
 <ul>
 <li>去 github 网站，查看版本号，然后执行 <code>git reset --hard &lt;版本号&gt;</code></li>
 <li>git reflog 查看回档编号，然后 <code>git reset --hard HEAD@&#123;编号&#125;</code></li>
 <li>git reset –-hard HEAD ^ ( ^ 表示回到上一个版本，^^ 表示回到上上个版本）</li>
 </ul>
 <p>最后记得强制提交</p>
-<h3 id="找回-git-reset-hard-后的代码"><a href="#找回-git-reset-hard-后的代码" class="headerlink" title="找回 git reset --hard 后的代码"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhiyuan-2011/p/9280819.html">找回 <code>git reset --hard</code> 后的代码</a></h3><h3 id="新建分支"><a href="#新建分支" class="headerlink" title="新建分支"></a>新建分支</h3><ul>
+<h3 id="找回-git-reset---hard-后的代码"><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zhiyuan-2011/p/9280819.html">找回 <code>git reset --hard</code> 后的代码</a></h3>
+<h3 id="新建分支">新建分支</h3>
+<ul>
 <li>创建新分支：<code>git branch [branch name]</code></li>
 <li>切换到新分支：<code>git checkout [branch name]</code></li>
 <li>创建+切换分支：<code>git checkout -b [branch name]</code></li>
@@ -366,19 +389,22 @@
 <li>删除远程分支：<code>git push origin :[branch name]</code></li>
 <li>分支提交：<code>git push origin [branch name]</code></li>
 </ul>
-<h3 id="扩大传输限制"><a href="#扩大传输限制" class="headerlink" title="扩大传输限制"></a>扩大传输限制</h3><blockquote>
+<h3 id="扩大传输限制">扩大传输限制</h3>
+<blockquote>
 <p>fatal: 过早的文件结束符（EOF）</p>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git config --global http.postBuffer 524288000<br></code></pre></td></tr></table></figure>
-<h3 id="cherry-pick"><a href="#cherry-pick" class="headerlink" title="cherry-pick"></a>cherry-pick</h3><p>merge 进了某个版本 A，要在另一个版本 B cherry-pick 的做法</p>
+<h3 id="cherry-pick">cherry-pick</h3>
+<p>merge 进了某个版本 A，要在另一个版本 B cherry-pick 的做法</p>
 <ul>
 <li>进入 B 版本目录创建一个分支，然后在这个分支上 执行 <code>git cherry-pick [commit id]</code></li>
-<li>然后把冲突修改一下，然后 <code>git add .</code>，再 <code>git cherry-pick --continue</code>  即可</li>
+<li>然后把冲突修改一下，然后 <code>git add .</code>，再 <code>git cherry-pick --continue</code> 即可</li>
 </ul>
 <blockquote>
 <p>如果 cherry-pick 报 bad object 可能是因为代码还没更新 git pull 一下即可，如果还不行可能是因为 repo 弄错了</p>
 </blockquote>
-<h3 id="patch"><a href="#patch" class="headerlink" title="patch"></a>patch</h3><p>类似与 cherry-pick，我们把自己的修改丢给别人，可以建分支让他人 cherry-pick 也可以生成一个 <code>change.patch</code> 文件，让别人直接应用。</p>
+<h3 id="patch">patch</h3>
+<p>类似与 cherry-pick，我们把自己的修改丢给别人，可以建分支让他人 cherry-pick 也可以生成一个 <code>change.patch</code> 文件，让别人直接应用。</p>
 <p>生成实例：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs git">git diff &gt; change.patch<br>git diff fileName &gt; change.patch<br>git format-patch HEAD^<br></code></pre></td></tr></table></figure>
 <blockquote>
@@ -393,80 +419,90 @@
 <p>结束后需要自己手动去 <code>add</code>, <code>commit</code></p>
 <p>应用实例（方式二）：</p>
 <p>对于 git format-patch 获取的 patch 文件，可以使用 <code>git am xxx.patch</code> 一步到位（此时的 author 和 commitMessage 的作者一致）</p>
-<h2 id="杂类"><a href="#杂类" class="headerlink" title="杂类"></a>杂类</h2><h3 id="Unix-like-man-命令后面的数字含义及作用"><a href="#Unix-like-man-命令后面的数字含义及作用" class="headerlink" title="Unix-like man 命令后面的数字含义及作用"></a>Unix-like man 命令后面的数字含义及作用</h3><div class="table-container">
+<h2 id="杂类">杂类</h2>
+<h3 id="unix-like-man-命令后面的数字含义及作用">Unix-like man 命令后面的数字含义及作用</h3>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>序号</th>
 <th>意义</th>
 <th>详解</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1</td>
 <td>commands</td>
 <td>普通的命令</td>
 </tr>
-<tr>
+<tr class="even">
 <td>2</td>
 <td>system calls</td>
 <td>系统调用，如open, write之类的（通过这个，至少可以很方便的查到调用这个函数，需要加什么头文件)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3</td>
 <td>library calls</td>
 <td>库函数，如 printf, fread</td>
 </tr>
-<tr>
+<tr class="even">
 <td>4</td>
 <td>special files</td>
 <td>特殊文件，也就是 <code>/dev</code> 下的各种设备文件</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>5</td>
 <td>file formats and convertions</td>
 <td>文件的格式，比如 passwd，就会说明这个文件中各个字段的含义</td>
 </tr>
-<tr>
+<tr class="even">
 <td>6</td>
 <td>games for linux</td>
 <td>给游戏留的，由各个游戏自己定义</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>7</td>
 <td>macro packages and conventions</td>
 <td>附件还有一些变量，比如向 environ 这种全局变量在这里就有说明</td>
 </tr>
-<tr>
+<tr class="even">
 <td>8</td>
 <td>system management commands</td>
 <td>系统管理用的命令，这些命令只能由 root 使用，如 ifconfig</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>9</td>
 <td>others</td>
+<td></td>
 </tr>
 </tbody>
 </table>
-</div>
 <blockquote>
-<p>参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_21792169/article/details/50412417">https://blog.csdn.net/qq_21792169/article/details/50412417</a></p>
+<p>参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_21792169/article/details/50412417" class="uri">https://blog.csdn.net/qq_21792169/article/details/50412417</a></p>
 </blockquote>
-<h3 id="Python-开服务器共享文件"><a href="#Python-开服务器共享文件" class="headerlink" title="Python 开服务器共享文件"></a>Python 开服务器共享文件</h3><ul>
+<h3 id="python-开服务器共享文件">Python 开服务器共享文件</h3>
+<ul>
 <li>python3: <code>python -m http.server 8000</code></li>
 <li>python2: <code>python -m SimpleHTTPServer 8000</code></li>
 </ul>
-<h3 id="文件查找非-ASCII-字符"><a href="#文件查找非-ASCII-字符" class="headerlink" title="文件查找非 ASCII 字符"></a>文件查找非 ASCII 字符</h3><p>利用正则表达式搜索：<code>[^\x00-\x7f]</code></p>
-<h3 id="Windows-命令行复制到剪切板"><a href="#Windows-命令行复制到剪切板" class="headerlink" title="Windows 命令行复制到剪切板"></a>Windows 命令行复制到剪切板</h3><ul>
+<h3 id="文件查找非-ascii-字符">文件查找非 ASCII 字符</h3>
+<p>利用正则表达式搜索：<code>[^\x00-\x7f]</code></p>
+<h3 id="windows-命令行复制到剪切板">Windows 命令行复制到剪切板</h3>
+<ul>
 <li><code>[命令] | clip</code></li>
-<li><code>[命令] &gt; a.txt</code>  到文本后复制</li>
+<li><code>[命令] &gt; a.txt</code> 到文本后复制</li>
 <li><strong>开启快速编辑，选中后＋右键复制，直接右键是粘贴</strong>(所有系统均适用)</li>
 </ul>
-<h3 id="Linux-删除指定类型文件"><a href="#Linux-删除指定类型文件" class="headerlink" title="Linux 删除指定类型文件"></a>Linux 删除指定类型文件</h3><p><code>find -name &#39;文件名或目录名&#39; | xargs rm -rf</code></p>
-<h3 id="Windows-批处理将-A-文件夹下所有文件全部复制（移动对应修改-copy-为-move-即可）到-B-文件夹中"><a href="#Windows-批处理将-A-文件夹下所有文件全部复制（移动对应修改-copy-为-move-即可）到-B-文件夹中" class="headerlink" title="Windows 批处理将 A 文件夹下所有文件全部复制（移动对应修改 copy 为 move 即可）到 B 文件夹中"></a>Windows 批处理将 A 文件夹下所有文件全部复制（移动对应修改 copy 为 move 即可）到 B 文件夹中</h3><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs BAT">@<span class="hljs-built_in">echo</span> off<br><span class="hljs-built_in">set</span> target_path=D:\BaiduNetdiskDownload\<span class="hljs-number">1</span><br><span class="hljs-built_in">set</span> copy_target_path=D:\BaiduNetdiskDownload\<span class="hljs-number">2</span><br><span class="hljs-built_in">set</span> vcffile=*.vcf <span class="hljs-variable">%这里对应修改成别的后缀或者删除就是没有后缀了%</span><br><span class="hljs-function">C:</span><br><span class="hljs-function"><span class="hljs-title">cd</span> %<span class="hljs-title">target_path</span>%</span><br><span class="hljs-function"><span class="hljs-title">for</span> /<span class="hljs-title">f</span> &quot;<span class="hljs-title">delims</span>=&quot; %%<span class="hljs-title">s</span> <span class="hljs-title">in</span> (&#x27;<span class="hljs-title">dir</span> /<span class="hljs-title">b</span>/<span class="hljs-title">a</span>-<span class="hljs-title">d</span>/<span class="hljs-title">s</span> &quot;%<span class="hljs-title">target_path</span>%&quot;\&quot;%<span class="hljs-title">vcffile</span>%&quot;&#x27;) <span class="hljs-title">do</span> (</span><br><span class="hljs-function"><span class="hljs-title">echo</span> %%<span class="hljs-title">s</span></span><br><span class="hljs-function"><span class="hljs-title">copy</span> /<span class="hljs-title">y</span> &quot;%%<span class="hljs-title">s</span>&quot; %<span class="hljs-title">copy_target_path</span>%</span><br><span class="hljs-function">)</span><br><span class="hljs-function"><span class="hljs-title">pause</span></span><br></code></pre></td></tr></table></figure>
-<h3 id="Windows-批处理添加-zip-后缀"><a href="#Windows-批处理添加-zip-后缀" class="headerlink" title="Windows 批处理添加 zip 后缀"></a>Windows 批处理添加 zip 后缀</h3><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs BAT">@<span class="hljs-built_in">echo</span> off<br><span class="hljs-built_in">setlocal</span> enabledelayedexpansion<br><span class="hljs-keyword">for</span> /f <span class="hljs-variable">%%i</span> <span class="hljs-keyword">in</span> (&#x27;<span class="hljs-built_in">dir</span> /b *&#x27;) <span class="hljs-keyword">do</span> (<br><span class="hljs-built_in">ren</span> &quot;<span class="hljs-variable">%%i</span>&quot;&quot;<span class="hljs-variable">%%i</span>&quot;.zip<br><span class="hljs-built_in">echo</span> 批量重命名完成！<br><span class="hljs-built_in">pause</span><br></code></pre></td></tr></table></figure>
-<h2 id="网站二维码（欢迎扫码）"><a href="#网站二维码（欢迎扫码）" class="headerlink" title="网站二维码（欢迎扫码）"></a>网站二维码（欢迎扫码）</h2><p><img src="../../img/izlyforever_qrcode.png" srcset="/img/loading.gif" lazyload alt="网站二维码"></p>
+<h3 id="linux-删除指定类型文件">Linux 删除指定类型文件</h3>
+<p><code>find -name '文件名或目录名' | xargs rm -rf</code></p>
+<h3 id="windows-批处理将-a-文件夹下所有文件全部复制移动对应修改-copy-为-move-即可到-b-文件夹中">Windows 批处理将 A 文件夹下所有文件全部复制（移动对应修改 copy 为 move 即可）到 B 文件夹中</h3>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs BAT">@<span class="hljs-built_in">echo</span> off<br><span class="hljs-built_in">set</span> target_path=D:\BaiduNetdiskDownload\<span class="hljs-number">1</span><br><span class="hljs-built_in">set</span> copy_target_path=D:\BaiduNetdiskDownload\<span class="hljs-number">2</span><br><span class="hljs-built_in">set</span> vcffile=*.vcf <span class="hljs-variable">%这里对应修改成别的后缀或者删除就是没有后缀了%</span><br><span class="hljs-function">C:</span><br><span class="hljs-function"><span class="hljs-title">cd</span> %<span class="hljs-title">target_path</span>%</span><br><span class="hljs-function"><span class="hljs-title">for</span> /<span class="hljs-title">f</span> &quot;<span class="hljs-title">delims</span>=&quot; %%<span class="hljs-title">s</span> <span class="hljs-title">in</span> (&#x27;<span class="hljs-title">dir</span> /<span class="hljs-title">b</span>/<span class="hljs-title">a</span>-<span class="hljs-title">d</span>/<span class="hljs-title">s</span> &quot;%<span class="hljs-title">target_path</span>%&quot;\&quot;%<span class="hljs-title">vcffile</span>%&quot;&#x27;) <span class="hljs-title">do</span> (</span><br><span class="hljs-function"><span class="hljs-title">echo</span> %%<span class="hljs-title">s</span></span><br><span class="hljs-function"><span class="hljs-title">copy</span> /<span class="hljs-title">y</span> &quot;%%<span class="hljs-title">s</span>&quot; %<span class="hljs-title">copy_target_path</span>%</span><br><span class="hljs-function">)</span><br><span class="hljs-function"><span class="hljs-title">pause</span></span><br></code></pre></td></tr></table></figure>
+<h3 id="windows-批处理添加-zip-后缀">Windows 批处理添加 zip 后缀</h3>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs BAT">@<span class="hljs-built_in">echo</span> off<br><span class="hljs-built_in">setlocal</span> enabledelayedexpansion<br><span class="hljs-keyword">for</span> /f <span class="hljs-variable">%%i</span> <span class="hljs-keyword">in</span> (&#x27;<span class="hljs-built_in">dir</span> /b *&#x27;) <span class="hljs-keyword">do</span> (<br><span class="hljs-built_in">ren</span> &quot;<span class="hljs-variable">%%i</span>&quot;&quot;<span class="hljs-variable">%%i</span>&quot;.zip<br><span class="hljs-built_in">echo</span> 批量重命名完成！<br><span class="hljs-built_in">pause</span><br></code></pre></td></tr></table></figure>
+<h2 id="网站二维码欢迎扫码">网站二维码（欢迎扫码）</h2>
+<figure>
+<img src="../../img/izlyforever_qrcode.png" srcset="/img/loading.gif" lazyload alt="网站二维码" /><figcaption aria-hidden="true">网站二维码</figcaption>
+</figure>
 <p>制作方法：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 运行下面命令（提前 pip install myqr）得到以 avatar为背景的二维码</span><br>myqr &quot;https://www.cnblogs.com/izlyforever/&quot; -c -p avatar.png<br></code></pre></td></tr></table></figure>
 

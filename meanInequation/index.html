@@ -18,12 +18,12 @@
   <meta name="author" content="izlyforever">
   <meta name="keywords" content="math, cpp, python, sagemath">
   
-    <meta name="description" content="初中就学过最简单的均值不等式 $\frac{a+b}{2} \geq \sqrt{ab},a ,b \geq 0$。它的证明只需配方就知道了，这里介绍一下一般的均值不等式:  \frac{ \sum_{i&#x3D;1} ^n a_i}{n} \geq \sqrt[n]{\Pi_{i&#x3D;1}^n a_i }">
+    <meta name="description" content="初中就学过最简单的均值不等式 \(\frac{a+b}{2} \geq \sqrt{ab},a ,b \geq 0\)。它的证明只需配方就知道了，这里介绍一下一般的均值不等式: \[ \frac{ \sum_{i&#x3D;1} ^n a_i}{n} \geq \sqrt[n]{\Pi_{i&#x3D;1}^n a_i } \]">
 <meta property="og:type" content="article">
 <meta property="og:title" content="均值不等式的证明">
 <meta property="og:url" content="http://izlyforever.com/meanInequation/index.html">
 <meta property="og:site_name" content="记录程序和数学的点滴">
-<meta property="og:description" content="初中就学过最简单的均值不等式 $\frac{a+b}{2} \geq \sqrt{ab},a ,b \geq 0$。它的证明只需配方就知道了，这里介绍一下一般的均值不等式:  \frac{ \sum_{i&#x3D;1} ^n a_i}{n} \geq \sqrt[n]{\Pi_{i&#x3D;1}^n a_i }">
+<meta property="og:description" content="初中就学过最简单的均值不等式 \(\frac{a+b}{2} \geq \sqrt{ab},a ,b \geq 0\)。它的证明只需配方就知道了，这里介绍一下一般的均值不等式: \[ \frac{ \sum_{i&#x3D;1} ^n a_i}{n} \geq \sqrt[n]{\Pi_{i&#x3D;1}^n a_i } \]">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2016-02-24T15:06:23.000Z">
 <meta property="article:modified_time" content="2022-06-25T09:14:02.553Z">
@@ -222,7 +222,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          377 字
+          372 字
         
       </span>
     
@@ -285,12 +285,13 @@
             
             <div class="markdown-body">
               
-              <p>初中就学过最简单的均值不等式 $\frac{a+b}{2} \geq \sqrt{ab},a ,b \geq 0$。它的证明只需配方就知道了，这里介绍一下一般的均值不等式:</p>
-<script type="math/tex; mode=display">
-\frac{ \sum_{i=1} ^n a_i}{n} \geq \sqrt[n]{\Pi_{i=1}^n a_i }</script><span id="more"></span>
-<p><strong>Proof</strong>：当 $n=1$ 时结论是平凡的，$n=2$ 时配方即知。$n=2^k$时不难用数学归纳法知，结论成立，下面主要看 $2^{k-1} &lt;n&lt; 2^k$的情况：<br>令 $A = \frac{ \sum_{i=1} ^n a_i}{n} $ 则，应用 $2^k$ 时的结论</p>
-<script type="math/tex; mode=display">
-\frac{ \sum_{i=1} ^n a_i + (2^k-n)A }{2^k} \geq\sqrt[2^k]{\Pi_{i=1}^n a_i A^{2^k -n}}</script><p>化简可得到结论。</p>
+              <p>初中就学过最简单的均值不等式 <span class="math inline">\(\frac{a+b}{2} \geq \sqrt{ab},a ,b \geq 0\)</span>。它的证明只需配方就知道了，这里介绍一下一般的均值不等式: <span class="math display">\[
+\frac{ \sum_{i=1} ^n a_i}{n} \geq \sqrt[n]{\Pi_{i=1}^n a_i }
+\]</span></p>
+<span id="more"></span>
+<p><strong>Proof</strong>：当 <span class="math inline">\(n=1\)</span> 时结论是平凡的，<span class="math inline">\(n=2\)</span> 时配方即知。<span class="math inline">\(n=2^k\)</span>时不难用数学归纳法知，结论成立，下面主要看 <span class="math inline">\(2^{k-1} &lt;n&lt; 2^k\)</span>的情况： 令 $A =  $ 则，应用 <span class="math inline">\(2^k\)</span> 时的结论 <span class="math display">\[
+\frac{ \sum_{i=1} ^n a_i + (2^k-n)A }{2^k} \geq\sqrt[2^k]{\Pi_{i=1}^n a_i A^{2^k -n}}
+\]</span> 化简可得到结论。</p>
 <blockquote>
 <p>上述证明简单优美，第一次在陈纪修《数学分析》上册看到这个优美的方法。</p>
 </blockquote>

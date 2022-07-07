@@ -224,7 +224,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          5.2k 字
+          5.6k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
           <!-- compatible with older versions-->
-          44 分钟
+          47 分钟
         
       </span>
     
@@ -291,109 +291,125 @@
 <p>此笔记是按照知乎 <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/gou-li-guo-jia-83">钩里裹镓</a> 在西安交大 2021 数论暑期学校手抄的 <a target="_blank" rel="noopener" href="https://www.zhihu.com/column/c_1398026565993807872">系列笔记</a> 结合自己的理解写成的 markdown</p>
 </blockquote>
 <span id="more"></span>
-<h2 id="符号约定"><a href="#符号约定" class="headerlink" title="符号约定"></a>符号约定</h2><ul>
-<li>$\mathbb{N}, \mathbb{Z}, \mathbb{Q}, {\mathbb{R}}, \mathbb{C}$ 分别为 非负整数，整数，有理数，实数，复数</li>
-<li>$k$  是域，$k^{\star} = k \backslash\{x\}$</li>
-<li>$p$ 是素数</li>
+<h2 id="符号约定">符号约定</h2>
+<ul>
+<li><span class="math inline">\(\mathbb{N}, \mathbb{Z}, \mathbb{Q}, {\mathbb{R}}, \mathbb{C}\)</span> 分别为 非负整数，整数，有理数，实数，复数</li>
+<li><span class="math inline">\(k\)</span> 是域，<span class="math inline">\(k^{\star} = k \backslash\{x\}\)</span></li>
+<li><span class="math inline">\(p\)</span> 是素数</li>
 </ul>
 <blockquote>
 <p>正常人都用的记号</p>
 </blockquote>
-<h2 id="Day-1（代数数论）：首都师范，徐飞"><a href="#Day-1（代数数论）：首都师范，徐飞" class="headerlink" title="Day 1（代数数论）：首都师范，徐飞"></a>Day 1（代数数论）：首都师范，徐飞</h2><script type="math/tex; mode=display">
-\mathbb{N} \subseteq \mathbb{Z} \subseteq \mathbb{Q} \stackrel{|\cdot|_{\infty}}{\longrightarrow} \mathbb{R}</script><p>即 $\mathbb{Q}$ 在通常的 Archimede 度量下完备化为 $\mathbb{R}$，一个自然的问题，还有别的度量（绝对值）吗？</p>
-<h3 id="绝对值的定义"><a href="#绝对值的定义" class="headerlink" title="绝对值的定义"></a>绝对值的定义</h3><p>若 $\psi: k \to \mathbb{R}_{\geq 0}$ ， $\forall a, b \in k$ 满足</p>
-<ol>
-<li>$\psi(a) = 0 \Leftrightarrow a = 0$</li>
-<li>$\psi(ab) = \psi(a) \psi(b)$</li>
-<li>$\psi(a + b) \leq \psi(a) + \psi(b)$</li>
+<h2 id="day-1代数数论首都师范徐飞">Day 1（代数数论）：首都师范，徐飞</h2>
+<p><span class="math display">\[
+\mathbb{N} \subseteq \mathbb{Z} \subseteq \mathbb{Q} \stackrel{|\cdot|_{\infty}}{\longrightarrow} \mathbb{R}
+\]</span></p>
+<p>即 <span class="math inline">\(\mathbb{Q}\)</span> 在通常的 Archimede 度量下完备化为 <span class="math inline">\(\mathbb{R}\)</span>，一个自然的问题，还有别的度量（绝对值）吗？</p>
+<h3 id="绝对值的定义">绝对值的定义</h3>
+<p>若 <span class="math inline">\(\psi: k \to \mathbb{R}_{\geq 0}\)</span> ， <span class="math inline">\(\forall a, b \in k\)</span> 满足</p>
+<ol type="1">
+<li><span class="math inline">\(\psi(a) = 0 \Leftrightarrow a = 0\)</span></li>
+<li><span class="math inline">\(\psi(ab) = \psi(a) \psi(b)\)</span></li>
+<li><span class="math inline">\(\psi(a + b) \leq \psi(a) + \psi(b)\)</span></li>
 </ol>
-<p>则称 $\psi$ 为绝对值，并且一般用 $|\cdot|$ 表示</p>
-<p>更近一步，若 $\psi(a + b) \leq \max\{\psi(a), \psi(b)\}, \quad \forall a, b \in k$，则称 $\psi$ 满足强不等式</p>
-<p>此时我们称 $\psi$ 为非 Archimede 赋值，<del>否则称为 Archimede 赋值</del></p>
+<p>则称 <span class="math inline">\(\psi\)</span> 为绝对值，并且一般用 <span class="math inline">\(|\cdot|\)</span> 表示</p>
+<p>更近一步，若 <span class="math inline">\(\psi(a + b) \leq \max\{\psi(a), \psi(b)\}, \quad \forall a, b \in k\)</span>，则称 <span class="math inline">\(\psi\)</span> 满足强不等式</p>
+<p>此时我们称 <span class="math inline">\(\psi\)</span> 为非 Archimede 赋值，<del>否则称为 Archimede 赋值</del></p>
 <blockquote>
 <p>一个域上的绝对值，就是它看作自己上的一维线性空间是赋范空间</p>
 </blockquote>
-<h4 id="显然结论"><a href="#显然结论" class="headerlink" title="显然结论"></a>显然结论</h4><ul>
-<li>$|-1_k| = |1_k| = 1_{R_{\geq 0}}$ （之后不再区别 $1$ 是哪里的 $1$）</li>
-<li>$|-x| = |-1||x| = |x|$</li>
-<li>对于非 Archimede 赋值，若  $|x| &gt; |y|$， 则  $|x \pm y| = |x|$（有种占优的感觉）</li>
+<h4 id="显然结论">显然结论</h4>
+<ul>
+<li><span class="math inline">\(|-1_k| = |1_k| = 1_{R_{\geq 0}}\)</span> （之后不再区别 <span class="math inline">\(1\)</span> 是哪里的 <span class="math inline">\(1\)</span>）</li>
+<li><span class="math inline">\(|-x| = |-1||x| = |x|\)</span></li>
+<li>对于非 Archimede 赋值，若 <span class="math inline">\(|x| &gt; |y|\)</span>， 则 <span class="math inline">\(|x \pm y| = |x|\)</span>（有种占优的感觉）</li>
 </ul>
-<h3 id="绝对值的等价"><a href="#绝对值的等价" class="headerlink" title="绝对值的等价"></a>绝对值的等价</h3><p>若 $k$  上两个绝对值 $\psi_1, \psi_2$ 给出了相同的拓扑，则称  $\psi_1, \psi_2$  等价</p>
+<h3 id="绝对值的等价">绝对值的等价</h3>
+<p>若 <span class="math inline">\(k\)</span> 上两个绝对值 <span class="math inline">\(\psi_1, \psi_2\)</span> 给出了相同的拓扑，则称 <span class="math inline">\(\psi_1, \psi_2\)</span> 等价</p>
 <blockquote>
-<p>根据绝对值定义的 1，3 两条就可以用 $d(x, y) = |x - y|$ 给出 $k$ 上的度量从而给出  $k$ 上的拓扑</p>
+<p>根据绝对值定义的 1，3 两条就可以用 <span class="math inline">\(d(x, y) = |x - y|\)</span> 给出 <span class="math inline">\(k\)</span> 上的度量从而给出 <span class="math inline">\(k\)</span> 上的拓扑</p>
 </blockquote>
-<h3 id="平凡绝对值"><a href="#平凡绝对值" class="headerlink" title="平凡绝对值"></a>平凡绝对值</h3><p>$\forall 0 \neq x \in k$,  $|x|_0 = 1$。</p>
-<p>我们称 $|x|_0$ 为平凡绝对值，它对应的拓扑为离散拓扑</p>
-<p><strong>习题</strong>：若 $k$ 是有限域，则 $k$ 上只有平凡绝对值</p>
+<h3 id="平凡绝对值">平凡绝对值</h3>
+<p><span class="math inline">\(\forall 0 \neq x \in k\)</span>, <span class="math inline">\(|x|_0 = 1\)</span>。</p>
+<p>我们称 <span class="math inline">\(|x|_0\)</span> 为平凡绝对值，它对应的拓扑为离散拓扑</p>
+<p><strong>习题</strong>：若 <span class="math inline">\(k\)</span> 是有限域，则 <span class="math inline">\(k\)</span> 上只有平凡绝对值</p>
 <blockquote>
 <p>有限域的可逆元全体（非零元全体）关于乘法构成了有限循环群，因此有限域上只有平凡绝对值</p>
 </blockquote>
-<h3 id="非平凡绝对值的例子"><a href="#非平凡绝对值的例子" class="headerlink" title="非平凡绝对值的例子"></a>非平凡绝对值的例子</h3><p>对任意给定素数 $p$  ，$\forall 0 \neq x \in Q$ ，$x = p^l \cdot \frac{m}{n}$ ，其中 $\gcd(p, mn) = 1$ ，$l \in \mathbb{Z}$ ，则定义</p>
-<script type="math/tex; mode=display">
-|x|_p = p^{-l}</script><p>直接验证可知 $|\cdot|_p$  是  $\mathbb{Q}$ 上的绝对值。 $\mathbb{Q}$ 关于 $|\cdot|_p$ 的完备化记作 $\mathbb{Q}_p$</p>
+<h3 id="非平凡绝对值的例子">非平凡绝对值的例子</h3>
+<p>对任意给定素数 <span class="math inline">\(p\)</span> ，<span class="math inline">\(\forall 0 \neq x \in Q\)</span> ，<span class="math inline">\(x = p^l \cdot \frac{m}{n}\)</span> ，其中 <span class="math inline">\(\gcd(p, mn) = 1\)</span> ，<span class="math inline">\(l \in \mathbb{Z}\)</span> ，则定义 <span class="math display">\[
+|x|_p = p^{-l}
+\]</span> 直接验证可知 <span class="math inline">\(|\cdot|_p\)</span> 是 <span class="math inline">\(\mathbb{Q}\)</span> 上的绝对值。 <span class="math inline">\(\mathbb{Q}\)</span> 关于 <span class="math inline">\(|\cdot|_p\)</span> 的完备化记作 <span class="math inline">\(\mathbb{Q}_p\)</span></p>
 <blockquote>
-<p>每个特征 0 的域的极小子域同构于 $Q$，因此这个例子十分有代表性，另外注意到例子 $\max_{x \in \mathbb{Z}}|x|_p = 1$</p>
+<p>每个特征 0 的域的极小子域同构于 <span class="math inline">\(Q\)</span>，因此这个例子十分有代表性，另外注意到例子 <span class="math inline">\(\max_{x \in \mathbb{Z}}|x|_p = 1\)</span></p>
 </blockquote>
-<p>对于 $\mathbb{Q}$，我们已经有三种绝对值：$|\cdot|_{\infty}$ ，$|\cdot|_0$，$|\cdot|_p$，下面定理告诉我们， $\mathbb{Q}$ 的绝对值本质上只有这三种。</p>
-<h3 id="Ostrowski-定理"><a href="#Ostrowski-定理" class="headerlink" title="Ostrowski 定理"></a>Ostrowski 定理</h3><p>$Q$ 上的任何<strong>非平凡绝对值</strong> $|\cdot|$ 一定等价于 $|\cdot|_{\infty}$ 或 $|\cdot|_p$</p>
+<p>对于 <span class="math inline">\(\mathbb{Q}\)</span>，我们已经有三种绝对值：<span class="math inline">\(|\cdot|_{\infty}\)</span> ，<span class="math inline">\(|\cdot|_0\)</span>，<span class="math inline">\(|\cdot|_p\)</span>，下面定理告诉我们， <span class="math inline">\(\mathbb{Q}\)</span> 的绝对值本质上只有这三种。</p>
+<h3 id="ostrowski-定理">Ostrowski 定理</h3>
+<p><span class="math inline">\(Q\)</span> 上的任何<strong>非平凡绝对值</strong> <span class="math inline">\(|\cdot|\)</span> 一定等价于 <span class="math inline">\(|\cdot|_{\infty}\)</span> 或 <span class="math inline">\(|\cdot|_p\)</span></p>
 <blockquote>
-<p>由绝对值定义 2，可知我们只需确定 $\psi$ 在 $\mathbb{Z}$ 上的取值就能确定它在 $Q$ 上的取值</p>
+<p>由绝对值定义 2，可知我们只需确定 <span class="math inline">\(\psi\)</span> 在 <span class="math inline">\(\mathbb{Z}\)</span> 上的取值就能确定它在 <span class="math inline">\(Q\)</span> 上的取值</p>
 </blockquote>
 <ul>
-<li><p>若 $|\cdot|$  为非 Archimede 赋值，则 $I = \{ x \in \mathbb{Z} \mid |x| &lt; 1 \}$  是一个素理想，若 $I = \{0 \}$ ，则为 $|\cdot| = |\cdot|_0$ ，否则 存在素数 $p$ ，使得 $I = (p)$  ，因此 $\forall 0 \neq x \in \mathbb{Z}$  且 $p \not \mid x$ ，$|x| = 1$ ，从而 $|\cdot| = |\cdot|_p^s$ ，其中 $s = - \log_p|p|$ ，即 $|\cdot|$ 与 $|\cdot|_p$ 等价</p>
-</li>
-<li><p>否则，必存在 $0 \neq m \in \mathbb{Z}$ 使得 $|m| &gt; 1$，否则，对任意 $x, y \in k$，根据二项式定理</p>
-<script type="math/tex; mode=display">
-|(x + y)^n| = |\sum_{i = 0}^n \binom{n}{i} x^i y^{n - i}| \leq \sum_{i = 0}^n |\binom{n}{i}| |x^i| |y^{n - i}| \leq (n + 1) \max \{ |x| , |y| \}^n</script><blockquote>
-<p>注意到上式仅用到 $|\binom{n}{i}| \leq 1$</p>
+<li><p>若 <span class="math inline">\(|\cdot|\)</span> 为非 Archimede 赋值，则 <span class="math inline">\(I = \{ x \in \mathbb{Z} \mid |x| &lt; 1 \}\)</span> 是一个素理想，若 <span class="math inline">\(I = \{0 \}\)</span> ，则为 <span class="math inline">\(|\cdot| = |\cdot|_0\)</span> ，否则 存在素数 <span class="math inline">\(p\)</span> ，使得 <span class="math inline">\(I = (p)\)</span> ，因此 <span class="math inline">\(\forall 0 \neq x \in \mathbb{Z}\)</span> 且 <span class="math inline">\(p \not \mid x\)</span> ，<span class="math inline">\(|x| = 1\)</span> ，从而 <span class="math inline">\(|\cdot| = |\cdot|_p^s\)</span> ，其中 <span class="math inline">\(s = - \log_p|p|\)</span> ，即 <span class="math inline">\(|\cdot|\)</span> 与 <span class="math inline">\(|\cdot|_p\)</span> 等价</p></li>
+<li><p>否则，必存在 <span class="math inline">\(0 \neq m \in \mathbb{Z}\)</span> 使得 <span class="math inline">\(|m| &gt; 1\)</span>，否则，对任意 <span class="math inline">\(x, y \in k\)</span>，根据二项式定理 <span class="math display">\[
+|(x + y)^n| = |\sum_{i = 0}^n \binom{n}{i} x^i y^{n - i}| \leq \sum_{i = 0}^n |\binom{n}{i}| |x^i| |y^{n - i}| \leq (n + 1) \max \{ |x| , |y| \}^n
+\]</span></p>
+<blockquote>
+<p>注意到上式仅用到 <span class="math inline">\(|\binom{n}{i}| \leq 1\)</span></p>
 </blockquote>
-<p>从而 $|x + y| \leq \sqrt[n]{n + 1} \max \{ |x| , |y| \}$，令 $n \to \infty$，可知 $|\cdot|$ 为 非 Archimede 赋值，矛盾</p>
-<p>对任意 $n , l &gt; 1$， $m^l = a_0 + a_1 n + \cdots a_t n^t, \quad 0 \leq a_i &lt; n, a_t \geq 1$ （$n$ 进制表示）从而 $m^l \geq a_t n^t \geq n^t$</p>
-<p>可知 $t \leq \frac{l \log m}{\log n}$  ，另一方面</p>
-<script type="math/tex; mode=display">
-|m|^l \leq \sum_{i = 0}^t |a_i||n|^i \leq n(t + 1) \max(1, |n|)^t \leq n (\frac{l \log m}{\log n} + 1) \max(1, |n|)^{\frac{l \log m}{\log n}}</script><p>开 $l$  次方后令 $l \to \infty$ ，可知 $|m| \leq \max\{1, |n|\}^{\frac{\log m}{\log n}}$ ，又由于我们取 $0 \neq m$  满足 $|m| &gt; 1$ ，从而 $|n| &gt; 1$ ，即对任意 $n &gt; 1$ ，$|n| &gt; 1$ ，再利用对称性 $|m| = |n|^{\frac{\log m}{\log n}}$ ，即 $\frac{\log |n|}{\log n}$ 为常量, 所以 $|n| = n^s$，从而 $|\cdot|$ 与 $|\cdot|_\infty$  等价</p>
-</li>
+<p>从而 <span class="math inline">\(|x + y| \leq \sqrt[n]{n + 1} \max \{ |x| , |y| \}\)</span>，令 <span class="math inline">\(n \to \infty\)</span>，可知 <span class="math inline">\(|\cdot|\)</span> 为 非 Archimede 赋值，矛盾</p>
+<p>对任意 <span class="math inline">\(n , l &gt; 1\)</span>， <span class="math inline">\(m^l = a_0 + a_1 n + \cdots a_t n^t, \quad 0 \leq a_i &lt; n, a_t \geq 1\)</span> （<span class="math inline">\(n\)</span> 进制表示）从而 <span class="math inline">\(m^l \geq a_t n^t \geq n^t\)</span></p>
+<p>可知 <span class="math inline">\(t \leq \frac{l \log m}{\log n}\)</span> ，另一方面 <span class="math display">\[
+|m|^l \leq \sum_{i = 0}^t |a_i||n|^i \leq n(t + 1) \max(1, |n|)^t \leq n (\frac{l \log m}{\log n} + 1) \max(1, |n|)^{\frac{l \log m}{\log n}}
+\]</span> 开 <span class="math inline">\(l\)</span> 次方后令 <span class="math inline">\(l \to \infty\)</span> ，可知 <span class="math inline">\(|m| \leq \max\{1, |n|\}^{\frac{\log m}{\log n}}\)</span> ，又由于我们取 <span class="math inline">\(0 \neq m\)</span> 满足 <span class="math inline">\(|m| &gt; 1\)</span> ，从而 <span class="math inline">\(|n| &gt; 1\)</span> ，即对任意 <span class="math inline">\(n &gt; 1\)</span> ，<span class="math inline">\(|n| &gt; 1\)</span> ，再利用对称性 <span class="math inline">\(|m| = |n|^{\frac{\log m}{\log n}}\)</span> ，即 <span class="math inline">\(\frac{\log |n|}{\log n}\)</span> 为常量, 所以 <span class="math inline">\(|n| = n^s\)</span>，从而 <span class="math inline">\(|\cdot|\)</span> 与 <span class="math inline">\(|\cdot|_\infty\)</span> 等价</p></li>
 </ul>
-<h3 id="非-Archimede-绝对值"><a href="#非-Archimede-绝对值" class="headerlink" title="非 Archimede 绝对值"></a>非 Archimede 绝对值</h3><p>对域 $k$ 上给定的非 Archimede 绝对值 $|\cdot|$ ，我们记</p>
-<script type="math/tex; mode=display">
-O_k = \{ x \in k \mid |x| \leq 1\}</script><p>证明：$O_k$ 是 $k$ 的子环，且 $k$  是 $O_k$  的分式域，更近一步 $O_k$ 为整闭整环，且 $m_k = \{ x \in k \mid |x| &lt; 1 \}$ 是唯一极大理想，即 $O_k$  是局部环。</p>
+<h3 id="非-archimede-绝对值">非 Archimede 绝对值</h3>
+<p>对域 <span class="math inline">\(k\)</span> 上给定的非 Archimede 绝对值 <span class="math inline">\(|\cdot|\)</span> ，我们记 <span class="math display">\[
+O_k = \{ x \in k \mid |x| \leq 1\}
+\]</span> 证明：<span class="math inline">\(O_k\)</span> 是 <span class="math inline">\(k\)</span> 的子环，且 <span class="math inline">\(k\)</span> 是 <span class="math inline">\(O_k\)</span> 的分式域，更近一步 <span class="math inline">\(O_k\)</span> 为整闭整环，且 <span class="math inline">\(m_k = \{ x \in k \mid |x| &lt; 1 \}\)</span> 是唯一极大理想，即 <span class="math inline">\(O_k\)</span> 是局部环。</p>
 <ul>
-<li>$O_k$ 是 $k$ 的子环：只需验证 $x, y \in O_k$，$x - y, xy \in O_k$</li>
-<li>$k$  是 $O_k$  的分式域：注意到 $|x|\cdot |x^{-1}| = 1$，所以 $x, x^{-1}$ 至少有一个在 $O_k$</li>
-<li>$O_k$ 为整闭整环：某个 $O_k$ 上首一的多项式 $f$，满足 $f(x) = 0$，从而 $x^n \in O_k$，从而 $x \in O_k$</li>
-<li>注意到 $O_k$ 的可逆元的全体为 $O_k \backslash m_k$，记作 $O_k^{\star} = \{ x \in k \mid |x| = 1\}$</li>
+<li><span class="math inline">\(O_k\)</span> 是 <span class="math inline">\(k\)</span> 的子环：只需验证 <span class="math inline">\(x, y \in O_k\)</span>，<span class="math inline">\(x - y, xy \in O_k\)</span></li>
+<li><span class="math inline">\(k\)</span> 是 <span class="math inline">\(O_k\)</span> 的分式域：注意到 <span class="math inline">\(|x|\cdot |x^{-1}| = 1\)</span>，所以 <span class="math inline">\(x, x^{-1}\)</span> 至少有一个在 <span class="math inline">\(O_k\)</span></li>
+<li><span class="math inline">\(O_k\)</span> 为整闭整环：某个 <span class="math inline">\(O_k\)</span> 上首一的多项式 <span class="math inline">\(f\)</span>，满足 <span class="math inline">\(f(x) = 0\)</span>，从而 <span class="math inline">\(x^n \in O_k\)</span>，从而 <span class="math inline">\(x \in O_k\)</span></li>
+<li>注意到 <span class="math inline">\(O_k\)</span> 的可逆元的全体为 <span class="math inline">\(O_k \backslash m_k\)</span>，记作 <span class="math inline">\(O_k^{\star} = \{ x \in k \mid |x| = 1\}\)</span></li>
 </ul>
-<h4 id="Remark"><a href="#Remark" class="headerlink" title="Remark"></a>Remark</h4><ul>
-<li>$\mathbb{Q}$  关于 $|\cdot|_p$   的 $O_k = \{ x \mid x = p^l \cdot \frac{m}{n} \}, l \geq 0$，其中 $\gcd(p, mn) = 1$</li>
-<li>$\mathbb{Q}$ 关于 $|\cdot|_0$  的 $O_k = \mathbb{Q}$</li>
+<h4 id="remark">Remark</h4>
+<ul>
+<li><span class="math inline">\(\mathbb{Q}\)</span> 关于 <span class="math inline">\(|\cdot|_p\)</span> 的 <span class="math inline">\(O_k = \{ x \mid x = p^l \cdot \frac{m}{n} \}, l \geq 0\)</span>，其中 <span class="math inline">\(\gcd(p, mn) = 1\)</span></li>
+<li><span class="math inline">\(\mathbb{Q}\)</span> 关于 <span class="math inline">\(|\cdot|_0\)</span> 的 <span class="math inline">\(O_k = \mathbb{Q}\)</span></li>
 </ul>
-<h3 id="离散绝对值"><a href="#离散绝对值" class="headerlink" title="离散绝对值"></a>离散绝对值</h3><p>域 $k$  上的一个<strong>非 Archimede 绝对值</strong> $|\cdot|$  ，称为<strong>离散赋值</strong>若  $|k^{\star}|$   是（作为 $\mathbb{R}_{\geq 0}$  的乘法子群）<strong>无限阶</strong>循环群。</p>
-<p>设 $\pi \in k$，$|\pi|$ 是 $|k^{\star}|$ 的生成元，由于 $|\pi|,|\pi^{-1}|$  都是生成元，且至少有一个在 $O_k$ 中，所以我们不妨假设 $\pi \in O_k$ ，注意到若 $|\pi| = 1$ ，$k^{\star}$  中任意元的取值都为 1，矛盾于 $|k^{\star}|$   是无限阶的，从而 $\pi \in m_k$ ，对任意 $0 \neq x \in m_k$ ，$|x| = |\pi|^n$ ，即  $|x \cdot \pi^{-n}| = 1$ ，即 $x \cdot \pi^{-n} \in O_k$ ，$x = \pi^n(x \cdot \pi^{-n})$ ， 即 $m_k = &lt;\pi&gt;$ 是主理想，且  $O_k = \pi^{\mathbb{Z}} \times O_k^{\star}$</p>
+<h3 id="离散绝对值">离散绝对值</h3>
+<p>域 <span class="math inline">\(k\)</span> 上的一个<strong>非 Archimede 绝对值</strong> <span class="math inline">\(|\cdot|\)</span> ，称为<strong>离散赋值</strong>若 <span class="math inline">\(|k^{\star}|\)</span> 是（作为 <span class="math inline">\(\mathbb{R}_{\geq 0}\)</span> 的乘法子群）<strong>无限阶</strong>循环群。</p>
+<p>设 <span class="math inline">\(\pi \in k\)</span>，<span class="math inline">\(|\pi|\)</span> 是 <span class="math inline">\(|k^{\star}|\)</span> 的生成元，由于 <span class="math inline">\(|\pi|,|\pi^{-1}|\)</span> 都是生成元，且至少有一个在 <span class="math inline">\(O_k\)</span> 中，所以我们不妨假设 <span class="math inline">\(\pi \in O_k\)</span> ，注意到若 <span class="math inline">\(|\pi| = 1\)</span> ，<span class="math inline">\(k^{\star}\)</span> 中任意元的取值都为 1，矛盾于 <span class="math inline">\(|k^{\star}|\)</span> 是无限阶的，从而 <span class="math inline">\(\pi \in m_k\)</span> ，对任意 <span class="math inline">\(0 \neq x \in m_k\)</span> ，<span class="math inline">\(|x| = |\pi|^n\)</span> ，即 <span class="math inline">\(|x \cdot \pi^{-n}| = 1\)</span> ，即 <span class="math inline">\(x \cdot \pi^{-n} \in O_k\)</span> ，<span class="math inline">\(x = \pi^n(x \cdot \pi^{-n})\)</span> ， 即 <span class="math inline">\(m_k = &lt;\pi&gt;\)</span> 是主理想，且 <span class="math inline">\(O_k = \pi^{\mathbb{Z}} \times O_k^{\star}\)</span></p>
 <blockquote>
-<p>此时 $O_k$ 被称为离散赋值环</p>
+<p>此时 <span class="math inline">\(O_k\)</span> 被称为离散赋值环</p>
 </blockquote>
-<p><strong>习题</strong>：$|\cdot|_p$ 是 $\mathbb{Q}$ 上的离散绝对值</p>
+<p><strong>习题</strong>：<span class="math inline">\(|\cdot|_p\)</span> 是 <span class="math inline">\(\mathbb{Q}\)</span> 上的离散绝对值</p>
 <blockquote>
-<p>显然 $\{ p^n \mid n \in \mathbb{Z} \}$ 是循环群</p>
+<p>显然 <span class="math inline">\(\{ p^n \mid n \in \mathbb{Z} \}\)</span> 是循环群</p>
 </blockquote>
-<h3 id="指数赋值"><a href="#指数赋值" class="headerlink" title="指数赋值"></a>指数赋值</h3><p>我们称 $v : k \to \mathbb{Z} \cup {\infty}$ 为指数赋值，若$\forall x \in k$，$v$ 满足</p>
-<ol>
-<li>$v(x) = \infty \Leftrightarrow x = 0$</li>
-<li>$v(xy) = v(x) + v(y)$</li>
-<li>$v(x + y) \geq \min\{v(x), v(y) \}$</li>
+<h3 id="指数赋值">指数赋值</h3>
+<p>我们称 <span class="math inline">\(v : k \to \mathbb{Z} \cup {\infty}\)</span> 为指数赋值，若<span class="math inline">\(\forall x \in k\)</span>，<span class="math inline">\(v\)</span> 满足</p>
+<ol type="1">
+<li><span class="math inline">\(v(x) = \infty \Leftrightarrow x = 0\)</span></li>
+<li><span class="math inline">\(v(xy) = v(x) + v(y)\)</span></li>
+<li><span class="math inline">\(v(x + y) \geq \min\{v(x), v(y) \}\)</span></li>
 </ol>
-<p>显然 $v$ 是<strong>指数赋值</strong> 当且仅当 $\psi(x) \doteq 2^{-v(x)}$ 为 非 Archimede 绝对值</p>
-<p>每个 离散绝对值 都可以给出一个指数赋值：$\forall x \in K,\; x = \alpha \pi^{n_x}, \alpha \in O_k^{\star}$, 定义 $v(x) = -n_x$，$v(0) = \infty$</p>
-<p><strong>例子</strong> 设 $F = k(x)$，$\forall \frac{f(x)}{g(x)} \in k(x)$, $f(x), g(x) \in k[x]$, $g(x) \neq 0$</p>
-<script type="math/tex; mode=display">
-v(\frac{f(x)}{g(x)}) \doteq \deg g - \deg f</script><h3 id="完备化"><a href="#完备化" class="headerlink" title="完备化"></a>完备化</h3><p>$\mathbb{Q}_p$ 是 $\mathbb{Q}$ 关于 $|\cdot|_p$ 的完备化，则 $|\cdot|_p$ 可以自然的延拓到 $\mathbb{Q}_p$ 上，定义 $\mathbb{Z}_p = \{ x \in \mathbb{Q}_p \mid |x|_p \leq 1 \}$, $m_p = \{ x \in \mathbb{Q} \mid |x|_p &lt; 1 \}$，ord$_p$ 是 $|\cdot|_p$ 对应的指数赋值，则 $\mathbb{Z}_p = \{ x \in \mathbb{Q}_p \mid \text{ord}_p(x) \geq 0 \}$, $m_p = \{x \in \mathbb{Q} \mid \text{ord}_p(x) &gt; 0 \}$</p>
-<p>$\mathbb{Q}_p$ 上的拓扑：$\forall x \in \mathbb{Q}_p$，$x$ 的邻域系 $\{ x + m_p^n \}_{n \in \mathbb{N}}$</p>
-<p>习题：验证领域系即开且闭，从而 $\mathbb{Q}_p$ 为全不连通的</p>
-<p><strong>命题</strong>：$\mathbb{Z}$ 在 $\mathbb{Z}_p$ 中稠密</p>
-<p><strong>证明</strong>：对任意 $x \in \mathbb{Z}_p \backslash \mathbb{Z}$，对任意 $l &gt; \text{ord}_p(x)$，因为 $x$ 可以由 $Q$ 中元素逼近，即存在 $n, m \in \mathbb{Z}, \gcd(n, m) = 1$ 使得 $\text{ord}_p(x - \frac{n}{m} &gt; l$，则</p>
-<script type="math/tex; mode=display">
-\text{ord}_p(\frac{n}{m}) = \text{ord}_p(\frac{n}{m} - x + x) \geq \min \{ \text{ord}_p(\frac{n}{m} - x), \text{ord}_p(x) \geq 0 \}</script><p>即 $\gcd(p, m) = 1$，从而存在 $u, v \in \mathbb{Z}$，使得 $u p^{l + 1} + v m = 1$，从而 $n - nvm = n u p^{l + 1}$，取 $\alpha = nv \in mathbb{Z}$，则 $\text{ord}_p(x - \alpha) = \text{ord}_p(x - \frac{n}{m} + \frac{n}{m} - \alpha)$，由于 $\frac{n}{m} - \alpha) = \frac{n}{m} u p^{l + 1}$，所以 $\text{ord}_p(x - \alpha) \geq l + 1$，则 $\alpha \in x + p^l \mathbb{Z_p}$</p>
-<p><strong>Hasse-Minkowski 定理</strong>：$f(x_1, \cdots, x_n)$ 是有理系数多项式且 $\deg f \leq 2$，则 $f(x_1, \cdots, x_n) = 0$ 在 $\mathbb{Q}$ 上有解当且仅当 在 $R$ 以及 $\mathbb{Q}_p$ 上有解对所有 $p$ 成立（即在所有完备化下都有解）</p>
+<p>显然 <span class="math inline">\(v\)</span> 是<strong>指数赋值</strong> 当且仅当 <span class="math inline">\(\psi(x) \doteq 2^{-v(x)}\)</span> 为 非 Archimede 绝对值</p>
+<p>每个 离散绝对值 都可以给出一个指数赋值：<span class="math inline">\(\forall x \in K,\; x = \alpha \pi^{n_x}, \alpha \in O_k^{\star}\)</span>, 定义 <span class="math inline">\(v(x) = -n_x\)</span>，<span class="math inline">\(v(0) = \infty\)</span></p>
+<p><strong>例子</strong> 设 <span class="math inline">\(F = k(x)\)</span>，<span class="math inline">\(\forall \frac{f(x)}{g(x)} \in k(x)\)</span>, <span class="math inline">\(f(x), g(x) \in k[x]\)</span>, <span class="math inline">\(g(x) \neq 0\)</span></p>
+<p><span class="math display">\[
+v(\frac{f(x)}{g(x)}) \doteq \deg g - \deg f
+\]</span></p>
+<h3 id="完备化">完备化</h3>
+<p><span class="math inline">\(\mathbb{Q}_p\)</span> 是 <span class="math inline">\(\mathbb{Q}\)</span> 关于 <span class="math inline">\(|\cdot|_p\)</span> 的完备化，则 <span class="math inline">\(|\cdot|_p\)</span> 可以自然的延拓到 <span class="math inline">\(\mathbb{Q}_p\)</span> 上，定义 <span class="math inline">\(\mathbb{Z}_p = \{ x \in \mathbb{Q}_p \mid |x|_p \leq 1 \}\)</span>, <span class="math inline">\(m_p = \{ x \in \mathbb{Q} \mid |x|_p &lt; 1 \}\)</span>，ord<span class="math inline">\(_p\)</span> 是 <span class="math inline">\(|\cdot|_p\)</span> 对应的指数赋值，则 <span class="math inline">\(\mathbb{Z}_p = \{ x \in \mathbb{Q}_p \mid \text{ord}_p(x) \geq 0 \}\)</span>, <span class="math inline">\(m_p = \{x \in \mathbb{Q} \mid \text{ord}_p(x) &gt; 0 \}\)</span></p>
+<p><span class="math inline">\(\mathbb{Q}_p\)</span> 上的拓扑：<span class="math inline">\(\forall x \in \mathbb{Q}_p\)</span>，<span class="math inline">\(x\)</span> 的邻域系 <span class="math inline">\(\{ x + m_p^n \}_{n \in \mathbb{N}}\)</span></p>
+<p>习题：验证领域系即开且闭，从而 <span class="math inline">\(\mathbb{Q}_p\)</span> 为全不连通的</p>
+<p><strong>命题</strong>：<span class="math inline">\(\mathbb{Z}\)</span> 在 <span class="math inline">\(\mathbb{Z}_p\)</span> 中稠密</p>
+<p><strong>证明</strong>：对任意 <span class="math inline">\(x \in \mathbb{Z}_p \backslash \mathbb{Z}\)</span>，对任意 <span class="math inline">\(l &gt; \text{ord}_p(x)\)</span>，因为 <span class="math inline">\(x\)</span> 可以由 <span class="math inline">\(Q\)</span> 中元素逼近，即存在 <span class="math inline">\(n, m \in \mathbb{Z}, \gcd(n, m) = 1\)</span> 使得 <span class="math inline">\(\text{ord}_p(x - \frac{n}{m} &gt; l\)</span>，则 <span class="math display">\[
+\text{ord}_p(\frac{n}{m}) = \text{ord}_p(\frac{n}{m} - x + x) \geq \min \{ \text{ord}_p(\frac{n}{m} - x), \text{ord}_p(x) \geq 0 \}
+\]</span> 即 <span class="math inline">\(\gcd(p, m) = 1\)</span>，从而存在 <span class="math inline">\(u, v \in \mathbb{Z}\)</span>，使得 <span class="math inline">\(u p^{l + 1} + v m = 1\)</span>，从而 <span class="math inline">\(n - nvm = n u p^{l + 1}\)</span>，取 <span class="math inline">\(\alpha = nv \in mathbb{Z}\)</span>，则 <span class="math inline">\(\text{ord}_p(x - \alpha) = \text{ord}_p(x - \frac{n}{m} + \frac{n}{m} - \alpha)\)</span>，由于 <span class="math inline">\(\frac{n}{m} - \alpha) = \frac{n}{m} u p^{l + 1}\)</span>，所以 <span class="math inline">\(\text{ord}_p(x - \alpha) \geq l + 1\)</span>，则 <span class="math inline">\(\alpha \in x + p^l \mathbb{Z_p}\)</span></p>
+<p><strong>Hasse-Minkowski 定理</strong>：<span class="math inline">\(f(x_1, \cdots, x_n)\)</span> 是有理系数多项式且 <span class="math inline">\(\deg f \leq 2\)</span>，则 <span class="math inline">\(f(x_1, \cdots, x_n) = 0\)</span> 在 <span class="math inline">\(\mathbb{Q}\)</span> 上有解当且仅当 在 <span class="math inline">\(R\)</span> 以及 <span class="math inline">\(\mathbb{Q}_p\)</span> 上有解对所有 <span class="math inline">\(p\)</span> 成立（即在所有完备化下都有解）</p>
 
               
             </div>

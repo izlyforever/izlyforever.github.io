@@ -223,7 +223,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          2.6k 字
+          3k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
           <!-- compatible with older versions-->
-          22 分钟
+          26 分钟
         
       </span>
     
@@ -288,81 +288,95 @@
               
               <p>在研究一个数学对象时，我们经常会对它进行分类。比如我们通常把数分为：实数，虚数；实数又分成有理数，无理数；当然也有按照正负来分的。还有整数分成素数（也叫质数）和合数，等等。现在我们谈谈矩阵的分类，以下默认矩阵是方的。</p>
 <span id="more"></span>
-<h2 id="数学中分类一般是按照等价关系划分等价类的"><a href="#数学中分类一般是按照等价关系划分等价类的" class="headerlink" title="数学中分类一般是按照等价关系划分等价类的"></a>数学中分类一般是按照等价关系划分等价类的</h2><p>所谓等价关系其实就是满足反身性，对称性，传递性的二元关系（总结一下我们等于号的全部性质就知道了）<br>矩阵中最常见的三种等价关系分别是</p>
-<ol>
-<li>相抵等价—-初等变换</li>
-<li>合同等价—-合同变换</li>
-<li>相似等价—-相似变换</li>
+<h2 id="数学中分类一般是按照等价关系划分等价类的">数学中分类一般是按照等价关系划分等价类的</h2>
+<p>所谓等价关系其实就是满足反身性，对称性，传递性的二元关系（总结一下我们等于号的全部性质就知道了） 矩阵中最常见的三种等价关系分别是</p>
+<ol type="1">
+<li>相抵等价---初等变换</li>
+<li>合同等价---合同变换</li>
+<li>相似等价---相似变换</li>
 </ol>
 <p>相抵等价完全由秩确定，合同变换我们一般只针对实对称矩阵处理。相似变化是我们讨论最多的也是最复杂的，我们总想把复杂的东西变简单，对于一个矩阵我们总想做变换把它变成最简单形式（称为标准型），相抵等价的标准型和对称矩阵合同等价的标准型都十分简单，但是很不幸的也是最幸运的是，并非所有的矩阵都可以相似于对角阵，相似变换标准型称为若尔当标准型，以纪念若尔当对矩阵相似变换所做的贡献。</p>
 <p>然而今天主题并不是上面的任何一种，而是由伟大的数学家 Issai Schur 提出的酉相似，酉变换的概念和相应定理。</p>
-<h2 id="任意复方阵酉相似于上三角矩阵"><a href="#任意复方阵酉相似于上三角矩阵" class="headerlink" title="任意复方阵酉相似于上三角矩阵"></a>任意复方阵酉相似于上三角矩阵</h2><h3 id="酉矩阵和酉相似"><a href="#酉矩阵和酉相似" class="headerlink" title="酉矩阵和酉相似"></a>酉矩阵和酉相似</h3><p>一个矩阵称为酉矩阵，如果它的共轭转置是它的逆。复矩阵 $A$ 与 $B$ 称为酉相似的，如果存在酉矩阵 $U$ 使得 $B=U^ \star AU$ ，这里$U^ \star$ 表示 $U$ 的共轭转置。</p>
-<h3 id="定理-1-对任意复方阵-A-，存在酉矩阵-U-使得"><a href="#定理-1-对任意复方阵-A-，存在酉矩阵-U-使得" class="headerlink" title="定理 1.  对任意复方阵 $A$，存在酉矩阵 $U$ 使得"></a>定理 1.  <strong>对任意复方阵 $A$，存在酉矩阵 $U$ 使得</strong></h3><script type="math/tex; mode=display">
+<h2 id="任意复方阵酉相似于上三角矩阵">任意复方阵酉相似于上三角矩阵</h2>
+<h3 id="酉矩阵和酉相似">酉矩阵和酉相似</h3>
+<p>一个矩阵称为酉矩阵，如果它的共轭转置是它的逆。复矩阵 <span class="math inline">\(A\)</span> 与 <span class="math inline">\(B\)</span> 称为酉相似的，如果存在酉矩阵 <span class="math inline">\(U\)</span> 使得 <span class="math inline">\(B=U^ \star AU\)</span> ，这里<span class="math inline">\(U^ \star\)</span> 表示 <span class="math inline">\(U\)</span> 的共轭转置。</p>
+<h3 id="定理-1.-对任意复方阵-a存在酉矩阵-u-使得">定理 1. <strong>对任意复方阵 <span class="math inline">\(A\)</span>，存在酉矩阵 <span class="math inline">\(U\)</span> 使得</strong></h3>
+<p><span class="math display">\[
 A = U \left( \begin{matrix}
-\lambda_1 & \star & \star & \star \\
- & \lambda_2 & \star & \star \\
- & & \ddots & \star \\
- & & &  \lambda_n
-\end{matrix} \right)U^\star</script><p>其中$\lambda_1,\lambda_2,\cdots,\lambda_n$ 为$A$的全部特征值。</p>
-<p><strong>Proof</strong>：设 $\alpha_1$ 是$A$的特征值 $\lambda_1$ 对应的特征向量，将 $\alpha_1$ 扩充为$\mathbf{C}^n$的一组标准正交基 $P=(\alpha_1,\alpha_2,\cdots,\alpha_n)$ ，则 $A = P \left( \begin{matrix} \lambda_1 &amp; \star \\ \mathbf{0} &amp; B \end{matrix} \right)P^\star$ 。对复矩阵的阶数应用数学归纳法，存在$n-1$ 阶酉矩阵 $Q$ 使得</p>
-<script type="math/tex; mode=display">
-B = Q \left( \begin{matrix} \lambda_2 & \star & \star  \\
- & \ddots & \star \\
- & & \lambda_n \end{matrix} \right) Q^ \star</script><p>因此</p>
-<script type="math/tex; mode=display">
+\lambda_1 &amp; \star &amp; \star &amp; \star \\
+ &amp; \lambda_2 &amp; \star &amp; \star \\
+ &amp; &amp; \ddots &amp; \star \\
+ &amp; &amp; &amp;  \lambda_n
+\end{matrix} \right)U^\star
+\]</span></p>
+<p>其中<span class="math inline">\(\lambda_1,\lambda_2,\cdots,\lambda_n\)</span> 为<span class="math inline">\(A\)</span>的全部特征值。</p>
+<p><strong>Proof</strong>：设 <span class="math inline">\(\alpha_1\)</span> 是<span class="math inline">\(A\)</span>的特征值 <span class="math inline">\(\lambda_1\)</span> 对应的特征向量，将 <span class="math inline">\(\alpha_1\)</span> 扩充为<span class="math inline">\(\mathbf{C}^n\)</span>的一组标准正交基 <span class="math inline">\(P=(\alpha_1,\alpha_2,\cdots,\alpha_n)\)</span> ，则 <span class="math inline">\(A = P \left( \begin{matrix} \lambda_1 &amp; \star \\ \mathbf{0} &amp; B \end{matrix} \right)P^\star\)</span> 。对复矩阵的阶数应用数学归纳法，存在<span class="math inline">\(n-1\)</span> 阶酉矩阵 <span class="math inline">\(Q\)</span> 使得 <span class="math display">\[
+B = Q \left( \begin{matrix} \lambda_2 &amp; \star &amp; \star  \\
+ &amp; \ddots &amp; \star \\
+ &amp; &amp; \lambda_n \end{matrix} \right) Q^ \star
+\]</span> 因此 <span class="math display">\[
 A = U \left( \begin{matrix}
-\lambda_1 & \star & \star & \star \\
- & \lambda_2 & \star & \star \\
- & & \ddots & \star \\
- & & &  \lambda_n
-\end{matrix} \right)U^\star</script><p>其中 $U = P \left( \begin{matrix} 1 &amp;  \\ &amp; Q \end{matrix} \right)$ 是 $n$ 阶酉矩阵，证毕。</p>
-<h3 id="矩阵酉相似于对角阵当且仅当它是正规矩阵"><a href="#矩阵酉相似于对角阵当且仅当它是正规矩阵" class="headerlink" title="矩阵酉相似于对角阵当且仅当它是正规矩阵"></a>矩阵酉相似于对角阵当且仅当它是正规矩阵</h3><p>矩阵 $A$ 称为正规矩阵(<strong>normal matrix</strong>)，如果$ A^ \star A=AA^ \star $。显然酉矩阵，Hermite 阵，反 Hermite 阵都是正规矩阵。</p>
-<h3 id="定理-2（Issai-Schur）矩阵-A-酉相似于对角阵的充分必要条件是-A-是正规矩阵"><a href="#定理-2（Issai-Schur）矩阵-A-酉相似于对角阵的充分必要条件是-A-是正规矩阵" class="headerlink" title="定理 2（Issai Schur）矩阵 $A$ 酉相似于对角阵的充分必要条件是 $A$ 是正规矩阵"></a>定理 2（Issai Schur）矩阵 $A$ 酉相似于对角阵的充分必要条件是 $A$ 是正规矩阵</h3><p><strong>Proof</strong>：必要性显然，下证明充分性：</p>
-<p>由定理 1 知，存在酉矩阵 $U$ 使得</p>
-<script type="math/tex; mode=display">
+\lambda_1 &amp; \star &amp; \star &amp; \star \\
+ &amp; \lambda_2 &amp; \star &amp; \star \\
+ &amp; &amp; \ddots &amp; \star \\
+ &amp; &amp; &amp;  \lambda_n
+\end{matrix} \right)U^\star
+\]</span> 其中 <span class="math inline">\(U = P \left( \begin{matrix} 1 &amp; \\ &amp; Q \end{matrix} \right)\)</span> 是 <span class="math inline">\(n\)</span> 阶酉矩阵，证毕。</p>
+<h3 id="矩阵酉相似于对角阵当且仅当它是正规矩阵">矩阵酉相似于对角阵当且仅当它是正规矩阵</h3>
+<p>矩阵 <span class="math inline">\(A\)</span> 称为正规矩阵(<strong>normal matrix</strong>)，如果$ A^ A=AA^ $。显然酉矩阵，Hermite 阵，反 Hermite 阵都是正规矩阵。</p>
+<h3 id="定理-2issai-schur矩阵-a-酉相似于对角阵的充分必要条件是-a-是正规矩阵">定理 2（Issai Schur）矩阵 <span class="math inline">\(A\)</span> 酉相似于对角阵的充分必要条件是 <span class="math inline">\(A\)</span> 是正规矩阵</h3>
+<p><strong>Proof</strong>：必要性显然，下证明充分性：</p>
+<p>由定理 1 知，存在酉矩阵 <span class="math inline">\(U\)</span> 使得</p>
+<p><span class="math display">\[
 A = U \left( \begin{matrix}
-\lambda_1 & \star & \star & \star \\
- & \lambda_2 & \star & \star \\
- & & \ddots & \star \\
- & & &  \lambda_n
-\end{matrix} \right)U^\star</script><p>若 $A$ 是正规矩阵，则有</p>
-<script type="math/tex; mode=display">
-\left( \begin{matrix}
-\overline{\lambda_1} &  &  &  \\
-\star & \overline{\lambda_2} &  &  \\
-\star & \star & \ddots & \\
-\star & \star & \star &  \overline{\lambda_n}
-\end{matrix} \right)
-\cdot
-\left(\begin{matrix}
-\lambda_1 & \star & \star & \star \\
- & \lambda_2 & \star & \star \\
- & & \ddots & \star \\
- & & &  \lambda_n
-\end{matrix} \right)
-=
-
-\left( \begin{matrix}
-\lambda_1 & \star & \star & \star \\
- & \lambda_2 & \star & \star \\
- & & \ddots & \star \\
- & & &  \lambda_n
-\end{matrix} \right)
-\left( \begin{matrix}
-\overline{\lambda_1} &  &  &  \\
-\star & \overline{\lambda_2} &  &  \\
-\star & \star & \ddots & \\
-\star & \star & \star &  \overline{\lambda_n}
-\end{matrix} \right)</script><p>考虑矩阵两端$(1,1)$位置得到:</p>
-<script type="math/tex; mode=display">
-\overline{\lambda_1}\lambda_1 ＝ \lambda_1 \overline{\lambda_1}+\sigma^2</script><p>其中$ \sigma^2 $是上三角矩阵</p>
-<script type="math/tex; mode=display">
-\left( \begin{matrix}
-\lambda_1 & \star & \star & \star \\
- & \lambda_2 & \star & \star \\
- & & \ddots & \star \\
- & & &  \lambda_n
-\end{matrix} \right)</script><p>的第一行的非对角元绝对值之平方和，因此由 $\sigma^2$ 可知上三角矩阵的第一行非对角元全为 0，类似的考察矩阵两端 $(2,2)$ 的位置，一直到 $(n,n)$ 的位置即可知道上面矩阵是对角阵，证毕。</p>
+\lambda_1 &amp; \star &amp; \star &amp; \star \\
+ &amp; \lambda_2 &amp; \star &amp; \star \\
+ &amp; &amp; \ddots &amp; \star \\
+ &amp; &amp; &amp;  \lambda_n
+\end{matrix} \right)U^\star
+\]</span></p>
+<p>若 <span class="math inline">\(A\)</span> 是正规矩阵，则有</p>
+$$ (
+<span class="math display">\[\begin{matrix}
+\overline{\lambda_1} &amp;  &amp;  &amp;  \\
+\star &amp; \overline{\lambda_2} &amp;  &amp;  \\
+\star &amp; \star &amp; \ddots &amp; \\
+\star &amp; \star &amp; \star &amp;  \overline{\lambda_n}
+\end{matrix}\]</span>
+)  (
+<span class="math display">\[\begin{matrix}
+\lambda_1 &amp; \star &amp; \star &amp; \star \\
+ &amp; \lambda_2 &amp; \star &amp; \star \\
+ &amp; &amp; \ddots &amp; \star \\
+ &amp; &amp; &amp;  \lambda_n
+\end{matrix}\]</span>
+<h1 id="section">)</h1>
+(
+<span class="math display">\[\begin{matrix}
+\lambda_1 &amp; \star &amp; \star &amp; \star \\
+ &amp; \lambda_2 &amp; \star &amp; \star \\
+ &amp; &amp; \ddots &amp; \star \\
+ &amp; &amp; &amp;  \lambda_n
+\end{matrix}\]</span>
+) (
+<span class="math display">\[\begin{matrix}
+\overline{\lambda_1} &amp;  &amp;  &amp;  \\
+\star &amp; \overline{\lambda_2} &amp;  &amp;  \\
+\star &amp; \star &amp; \ddots &amp; \\
+\star &amp; \star &amp; \star &amp;  \overline{\lambda_n}
+\end{matrix}\]</span>
+) <span class="math display">\[
+考虑矩阵两端$(1,1)$位置得到:
+\]</span> _1 ＝ _1 +^2 <span class="math display">\[
+其中$ \sigma^2 $是上三角矩阵
+\]</span> (
+<span class="math display">\[\begin{matrix}
+\lambda_1 &amp; \star &amp; \star &amp; \star \\
+ &amp; \lambda_2 &amp; \star &amp; \star \\
+ &amp; &amp; \ddots &amp; \star \\
+ &amp; &amp; &amp;  \lambda_n
+\end{matrix}\]</span>
+<p>) $$ 的第一行的非对角元绝对值之平方和，因此由 <span class="math inline">\(\sigma^2\)</span> 可知上三角矩阵的第一行非对角元全为 0，类似的考察矩阵两端 <span class="math inline">\((2,2)\)</span> 的位置，一直到 <span class="math inline">\((n,n)\)</span> 的位置即可知道上面矩阵是对角阵，证毕。</p>
 <p>上述定理给出了酉相似于对角型的充分必要条件，而且条件十分易于判断。整个过程简洁优美。另外由于酉矩阵条件数恒定为 1，有其数值稳定性，因此经常用于实际计算中，例如 QR 方法涉及的两个矩阵变换 Househoulder 变换和 Givens 变换都是酉变换。</p>
 
               

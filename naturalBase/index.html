@@ -18,12 +18,12 @@
   <meta name="author" content="izlyforever">
   <meta name="keywords" content="math, cpp, python, sagemath">
   
-    <meta name="description" content="自然底数 $e$ 之所以重要，我想很大程度上是因为，指数函数 $f(x)&#x3D;e^x$ 是“唯一”(在常数倍意义下)满足导数等于本身的函数。因此 $e$ 被叫做自然底数。">
+    <meta name="description" content="自然底数 \(e\) 之所以重要，我想很大程度上是因为，指数函数 \(f(x)&#x3D;e^x\) 是“唯一”(在常数倍意义下)满足导数等于本身的函数。因此 \(e\) 被叫做自然底数。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="自然底数 e 的由来">
 <meta property="og:url" content="http://izlyforever.com/naturalBase/index.html">
 <meta property="og:site_name" content="记录程序和数学的点滴">
-<meta property="og:description" content="自然底数 $e$ 之所以重要，我想很大程度上是因为，指数函数 $f(x)&#x3D;e^x$ 是“唯一”(在常数倍意义下)满足导数等于本身的函数。因此 $e$ 被叫做自然底数。">
+<meta property="og:description" content="自然底数 \(e\) 之所以重要，我想很大程度上是因为，指数函数 \(f(x)&#x3D;e^x\) 是“唯一”(在常数倍意义下)满足导数等于本身的函数。因此 \(e\) 被叫做自然底数。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://izlyforever.com/naturalBase/0.png">
 <meta property="article:published_time" content="2016-02-24T15:26:27.000Z">
@@ -224,7 +224,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          613 字
+          654 字
         
       </span>
     
@@ -287,20 +287,25 @@
             
             <div class="markdown-body">
               
-              <p>自然底数 $e$ 之所以重要，我想很大程度上是因为，指数函数 $f(x)=e^x$ 是“唯一”(在常数倍意义下)满足导数等于本身的函数。因此 $e$ 被叫做自然底数。</p>
+              <p>自然底数 <span class="math inline">\(e\)</span> 之所以重要，我想很大程度上是因为，指数函数 <span class="math inline">\(f(x)=e^x\)</span> 是“唯一”(在常数倍意义下)满足导数等于本身的函数。因此 <span class="math inline">\(e\)</span> 被叫做自然底数。</p>
 <span id="more"></span>
-<p>然而，$e$ 的定义可以由一个常见的重要数列极限来定义。即</p>
-<script type="math/tex; mode=display">
-e \doteq \lim _{n \to \infty}(1+\frac{1}{n})^n</script><p>那么为什么右边极限存在呢，我们来仔细分析。<br>令</p>
-<script type="math/tex; mode=display">
-a_n = (1+\frac{1}{n})^n ,\; b_n =(1+\frac{1}{n})^{n+1}</script><p>则，由 <a href="../meanInequation">均值不等式</a> 易知：</p>
-<script type="math/tex; mode=display">
-a_n = (1+\frac{1}{n})^n \cdot 1 \leq [\frac{n(1+\frac{1}{n})+1}{n+1}]^{n+1} =a_{n+1}</script><p>且</p>
-<script type="math/tex; mode=display">
-\frac{1}{b_n} = (\frac{n}{n+1})^n \cdot 1 \leq [\frac{(n+1)\frac{n}{n+1}+1}{n+2}]^{n+2} = \frac{1}{b_{n+1}}</script><p>因此 $2 = a_1 \leq a_n \leq b_n \leq b_1 = 4$。由于单调有界序列必有极限，不妨把这个极限记作 $e$ 且由上面推理知 $2 &lt; e &lt; 4$。</p>
-<h2 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h2><script type="math/tex; mode=display">
-f_n = (1+\frac{1}{n})^{n+c},\quad g_n = (1+\frac{1}{n})^{n+d}</script><p>那么满足$f_n \leq e &lt; g_n$ 的最大的$c=\frac{1}{ln⁡2}−1$，最小的$d = \frac{1}{2}$，详细证明</p>
-<p><img src="0.png" srcset="/img/loading.gif" lazyload alt="0"></p>
+<p>然而，<span class="math inline">\(e\)</span> 的定义可以由一个常见的重要数列极限来定义。即 <span class="math display">\[
+e \doteq \lim _{n \to \infty}(1+\frac{1}{n})^n
+\]</span> 那么为什么右边极限存在呢，我们来仔细分析。 令 <span class="math display">\[
+a_n = (1+\frac{1}{n})^n ,\; b_n =(1+\frac{1}{n})^{n+1}
+\]</span> 则，由 <a href="../meanInequation">均值不等式</a> 易知： <span class="math display">\[
+a_n = (1+\frac{1}{n})^n \cdot 1 \leq [\frac{n(1+\frac{1}{n})+1}{n+1}]^{n+1} =a_{n+1}
+\]</span> 且 <span class="math display">\[
+\frac{1}{b_n} = (\frac{n}{n+1})^n \cdot 1 \leq [\frac{(n+1)\frac{n}{n+1}+1}{n+2}]^{n+2} = \frac{1}{b_{n+1}}
+\]</span> 因此 <span class="math inline">\(2 = a_1 \leq a_n \leq b_n \leq b_1 = 4\)</span>。由于单调有界序列必有极限，不妨把这个极限记作 <span class="math inline">\(e\)</span> 且由上面推理知 <span class="math inline">\(2 &lt; e &lt; 4\)</span>。</p>
+<h2 id="补充说明">补充说明</h2>
+<p><span class="math display">\[
+f_n = (1+\frac{1}{n})^{n+c},\quad g_n = (1+\frac{1}{n})^{n+d}
+\]</span></p>
+<p>那么满足<span class="math inline">\(f_n \leq e &lt; g_n\)</span> 的最大的<span class="math inline">\(c=\frac{1}{ln⁡2}−1\)</span>，最小的<span class="math inline">\(d = \frac{1}{2}\)</span>，详细证明</p>
+<figure>
+<img src="0.png" srcset="/img/loading.gif" lazyload alt="0" /><figcaption aria-hidden="true">0</figcaption>
+</figure>
 
               
             </div>

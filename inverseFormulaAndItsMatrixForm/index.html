@@ -18,12 +18,12 @@
   <meta name="author" content="izlyforever">
   <meta name="keywords" content="math, cpp, python, sagemath">
   
-    <meta name="description" content="在 上一篇博文 中，介绍过数论中的 Möbius 反演公式，让我想起了另一个经典的反演公式：二项式反演公式。本质上反演公式就是矩阵求逆的过程。 只是它的逆有很简单的形式，因此才有了二项式反演公式，这个公式帮助我们队伍在 2014 年 ACM－ICPC 亚洲区域赛西安站拿银，当时 F 题答案直接算需要 $O(n^3)$ 复杂度，而利用二项式反演公式后，可以在 $O(n^2)$ 复杂度内完美解决。1A">
+    <meta name="description" content="在 上一篇博文 中，介绍过数论中的 Möbius 反演公式，让我想起了另一个经典的反演公式：二项式反演公式。本质上反演公式就是矩阵求逆的过程。 只是它的逆有很简单的形式，因此才有了二项式反演公式，这个公式帮助我们队伍在 2014 年 ACM－ICPC 亚洲区域赛西安站拿银，当时 F 题答案直接算需要 \(O(n^3)\) 复杂度，而利用二项式反演公式后，可以在 \(O(n^2)\) 复杂度内完美解">
 <meta property="og:type" content="article">
 <meta property="og:title" content="二项式反演公式及其应用">
 <meta property="og:url" content="http://izlyforever.com/inverseFormulaAndItsMatrixForm/index.html">
 <meta property="og:site_name" content="记录程序和数学的点滴">
-<meta property="og:description" content="在 上一篇博文 中，介绍过数论中的 Möbius 反演公式，让我想起了另一个经典的反演公式：二项式反演公式。本质上反演公式就是矩阵求逆的过程。 只是它的逆有很简单的形式，因此才有了二项式反演公式，这个公式帮助我们队伍在 2014 年 ACM－ICPC 亚洲区域赛西安站拿银，当时 F 题答案直接算需要 $O(n^3)$ 复杂度，而利用二项式反演公式后，可以在 $O(n^2)$ 复杂度内完美解决。1A">
+<meta property="og:description" content="在 上一篇博文 中，介绍过数论中的 Möbius 反演公式，让我想起了另一个经典的反演公式：二项式反演公式。本质上反演公式就是矩阵求逆的过程。 只是它的逆有很简单的形式，因此才有了二项式反演公式，这个公式帮助我们队伍在 2014 年 ACM－ICPC 亚洲区域赛西安站拿银，当时 F 题答案直接算需要 \(O(n^3)\) 复杂度，而利用二项式反演公式后，可以在 \(O(n^2)\) 复杂度内完美解">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2016-01-21T09:31:20.000Z">
 <meta property="article:modified_time" content="2022-06-25T09:14:02.541Z">
@@ -223,7 +223,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          2.7k 字
+          3k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
           <!-- compatible with older versions-->
-          23 分钟
+          26 分钟
         
       </span>
     
@@ -287,87 +287,112 @@
             <div class="markdown-body">
               
               <p>在 <a href="../DirichletProduct">上一篇博文</a> 中，介绍过数论中的 Möbius 反演公式，让我想起了另一个经典的反演公式：<strong>二项式反演公式</strong>。本质上反演公式就是矩阵求逆的过程。</p>
-<p>只是它的逆有很简单的形式，因此才有了二项式反演公式，这个公式帮助我们队伍在 2014 年 ACM－ICPC 亚洲区域赛西安站拿银，当时 <a href="2014xian.pdf">F 题</a>答案直接算需要 $O(n^3)$ 复杂度，而利用二项式反演公式后，可以在 $O(n^2)$ 复杂度内完美解决。1A 过题，感觉超爽。</p>
+<p>只是它的逆有很简单的形式，因此才有了二项式反演公式，这个公式帮助我们队伍在 2014 年 ACM－ICPC 亚洲区域赛西安站拿银，当时 <a href="2014xian.pdf">F 题</a>答案直接算需要 <span class="math inline">\(O(n^3)\)</span> 复杂度，而利用二项式反演公式后，可以在 <span class="math inline">\(O(n^2)\)</span> 复杂度内完美解决。1A 过题，感觉超爽。</p>
 <blockquote>
 <p>最后简单提一下：Möbius 反演公式及其矩阵形式</p>
 </blockquote>
 <span id="more"></span>
-<h2 id="反演公式与其矩阵形式"><a href="#反演公式与其矩阵形式" class="headerlink" title="反演公式与其矩阵形式"></a>反演公式与其矩阵形式</h2><p>由</p>
-<script type="math/tex; mode=display">
-\sum_{r = 1} ^n a_{n,r} f(r) = g(n)</script><p>其中 $g(n)$ 已知，解出 $f(n)$</p>
-<script type="math/tex; mode=display">
-f(n) = \sum_{r = 1} ^n b_{n,r} g(r)</script><p>为其反演公式，也称上面两式互为反演公式。</p>
+<h2 id="反演公式与其矩阵形式">反演公式与其矩阵形式</h2>
+<p>由</p>
+<p><span class="math display">\[
+\sum_{r = 1} ^n a_{n,r} f(r) = g(n)
+\]</span> 其中 <span class="math inline">\(g(n)\)</span> 已知，解出 <span class="math inline">\(f(n)\)</span></p>
+<p><span class="math display">\[
+f(n) = \sum_{r = 1} ^n b_{n,r} g(r)
+\]</span> 为其反演公式，也称上面两式互为反演公式。</p>
 <p>令</p>
-<script type="math/tex; mode=display">
-A = \left( \begin{matrix} a_{11} & &  \\
-a_{21} & a_{22} & \\
-\cdots & \cdots & \ddots & \\
-a_{n1} & a_{n2} & \cdots & a_{nn} \\
+<p><span class="math display">\[
+A = \left( \begin{matrix} a_{11} &amp; &amp;  \\
+a_{21} &amp; a_{22} &amp; \\
+\cdots &amp; \cdots &amp; \ddots &amp; \\
+a_{n1} &amp; a_{n2} &amp; \cdots &amp; a_{nn} \\
 \end{matrix} \right)
 ,\qquad
-B = \left( \begin{matrix} b_{11} & &  \\
-b_{21} & b_{22} & \\
-\cdots & \cdots & \ddots & \\
-b_{n1} & b_{n2} & \cdots & b_{nn} \\
-\end{matrix} \right)</script><p>则上述反演公式本质上就是求矩阵 $A$ 的逆 $B$.</p>
-<h2 id="二项式反演公式"><a href="#二项式反演公式" class="headerlink" title="二项式反演公式"></a>二项式反演公式</h2><p>若</p>
-<script type="math/tex; mode=display">
-g(n) = \sum_{r = s} ^n {n \choose r} f(r)</script><p>其中 $s \geq 0$ 则</p>
-<script type="math/tex; mode=display">
-f(n) = \sum_{r = s} ^n (-1)^{n-r} {n \choose r} g(r)</script><p><strong>Proof</strong>:  要证明反演公式，只需证明，对应的矩阵 $A$ 和 $B$ 互为逆即可. 令 $C = A \star B$ 则</p>
-<script type="math/tex; mode=display">
+B = \left( \begin{matrix} b_{11} &amp; &amp;  \\
+b_{21} &amp; b_{22} &amp; \\
+\cdots &amp; \cdots &amp; \ddots &amp; \\
+b_{n1} &amp; b_{n2} &amp; \cdots &amp; b_{nn} \\
+\end{matrix} \right)
+\]</span></p>
+<p>则上述反演公式本质上就是求矩阵 <span class="math inline">\(A\)</span> 的逆 <span class="math inline">\(B\)</span>.</p>
+<h2 id="二项式反演公式">二项式反演公式</h2>
+<p>若</p>
+<p><span class="math display">\[
+g(n) = \sum_{r = s} ^n {n \choose r} f(r)
+\]</span> 其中 <span class="math inline">\(s \geq 0\)</span> 则</p>
+<p><span class="math display">\[
+f(n) = \sum_{r = s} ^n (-1)^{n-r} {n \choose r} g(r)
+\]</span></p>
+<p><strong>Proof</strong>: 要证明反演公式，只需证明，对应的矩阵 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(B\)</span> 互为逆即可. 令 <span class="math inline">\(C = A \star B\)</span> 则</p>
+<p><span class="math display">\[
 \begin{aligned}
-c_{ij} = \sum_{k=1} ^n a_{ik} b_{kj} & = \sum_{k =j} ^ i {i \choose k} (-1)^{k-j}{k \choose j} =
+c_{ij} = \sum_{k=1} ^n a_{ik} b_{kj} &amp; = \sum_{k =j} ^ i {i \choose k} (-1)^{k-j}{k \choose j} =
 \sum_{k=0} ^ {i-j} {i \choose k + j} (-1)^k {k + j \choose j} \\
-& = {i \choose j} \sum_{k=0} ^ {i-j} (-1)^k {i - j \choose k} = \left\{ \begin{array}{ll} 1,& i=j \\  0,& i>j \end{array} \right.
-\end{aligned}</script><p>证毕。</p>
-<h2 id="二项式反演写成卷积形式便于-NTT"><a href="#二项式反演写成卷积形式便于-NTT" class="headerlink" title="二项式反演写成卷积形式便于 NTT"></a>二项式反演写成卷积形式便于 NTT</h2><p>不妨取 $s = 0$</p>
-<script type="math/tex; mode=display">
-\frac{g(n)}{n!} = \sum_{i + j = n} \frac{f(i)}{i} \cdot \frac{1}{j!}</script><p>等价于</p>
-<script type="math/tex; mode=display">
-\frac{f(n)}{n!} = \sum_{i + j = n} ^n \frac{g(i)}{i!} \cdot \frac{(-1)^{j}}{j!}</script><blockquote>
-<p>也就是说二项式反演公式本质上是说：$\frac{1}{n!}$ 和 $\frac{(-1)^n}{n!}$ 互为卷积逆。</p>
+&amp; = {i \choose j} \sum_{k=0} ^ {i-j} (-1)^k {i - j \choose k} = \left\{ \begin{array}{ll} 1,&amp; i=j \\  0,&amp; i&gt;j \end{array} \right.
+\end{aligned}
+\]</span> 证毕。</p>
+<h2 id="二项式反演写成卷积形式便于-ntt">二项式反演写成卷积形式便于 NTT</h2>
+<p>不妨取 <span class="math inline">\(s = 0\)</span></p>
+<p><span class="math display">\[
+\frac{g(n)}{n!} = \sum_{i + j = n} \frac{f(i)}{i} \cdot \frac{1}{j!}
+\]</span> 等价于 <span class="math display">\[
+\frac{f(n)}{n!} = \sum_{i + j = n} ^n \frac{g(i)}{i!} \cdot \frac{(-1)^{j}}{j!}
+\]</span></p>
+<blockquote>
+<p>也就是说二项式反演公式本质上是说：<span class="math inline">\(\frac{1}{n!}\)</span> 和 <span class="math inline">\(\frac{(-1)^n}{n!}\)</span> 互为卷积逆。</p>
 </blockquote>
-<h2 id="二项式反演公式的应用"><a href="#二项式反演公式的应用" class="headerlink" title="二项式反演公式的应用"></a>二项式反演公式的应用</h2><p>二项式反演公式在组合数学和数论中都有诸多应用，这里简单的提两个。</p>
-<h3 id="错排问题-在-n-个数字-1-2-dots-n-形成-n-个排列-a-1a-2-dots-a-n-中满足-a-i-neq-i-的排列有多少个"><a href="#错排问题-在-n-个数字-1-2-dots-n-形成-n-个排列-a-1a-2-dots-a-n-中满足-a-i-neq-i-的排列有多少个" class="headerlink" title="(错排问题) 在 $n$ 个数字 $1, 2, \dots, n$ 形成 $n!$ 个排列 $a_1a_2 \dots a_n$ 中满足 $a_i \neq i$ 的排列有多少个"></a>(错排问题) 在 $n$ 个数字 $1, 2, \dots, n$ 形成 $n!$ 个排列 $a_1a_2 \dots a_n$ 中满足 $a_i \neq i$ 的排列有多少个</h3><p>不妨设答案为 $D_n$ ,则可以看出恰好有 $r$ 个  $a_i=i$的排列数为 $\left(\begin{matrix} n \\ r\end{matrix}\right) D_{n-r}$，因此</p>
-<script type="math/tex; mode=display">
-n! = \sum_{r = 0} ^n \left(\begin{matrix} n \\ r\end{matrix}\right) D_{n-r}</script><p>因此</p>
-<script type="math/tex; mode=display">
-D_n ＝ \sum_{r = 0} ^n (-1)^{n-r} \left(\begin{matrix} n \\ r\end{matrix}\right) r! = n! \sum_{r=0} ^n \frac{(-1)^r}{r!}</script><blockquote>
-<p>当然 $D_n$ 还有递推关系式 $D_1=0,D_2 = 1$</p>
-<script type="math/tex; mode=display">
-D_n = (n-1) (D_{n-1} + D_{n-2}),\quad n \geq 2</script></blockquote>
-<h3 id="满射个数-求-m-元集-A-到-n-元集-B-的满身的个数-g-m-n"><a href="#满射个数-求-m-元集-A-到-n-元集-B-的满身的个数-g-m-n" class="headerlink" title="(满射个数) 求 $m$ 元集 $A$ 到 $n$ 元集 $B$ 的满身的个数 $g(m,n)$"></a>(满射个数) 求 $m$ 元集 $A$ 到 $n$ 元集 $B$ 的满身的个数 $g(m,n)$</h3><p>类似于错排的思路，我们有</p>
-<script type="math/tex; mode=display">
-n^m = \sum_{r = 1} ^n \left(\begin{matrix} n \\ r\end{matrix}\right) g(m,r)</script><p>于是</p>
-<script type="math/tex; mode=display">
-g(m,n) =  \sum_{r = 1} ^n (-1)^{n-r} \left(\begin{matrix} n \\ r\end{matrix}\right) r^m</script><h2 id="Mobius-反演公式及其矩阵形式"><a href="#Mobius-反演公式及其矩阵形式" class="headerlink" title="Möbius 反演公式及其矩阵形式"></a>Möbius 反演公式及其矩阵形式</h2><p>由 Möbius 反演公式对应的矩阵我们有,若</p>
-<script type="math/tex; mode=display">
-a_{ij} = \left\{ \begin{array}{cc} 1, & j \mid i \\
-0, & else. \end{array} \right.</script><p>则，其逆矩阵为</p>
-<script type="math/tex; mode=display">
-b_{ij} = \left\{ \begin{array}{cc} \mu (\frac{i}{j}), & j \mid i \\
-0, & else. \end{array} \right.</script><blockquote>
+<h2 id="二项式反演公式的应用">二项式反演公式的应用</h2>
+<p>二项式反演公式在组合数学和数论中都有诸多应用，这里简单的提两个。</p>
+<h3 id="错排问题-在-n-个数字-1-2-dots-n-形成-n-个排列-a_1a_2-dots-a_n-中满足-a_i-neq-i-的排列有多少个">(错排问题) 在 <span class="math inline">\(n\)</span> 个数字 <span class="math inline">\(1, 2, \dots, n\)</span> 形成 <span class="math inline">\(n!\)</span> 个排列 <span class="math inline">\(a_1a_2 \dots a_n\)</span> 中满足 <span class="math inline">\(a_i \neq i\)</span> 的排列有多少个</h3>
+<p>不妨设答案为 <span class="math inline">\(D_n\)</span> ,则可以看出恰好有 <span class="math inline">\(r\)</span> 个 <span class="math inline">\(a_i=i\)</span>的排列数为 <span class="math inline">\(\left(\begin{matrix} n \\ r\end{matrix}\right) D_{n-r}\)</span>，因此</p>
+<p><span class="math display">\[
+n! = \sum_{r = 0} ^n \left(\begin{matrix} n \\ r\end{matrix}\right) D_{n-r}
+\]</span></p>
+<p>因此</p>
+<p><span class="math display">\[
+D_n ＝ \sum_{r = 0} ^n (-1)^{n-r} \left(\begin{matrix} n \\ r\end{matrix}\right) r! = n! \sum_{r=0} ^n \frac{(-1)^r}{r!}
+\]</span> &gt; 当然 <span class="math inline">\(D_n\)</span> 还有递推关系式 <span class="math inline">\(D_1=0,D_2 = 1\)</span> &gt; <span class="math display">\[
+&gt; D_n = (n-1) (D_{n-1} + D_{n-2}),\quad n \geq 2
+&gt; \]</span></p>
+<h3 id="满射个数-求-m-元集-a-到-n-元集-b-的满身的个数-gmn">(满射个数) 求 <span class="math inline">\(m\)</span> 元集 <span class="math inline">\(A\)</span> 到 <span class="math inline">\(n\)</span> 元集 <span class="math inline">\(B\)</span> 的满身的个数 <span class="math inline">\(g(m,n)\)</span></h3>
+<p>类似于错排的思路，我们有</p>
+<p><span class="math display">\[
+n^m = \sum_{r = 1} ^n \left(\begin{matrix} n \\ r\end{matrix}\right) g(m,r)
+\]</span> 于是</p>
+<p><span class="math display">\[
+g(m,n) =  \sum_{r = 1} ^n (-1)^{n-r} \left(\begin{matrix} n \\ r\end{matrix}\right) r^m
+\]</span></p>
+<h2 id="möbius-反演公式及其矩阵形式">Möbius 反演公式及其矩阵形式</h2>
+<p>由 Möbius 反演公式对应的矩阵我们有,若 <span class="math display">\[
+a_{ij} = \left\{ \begin{array}{cc} 1, &amp; j \mid i \\
+0, &amp; else. \end{array} \right.
+\]</span> 则，其逆矩阵为 <span class="math display">\[
+b_{ij} = \left\{ \begin{array}{cc} \mu (\frac{i}{j}), &amp; j \mid i \\
+0, &amp; else. \end{array} \right.
+\]</span></p>
+<blockquote>
 <p>本文参考了<a target="_blank" rel="noopener" href="http://www.douban.com/note/480023639/?type=like">豆瓣</a>和<a target="_blank" rel="noopener" href="http://wenku.baidu.com/link?url=0m3D-588KfEUvocmKGoW5X4z5SHrEKVOaqfLoTeRtJaJcG6oDEUh2QEbJmNa1p2OTkqFLCqhfhM-RsoOI2fkutlqL9q3xgJhIAic4HumI5W">百度文库</a>以及 许胤龙，孙淑玲《组合数学引论》。</p>
 </blockquote>
-<h2 id="单位根反演"><a href="#单位根反演" class="headerlink" title="单位根反演"></a>单位根反演</h2><p>DFT 的本质就是单位根反演</p>
-<script type="math/tex; mode=display">
-\forall k,[n \mid k] = \frac{1}{n} \sum_{i=0}^{n-1} \omega_n^{ik}</script><p>一个应用的例子</p>
-<script type="math/tex; mode=display">
+<h2 id="单位根反演">单位根反演</h2>
+<p>DFT 的本质就是单位根反演 <span class="math display">\[
+\forall k,[n \mid k] = \frac{1}{n} \sum_{i=0}^{n-1} \omega_n^{ik}
+\]</span> 一个应用的例子 <span class="math display">\[
 \begin{aligned}
 \sum_{i=0}^{[\frac{n}{k}]} [x^{ik}] f(x)
-&= \sum_{i=0}^n [k \mid i] [x^i] f(x)\\
-&=\sum_{i=0}^n [x^i] f(x) \frac{1}{k} \sum_{j=0}^{k-1} \omega_{k}^{ji}\\
-&=\frac{1}{k} \sum_{i=0}^n a_i \sum_{j=0}^{k-1} \omega_{k}^{ij}\\
-&=\frac{1}{k} \sum_{j=0}^{k-1} \sum_{i=0}^n a_i(\omega_k^j)^i\\
-&=\frac{1}{k} \sum_{j=0}^{k-1} f(\omega_{k}^j)
-\end{aligned}</script><blockquote>
-<p>单位根反演转自：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/cjyyb/p/10838495.html">https://www.cnblogs.com/cjyyb/p/10838495.html</a></p>
+&amp;= \sum_{i=0}^n [k \mid i] [x^i] f(x)\\
+&amp;=\sum_{i=0}^n [x^i] f(x) \frac{1}{k} \sum_{j=0}^{k-1} \omega_{k}^{ji}\\
+&amp;=\frac{1}{k} \sum_{i=0}^n a_i \sum_{j=0}^{k-1} \omega_{k}^{ij}\\
+&amp;=\frac{1}{k} \sum_{j=0}^{k-1} \sum_{i=0}^n a_i(\omega_k^j)^i\\
+&amp;=\frac{1}{k} \sum_{j=0}^{k-1} f(\omega_{k}^j)
+\end{aligned}
+\]</span></p>
+<blockquote>
+<p>单位根反演转自：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/cjyyb/p/10838495.html" class="uri">https://www.cnblogs.com/cjyyb/p/10838495.html</a></p>
 </blockquote>
-<p>具体的例子求：$\sum_{i \in [0,n],k \mid i} \binom{n}{i} G^i$</p>
-<p>计$f(x) = (G+x)^n$，则由上面公式</p>
-<script type="math/tex; mode=display">
-\sum_{i \in [0, n], k \mid i} \binom{n}{i} G^i = \frac{1}{k} \sum_{j=0}^{k-1} (G+\omega_{k}^j) ^n</script><p>即复杂度 $O(k \log n)$，如果要结果模一个 NTT friendly 的，那就更好了！</p>
+<p>具体的例子求：<span class="math inline">\(\sum_{i \in [0,n],k \mid i} \binom{n}{i} G^i\)</span></p>
+<p>计<span class="math inline">\(f(x) = (G+x)^n\)</span>，则由上面公式 <span class="math display">\[
+\sum_{i \in [0, n], k \mid i} \binom{n}{i} G^i = \frac{1}{k} \sum_{j=0}^{k-1} (G+\omega_{k}^j) ^n
+\]</span> 即复杂度 <span class="math inline">\(O(k \log n)\)</span>，如果要结果模一个 NTT friendly 的，那就更好了！</p>
 
               
             </div>

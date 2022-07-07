@@ -237,7 +237,7 @@
         
         
           <!-- compatible with older versions-->
-          88 分钟
+          96 分钟
         
       </span>
     
@@ -290,238 +290,259 @@
               
               <p>为了把看过的知识变成自己的东西，在此理一下思路（导师建议学的东西记录一下，不然以后过不了多久又忘了，花了时间就要有收获）</p>
 <span id="more"></span>
-<h2 id="自由模"><a href="#自由模" class="headerlink" title="自由模"></a>自由模</h2><p>给定一个环 $R$，其上(右)自由模</p>
-<script type="math/tex; mode=display">
-F_R = R^{(I)} = \bigoplus_{i \in I} R_i, \quad R_i = R</script><p>有两种等价刻画：</p>
-<ol>
-<li><p>$F_R$ 有一组基 $\lbrace e_i : i \in I \rbrace \subset F$ 使得 $F_R$ 上任意元素都可以唯一的写成 $e_i$ 的 $R$-线性组合</p>
-</li>
-<li><p>$F_R$ 有一组基 $\lbrace e_i : i \in I \rbrace \subset F$ 满足“universal property”: 对 $M_R$ 中任意 $\lbrace m_i : i \in I \rbrace$ 有唯一的 $R$ 模同态 $f: R_R \to M_R$ 使得 $f(e_i) = m_i ,i \in I$</p>
+<h2 id="自由模">自由模</h2>
+<p>给定一个环 <span class="math inline">\(R\)</span>，其上(右)自由模 <span class="math display">\[
+F_R = R^{(I)} = \bigoplus_{i \in I} R_i, \quad R_i = R
+\]</span></p>
+<p>有两种等价刻画：</p>
+<ol type="1">
+<li><p><span class="math inline">\(F_R\)</span> 有一组基 <span class="math inline">\(\lbrace e_i : i \in I \rbrace \subset F\)</span> 使得 <span class="math inline">\(F_R\)</span> 上任意元素都可以唯一的写成 <span class="math inline">\(e_i\)</span> 的 <span class="math inline">\(R\)</span>-线性组合</p></li>
+<li><p><span class="math inline">\(F_R\)</span> 有一组基 <span class="math inline">\(\lbrace e_i : i \in I \rbrace \subset F\)</span> 满足“universal property”: 对 <span class="math inline">\(M_R\)</span> 中任意 <span class="math inline">\(\lbrace m_i : i \in I \rbrace\)</span> 有唯一的 <span class="math inline">\(R\)</span> 模同态 <span class="math inline">\(f: R_R \to M_R\)</span> 使得 <span class="math inline">\(f(e_i) = m_i ,i \in I\)</span></p>
 <blockquote>
-<p>$R^I$ 表示 $R$ 的 $I$ 次积, 当指标集 $I$ 有限时, 积与直和(余积)等价,此时 $R^{(I)}$ 通常写成 $R^n$</p>
-</blockquote>
-</li>
+<p><span class="math inline">\(R^I\)</span> 表示 <span class="math inline">\(R\)</span> 的 <span class="math inline">\(I\)</span> 次积, 当指标集 <span class="math inline">\(I\)</span> 有限时, 积与直和(余积)等价,此时 <span class="math inline">\(R^{(I)}\)</span> 通常写成 <span class="math inline">\(R^n\)</span></p>
+</blockquote></li>
 </ol>
-<h3 id="IBN-Invariant-Basis-Number-性质"><a href="#IBN-Invariant-Basis-Number-性质" class="headerlink" title="IBN (Invariant Basis Number) 性质"></a>IBN (Invariant Basis Number) 性质</h3><p><strong>Generation Lemma</strong> 表明，对任意模，若 ${e_i : i \in I}$ 是其一族极小生成集，且 $I$ 是无限集，则 $M$ 不能由基数小于 $I$ 的集合生成。</p>
-<p>由 <strong>Generation Lemma</strong> 可知，若 $R^{(I)} = R^{(J)}$,且 $I$ 无限，那么 $|I| = |J|$，但是当 $I$ 有限时，结论并不一定成立，例如 $R = End(_kV)$,其中 $V$ 为可数无穷维空间，则 $R \simeq R^2$. 因此提出 <strong>IBN​</strong> 的概念：</p>
-<p><strong>IBN (Invariant Basis Number)</strong> 称环 $R$ 满足 <strong>IBN</strong> 性质，如果对任意</p>
-<script type="math/tex; mode=display">
-m,n \in \mathbb{N}, R^m \simeq R^n \Longrightarrow m=n</script><p>由定义不难看出，$R$ 不满足 IBN 性质，当且仅当, 存在 $R$ 上 $m×n$ 矩阵 $A$ 和 $n×m$ 矩阵 $B$ 使得</p>
-<script type="math/tex; mode=display">
-AB = I_n, BA =I_m</script><p>因此 IBN 性质是对称概念.</p>
+<h3 id="ibn-invariant-basis-number-性质">IBN (Invariant Basis Number) 性质</h3>
+<p><strong>Generation Lemma</strong> 表明，对任意模，若 <span class="math inline">\({e_i : i \in I}\)</span> 是其一族极小生成集，且 <span class="math inline">\(I\)</span> 是无限集，则 <span class="math inline">\(M\)</span> 不能由基数小于 <span class="math inline">\(I\)</span> 的集合生成。</p>
+<p>由 <strong>Generation Lemma</strong> 可知，若 <span class="math inline">\(R^{(I)} = R^{(J)}\)</span>,且 <span class="math inline">\(I\)</span> 无限，那么 <span class="math inline">\(|I| = |J|\)</span>，但是当 <span class="math inline">\(I\)</span> 有限时，结论并不一定成立，例如 <span class="math inline">\(R = End(_kV)\)</span>,其中 <span class="math inline">\(V\)</span> 为可数无穷维空间，则 <span class="math inline">\(R \simeq R^2\)</span>. 因此提出 <strong>IBN​</strong> 的概念：</p>
+<p><strong>IBN (Invariant Basis Number)</strong> 称环 <span class="math inline">\(R\)</span> 满足 <strong>IBN</strong> 性质，如果对任意 <span class="math display">\[
+m,n \in \mathbb{N}, R^m \simeq R^n \Longrightarrow m=n
+\]</span> 由定义不难看出，<span class="math inline">\(R\)</span> 不满足 IBN 性质，当且仅当, 存在 <span class="math inline">\(R\)</span> 上 <span class="math inline">\(m×n\)</span> 矩阵 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(n×m\)</span> 矩阵 <span class="math inline">\(B\)</span> 使得 <span class="math display">\[
+AB = I_n, BA =I_m
+\]</span> 因此 IBN 性质是对称概念.</p>
 <blockquote>
-<p>由 IBN 上述等价定义知 $f: R \to S \neq 0$ 为环同态，则 $S$ 满足 IBN 性质可推出 $R$ 满足 IBN 性质。</p>
+<p>由 IBN 上述等价定义知 <span class="math inline">\(f: R \to S \neq 0\)</span> 为环同态，则 <span class="math inline">\(S\)</span> 满足 IBN 性质可推出 <span class="math inline">\(R\)</span> 满足 IBN 性质。</p>
 </blockquote>
-<p>由上面的结论又可以给出很多满足 IBN 性质的例子：<br>Divison rings, local rings, semilocal rings, nonzero commutative rings, finite rings.</p>
-<h3 id="stably-finiteness"><a href="#stably-finiteness" class="headerlink" title="stably finiteness"></a>stably finiteness</h3><p>称环 $R$ 为 stably finite，如果对任意 $n$</p>
-<script type="math/tex; mode=display">
-R^n \simeq R^n \oplus N \Longrightarrow N=0</script><p>等价定义:</p>
-<ol>
-<li>对任意 $n$, $R^n$ 是 hopfian</li>
-<li>对任意 $n$, $M_n(R)$ 是 Dedekind-finite 的.</li>
+<p>由上面的结论又可以给出很多满足 IBN 性质的例子： Divison rings, local rings, semilocal rings, nonzero commutative rings, finite rings.</p>
+<h3 id="stably-finiteness">stably finiteness</h3>
+<p>称环 <span class="math inline">\(R\)</span> 为 stably finite，如果对任意 <span class="math inline">\(n\)</span> <span class="math display">\[
+R^n \simeq R^n \oplus N \Longrightarrow N=0
+\]</span> 等价定义:</p>
+<ol type="1">
+<li>对任意 <span class="math inline">\(n\)</span>, <span class="math inline">\(R^n\)</span> 是 hopfian</li>
+<li>对任意 <span class="math inline">\(n\)</span>, <span class="math inline">\(M_n(R)\)</span> 是 Dedekind-finite 的.</li>
 </ol>
 <p>由 2 可知 stably finite 是对称概念.</p>
 <blockquote>
-<p>由 $Mn(R)$ Dedekind-finite 可知:<br>若 $g:R→S$ 是嵌入(单射)同态(不要求幺元映成幺元), 那么若$S$  stable finite, 则 $R$ 也是.</p>
+<p>由 <span class="math inline">\(Mn(R)\)</span> Dedekind-finite 可知: 若 <span class="math inline">\(g:R→S\)</span> 是嵌入(单射)同态(不要求幺元映成幺元), 那么若<span class="math inline">\(S\)</span> stable finite, 则 <span class="math inline">\(R\)</span> 也是.</p>
 </blockquote>
-<p>由上可知:</p>
-<script type="math/tex; mode=display">
-\prod _{i \in I} R_i \quad \text{ stably finite } \iff R _i \quad \text{ stably finite for all } i</script><p><strong>例子</strong>: Commutative Rings, Noetherian Rings</p>
-<p><strong>性质</strong>:<br>若环 $R$ 不是 stably finite, 我们可以做一个最大的商环 $\bar{R}$ 使得 $\bar{R}$ stably finite.<br>$\bar{R}$可以如下构造, 并可以说明它确实 stably finite.<br>设 $T$ 为所有形式 $I-YX$ ( 方阵$X$,$Y$满足$XY = I$的中元素生成的理想。可以证明: $\bar{R} = R/T$</p>
-<p>自然地, 我们要问啥时候 $\bar{R} = 0$? 这当且仅当存在 $C,D \in M_m(R)$,行向量$x$,列向量$y$ 使得</p>
-<script type="math/tex; mode=display">
-x(I-DC)y = 1</script><h3 id="rank-condition"><a href="#rank-condition" class="headerlink" title="rank condition"></a>rank condition</h3><p>称环 $R$ 满足 rank condition, 如果对任意 $n$, $R_n$ 中生成元的个数都大于$n$.<br>等价定义 1: 任意满同态 $f: R^m \to R^n$可推出 $m \geq n$.<br>等价定义 2: 环 $R$ 不满足 rank condition, 当且仅当, 存在 $n&gt;k \geq 1$, 那么存在 $n \times k$ 矩阵 $A$ 和 $k×n$ 矩阵 $B$使得$AB=I_n$</p>
+<p>由上可知: <span class="math display">\[
+\prod _{i \in I} R_i \quad \text{ stably finite } \iff R _i \quad \text{ stably finite for all } i
+\]</span> <strong>例子</strong>: Commutative Rings, Noetherian Rings</p>
+<p><strong>性质</strong>: 若环 <span class="math inline">\(R\)</span> 不是 stably finite, 我们可以做一个最大的商环 <span class="math inline">\(\bar{R}\)</span> 使得 <span class="math inline">\(\bar{R}\)</span> stably finite. <span class="math inline">\(\bar{R}\)</span>可以如下构造, 并可以说明它确实 stably finite. 设 <span class="math inline">\(T\)</span> 为所有形式 <span class="math inline">\(I-YX\)</span> ( 方阵<span class="math inline">\(X\)</span>,<span class="math inline">\(Y\)</span>满足<span class="math inline">\(XY = I\)</span>的中元素生成的理想。可以证明: <span class="math inline">\(\bar{R} = R/T\)</span></p>
+<p>自然地, 我们要问啥时候 <span class="math inline">\(\bar{R} = 0\)</span>? 这当且仅当存在 <span class="math inline">\(C,D \in M_m(R)\)</span>,行向量<span class="math inline">\(x\)</span>,列向量<span class="math inline">\(y\)</span> 使得 <span class="math display">\[
+x(I-DC)y = 1
+\]</span></p>
+<h3 id="rank-condition">rank condition</h3>
+<p>称环 <span class="math inline">\(R\)</span> 满足 rank condition, 如果对任意 <span class="math inline">\(n\)</span>, <span class="math inline">\(R_n\)</span> 中生成元的个数都大于<span class="math inline">\(n\)</span>. 等价定义 1: 任意满同态 <span class="math inline">\(f: R^m \to R^n\)</span>可推出 <span class="math inline">\(m \geq n\)</span>. 等价定义 2: 环 <span class="math inline">\(R\)</span> 不满足 rank condition, 当且仅当, 存在 <span class="math inline">\(n&gt;k \geq 1\)</span>, 那么存在 <span class="math inline">\(n \times k\)</span> 矩阵 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(k×n\)</span> 矩阵 <span class="math inline">\(B\)</span>使得<span class="math inline">\(AB=I_n\)</span></p>
 <blockquote>
 <p>由上面等价定义 2 知道 rank condition 是个对称的概念.</p>
 </blockquote>
-<p>若有环同态 $f:R→S$, 其中 $S$ 满足 rank condition, 那么 $R$ 也满足.</p>
-<p>rank condition 与 stably finite 以及 IBN 之间的关系 $R \neq 0$:</p>
-<script type="math/tex; mode=display">
-\text{stably finite} \Longrightarrow \text{rank condition} \Longrightarrow \text{IBN}</script><p>套用一下定义,以及它们各自的等价定义,逆反命题就可以证明.</p>
+<p>若有环同态 <span class="math inline">\(f:R→S\)</span>, 其中 <span class="math inline">\(S\)</span> 满足 rank condition, 那么 <span class="math inline">\(R\)</span> 也满足.</p>
+<p>rank condition 与 stably finite 以及 IBN 之间的关系 <span class="math inline">\(R \neq 0\)</span>: <span class="math display">\[
+\text{stably finite} \Longrightarrow \text{rank condition} \Longrightarrow \text{IBN}
+\]</span> 套用一下定义,以及它们各自的等价定义,逆反命题就可以证明.</p>
 <blockquote>
 <p>stably finite 与 rank conditon 的密切联系</p>
 </blockquote>
-<p>对任意环 $R$, 下面结果等价:</p>
-<ol>
-<li>$R$ 满足 rank condition</li>
-<li>$\bar{R} \neq 0$</li>
-<li>$R$ 有一个非零 stably finite 的同态像</li>
-<li>对任意 $n \in \mathbb{N}, \quad C,D \in M_n(R)$，若 $CD=I_n$, 则对任意行向量 $x$ 和列向量 $y$, $x(I-DC)y \neq 1$</li>
+<p>对任意环 <span class="math inline">\(R\)</span>, 下面结果等价:</p>
+<ol type="1">
+<li><span class="math inline">\(R\)</span> 满足 rank condition</li>
+<li><span class="math inline">\(\bar{R} \neq 0\)</span></li>
+<li><span class="math inline">\(R\)</span> 有一个非零 stably finite 的同态像</li>
+<li>对任意 <span class="math inline">\(n \in \mathbb{N}, \quad C,D \in M_n(R)\)</span>，若 <span class="math inline">\(CD=I_n\)</span>, 则对任意行向量 <span class="math inline">\(x\)</span> 和列向量 <span class="math inline">\(y\)</span>, <span class="math inline">\(x(I-DC)y \neq 1\)</span></li>
 </ol>
-<p>这里难点在于 1 推出 4, 可以用反证法, 用增广矩阵得到</p>
-<script type="math/tex; mode=display">
-\begin{pmatrix} C \\ x(I-DC) \end{pmatrix} \left(D ,(I-DC)y \right) = \begin{pmatrix} CD & 0 \\ 0 & x(I-DC) \end{pmatrix} = I_{m+1}</script><blockquote>
+<p>这里难点在于 1 推出 4, 可以用反证法, 用增广矩阵得到 <span class="math display">\[
+\begin{pmatrix} C \\ x(I-DC) \end{pmatrix} \left(D ,(I-DC)y \right) = \begin{pmatrix} CD &amp; 0 \\ 0 &amp; x(I-DC) \end{pmatrix} = I_{m+1}
+\]</span></p>
+<blockquote>
 <p>在 simple ring 中 stably finite 等价于 rank condition</p>
 </blockquote>
-<h3 id="strong-rank-condition"><a href="#strong-rank-condition" class="headerlink" title="strong rank condition"></a>strong rank condition</h3><p>称环 $R$ 满足 right strong rank condition, 如果对任意 $n$, $R^n$ 中任意线性相关的元素个数不超过 $n$.<br>等价定义 1: 任意单同态 $f: R^m \to R^n$ 可推出 $m \leq n$<br>等价定义 2: 任意 $m$个未定元 $n &lt; m$ 个方程的线性方程组在 $R$ 中必有非零解.(用线性相关的定义可知)</p>
+<h3 id="strong-rank-condition">strong rank condition</h3>
+<p>称环 <span class="math inline">\(R\)</span> 满足 right strong rank condition, 如果对任意 <span class="math inline">\(n\)</span>, <span class="math inline">\(R^n\)</span> 中任意线性相关的元素个数不超过 <span class="math inline">\(n\)</span>. 等价定义 1: 任意单同态 <span class="math inline">\(f: R^m \to R^n\)</span> 可推出 <span class="math inline">\(m \leq n\)</span> 等价定义 2: 任意 <span class="math inline">\(m\)</span>个未定元 <span class="math inline">\(n &lt; m\)</span> 个方程的线性方程组在 <span class="math inline">\(R\)</span> 中必有非零解.(用线性相关的定义可知)</p>
 <blockquote>
 <p>实际上 strong rank condition 不是对称概念, 所以严格上, 我们要指出 left, right.</p>
 </blockquote>
 <p>由 (strong) rank condition 的等价定义可知:</p>
 <blockquote>
-<p>由于 $R^n$ 是自由$R$- 模,因此,可以推出 right strong rank condition 可推出 rank condition.</p>
+<p>由于 <span class="math inline">\(R^n\)</span> 是自由<span class="math inline">\(R\)</span>- 模,因此,可以推出 right strong rank condition 可推出 rank condition.</p>
 </blockquote>
-<p><strong>注意</strong> right strong rank condition 不像之前的满足 $f: R \to S$, 满足”性质”, 则 $R$ 满足”性质”.</p>
-<p>$A \times B$ 满足 (right) strong rank condition (RSRC) 当且仅当 $A$ 或者 $B$ 满足 RSRC</p>
+<p><strong>注意</strong> right strong rank condition 不像之前的满足 <span class="math inline">\(f: R \to S\)</span>, 满足”性质”, 则 <span class="math inline">\(R\)</span> 满足”性质”.</p>
+<p><span class="math inline">\(A \times B\)</span> 满足 (right) strong rank condition (RSRC) 当且仅当 <span class="math inline">\(A\)</span> 或者 <span class="math inline">\(B\)</span> 满足 RSRC</p>
 <p>由上面性质知道, stably finite 和 strong rank condition 是两个独立的概念, 彼此不搭嘎. 例如:</p>
-<ol>
-<li>$R = \mathbb{Q} &lt; x, y&gt;$ 是 stably finite, 但不满足 RSRC.</li>
+<ol type="1">
+<li><span class="math inline">\(R = \mathbb{Q} &lt; x, y&gt;\)</span> 是 stably finite, 但不满足 RSRC.</li>
 <li>而由上面性质知道, 我们只要构造一个满足 RSRC 和一个不满足 stably finite 的积即可.</li>
 </ol>
-<p>满足 RSRC 的例子:<br>Noetherian rings, Commutative Rings.</p>
+<p>满足 RSRC 的例子: Noetherian rings, Commutative Rings.</p>
 <blockquote>
 <p>最后给出一个线性无关的等价定义:</p>
 </blockquote>
-<p>$u_1,\cdots,u_m$ 在 $M = R^n$ 中线性无关, 当且仅当</p>
-<script type="math/tex; mode=display">
-0 \neq u_1 \wedge \cdots \wedge u_m \in \bigwedge ^m (M)</script><h3 id="总结图"><a href="#总结图" class="headerlink" title="总结图"></a>总结图</h3><p>自由模下的关系(任意箭头一般都不可逆):</p>
-<p><img src="MRing1.png" srcset="/img/loading.gif" lazyload alt="MRing1"></p>
+<p><span class="math inline">\(u_1,\cdots,u_m\)</span> 在 <span class="math inline">\(M = R^n\)</span> 中线性无关, 当且仅当 <span class="math display">\[
+0 \neq u_1 \wedge \cdots \wedge u_m \in \bigwedge ^m (M)
+\]</span></p>
+<h3 id="总结图">总结图</h3>
+<p>自由模下的关系(任意箭头一般都不可逆):</p>
+<figure>
+<img src="MRing1.png" srcset="/img/loading.gif" lazyload alt="MRing1" /><figcaption aria-hidden="true">MRing1</figcaption>
+</figure>
 <p>一般地, Dedekind finite + Rank condition 依然无法推出 stably finite. 例如:</p>
-<p>设 $R$ 为由元素$s,t,u,v;w,x,y,z$ 生成的 $k$ 代数,设 $A = \begin{pmatrix} s &amp; u \\ t &amp; v \end{pmatrix}, B = \begin{pmatrix} x &amp; y \\ z &amp; w \end{pmatrix}$ ,其中生成元满足关系:</p>
-<script type="math/tex; mode=display">
-AB=I_2</script><p>由此可知, $R$ 是 domain, 但是一般地, $BA \neq I_2$ 因此 $M_2(R)$ 不是 Dedekind finite 的. 因此 $R$ 不满足 stably finite 条件.<br>定义 $f: R \to k$ 为 $f(s)=f(v) = f(x) = f(w) = f(1) = 1$, $f(u) = f(t) = f(y) = f(z) = 0$. 因此由 $k$ 满足 rank condition, so is $R$.</p>
-<h2 id="投射模"><a href="#投射模" class="headerlink" title="投射模"></a>投射模</h2><h3 id="投射模的定义"><a href="#投射模的定义" class="headerlink" title="投射模的定义"></a>投射模的定义</h3><p>称一个右 $R$-模 $P$ 为 projective module（投射模）,如果<br>对任意 $R$ 模满同态 $g:B\to C$ 和任意 $R$ 模同态 $h:P\to C$,存在 $R$ 模同态 $h’: P \to B$ 使得 $h = gh’$</p>
+<p>设 <span class="math inline">\(R\)</span> 为由元素<span class="math inline">\(s,t,u,v;w,x,y,z\)</span> 生成的 <span class="math inline">\(k\)</span> 代数,设 <span class="math inline">\(A = \begin{pmatrix} s &amp; u \\ t &amp; v \end{pmatrix}, B = \begin{pmatrix} x &amp; y \\ z &amp; w \end{pmatrix}\)</span> ,其中生成元满足关系: <span class="math display">\[
+AB=I_2
+\]</span></p>
+<p>由此可知, <span class="math inline">\(R\)</span> 是 domain, 但是一般地, <span class="math inline">\(BA \neq I_2\)</span> 因此 <span class="math inline">\(M_2(R)\)</span> 不是 Dedekind finite 的. 因此 <span class="math inline">\(R\)</span> 不满足 stably finite 条件. 定义 <span class="math inline">\(f: R \to k\)</span> 为 <span class="math inline">\(f(s)=f(v) = f(x) = f(w) = f(1) = 1\)</span>, <span class="math inline">\(f(u) = f(t) = f(y) = f(z) = 0\)</span>. 因此由 <span class="math inline">\(k\)</span> 满足 rank condition, so is <span class="math inline">\(R\)</span>.</p>
+<h2 id="投射模">投射模</h2>
+<h3 id="投射模的定义">投射模的定义</h3>
+<p>称一个右 <span class="math inline">\(R\)</span>-模 <span class="math inline">\(P\)</span> 为 projective module（投射模）,如果 对任意 <span class="math inline">\(R\)</span> 模满同态 <span class="math inline">\(g:B\to C\)</span> 和任意 <span class="math inline">\(R\)</span> 模同态 <span class="math inline">\(h:P\to C\)</span>,存在 <span class="math inline">\(R\)</span> 模同态 <span class="math inline">\(h’: P \to B\)</span> 使得 <span class="math inline">\(h = gh’\)</span></p>
 <blockquote>
 <p>由定义显然自由模都是投射模.</p>
 </blockquote>
-<p>等价定义: 从右模范畴到 Abel 范畴 $\hom(P,-)$ 的函子是 exact functor(正合函子).<br>由定价定义易知:</p>
-<script type="math/tex; mode=display">
-\bigoplus_{i \in I} P_i \text{ 投射当且仅当 } P_i, i\in I \text{ 投射 }</script><p>由之前说明的自由模都是投射模可知以下条件等价</p>
-<ol>
-<li>$P_R$ 投射</li>
-<li>$P_R$ 是某个自由 $R$ 模的直和因子</li>
-<li>任意满同态 $B_R\to P_R$ 可裂</li>
+<p>等价定义: 从右模范畴到 Abel 范畴 <span class="math inline">\(\hom(P,-)\)</span> 的函子是 exact functor(正合函子). 由定价定义易知:</p>
+<p><span class="math display">\[
+\bigoplus_{i \in I} P_i \text{ 投射当且仅当 } P_i, i\in I \text{ 投射 }
+\]</span> 由之前说明的自由模都是投射模可知以下条件等价</p>
+<ol type="1">
+<li><span class="math inline">\(P_R\)</span> 投射</li>
+<li><span class="math inline">\(P_R\)</span> 是某个自由 <span class="math inline">\(R\)</span> 模的直和因子</li>
+<li>任意满同态 <span class="math inline">\(B_R\to P_R\)</span> 可裂</li>
 </ol>
-<p>由此可知:(Eilenberg’s Trick) 若 $P_R$ 投射,则存在自由模 $F_R$ 使得 $P \oplus F \simeq F$</p>
+<p>由此可知:(Eilenberg’s Trick) 若 <span class="math inline">\(P_R\)</span> 投射,则存在自由模 <span class="math inline">\(F_R\)</span> 使得 <span class="math inline">\(P \oplus F \simeq F\)</span></p>
 <blockquote>
-<p>Proof: 由 $P_R$ 投射模, 所以存在 $Q_R$ 使得 $P \oplus F \simeq F$ 为自由模, 取 $F$ 为 $E$ 的可数直和即可.</p>
+<p>Proof: 由 <span class="math inline">\(P_R\)</span> 投射模, 所以存在 <span class="math inline">\(Q_R\)</span> 使得 <span class="math inline">\(P \oplus F \simeq F\)</span> 为自由模, 取 <span class="math inline">\(F\)</span> 为 <span class="math inline">\(E\)</span> 的可数直和即可.</p>
 </blockquote>
-<p>不是投射 $\mathbb{Z}$ 模的例子:</p>
-<script type="math/tex; mode=display">
-\mathbb{Z} / 2 \mathbb{Z}, \quad M = \mathbb{Z} \times \mathbb{Z} \times \cdots</script><p>一个有趣的结果:<br>设 $P = \mathbb{Z} \oplus \mathbb{Z} \oplus \cdots \subset M$, 则 $\hom_{\mathbb{Z}}(M/P,\mathbb{Z}) = 0$<br>证明关键点在于 $M = A_2 + A_3$, 其中 $A_k = \lbrace (k a_1,k^2 a_2,\cdots,k^n a_n,\cdots): a_i \in \mathbb{Z} \rbrace$,<br>然后说明 $A_k\in P$, 且 $f(M)=f(A_2)+f(A_3) \subset f(P)$ 即可.</p>
-<h3 id="Dual-Basis-对偶基"><a href="#Dual-Basis-对偶基" class="headerlink" title="Dual Basis(对偶基)"></a>Dual Basis(对偶基)</h3><p>$P_R$ 是投射模, 当且仅当它有对偶基, 即存在一族元素 $\lbrace a_i: i\in I \rbrace \subset P$ 和线性函数 $\lbrace f_i: i \in I \rbrace \subset P^{\star} = \hom(P,R)$ 使得对任意 $a \in P$, 只有有限个 $f(a_i)$ 非零, 且 $a = \sum a_i f_i (a)$.</p>
-<p>对任意 $R$-模 $M_R$, $M^{\star} = \hom(M,R)$ 是左 $R$-模, $M^{\star \star} = \hom(M^{\star} ,R)$ 是右 $R$-模, 我们有自然的右模同态, $\epsilon: M \to M^{\star \star}$ 定义为: $\epsilon(a) = \hat{a}$, 其中 $\hat{a} (f) = f(a)$ 为求值函数.</p>
+<p>不是投射 <span class="math inline">\(\mathbb{Z}\)</span> 模的例子: <span class="math display">\[
+\mathbb{Z} / 2 \mathbb{Z}, \quad M = \mathbb{Z} \times \mathbb{Z} \times \cdots
+\]</span> 一个有趣的结果: 设 <span class="math inline">\(P = \mathbb{Z} \oplus \mathbb{Z} \oplus \cdots \subset M\)</span>, 则 <span class="math inline">\(\hom_{\mathbb{Z}}(M/P,\mathbb{Z}) = 0\)</span> 证明关键点在于 <span class="math inline">\(M = A_2 + A_3\)</span>, 其中 <span class="math inline">\(A_k = \lbrace (k a_1,k^2 a_2,\cdots,k^n a_n,\cdots): a_i \in \mathbb{Z} \rbrace\)</span>, 然后说明 <span class="math inline">\(A_k\in P\)</span>, 且 <span class="math inline">\(f(M)=f(A_2)+f(A_3) \subset f(P)\)</span> 即可.</p>
+<h3 id="dual-basis对偶基">Dual Basis(对偶基)</h3>
+<p><span class="math inline">\(P_R\)</span> 是投射模, 当且仅当它有对偶基, 即存在一族元素 <span class="math inline">\(\lbrace a_i: i\in I \rbrace \subset P\)</span> 和线性函数 <span class="math inline">\(\lbrace f_i: i \in I \rbrace \subset P^{\star} = \hom(P,R)\)</span> 使得对任意 <span class="math inline">\(a \in P\)</span>, 只有有限个 <span class="math inline">\(f(a_i)\)</span> 非零, 且 <span class="math inline">\(a = \sum a_i f_i (a)\)</span>.</p>
+<p>对任意 <span class="math inline">\(R\)</span>-模 <span class="math inline">\(M_R\)</span>, <span class="math inline">\(M^{\star} = \hom(M,R)\)</span> 是左 <span class="math inline">\(R\)</span>-模, <span class="math inline">\(M^{\star \star} = \hom(M^{\star} ,R)\)</span> 是右 <span class="math inline">\(R\)</span>-模, 我们有自然的右模同态, <span class="math inline">\(\epsilon: M \to M^{\star \star}\)</span> 定义为: <span class="math inline">\(\epsilon(a) = \hat{a}\)</span>, 其中 <span class="math inline">\(\hat{a} (f) = f(a)\)</span> 为求值函数.</p>
 <blockquote>
-<p>特别地, 当 $M_R$ 是投射的, $\epsilon$ 是单同态, $M_R$ 是有限生成投射时, $\epsilon$为同构.</p>
+<p>特别地, 当 <span class="math inline">\(M_R\)</span> 是投射的, <span class="math inline">\(\epsilon\)</span> 是单同态, <span class="math inline">\(M_R\)</span> 是有限生成投射时, <span class="math inline">\(\epsilon\)</span>为同构.</p>
 </blockquote>
-<p>例: $e \in R$ 为幂等元, 则 $R = eR \oplus (1-e)R$, 所以, $P = eR$ 为有限生成投射模.</p>
-<h3 id="Invertible-Modules-and-Fractional-Ideals-可逆模-可逆理想"><a href="#Invertible-Modules-and-Fractional-Ideals-可逆模-可逆理想" class="headerlink" title="Invertible Modules and Fractional Ideals(可逆模,可逆理想)"></a>Invertible Modules and Fractional Ideals(可逆模,可逆理想)</h3><blockquote>
-<p>此小节中默认 $R$ 为交换环</p>
+<p>例: <span class="math inline">\(e \in R\)</span> 为幂等元, 则 <span class="math inline">\(R = eR \oplus (1-e)R\)</span>, 所以, <span class="math inline">\(P = eR\)</span> 为有限生成投射模.</p>
+<h3 id="invertible-modules-and-fractional-ideals可逆模可逆理想">Invertible Modules and Fractional Ideals(可逆模,可逆理想)</h3>
+<blockquote>
+<p>此小节中默认 <span class="math inline">\(R\)</span> 为交换环</p>
 </blockquote>
-<p>很大一类的交换环上的投射模是由环扩张 $S \supset R$ 得到的.<br>现在, 给定(交换)环扩张 $S \supset R$. 考虑模 $S$ 的 $R$-子模, 设 $P,Q$ 为模 $S$ 的 $R$-子模, 定义:</p>
-<script type="math/tex; mode=display">
-PQ = \lbrace \sum p_i q_i : p_i \in P, q_i \in Q \rbrace, \quad Q:P = \lbrace s \in S: sP \in Q \rbrace,\quad P^{-1} = \lbrace s \in S : sP \subset R \rbrace = R:P</script><p>注意到 $P^{-1}$ 依赖于环扩张 $S$ 的选取.</p>
+<p>很大一类的交换环上的投射模是由环扩张 <span class="math inline">\(S \supset R\)</span> 得到的. 现在, 给定(交换)环扩张 <span class="math inline">\(S \supset R\)</span>. 考虑模 <span class="math inline">\(S\)</span> 的 <span class="math inline">\(R\)</span>-子模, 设 <span class="math inline">\(P,Q\)</span> 为模 <span class="math inline">\(S\)</span> 的 <span class="math inline">\(R\)</span>-子模, 定义: <span class="math display">\[
+PQ = \lbrace \sum p_i q_i : p_i \in P, q_i \in Q \rbrace, \quad Q:P = \lbrace s \in S: sP \in Q \rbrace,\quad P^{-1} = \lbrace s \in S : sP \subset R \rbrace = R:P
+\]</span> 注意到 <span class="math inline">\(P^{-1}\)</span> 依赖于环扩张 <span class="math inline">\(S\)</span> 的选取.</p>
 <p>由上面定义,我们立即有下面引理(条件 <code>1,2</code> 等价):</p>
-<ol>
-<li>存在 $S$ 的 $R$-子模 $Q$ 使得 $PQ = R$</li>
-<li>$PP^{-1} = R$</li>
+<ol type="1">
+<li>存在 <span class="math inline">\(S\)</span> 的 <span class="math inline">\(R\)</span>-子模 <span class="math inline">\(Q\)</span> 使得 <span class="math inline">\(PQ = R\)</span></li>
+<li><span class="math inline">\(PP^{-1} = R\)</span></li>
 </ol>
-<p>由于上述定价,我们把满足条件的 $P$ 称为 <strong>Invertible  $R$-submodule</strong> of $S$<br>在此条件下,我们有:</p>
-<ol>
-<li>$P$ 是有限生成投射 $R$-模 (利用 $\sum p_i q_i = 1$)</li>
-<li>任意 $R$-子模 $M \in S$, 自然映射 $f: P \otimes _R M \to PM$ 是 $R$-模同构</li>
-<li>$P^{\star} \simeq P^{-1}$ (因此 $P^{\star}$ 可以成 $S$ 的子模)</li>
-<li>$P_R$是自由模,当且仅当存在$s \in R$使得$P = sR$(此时$s$必然是$s$中的可逆元)</li>
+<p>由于上述定价,我们把满足条件的 <span class="math inline">\(P\)</span> 称为 <strong>Invertible <span class="math inline">\(R\)</span>-submodule</strong> of <span class="math inline">\(S\)</span> 在此条件下,我们有:</p>
+<ol type="1">
+<li><span class="math inline">\(P\)</span> 是有限生成投射 <span class="math inline">\(R\)</span>-模 (利用 <span class="math inline">\(\sum p_i q_i = 1\)</span>)</li>
+<li>任意 <span class="math inline">\(R\)</span>-子模 <span class="math inline">\(M \in S\)</span>, 自然映射 <span class="math inline">\(f: P \otimes _R M \to PM\)</span> 是 <span class="math inline">\(R\)</span>-模同构</li>
+<li><span class="math inline">\(P^{\star} \simeq P^{-1}\)</span> (因此 <span class="math inline">\(P^{\star}\)</span> 可以成 <span class="math inline">\(S\)</span> 的子模)</li>
+<li><span class="math inline">\(P_R\)</span>是自由模,当且仅当存在<span class="math inline">\(s \in R\)</span>使得<span class="math inline">\(P = sR\)</span>(此时<span class="math inline">\(s\)</span>必然是<span class="math inline">\(s\)</span>中的可逆元)</li>
 </ol>
 <blockquote>
 <p>结论 4 经常用于说明一个模是投射模但不是自由模.</p>
 </blockquote>
-<p>下面有一个很精彩的例子:<br>设$R \subset S$ 为交换环, $g \in S$满足 $g^2,g^3 \in R$, 即 $g^n \in R$ 对 $n&gt;1$ 成立. 定义$P_r = (1+rg, g^2)$, 那么</p>
-<script type="math/tex; mode=display">
-P_r P_s = (1+rg,g^2)(1+sg,g^2) = (1+(r+s)g+rsg^2,g^2+sg^3,g^2+rg^3,g^4)</script><p>显然上面集合包含 $g^2(1+(r+s)g+rsg^2)-rsg^4 = g^2 +(r+s)g^3$,<br>因此包含 $rg^3,sg^3,g^2,1+(r+s)g$, 因此</p>
-<script type="math/tex; mode=display">
-P_r P_s = (1+(r+s)g,g^2,rg^3,sg^3)</script><p>再由 $g^3(1+(r+s)g) - (r+s)g^2g^2 = g^3$ 可知:</p>
-<script type="math/tex; mode=display">
-P_r P_s = (1+(r+s)g,g^2) = P_{r+s}</script><p>因此 $P_r P_{-r} = P_0 = (1, g^2) = R$, 即 $\lbrace P_r: r \in R \rbrace$ 是一族 Invertible $R$-submodule of $S$(因此投射), 且 $P^{\star} = P_r^{-1} = P_{-r}$. $P_r$ 是 $R$-free 当且仅当 $u(1+rg) \in R$ 对所有的 $u \in U(R[g])$</p>
+<p>下面有一个很精彩的例子: 设<span class="math inline">\(R \subset S\)</span> 为交换环, <span class="math inline">\(g \in S\)</span>满足 <span class="math inline">\(g^2,g^3 \in R\)</span>, 即 <span class="math inline">\(g^n \in R\)</span> 对 <span class="math inline">\(n&gt;1\)</span> 成立. 定义<span class="math inline">\(P_r = (1+rg, g^2)\)</span>, 那么 <span class="math display">\[
+P_r P_s = (1+rg,g^2)(1+sg,g^2) = (1+(r+s)g+rsg^2,g^2+sg^3,g^2+rg^3,g^4)
+\]</span> 显然上面集合包含 <span class="math inline">\(g^2(1+(r+s)g+rsg^2)-rsg^4 = g^2 +(r+s)g^3\)</span>, 因此包含 <span class="math inline">\(rg^3,sg^3,g^2,1+(r+s)g\)</span>, 因此 <span class="math display">\[
+P_r P_s = (1+(r+s)g,g^2,rg^3,sg^3)
+\]</span> 再由 <span class="math inline">\(g^3(1+(r+s)g) - (r+s)g^2g^2 = g^3\)</span> 可知:</p>
+<p><span class="math display">\[
+P_r P_s = (1+(r+s)g,g^2) = P_{r+s}
+\]</span></p>
+<p>因此 <span class="math inline">\(P_r P_{-r} = P_0 = (1, g^2) = R\)</span>, 即 <span class="math inline">\(\lbrace P_r: r \in R \rbrace\)</span> 是一族 Invertible <span class="math inline">\(R\)</span>-submodule of <span class="math inline">\(S\)</span>(因此投射), 且 <span class="math inline">\(P^{\star} = P_r^{-1} = P_{-r}\)</span>. <span class="math inline">\(P_r\)</span> 是 <span class="math inline">\(R\)</span>-free 当且仅当 <span class="math inline">\(u(1+rg) \in R\)</span> 对所有的 <span class="math inline">\(u \in U(R[g])\)</span></p>
 <blockquote>
-<p>之前说过 $P^{-1}$ 依赖于 $R$ 的扩张 $S$ 的选取,现在我们在 $R$ 的所有 regular element(正则元)这个乘闭子集 $C_R$ 上做局部化得到环 $K$, 那么自然映射此时是单同态, 因此局部化得到的环可以看做 $R$ 的扩张(由 $R$ 唯一决定). 且对任意 $k \in K$, 都存在 regular element $u$ 使得 $u_k \in R$.</p>
+<p>之前说过 <span class="math inline">\(P^{-1}\)</span> 依赖于 <span class="math inline">\(R\)</span> 的扩张 <span class="math inline">\(S\)</span> 的选取,现在我们在 <span class="math inline">\(R\)</span> 的所有 regular element(正则元)这个乘闭子集 <span class="math inline">\(C_R\)</span> 上做局部化得到环 <span class="math inline">\(K\)</span>, 那么自然映射此时是单同态, 因此局部化得到的环可以看做 <span class="math inline">\(R\)</span> 的扩张(由 <span class="math inline">\(R\)</span> 唯一决定). 且对任意 <span class="math inline">\(k \in K\)</span>, 都存在 regular element <span class="math inline">\(u\)</span> 使得 <span class="math inline">\(u_k \in R\)</span>.</p>
 </blockquote>
-<p>称 $K$ 的 $R$-子模为 <strong>fractional ideal(分次理想)</strong> 通常记为 $\mathfrak{A}$</p>
-<p>引理: 对任意 fractional ideal $\mathfrak{A} \subset K$ 且 $\mathfrak{A} \cap C_R \neq \emptyset$, 则有 $\hom(\mathfrak{A}, K) \simeq K$.</p>
-<p>Proof: 作映射 $\lambda : K \to \hom_R(\mathfrak{A},K)$ 为: $\lambda(k)(a) = ka$, 证明单满即可.</p>
-<p>对任意 fractional ideals $\mathfrak{A},\mathfrak{B} \subset K$, 我们也有类似引理的证明: 当 $\mathfrak{A} \cap C_R \neq \emptyset$</p>
-<script type="math/tex; mode=display">
-\hom_ R(\mathfrak{A},\mathfrak{B}) \simeq \mathfrak{B}:\mathfrak{A}</script><blockquote>
-<p>特别地, 若 $\mathfrak{A} \cap C_R \neq \emptyset$, 则 $\mathfrak{A}^{\star} = \mathfrak{A} ^{-1} = R:\mathfrak{A}$.</p>
+<p>称 <span class="math inline">\(K\)</span> 的 <span class="math inline">\(R\)</span>-子模为 <strong>fractional ideal(分次理想)</strong> 通常记为 <span class="math inline">\(\mathfrak{A}\)</span></p>
+<p>引理: 对任意 fractional ideal <span class="math inline">\(\mathfrak{A} \subset K\)</span> 且 <span class="math inline">\(\mathfrak{A} \cap C_R \neq \emptyset\)</span>, 则有 <span class="math inline">\(\hom(\mathfrak{A}, K) \simeq K\)</span>.</p>
+<p>Proof: 作映射 <span class="math inline">\(\lambda : K \to \hom_R(\mathfrak{A},K)\)</span> 为: <span class="math inline">\(\lambda(k)(a) = ka\)</span>, 证明单满即可.</p>
+<p>对任意 fractional ideals <span class="math inline">\(\mathfrak{A},\mathfrak{B} \subset K\)</span>, 我们也有类似引理的证明: 当 <span class="math inline">\(\mathfrak{A} \cap C_R \neq \emptyset\)</span> <span class="math display">\[
+\hom_ R(\mathfrak{A},\mathfrak{B}) \simeq \mathfrak{B}:\mathfrak{A}
+\]</span></p>
+<blockquote>
+<p>特别地, 若 <span class="math inline">\(\mathfrak{A} \cap C_R \neq \emptyset\)</span>, 则 <span class="math inline">\(\mathfrak{A}^{\star} = \mathfrak{A} ^{-1} = R:\mathfrak{A}\)</span>.</p>
 </blockquote>
-<p>对任意 fractional ideal $\mathfrak{A} \subset K$, 下面等价:</p>
-<ol>
-<li>$\mathfrak{A}$ 是 invertible module($\mathfrak{A} \mathfrak{A}^{-1} = R$)</li>
-<li>$\mathfrak{A}$ 是投射模,且 $\mathfrak{A} \cap C_R \neq \emptyset$</li>
-<li>$\mathfrak{A}$ 是有限生成投射模,且 $\mathfrak{A} \cap C_R \neq \emptyset$<blockquote>
-<p>此条件下 $\mathfrak{A}$ 自由模当且仅当 存在 $s \in K$ 使得 $\mathfrak{A} = sR$(此时 $s \in U(K)$)</p>
-</blockquote>
-</li>
+<p>对任意 fractional ideal <span class="math inline">\(\mathfrak{A} \subset K\)</span>, 下面等价:</p>
+<ol type="1">
+<li><span class="math inline">\(\mathfrak{A}\)</span> 是 invertible module(<span class="math inline">\(\mathfrak{A} \mathfrak{A}^{-1} = R\)</span>)</li>
+<li><span class="math inline">\(\mathfrak{A}\)</span> 是投射模,且 <span class="math inline">\(\mathfrak{A} \cap C_R \neq \emptyset\)</span></li>
+<li><span class="math inline">\(\mathfrak{A}\)</span> 是有限生成投射模,且 <span class="math inline">\(\mathfrak{A} \cap C_R \neq \emptyset\)</span> &gt; 此条件下 <span class="math inline">\(\mathfrak{A}\)</span> 自由模当且仅当 存在 <span class="math inline">\(s \in K\)</span> 使得 <span class="math inline">\(\mathfrak{A} = sR\)</span>(此时 <span class="math inline">\(s \in U(K)\)</span>)</li>
 </ol>
-<p>由上可知: 若 $R \neq K$, 则 $K$ 不是投射模.</p>
-<p>Proof: 如果是, 那么必然有限生成投射, 因此</p>
-<script type="math/tex; mode=display">
-K= \sum _{i=1} ^n R c_i d _i ^{-1} (c_i \in R, d _i \in C_R)</script><p>那么 $d = d_1 \cdots d_n \subset U(K)$, 我们有 $K = dK \subset R$ 矛盾于条件.</p>
+<p>由上可知: 若 <span class="math inline">\(R \neq K\)</span>, 则 <span class="math inline">\(K\)</span> 不是投射模.</p>
+<p>Proof: 如果是, 那么必然有限生成投射, 因此 <span class="math display">\[
+K= \sum _{i=1} ^n R c_i d _i ^{-1} (c_i \in R, d _i \in C_R)
+\]</span> 那么 <span class="math inline">\(d = d_1 \cdots d_n \subset U(K)\)</span>, 我们有 <span class="math inline">\(K = dK \subset R\)</span> 矛盾于条件.</p>
 <blockquote>
-<p>因此 $\mathbb{Q}_{\mathbb{Z}}$ 不是投射模.</p>
+<p>因此 <span class="math inline">\(\mathbb{Q}_{\mathbb{Z}}\)</span> 不是投射模.</p>
 </blockquote>
-<h3 id="交换环上的-Picard-Group"><a href="#交换环上的-Picard-Group" class="headerlink" title="交换环上的 Picard Group"></a>交换环上的 Picard Group</h3><p>实际上, 第二小节和第三小节中的 Invertible Module 都是”秩为 1”的有限生成投射模, 对于交换环, 秩的概念定义如下:</p>
-<p>由于若 $P,Q$ 为$R$-模, $P \otimes Q$ 也是 $R$-模, 且当 $P,Q$ 投射时, $P \otimes Q$ 也是投射模.</p>
-<p>当 $P$ 是有限生成投射$R$-模时, 对于 $R$ 的任意素理想 $\mathfrak{p}$, 在其上局部化得到 $P_{\mathfrak{p}} = P \bigotimes_{R} R_{\mathfrak{p}}$ 也是有限生成投射的. 由于 $R_{P}$ 交换局部环, 因此 $P_{\mathfrak{p}}$ 是自由的(交换局部环上有限生成投射模是自由模).因此就有秩, 也就是说我们有从 $R$ 的素谱到 $\mathbb{Z}$(带离散拓扑)的一个连续映射. 当这个映射是常值映射时(这要求 $R$ 中无非平凡幂等元),就称这个常值为投射模 $P$ 的秩.</p>
+<h3 id="交换环上的-picard-group">交换环上的 Picard Group</h3>
+<p>实际上, 第二小节和第三小节中的 Invertible Module 都是”秩为 1”的有限生成投射模, 对于交换环, 秩的概念定义如下:</p>
+<p>由于若 <span class="math inline">\(P,Q\)</span> 为<span class="math inline">\(R\)</span>-模, <span class="math inline">\(P \otimes Q\)</span> 也是 <span class="math inline">\(R\)</span>-模, 且当 <span class="math inline">\(P,Q\)</span> 投射时, <span class="math inline">\(P \otimes Q\)</span> 也是投射模.</p>
+<p>当 <span class="math inline">\(P\)</span> 是有限生成投射<span class="math inline">\(R\)</span>-模时, 对于 <span class="math inline">\(R\)</span> 的任意素理想 <span class="math inline">\(\mathfrak{p}\)</span>, 在其上局部化得到 <span class="math inline">\(P_{\mathfrak{p}} = P \bigotimes_{R} R_{\mathfrak{p}}\)</span> 也是有限生成投射的. 由于 <span class="math inline">\(R_{P}\)</span> 交换局部环, 因此 <span class="math inline">\(P_{\mathfrak{p}}\)</span> 是自由的(交换局部环上有限生成投射模是自由模).因此就有秩, 也就是说我们有从 <span class="math inline">\(R\)</span> 的素谱到 <span class="math inline">\(\mathbb{Z}\)</span>(带离散拓扑)的一个连续映射. 当这个映射是常值映射时(这要求 <span class="math inline">\(R\)</span> 中无非平凡幂等元),就称这个常值为投射模 <span class="math inline">\(P\)</span> 的秩.</p>
 <blockquote>
-<p>注意到若 $rk(P)=n,rk(Q)=m$ 那么 $rk(P^{\star})=n, rk(P \otimes Q) = mn$</p>
+<p>注意到若 <span class="math inline">\(rk(P)=n,rk(Q)=m\)</span> 那么 <span class="math inline">\(rk(P^{\star})=n, rk(P \otimes Q) = mn\)</span></p>
 </blockquote>
-<p><strong>引理</strong> 设 $R \subset S$ 为交换环, 那么在任意 $S$ 的可逆 $R$-子模都是秩为 1 的投射模.</p>
+<p><strong>引理</strong> 设 <span class="math inline">\(R \subset S\)</span> 为交换环, 那么在任意 <span class="math inline">\(S\)</span> 的可逆 <span class="math inline">\(R\)</span>-子模都是秩为 1 的投射模.</p>
 <p>Proof: 用一个 Invertible Module(可逆模)的定义, 以及成为自由模的条件, 即可证明.</p>
-<p>设 $Pic(R)$ 为 $R$ 上所有秩为 1 的有限生成投射模的同构等价类. 将 $P$ 的等价类记作 $[P]$<br>我们定义乘法(满足结合律, 交换律):</p>
-<script type="math/tex; mode=display">
-[P][Q] = [P \otimes Q]</script><p>$[R]$ 成为 $Pic(R)$ 中的幺元, $[P]^{-1} = [P^{\star}]$.<br>即 $Pic(R)$ 关于上述乘法构成 Abelian group. 称为交换环 $R$ 的 Picard group.</p>
+<p>设 <span class="math inline">\(Pic(R)\)</span> 为 <span class="math inline">\(R\)</span> 上所有秩为 1 的有限生成投射模的同构等价类. 将 <span class="math inline">\(P\)</span> 的等价类记作 <span class="math inline">\([P]\)</span> 我们定义乘法(满足结合律, 交换律): <span class="math display">\[
+[P][Q] = [P \otimes Q]
+\]</span> <span class="math inline">\([R]\)</span> 成为 <span class="math inline">\(Pic(R)\)</span> 中的幺元, <span class="math inline">\([P]^{-1} = [P^{\star}]\)</span>. 即 <span class="math inline">\(Pic(R)\)</span> 关于上述乘法构成 Abelian group. 称为交换环 <span class="math inline">\(R\)</span> 的 Picard group.</p>
 <blockquote>
 <p>实际上 “Pic” 还是交换环范畴到 Abelian group 范畴的函子.</p>
 </blockquote>
-<p>具体到 $R \subset K$, $K$ 中所有 invertible fractional ideals 是 $R$ 上秩为 1 的有限生成投射模(记为 $I_{R}$) 但是一般地 $R$ 上所有秩为 1 的有限生成投射模并不一定同构与某个 invertible fractional ideal.</p>
-<p><strong>定理</strong> 对自然映射 $f: R \to K$, 我们有正合列</p>
-<script type="math/tex; mode=display">
- 1 \to U(R) \to U(R) \to I_{R} \to Pic(R) \to Pic(K)</script><h3 id="semi-Hereditary-Rings"><a href="#semi-Hereditary-Rings" class="headerlink" title="(semi)Hereditary Rings"></a>(semi)Hereditary Rings</h3><p>在交换环中, Dedekind (domain) ring 定义为交换整环 $R$, 所有理想都是 Invertible Ideal(或者说投射的). 这说明 $R$ 必然是 Noetherian domain. 因此 Dedekind ring 也可以定义为 Noetherian domain 中整闭的 Krull 维数为小于等于 1 的环, 也可以定义为满足每个理想都是一些素理想的有限积的交换整环.</p>
-<p>把上述 Dedekind ring 推广到非交换的情形, 我们有如下 <strong>Hereditary ring</strong> 的定义:<br>A ring $R$ 称为右(左)Hereditary ring, 如果它的每个右(左)理想都是投射的, 如果它既为左又右,那么就成为 Hereditary ring.</p>
-<p><strong>Kaplansky’s Theorem</strong> 设 $R$ 为 right Hereditary ring. 任意 $R$-自由模的子模 $P$ 都同构于 $R$ 的一些理想的直和. 特别地, $P$ 是投射的.</p>
+<p>具体到 <span class="math inline">\(R \subset K\)</span>, <span class="math inline">\(K\)</span> 中所有 invertible fractional ideals 是 <span class="math inline">\(R\)</span> 上秩为 1 的有限生成投射模(记为 <span class="math inline">\(I_{R}\)</span>) 但是一般地 <span class="math inline">\(R\)</span> 上所有秩为 1 的有限生成投射模并不一定同构与某个 invertible fractional ideal.</p>
+<p><strong>定理</strong> 对自然映射 <span class="math inline">\(f: R \to K\)</span>, 我们有正合列 <span class="math display">\[
+ 1 \to U(R) \to U(R) \to I_{R} \to Pic(R) \to Pic(K)
+\]</span></p>
+<h3 id="semihereditary-rings">(semi)Hereditary Rings</h3>
+<p>在交换环中, Dedekind (domain) ring 定义为交换整环 <span class="math inline">\(R\)</span>, 所有理想都是 Invertible Ideal(或者说投射的). 这说明 <span class="math inline">\(R\)</span> 必然是 Noetherian domain. 因此 Dedekind ring 也可以定义为 Noetherian domain 中整闭的 Krull 维数为小于等于 1 的环, 也可以定义为满足每个理想都是一些素理想的有限积的交换整环.</p>
+<p>把上述 Dedekind ring 推广到非交换的情形, 我们有如下 <strong>Hereditary ring</strong> 的定义: A ring <span class="math inline">\(R\)</span> 称为右(左)Hereditary ring, 如果它的每个右(左)理想都是投射的, 如果它既为左又右,那么就成为 Hereditary ring.</p>
+<p><strong>Kaplansky’s Theorem</strong> 设 <span class="math inline">\(R\)</span> 为 right Hereditary ring. 任意 <span class="math inline">\(R\)</span>-自由模的子模 <span class="math inline">\(P\)</span> 都同构于 <span class="math inline">\(R\)</span> 的一些理想的直和. 特别地, <span class="math inline">\(P\)</span> 是投射的.</p>
 <p>由于每个模都可以看成自由模的同态像, 投射模是某个自由模的直和因子, 又由 Kaplansky 定理知:</p>
-<ol>
-<li>在一个 right hereditary $R$ 上, 一个 $R$-模 $P_R$ 投射, 当且仅当它能嵌入到一个自由模中.</li>
-<li>环 $R$ 投射, 当且仅当, 每个投射 $R$-模的子模都是投射的.</li>
-<li>若环 $R$ 是 PRID(principal right ideal domain), 那么每个自由 $R$-模的子模都是自由的.</li>
+<ol type="1">
+<li>在一个 right hereditary <span class="math inline">\(R\)</span> 上, 一个 <span class="math inline">\(R\)</span>-模 <span class="math inline">\(P_R\)</span> 投射, 当且仅当它能嵌入到一个自由模中.</li>
+<li>环 <span class="math inline">\(R\)</span> 投射, 当且仅当, 每个投射 <span class="math inline">\(R\)</span>-模的子模都是投射的.</li>
+<li>若环 <span class="math inline">\(R\)</span> 是 PRID(principal right ideal domain), 那么每个自由 <span class="math inline">\(R\)</span>-模的子模都是自由的.</li>
 </ol>
-<p>类似于 Hereditary ring 的定义, 我们称一个环 $R$ 为 <strong>semihereditary ring</strong>:</p>
-<p>$R$ 称为右(左)semihereditary ring, 如果 $R$ 的每个 f.g.(finitely generate 有限生成)右(左)理想都是投射 $R$ 右(左)模. 如果既左又右, 称为 semihereditary ring.<br>我们称交换的 semihereditary ring 为 Prufer ring.</p>
-<p>类似于 <strong>Kaplansky’s Theorem</strong> 我们有 $R$ 为 right semihereditary ring. 任意 $R$-自由模的有限生成子模 $P$ 都同构与有限个 $R$ 的理想的直和.</p>
+<p>类似于 Hereditary ring 的定义, 我们称一个环 <span class="math inline">\(R\)</span> 为 <strong>semihereditary ring</strong>:</p>
+<p><span class="math inline">\(R\)</span> 称为右(左)semihereditary ring, 如果 <span class="math inline">\(R\)</span> 的每个 f.g.(finitely generate 有限生成)右(左)理想都是投射 <span class="math inline">\(R\)</span> 右(左)模. 如果既左又右, 称为 semihereditary ring. 我们称交换的 semihereditary ring 为 Prufer ring.</p>
+<p>类似于 <strong>Kaplansky’s Theorem</strong> 我们有 <span class="math inline">\(R\)</span> 为 right semihereditary ring. 任意 <span class="math inline">\(R\)</span>-自由模的有限生成子模 <span class="math inline">\(P\)</span> 都同构与有限个 <span class="math inline">\(R\)</span> 的理想的直和.</p>
 <blockquote>
 <p>right semihereditary 的等价刻画:</p>
 </blockquote>
-<p>$R$ 为 right semihereditary ring 当且仅当投射右 $R$ 模的有限生成子模都是投射的.</p>
+<p><span class="math inline">\(R\)</span> 为 right semihereditary ring 当且仅当投射右 <span class="math inline">\(R\)</span> 模的有限生成子模都是投射的.</p>
 <p>例子:</p>
-<ol>
+<ol type="1">
 <li>Semisimple ring is hereditary.</li>
-<li>PRID is right hereditary, 例如 $D[x]$, 其中 $D$ 是 division ring.</li>
-<li>$M_n(R)$ is semihereditary, 其中 $R$ 为 Dedekind ring.</li>
+<li>PRID is right hereditary, 例如 <span class="math inline">\(D[x]\)</span>, 其中 <span class="math inline">\(D\)</span> 是 division ring.</li>
+<li><span class="math inline">\(M_n(R)\)</span> is semihereditary, 其中 <span class="math inline">\(R\)</span> 为 Dedekind ring.</li>
 <li>von Neumann regular ring is semihereditary.</li>
-<li>$\begin{pmatrix} \mathbb{Z} &amp;  \mathbb{Q} \\ 0 &amp; \mathbb{Q} \end{pmatrix}$ 是 right hereditary, left semihereditary, but not left hereditary. Note that this example is also left artinain but not right Noetherian.</li>
+<li><span class="math inline">\(\begin{pmatrix} \mathbb{Z} &amp; \mathbb{Q} \\ 0 &amp; \mathbb{Q} \end{pmatrix}\)</span> 是 right hereditary, left semihereditary, but not left hereditary. Note that this example is also left artinain but not right Noetherian.</li>
 </ol>
-<h3 id="Hereditary-Artinian-Ring"><a href="#Hereditary-Artinian-Ring" class="headerlink" title="Hereditary Artinian Ring"></a>Hereditary Artinian Ring</h3><p>Hereditary Artinian ring 十分的重要(因为简单 0.0), 一般一个概念加上 Artinian 条件就会变得特别简单, 例如 Artinian commutative domain is field.</p>
-<p>设 $J = rad R$ 为环 $R$ 的 Jacobison radical. 若 $R$ 是 Artinian ring. 以下结论等价:</p>
-<ol>
-<li>$R$ is right hereditary.</li>
-<li>$J$ 作为右 $R$-模是投射的.</li>
-<li>对任意幂等元 $e$, $eJ$ 是投射右 $R$-模.</li>
-<li>$R$ 的任意极大右理想都是投射右 $R$-模.</li>
+<h3 id="hereditary-artinian-ring">Hereditary Artinian Ring</h3>
+<p>Hereditary Artinian ring 十分的重要(因为简单 0.0), 一般一个概念加上 Artinian 条件就会变得特别简单, 例如 Artinian commutative domain is field.</p>
+<p>设 <span class="math inline">\(J = rad R\)</span> 为环 <span class="math inline">\(R\)</span> 的 Jacobison radical. 若 <span class="math inline">\(R\)</span> 是 Artinian ring. 以下结论等价:</p>
+<ol type="1">
+<li><span class="math inline">\(R\)</span> is right hereditary.</li>
+<li><span class="math inline">\(J\)</span> 作为右 <span class="math inline">\(R\)</span>-模是投射的.</li>
+<li>对任意幂等元 <span class="math inline">\(e\)</span>, <span class="math inline">\(eJ\)</span> 是投射右 <span class="math inline">\(R\)</span>-模.</li>
+<li><span class="math inline">\(R\)</span> 的任意极大右理想都是投射右 <span class="math inline">\(R\)</span>-模.</li>
 </ol>
 <blockquote>
 <p>证明难度还是有的, 要用到任意有限生成 Artinian 模都是有限长的.</p>
 </blockquote>
 <p>例子:</p>
-<p>设 $R$ 是 divison ring $D$ 上的 $n \times n$ 上三角矩阵全体, 则 $R$ 是 hereditary Artinian ring.</p>
-<h3 id="Trace-Ideal"><a href="#Trace-Ideal" class="headerlink" title="Trace Ideal"></a>Trace Ideal</h3><p>Definition: 对任意 $P_R$, 定义 $tr(P) = \sum im(f)$ 其中, $f$ 跑遍 $P^{\star}$. 容易看出 $T = tr(P)$ 是 $R$ 的理想, 称为 Trace Ideal. 它满足:<br>若 $P_R$ 是投射的, 则 $PT = P, T^2 = T, ann(P) = ann_r(T)$<br>特别的, 若 $P_R$ 是有限生成投射的, 那么其对偶基 $\lbrace a_i f_i \rbrace_{1\leq i \leq n}$. 那么 $tr(P)$ 可由有限集 $\lbrace f_j(a_i) \rbrace$ 生成.<br>另外,若 $tr(P) = R$, 我们称 $P$ 是生成子.</p>
-<p><strong>引理</strong> 设 $T$ 是交换环 $R$ 的有限生成幂等理想, 则存在幂等元 $e \in R$ 使得 $T=eR$.<br>Proof: 关键在于把 $T$ 写成 $T = \sum_{i=1} ^n Tx_i$</p>
-<p>由上述引理和 $T = Tr(P)$ 的性质, 不难证明下面定理:<br><strong>定理</strong> 设 $P_R$ 是交换环 $R$ 有限生成投射模, 那么存在幂等元 $e$ 使得 $T=Tr(P)=eR, N = ann(P) = (1-e)R$, 特别地, $R = T \otimes N$, 投射模 $P_R$ 是 faithful(忠实的)当且仅当 $T = R$.<br>当 $R$ 无非平凡幂等元时, 则 $P \neq 0$ 是(有限生成投射)生成子.</p>
+<p>设 <span class="math inline">\(R\)</span> 是 divison ring <span class="math inline">\(D\)</span> 上的 <span class="math inline">\(n \times n\)</span> 上三角矩阵全体, 则 <span class="math inline">\(R\)</span> 是 hereditary Artinian ring.</p>
+<h3 id="trace-ideal">Trace Ideal</h3>
+<p>Definition: 对任意 <span class="math inline">\(P_R\)</span>, 定义 <span class="math inline">\(tr(P) = \sum im(f)\)</span> 其中, <span class="math inline">\(f\)</span> 跑遍 <span class="math inline">\(P^{\star}\)</span>. 容易看出 <span class="math inline">\(T = tr(P)\)</span> 是 <span class="math inline">\(R\)</span> 的理想, 称为 Trace Ideal. 它满足: 若 <span class="math inline">\(P_R\)</span> 是投射的, 则 <span class="math inline">\(PT = P, T^2 = T, ann(P) = ann_r(T)\)</span> 特别的, 若 <span class="math inline">\(P_R\)</span> 是有限生成投射的, 那么其对偶基 <span class="math inline">\(\lbrace a_i f_i \rbrace_{1\leq i \leq n}\)</span>. 那么 <span class="math inline">\(tr(P)\)</span> 可由有限集 <span class="math inline">\(\lbrace f_j(a_i) \rbrace\)</span> 生成. 另外,若 <span class="math inline">\(tr(P) = R\)</span>, 我们称 <span class="math inline">\(P\)</span> 是生成子.</p>
+<p><strong>引理</strong> 设 <span class="math inline">\(T\)</span> 是交换环 <span class="math inline">\(R\)</span> 的有限生成幂等理想, 则存在幂等元 <span class="math inline">\(e \in R\)</span> 使得 <span class="math inline">\(T=eR\)</span>. Proof: 关键在于把 <span class="math inline">\(T\)</span> 写成 <span class="math inline">\(T = \sum_{i=1} ^n Tx_i\)</span></p>
+<p>由上述引理和 <span class="math inline">\(T = Tr(P)\)</span> 的性质, 不难证明下面定理: <strong>定理</strong> 设 <span class="math inline">\(P_R\)</span> 是交换环 <span class="math inline">\(R\)</span> 有限生成投射模, 那么存在幂等元 <span class="math inline">\(e\)</span> 使得 <span class="math inline">\(T=Tr(P)=eR, N = ann(P) = (1-e)R\)</span>, 特别地, <span class="math inline">\(R = T \otimes N\)</span>, 投射模 <span class="math inline">\(P_R\)</span> 是 faithful(忠实的)当且仅当 <span class="math inline">\(T = R\)</span>. 当 <span class="math inline">\(R\)</span> 无非平凡幂等元时, 则 <span class="math inline">\(P \neq 0\)</span> 是(有限生成投射)生成子.</p>
 <blockquote>
-<p>定理中条件缺一不可, 且幂等元 $e$ 可以根据有限对偶基显式表达出来.</p>
+<p>定理中条件缺一不可, 且幂等元 <span class="math inline">\(e\)</span> 可以根据有限对偶基显式表达出来.</p>
 </blockquote>
-<p>Trace ideal 的应用:<br><strong>引理</strong> 设 $R \subset S$ 是环(不要求交换), 则 $R$ 是 $S_R$ 的直和因子, 当且仅当, $Tr(S_R) = R$.<br>Proof: 若 $R$ 是 $S_R$ 的直和因子, 则 $Tr(S_R) \supset Tr(R_R) = R$, 所以 $Tr(S_R) = R$.<br>若 $Tr(S_R) = R$, 那么存在 $f_i \in S_R^{\star},s_i \in S, (1 \leq i \leq n)$ 使得 $\sum f_i(s_i) = 1$.<br>定义映射 $\lambda: S \to R$ 为: $\lambda(s) = f(s_i s)$. 为环同态, 且在 $R$ 上限制为恒等映射.(因此 $R$ 是 $S_R$ 的直和因子).</p>
-<p><strong>定理</strong> 设 $R \subset S$, 其中 $R$ 是交换环, $S$  是 f.g. 右 $R$-模. 则 $R$ 是 $S_R$ 的直和因子.<br>Proof: 由 $ann(S_R) = 0$, 在由上面引理即证。</p>
+<p>Trace ideal 的应用: <strong>引理</strong> 设 <span class="math inline">\(R \subset S\)</span> 是环(不要求交换), 则 <span class="math inline">\(R\)</span> 是 <span class="math inline">\(S_R\)</span> 的直和因子, 当且仅当, <span class="math inline">\(Tr(S_R) = R\)</span>. Proof: 若 <span class="math inline">\(R\)</span> 是 <span class="math inline">\(S_R\)</span> 的直和因子, 则 <span class="math inline">\(Tr(S_R) \supset Tr(R_R) = R\)</span>, 所以 <span class="math inline">\(Tr(S_R) = R\)</span>. 若 <span class="math inline">\(Tr(S_R) = R\)</span>, 那么存在 <span class="math inline">\(f_i \in S_R^{\star},s_i \in S, (1 \leq i \leq n)\)</span> 使得 <span class="math inline">\(\sum f_i(s_i) = 1\)</span>. 定义映射 <span class="math inline">\(\lambda: S \to R\)</span> 为: <span class="math inline">\(\lambda(s) = f(s_i s)\)</span>. 为环同态, 且在 <span class="math inline">\(R\)</span> 上限制为恒等映射.(因此 <span class="math inline">\(R\)</span> 是 <span class="math inline">\(S_R\)</span> 的直和因子).</p>
+<p><strong>定理</strong> 设 <span class="math inline">\(R \subset S\)</span>, 其中 <span class="math inline">\(R\)</span> 是交换环, <span class="math inline">\(S\)</span> 是 f.g. 右 <span class="math inline">\(R\)</span>-模. 则 <span class="math inline">\(R\)</span> 是 <span class="math inline">\(S_R\)</span> 的直和因子. Proof: 由 <span class="math inline">\(ann(S_R) = 0\)</span>, 在由上面引理即证。</p>
 
               
             </div>

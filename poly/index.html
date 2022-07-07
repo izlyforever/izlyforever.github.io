@@ -229,7 +229,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          9.6k 字
+          10k 字
         
       </span>
     
@@ -241,7 +241,7 @@
         
         
           <!-- compatible with older versions-->
-          80 分钟
+          84 分钟
         
       </span>
     
@@ -294,29 +294,33 @@
               
               <p>快速 Fourier 变换（FFT），被称为 20 世纪最伟大的十大算法之一。所以很多软件都有对应的 FFT，例如 Python 的 <code>scipy.fftpack</code> 中就有关于 FFT 的包。所以个人写 FFT 就没有那么必要了。但是 NTT（快速数论变换） 的包一般都没多少，而且会写 NTT 必然就会写 FFT 了。大约在 5 年前，在 <a target="_blank" rel="noopener" href="http://blog.miskcoo.com/2015/04/polynomial-multiplication-and-fast-fourier-transform">miskcoo 博文：从多项式乘法到快速傅里叶变换</a> 学会并且写过 NTT 的 C++ 代码，可惜这篇文章被作者删掉了。</p>
 <span id="more"></span>
-<p>NTT 一个很大的限制就是你只能在 <code>NTT-friendly</code> 的域（例如 $\mod 998244353 = 119 \cdot2^{23}$，原根为 $3$ ）</p>
-<p>对于一般的素数 $p$，我们可以选择 $n$ 个 <code>NTT-friendly</code> 的大基底 $p_1,\cdots, p_n$ 使得 $p_1\cdots p_n$ 大于 ans 的上界，然后再用 <a href="../chineseRemainTheorem">中国剩余定理</a> 就可以把 ans 搞出来了。</p>
+<p>NTT 一个很大的限制就是你只能在 <code>NTT-friendly</code> 的域（例如 <span class="math inline">\(\mod 998244353 = 119 \cdot2^{23}\)</span>，原根为 <span class="math inline">\(3\)</span> ）</p>
+<p>对于一般的素数 <span class="math inline">\(p\)</span>，我们可以选择 <span class="math inline">\(n\)</span> 个 <code>NTT-friendly</code> 的大基底 <span class="math inline">\(p_1,\cdots, p_n\)</span> 使得 <span class="math inline">\(p_1\cdots p_n\)</span> 大于 ans 的上界，然后再用 <a href="../chineseRemainTheorem">中国剩余定理</a> 就可以把 ans 搞出来了。</p>
 <!-- more -->
-<h2 id="基底的选择"><a href="#基底的选择" class="headerlink" title="基底的选择"></a>基底的选择</h2><p>我们考虑 $\mod p$ 构成的域。即运算默认是 $\mod p$ 的（除了指数上的幂次数），因为原根定理，此形式必有原根 $g$，即存在 $\mod p$ 中所有元素都可以写成 $g^n$ 的形式（所以 $g^{p-1}=1,g^{n}\neq 1, 0&lt;n&lt;p-1$）。而我们做 NTT 是需要找一个元素 $w$，使得 $w^{2^k} = 1$，因此我们需要找素数 $p$，使得 $p-1=c \cdot 2^k$，其中 $c$ 是个小奇数。</p>
-<h3 id="查找基底的-SageMath-代码"><a href="#查找基底的-SageMath-代码" class="headerlink" title="查找基底的 SageMath 代码"></a>查找基底的 SageMath 代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python">ans = []<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">23</span>, <span class="hljs-number">28</span>):<br>  <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-number">1000</span>, <span class="hljs-number">2</span>):<br>    <span class="hljs-keyword">if</span>(j * <span class="hljs-number">2</span> ^i + <span class="hljs-number">1</span> &lt; <span class="hljs-number">2</span>^<span class="hljs-number">30</span> <span class="hljs-keyword">and</span> is_prime(j*<span class="hljs-number">2</span>^i+<span class="hljs-number">1</span>) <span class="hljs-keyword">and</span> primitive_root(j*<span class="hljs-number">2</span>^i+<span class="hljs-number">1</span>) == <span class="hljs-number">3</span>):<br>      ans.append(j*<span class="hljs-number">2</span>^i+<span class="hljs-number">1</span>)<br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">sorted</span>(ans):<br>  <span class="hljs-built_in">print</span>(i, <span class="hljs-string">&quot;\t = 1 + &quot;</span>, factor(i-<span class="hljs-number">1</span>))<br><br><span class="hljs-comment"># output:</span><br><span class="hljs-comment"># 167772161        = 1 +  2^25 * 5</span><br><span class="hljs-comment"># 469762049        = 1 +  2^26 * 7</span><br><span class="hljs-comment"># 595591169        = 1 +  2^23 * 71</span><br><span class="hljs-comment"># 645922817        = 1 +  2^23 * 7 * 11</span><br><span class="hljs-comment"># 897581057        = 1 +  2^23 * 107</span><br><span class="hljs-comment"># 998244353        = 1 +  2^23 * 7 * 17</span><br></code></pre></td></tr></table></figure>
-<p>我们会发现有很多可供选择的例子，其中的娇楚（$c$ 较小，$k$ 较大，$p^2 &lt; 2^{63}$）</p>
+<h2 id="基底的选择">基底的选择</h2>
+<p>我们考虑 <span class="math inline">\(\mod p\)</span> 构成的域。即运算默认是 <span class="math inline">\(\mod p\)</span> 的（除了指数上的幂次数），因为原根定理，此形式必有原根 <span class="math inline">\(g\)</span>，即存在 <span class="math inline">\(\mod p\)</span> 中所有元素都可以写成 <span class="math inline">\(g^n\)</span> 的形式（所以 <span class="math inline">\(g^{p-1}=1,g^{n}\neq 1, 0&lt;n&lt;p-1\)</span>）。而我们做 NTT 是需要找一个元素 <span class="math inline">\(w\)</span>，使得 <span class="math inline">\(w^{2^k} = 1\)</span>，因此我们需要找素数 <span class="math inline">\(p\)</span>，使得 <span class="math inline">\(p-1=c \cdot 2^k\)</span>，其中 <span class="math inline">\(c\)</span> 是个小奇数。</p>
+<h3 id="查找基底的-sagemath-代码">查找基底的 SageMath 代码</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python">ans = []<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">23</span>, <span class="hljs-number">28</span>):<br>  <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-number">1000</span>, <span class="hljs-number">2</span>):<br>    <span class="hljs-keyword">if</span>(j * <span class="hljs-number">2</span> ^i + <span class="hljs-number">1</span> &lt; <span class="hljs-number">2</span>^<span class="hljs-number">30</span> <span class="hljs-keyword">and</span> is_prime(j*<span class="hljs-number">2</span>^i+<span class="hljs-number">1</span>) <span class="hljs-keyword">and</span> primitive_root(j*<span class="hljs-number">2</span>^i+<span class="hljs-number">1</span>) == <span class="hljs-number">3</span>):<br>      ans.append(j*<span class="hljs-number">2</span>^i+<span class="hljs-number">1</span>)<br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">sorted</span>(ans):<br>  <span class="hljs-built_in">print</span>(i, <span class="hljs-string">&quot;\t = 1 + &quot;</span>, factor(i-<span class="hljs-number">1</span>))<br><br><span class="hljs-comment"># output:</span><br><span class="hljs-comment"># 167772161        = 1 +  2^25 * 5</span><br><span class="hljs-comment"># 469762049        = 1 +  2^26 * 7</span><br><span class="hljs-comment"># 595591169        = 1 +  2^23 * 71</span><br><span class="hljs-comment"># 645922817        = 1 +  2^23 * 7 * 11</span><br><span class="hljs-comment"># 897581057        = 1 +  2^23 * 107</span><br><span class="hljs-comment"># 998244353        = 1 +  2^23 * 7 * 17</span><br></code></pre></td></tr></table></figure>
+<p>我们会发现有很多可供选择的例子，其中的娇楚（<span class="math inline">\(c\)</span> 较小，<span class="math inline">\(k\)</span> 较大，<span class="math inline">\(p^2 &lt; 2^{63}\)</span>）</p>
 <ul>
-<li><code>x_1 = 1 + 2^27 * 15</code> 十分推荐！$x_2$ 刚好不超过 <code>INT_MAX</code>，所以在乘积取模之前还多一次加法运算，就很方便！</li>
-<li><code>x_2 = 1 + 2^27 * 17</code> 是平方不超过 <code>LL(long long)</code> 中最大的一个，但是不推荐，因为 $2*x_1^2$ 超了 <code>LL</code>。</li>
-<li><code>x_3 = 1 + 2^21 * 479</code> 是网上常见的一个，但并不推荐。$c$ 太大了！</li>
-<li><code>x_4 = 1 + 2^12 * 3</code> 是最小不超过<code>INT16</code>，并且 $c$ 特别小的一个！如果不用<code>LL</code>就很推荐</li>
+<li><code>x_1 = 1 + 2^27 * 15</code> 十分推荐！<span class="math inline">\(x_2\)</span> 刚好不超过 <code>INT_MAX</code>，所以在乘积取模之前还多一次加法运算，就很方便！</li>
+<li><code>x_2 = 1 + 2^27 * 17</code> 是平方不超过 <code>LL(long long)</code> 中最大的一个，但是不推荐，因为 <span class="math inline">\(2*x_1^2\)</span> 超了 <code>LL</code>。</li>
+<li><code>x_3 = 1 + 2^21 * 479</code> 是网上常见的一个，但并不推荐。<span class="math inline">\(c\)</span> 太大了！</li>
+<li><code>x_4 = 1 + 2^12 * 3</code> 是最小不超过<code>INT16</code>，并且 <span class="math inline">\(c\)</span> 特别小的一个！如果不用<code>LL</code>就很推荐</li>
 <li><code>x_5 = 1 +  2^57 * 29</code> 是不超过 <code>INT64</code> 中最推荐的一个！然后基础运算需要用 GCC 内建的 <code>__int128</code></li>
 </ul>
-<p>总之，$x_1$ 是最为推荐的，$x_2,x_3$ 很常见主要是因为国内第一篇比较完整的介绍 NTT 的是 <a target="_blank" rel="noopener" href="http://blog.miskcoo.com/">大佬 miskcoo</a>，他当时给的常数是 $x_2,x_3$，然后就人云亦云了 $x_5$ 很有意思，它敲好比 $2^{62}$ 小一点，然后它又大于 $1e9+9$，而 $1e9+7,1e9+9$ 这两个孪生素数又经常的出现在 <code>ICPC/IO</code> 中！<strong>但是，貌似也没啥用，见 NTT 模板代码的注释</strong></p>
-<p>用 SageMath 自带的 <code>primtive_root</code> 函数分别求对应的原根 $g_1=31,g_2=g_3=g_5=3,g_4=11$。</p>
-<p>所以，在 <code>LL</code> 的数据范围内，我们可以使用 $x_1$，可以处理最长长度为 $2^{27}$ 的 NTT，最长为 $2^{26} \sim 6 \times 10^7$ 项的 NTT 多项式乘法。</p>
+<p>总之，<span class="math inline">\(x_1\)</span> 是最为推荐的，<span class="math inline">\(x_2,x_3\)</span> 很常见主要是因为国内第一篇比较完整的介绍 NTT 的是 <a target="_blank" rel="noopener" href="http://blog.miskcoo.com/">大佬 miskcoo</a>，他当时给的常数是 <span class="math inline">\(x_2,x_3\)</span>，然后就人云亦云了 <span class="math inline">\(x_5\)</span> 很有意思，它敲好比 <span class="math inline">\(2^{62}\)</span> 小一点，然后它又大于 <span class="math inline">\(1e9+9\)</span>，而 <span class="math inline">\(1e9+7,1e9+9\)</span> 这两个孪生素数又经常的出现在 <code>ICPC/IO</code> 中！<strong>但是，貌似也没啥用，见 NTT 模板代码的注释</strong></p>
+<p>用 SageMath 自带的 <code>primtive_root</code> 函数分别求对应的原根 <span class="math inline">\(g_1=31,g_2=g_3=g_5=3,g_4=11\)</span>。</p>
+<p>所以，在 <code>LL</code> 的数据范围内，我们可以使用 <span class="math inline">\(x_1\)</span>，可以处理最长长度为 <span class="math inline">\(2^{27}\)</span> 的 NTT，最长为 <span class="math inline">\(2^{26} \sim 6 \times 10^7\)</span> 项的 NTT 多项式乘法。</p>
 <blockquote>
-<p>我们现在存在 $w$，有 $w^N = 1,\; w^n \neq 1, 0&lt; n &lt; N$，其中 $N = 2^k, k&lt;27$，有时我们用 $w_N$ 表明 $w$ 和 $N$ 的关系。</p>
+<p>我们现在存在 <span class="math inline">\(w\)</span>，有 <span class="math inline">\(w^N = 1,\; w^n \neq 1, 0&lt; n &lt; N\)</span>，其中 <span class="math inline">\(N = 2^k, k&lt;27\)</span>，有时我们用 <span class="math inline">\(w_N\)</span> 表明 <span class="math inline">\(w\)</span> 和 <span class="math inline">\(N\)</span> 的关系。</p>
 </blockquote>
-<h2 id="离散-Fourier-变换-DFT"><a href="#离散-Fourier-变换-DFT" class="headerlink" title="离散 Fourier 变换 DFT"></a>离散 Fourier 变换 DFT</h2><p>对长度为 $N$ 的数列 $a_0, \cdots a_{N-1}$ 做离散 Fourier 变换得到数列 $\hat{a}_0 \cdots \hat{a}_{N-1}$</p>
-<script type="math/tex; mode=display">
-\hat{a}_k = \sum_{n=0} ^{N-1} w^{kn}a_n</script><p>写成矩阵形式</p>
-<script type="math/tex; mode=display">
+<h2 id="离散-fourier-变换-dft">离散 Fourier 变换 DFT</h2>
+<p>对长度为 <span class="math inline">\(N\)</span> 的数列 <span class="math inline">\(a_0, \cdots a_{N-1}\)</span> 做离散 Fourier 变换得到数列 <span class="math inline">\(\hat{a}_0 \cdots \hat{a}_{N-1}\)</span></p>
+<p><span class="math display">\[
+\hat{a}_k = \sum_{n=0} ^{N-1} w^{kn}a_n
+\]</span> 写成矩阵形式</p>
+<p><span class="math display">\[
 \begin{pmatrix}
 \hat{a}_0 \\
 \hat{a}_1 \\
@@ -325,135 +329,178 @@
 \end{pmatrix}
 =
 \begin{pmatrix}
-1 & 1   & \cdots &1 \\
-1 & w & \cdots &w^{N-1} \\
-\vdots& & \ddots & \\
-1 & w^{N-1}& \cdots & w^{(N-1)(N-1)}
+1 &amp; 1   &amp; \cdots &amp;1 \\
+1 &amp; w &amp; \cdots &amp;w^{N-1} \\
+\vdots&amp; &amp; \ddots &amp; \\
+1 &amp; w^{N-1}&amp; \cdots &amp; w^{(N-1)(N-1)}
 \end{pmatrix}
 \begin{pmatrix}
 a_0 \\
 a_1 \\
 \vdots \\
 a_{N-1}
-\end{pmatrix}</script><p>即上述矩阵为 $A$，则 $a_{ij} = w^{ij}$, 即 $b_{ij}= w^{-ij}$，则 $AB = NI$，即 $A^{-1} = \frac{1}{N}(w^{-ij})_{N \times N}$。即我们得到了 Fourier 逆变换公式：</p>
-<script type="math/tex; mode=display">
-a_k = \frac{1}{N} \sum_{n=0} ^{N-1} w^{-kn} \hat{a}_n</script><h2 id="快速-Fourier-数论变换-NTT"><a href="#快速-Fourier-数论变换-NTT" class="headerlink" title="快速 Fourier 数论变换 NTT"></a>快速 Fourier 数论变换 NTT</h2><p>记 $H = \frac{N}{2}$，</p>
-<script type="math/tex; mode=display">
+\end{pmatrix}
+\]</span> 即上述矩阵为 <span class="math inline">\(A\)</span>，则 <span class="math inline">\(a_{ij} = w^{ij}\)</span>, 即 <span class="math inline">\(b_{ij}= w^{-ij}\)</span>，则 <span class="math inline">\(AB = NI\)</span>，即 <span class="math inline">\(A^{-1} = \frac{1}{N}(w^{-ij})_{N \times N}\)</span>。即我们得到了 Fourier 逆变换公式： <span class="math display">\[
+a_k = \frac{1}{N} \sum_{n=0} ^{N-1} w^{-kn} \hat{a}_n
+\]</span></p>
+<h2 id="快速-fourier-数论变换-ntt">快速 Fourier 数论变换 NTT</h2>
+<p>记 <span class="math inline">\(H = \frac{N}{2}\)</span>， <span class="math display">\[
 \begin{aligned}
-\hat{a}_{k} &= \sum_{n=0} ^{N-1} w^{kn}a_n \\
-&= (a_0+w^{2k}a_2+\cdots+ w^{2k(H-1)}a_{N-2})+w^k(a_1+w_{2k}a_3+\cdots+w^{2k(H-1)}a_{N-1}) \\
-&= \sum_{n=0}^{H-1} (w^2)^{kn}a_{2n} + w^k  \sum_{n=0}^{H-1} (w^2)^{kn}a_{2n+1} \\
-\hat{a}_{k+H} &= \sum_{n=0}^{H-1} (w^2)^{kn}a_{2n} - w^k  \sum_{n=0}^{H-1} (w^2)^{kn}a_{2n+1} \\
-\end{aligned}</script><p>即长度为 $N$ 的 Fourier 变换可以其奇数项和偶数项的长度为 $\frac{N}{2}$ 的 Fourier 变换表出。于是递归的我们可以在 $O(n\log n)$ 时间复杂度求出。</p>
+\hat{a}_{k} &amp;= \sum_{n=0} ^{N-1} w^{kn}a_n \\
+&amp;= (a_0+w^{2k}a_2+\cdots+ w^{2k(H-1)}a_{N-2})+w^k(a_1+w_{2k}a_3+\cdots+w^{2k(H-1)}a_{N-1}) \\
+&amp;= \sum_{n=0}^{H-1} (w^2)^{kn}a_{2n} + w^k  \sum_{n=0}^{H-1} (w^2)^{kn}a_{2n+1} \\
+\hat{a}_{k+H} &amp;= \sum_{n=0}^{H-1} (w^2)^{kn}a_{2n} - w^k  \sum_{n=0}^{H-1} (w^2)^{kn}a_{2n+1} \\
+\end{aligned}
+\]</span> 即长度为 <span class="math inline">\(N\)</span> 的 Fourier 变换可以其奇数项和偶数项的长度为 <span class="math inline">\(\frac{N}{2}\)</span> 的 Fourier 变换表出。于是递归的我们可以在 <span class="math inline">\(O(n\log n)\)</span> 时间复杂度求出。</p>
 <blockquote>
 <p>递归太消耗计算时间了。因此我们需要给出非递归的版本</p>
 </blockquote>
-<h3 id="快速-NTT-图"><a href="#快速-NTT-图" class="headerlink" title="快速 NTT 图"></a>快速 NTT 图</h3><p>下图出自 <a target="_blank" rel="noopener" href="http://blog.miskcoo.com/2015/04/polynomial-multiplication-and-fast-fourier-transform">miskcoo 从多项式乘法到快速傅里叶变换</a></p>
-<p><img src="bit-reverse-miskcoo.png" srcset="/img/loading.gif" lazyload alt="bit-reverse-miskcoo"></p>
+<h3 id="快速-ntt-图">快速 NTT 图</h3>
+<p>下图出自 <a target="_blank" rel="noopener" href="http://blog.miskcoo.com/2015/04/polynomial-multiplication-and-fast-fourier-transform">miskcoo 从多项式乘法到快速傅里叶变换</a></p>
+<figure>
+<img src="bit-reverse-miskcoo.png" srcset="/img/loading.gif" lazyload alt="bit-reverse-miskcoo" /><figcaption aria-hidden="true">bit-reverse-miskcoo</figcaption>
+</figure>
 <p>从这个图发现，最终的计算顺序，是每个数的位倒序。处理的细节 miskcoo 博客写的特别清楚了！</p>
 <blockquote>
 <p>当我想要修改 Miskcoo 的代码形式时，发现怎么修改都没他的好！后来有了 Jiangly 的模板（2020-03-01）打败了他</p>
 </blockquote>
 <p>还有 NTT 可以用于求多项式的逆！也可见 <a target="_blank" rel="noopener" href="http://blog.miskcoo.com/2015/05/polynomial-inverse">Miskcoo 的博文</a></p>
-<h2 id="NTT-和卷积的关系"><a href="#NTT-和卷积的关系" class="headerlink" title="NTT 和卷积的关系"></a>NTT 和卷积的关系</h2><p>实际上我们通常的卷积 $c_{k} = \sum_{i + j = k} a_i b_j$ 会被我们拓展长度为 N（一般为 2 的幂次），且超过 a 和 b 的长度和。这样一来，我们可以把这个卷积改写成：</p>
-<script type="math/tex; mode=display">
-c_{k} = \sum_{i + j \equiv k \mod N} a_i b_j</script><blockquote>
+<h2 id="ntt-和卷积的关系">NTT 和卷积的关系</h2>
+<p>实际上我们通常的卷积 <span class="math inline">\(c_{k} = \sum_{i + j = k} a_i b_j\)</span> 会被我们拓展长度为 N（一般为 2 的幂次），且超过 a 和 b 的长度和。这样一来，我们可以把这个卷积改写成： <span class="math display">\[
+c_{k} = \sum_{i + j \equiv k \mod N} a_i b_j
+\]</span></p>
+<blockquote>
 <p>这样改写的好处，一来有些卷积原来就是这个形式的，二来为下面的证明做铺垫。</p>
 </blockquote>
-<p>设 $a,b$ 是长度为 $N$（一般为 2 的幂次，但这个限制只是为了快速计算）的数列，则</p>
-<script type="math/tex; mode=display">
-\hat{ab} = \hat{a} \star \hat{b}</script><p><strong>Proof</strong>：</p>
-<script type="math/tex; mode=display">
+<p>设 <span class="math inline">\(a,b\)</span> 是长度为 <span class="math inline">\(N\)</span>（一般为 2 的幂次，但这个限制只是为了快速计算）的数列，则</p>
+<p><span class="math display">\[
+\hat{ab} = \hat{a} \star \hat{b}
+\]</span></p>
+<p><strong>Proof</strong>： <span class="math display">\[
 \begin{aligned}
-\hat{a} \star \hat{b}(k) &=  \sum_{k_1 + k_2 \equiv k \mod N} ^k  \hat{a}(k_1) \hat{b}(k_2) \\
-&=  \sum_{n=0} ^k (\sum_{i=0} ^{N-1}  w^{k_1 i} a_i ) (\sum_{j=0} ^{N-1} w^{k_2 j}b_j) \\
-&= \hat{ab}(k)
-\end{aligned}</script><blockquote>
-<p>最后一个式子成立是因为若 $i \neq j$，则 $\sum_{k_1 + k_2 \equiv k \mod N} w^{k_1 i} a_i w^{k_2 j}b_j=0$</p>
+\hat{a} \star \hat{b}(k) &amp;=  \sum_{k_1 + k_2 \equiv k \mod N} ^k  \hat{a}(k_1) \hat{b}(k_2) \\
+&amp;=  \sum_{n=0} ^k (\sum_{i=0} ^{N-1}  w^{k_1 i} a_i ) (\sum_{j=0} ^{N-1} w^{k_2 j}b_j) \\
+&amp;= \hat{ab}(k)
+\end{aligned}
+\]</span></p>
+<blockquote>
+<p>最后一个式子成立是因为若 <span class="math inline">\(i \neq j\)</span>，则 <span class="math inline">\(\sum_{k_1 + k_2 \equiv k \mod N} w^{k_1 i} a_i w^{k_2 j}b_j=0\)</span></p>
 </blockquote>
-<p>所以我们有 $a \star b= \hat{\hat{a} \hat{b}}$，而多项式乘法只是卷积的一个例子。有些时候 <strong>计算式</strong> 一开始不是卷积形式，但是可以转换成卷积形式，再利用 FFT 或者 NTT 加速。</p>
-<h3 id="常见形式卷积"><a href="#常见形式卷积" class="headerlink" title="常见形式卷积"></a>常见形式卷积</h3><script type="math/tex; mode=display">
-f(x) = \sum_{i = 0}^{d} g(i) h(x - i)</script><p>这种形式的卷积，你可以认为是需要你补充 $h(-d), \cdots, h(-1)$ 这 $d$ 个数后进行卷积，就是相当于平移一下。比如说我们想求 $f(m), \cdots f(m + n)$（其中 $m \geq d$），那么我们考虑多项式 $A = \sum_{i = 0}^d g(i) x^i$, $B = \sum_{i = 0}^{n + d} h(m - d + i) x^i$，那么 $f(m + j) = (AB)[d + j]$</p>
-<h2 id="NTT-模板"><a href="#NTT-模板" class="headerlink" title="NTT 模板"></a>NTT 模板</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">using</span> BI = __int128;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">bitreverse</span><span class="hljs-params">(BI *x,<span class="hljs-keyword">int</span> len)</span></span>&#123; <span class="hljs-comment">// note that bitreverse(i)=j</span><br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>,j=<span class="hljs-number">0</span>;i!=len;++i)&#123;<br>    <span class="hljs-keyword">if</span>(i&gt;j) <span class="hljs-built_in">swap</span>(x[i],x[j]);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> l=len&gt;&gt;<span class="hljs-number">1</span>;(j^=l)&lt;l;l&gt;&gt;=<span class="hljs-number">1</span>);<br>  &#125;<br>&#125;<br><span class="hljs-comment">// the mod must NTT-friendly or (len+1)*mod^2 &lt; FM</span><br><span class="hljs-keyword">const</span> BI FM = <span class="hljs-built_in">BI</span>(<span class="hljs-number">29</span>)&lt;&lt;<span class="hljs-number">57</span>|<span class="hljs-number">1</span>, gg=<span class="hljs-number">3</span>;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ntt</span><span class="hljs-params">(BI *x,<span class="hljs-keyword">int</span> len,<span class="hljs-keyword">bool</span> isInverse=<span class="hljs-literal">false</span>)</span></span>&#123;<br>  g = <span class="hljs-built_in">powmod</span>(gg,(FM<span class="hljs-number">-1</span>)/len,FM);<br>  <span class="hljs-keyword">if</span>(isInverse)&#123;<br>    g = <span class="hljs-built_in">powmod</span>(g,FM<span class="hljs-number">-2</span>,FM);<br>    BI invlen = <span class="hljs-built_in">powmod</span>(<span class="hljs-built_in">BI</span>(len),FM<span class="hljs-number">-2</span>,FM);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i!=len;++i)&#123;<br>      x[i]=x[i]*invlen%FM;<br>    &#125;<br>  &#125;<br>  <span class="hljs-built_in">bitreverse</span>(x,len);<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> half=<span class="hljs-number">1</span>,step=<span class="hljs-number">2</span>;half!=len;half&lt;&lt;=<span class="hljs-number">1</span>,step&lt;&lt;=<span class="hljs-number">1</span>)&#123;<br>    BI wn = <span class="hljs-built_in">powmod</span>(g,len/step,FM),w=<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;len;i+=step,w=<span class="hljs-number">1</span>)&#123;<br>      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = i;j&lt;i+half;++j)&#123;<br>        BI t=(w*x[j+half])%FM;<br>        x[j+half]=(FM-t+x[j])%FM;<br>        x[j]=(x[j]+t)%FM;<br>        w = w*wn%FM;<br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">square</span><span class="hljs-params">(BI *a, <span class="hljs-keyword">int</span> n)</span></span>&#123;<br>  <span class="hljs-keyword">int</span> len = <span class="hljs-number">1</span>&lt;&lt;(<span class="hljs-number">32</span>-__builtin_clz(<span class="hljs-number">2</span>*n+<span class="hljs-number">1</span>));<br>  <span class="hljs-built_in">ntt</span>(a,len);<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i!=len;++i)&#123;<br>    a[i]=a[i]*a[i]%FM;<br>  &#125;<br>  <span class="hljs-built_in">ntt</span>(a,len,<span class="hljs-number">1</span>);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">mul</span><span class="hljs-params">(BI *a,BI *b,<span class="hljs-keyword">int</span> na,<span class="hljs-keyword">int</span> nb)</span></span>&#123;<br>  <span class="hljs-keyword">int</span> len = <span class="hljs-number">1</span>&lt;&lt;(<span class="hljs-number">32</span>-__builtin_clz(na+nb+<span class="hljs-number">1</span>));<br>  <span class="hljs-built_in">ntt</span>(a,len);<span class="hljs-built_in">ntt</span>(b,len);<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i!=len;++i)&#123;<br>    a[i] = a[i]*b[i]%FM;<br>  &#125;<br>  <span class="hljs-built_in">ntt</span>(b,len,<span class="hljs-number">1</span>);<span class="hljs-built_in">ntt</span>(a,len,<span class="hljs-number">1</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="NTT-模板更新（2020-7-9"><a href="#NTT-模板更新（2020-7-9" class="headerlink" title="NTT 模板更新（2020/7/9)"></a>NTT 模板更新（2020/7/9)</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">using</span> LL = <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span>;<br><span class="hljs-keyword">constexpr</span> LL M = <span class="hljs-number">998244353</span>,ROOT=<span class="hljs-number">3</span>;<br><span class="hljs-function">LL <span class="hljs-title">powmod</span><span class="hljs-params">(LL x,LL n)</span></span>&#123;<br>  <span class="hljs-function">LL <span class="hljs-title">r</span><span class="hljs-params">(<span class="hljs-number">1</span>)</span></span>;<br>  <span class="hljs-keyword">while</span>(n)&#123;<br>    <span class="hljs-keyword">if</span>(n&amp;<span class="hljs-number">1</span>) r=r*x%M;<br>    n&gt;&gt;=<span class="hljs-number">1</span>; x=x*x%M;<br>  &#125;<br>  <span class="hljs-keyword">return</span> r;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">bitreverse</span><span class="hljs-params">(vector&lt;LL&gt; &amp;a)</span></span>&#123;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>,j=<span class="hljs-number">0</span>;i!=a.<span class="hljs-built_in">size</span>();++i)&#123;<br>    <span class="hljs-keyword">if</span>(i&gt;j) <span class="hljs-built_in">swap</span>(a[i],a[j]);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> l=a.<span class="hljs-built_in">size</span>()&gt;&gt;<span class="hljs-number">1</span>;(j^=l)&lt;l;l&gt;&gt;=<span class="hljs-number">1</span>);<br>  &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ntt</span><span class="hljs-params">(vector&lt;LL&gt; &amp;a,<span class="hljs-keyword">bool</span> isInverse=<span class="hljs-literal">false</span>)</span></span>&#123;<br>  LL g = <span class="hljs-built_in">powmod</span>(ROOT,(M<span class="hljs-number">-1</span>)/a.<span class="hljs-built_in">size</span>());<br>  <span class="hljs-keyword">if</span>(isInverse)&#123;<br>    g = <span class="hljs-built_in">powmod</span>(g,M<span class="hljs-number">-2</span>);<br>    LL invLen = <span class="hljs-built_in">powmod</span>(<span class="hljs-built_in">LL</span>(a.<span class="hljs-built_in">size</span>()),M<span class="hljs-number">-2</span>);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> &amp;x:a) x=x*invLen%M;<br>  &#125;<br>  <span class="hljs-built_in">bitreverse</span>(a);<br>  <span class="hljs-function">vector&lt;LL&gt; <span class="hljs-title">w</span><span class="hljs-params">(a.size(),<span class="hljs-number">1</span>)</span></span>;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i!=w.<span class="hljs-built_in">size</span>();++i) w[i] = w[i<span class="hljs-number">-1</span>]*g%M;<br>  <span class="hljs-keyword">auto</span> addMod = [](LL x,LL y)&#123;<span class="hljs-built_in"><span class="hljs-keyword">return</span></span> (x+=y)&gt;=M?x-=M:x;&#125;;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> step=<span class="hljs-number">2</span>,half = <span class="hljs-number">1</span>;half!=a.<span class="hljs-built_in">size</span>();step&lt;&lt;=<span class="hljs-number">1</span>,half&lt;&lt;=<span class="hljs-number">1</span>)&#123;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>,wstep=a.<span class="hljs-built_in">size</span>()/step;i!=a.<span class="hljs-built_in">size</span>();i+=step)&#123;<br>      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=i;j!=i+half;++j)&#123;<br>        LL t = (a[j+half]*w[wstep*(j-i)])%M;<br>        a[j+half]=<span class="hljs-built_in">addMod</span>(a[j],M-t);<br>        a[j]=<span class="hljs-built_in">addMod</span>(a[j],t);<br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;<br><span class="hljs-function">vector&lt;LL&gt; <span class="hljs-title">mul</span><span class="hljs-params">(vector&lt;LL&gt; a,vector&lt;LL&gt; b)</span></span>&#123;<br>  <span class="hljs-keyword">int</span> sz=<span class="hljs-number">1</span>,tot = a.<span class="hljs-built_in">size</span>()+b.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>;<br>  <span class="hljs-keyword">while</span>(sz&lt;tot) sz*=<span class="hljs-number">2</span>;<br>  a.<span class="hljs-built_in">resize</span>(sz);b.<span class="hljs-built_in">resize</span>(sz);<br>  <span class="hljs-built_in">ntt</span>(a);<span class="hljs-built_in">ntt</span>(b);<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i!=sz;++i) a[i] = a[i]*b[i]%M;<br>  <span class="hljs-built_in">ntt</span>(a,<span class="hljs-number">1</span>);<br>  a.<span class="hljs-built_in">resize</span>(tot);<br>  <span class="hljs-keyword">return</span> a;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>所以我们有 <span class="math inline">\(a \star b= \hat{\hat{a} \hat{b}}\)</span>，而多项式乘法只是卷积的一个例子。有些时候 <strong>计算式</strong> 一开始不是卷积形式，但是可以转换成卷积形式，再利用 FFT 或者 NTT 加速。</p>
+<h3 id="常见形式卷积">常见形式卷积</h3>
+<p><span class="math display">\[
+f(x) = \sum_{i = 0}^{d} g(i) h(x - i)
+\]</span></p>
+<p>这种形式的卷积，你可以认为是需要你补充 <span class="math inline">\(h(-d), \cdots, h(-1)\)</span> 这 <span class="math inline">\(d\)</span> 个数后进行卷积，就是相当于平移一下。比如说我们想求 <span class="math inline">\(f(m), \cdots f(m + n)\)</span>（其中 <span class="math inline">\(m \geq d\)</span>），那么我们考虑多项式 <span class="math inline">\(A = \sum_{i = 0}^d g(i) x^i\)</span>, <span class="math inline">\(B = \sum_{i = 0}^{n + d} h(m - d + i) x^i\)</span>，那么 <span class="math inline">\(f(m + j) = (AB)[d + j]\)</span></p>
+<h2 id="ntt-模板">NTT 模板</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">using</span> BI = __int128;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">bitreverse</span><span class="hljs-params">(BI *x,<span class="hljs-keyword">int</span> len)</span></span>&#123; <span class="hljs-comment">// note that bitreverse(i)=j</span><br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>,j=<span class="hljs-number">0</span>;i!=len;++i)&#123;<br>    <span class="hljs-keyword">if</span>(i&gt;j) <span class="hljs-built_in">swap</span>(x[i],x[j]);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> l=len&gt;&gt;<span class="hljs-number">1</span>;(j^=l)&lt;l;l&gt;&gt;=<span class="hljs-number">1</span>);<br>  &#125;<br>&#125;<br><span class="hljs-comment">// the mod must NTT-friendly or (len+1)*mod^2 &lt; FM</span><br><span class="hljs-keyword">const</span> BI FM = <span class="hljs-built_in">BI</span>(<span class="hljs-number">29</span>)&lt;&lt;<span class="hljs-number">57</span>|<span class="hljs-number">1</span>, gg=<span class="hljs-number">3</span>;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ntt</span><span class="hljs-params">(BI *x,<span class="hljs-keyword">int</span> len,<span class="hljs-keyword">bool</span> isInverse=<span class="hljs-literal">false</span>)</span></span>&#123;<br>  g = <span class="hljs-built_in">powmod</span>(gg,(FM<span class="hljs-number">-1</span>)/len,FM);<br>  <span class="hljs-keyword">if</span>(isInverse)&#123;<br>    g = <span class="hljs-built_in">powmod</span>(g,FM<span class="hljs-number">-2</span>,FM);<br>    BI invlen = <span class="hljs-built_in">powmod</span>(<span class="hljs-built_in">BI</span>(len),FM<span class="hljs-number">-2</span>,FM);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i!=len;++i)&#123;<br>      x[i]=x[i]*invlen%FM;<br>    &#125;<br>  &#125;<br>  <span class="hljs-built_in">bitreverse</span>(x,len);<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> half=<span class="hljs-number">1</span>,step=<span class="hljs-number">2</span>;half!=len;half&lt;&lt;=<span class="hljs-number">1</span>,step&lt;&lt;=<span class="hljs-number">1</span>)&#123;<br>    BI wn = <span class="hljs-built_in">powmod</span>(g,len/step,FM),w=<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;len;i+=step,w=<span class="hljs-number">1</span>)&#123;<br>      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = i;j&lt;i+half;++j)&#123;<br>        BI t=(w*x[j+half])%FM;<br>        x[j+half]=(FM-t+x[j])%FM;<br>        x[j]=(x[j]+t)%FM;<br>        w = w*wn%FM;<br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">square</span><span class="hljs-params">(BI *a, <span class="hljs-keyword">int</span> n)</span></span>&#123;<br>  <span class="hljs-keyword">int</span> len = <span class="hljs-number">1</span>&lt;&lt;(<span class="hljs-number">32</span>-__builtin_clz(<span class="hljs-number">2</span>*n+<span class="hljs-number">1</span>));<br>  <span class="hljs-built_in">ntt</span>(a,len);<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i!=len;++i)&#123;<br>    a[i]=a[i]*a[i]%FM;<br>  &#125;<br>  <span class="hljs-built_in">ntt</span>(a,len,<span class="hljs-number">1</span>);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">mul</span><span class="hljs-params">(BI *a,BI *b,<span class="hljs-keyword">int</span> na,<span class="hljs-keyword">int</span> nb)</span></span>&#123;<br>  <span class="hljs-keyword">int</span> len = <span class="hljs-number">1</span>&lt;&lt;(<span class="hljs-number">32</span>-__builtin_clz(na+nb+<span class="hljs-number">1</span>));<br>  <span class="hljs-built_in">ntt</span>(a,len);<span class="hljs-built_in">ntt</span>(b,len);<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i!=len;++i)&#123;<br>    a[i] = a[i]*b[i]%FM;<br>  &#125;<br>  <span class="hljs-built_in">ntt</span>(b,len,<span class="hljs-number">1</span>);<span class="hljs-built_in">ntt</span>(a,len,<span class="hljs-number">1</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="ntt-模板更新202079">NTT 模板更新（2020/7/9)</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">using</span> LL = <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span>;<br><span class="hljs-keyword">constexpr</span> LL M = <span class="hljs-number">998244353</span>,ROOT=<span class="hljs-number">3</span>;<br><span class="hljs-function">LL <span class="hljs-title">powmod</span><span class="hljs-params">(LL x,LL n)</span></span>&#123;<br>  <span class="hljs-function">LL <span class="hljs-title">r</span><span class="hljs-params">(<span class="hljs-number">1</span>)</span></span>;<br>  <span class="hljs-keyword">while</span>(n)&#123;<br>    <span class="hljs-keyword">if</span>(n&amp;<span class="hljs-number">1</span>) r=r*x%M;<br>    n&gt;&gt;=<span class="hljs-number">1</span>; x=x*x%M;<br>  &#125;<br>  <span class="hljs-keyword">return</span> r;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">bitreverse</span><span class="hljs-params">(vector&lt;LL&gt; &amp;a)</span></span>&#123;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>,j=<span class="hljs-number">0</span>;i!=a.<span class="hljs-built_in">size</span>();++i)&#123;<br>    <span class="hljs-keyword">if</span>(i&gt;j) <span class="hljs-built_in">swap</span>(a[i],a[j]);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> l=a.<span class="hljs-built_in">size</span>()&gt;&gt;<span class="hljs-number">1</span>;(j^=l)&lt;l;l&gt;&gt;=<span class="hljs-number">1</span>);<br>  &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ntt</span><span class="hljs-params">(vector&lt;LL&gt; &amp;a,<span class="hljs-keyword">bool</span> isInverse=<span class="hljs-literal">false</span>)</span></span>&#123;<br>  LL g = <span class="hljs-built_in">powmod</span>(ROOT,(M<span class="hljs-number">-1</span>)/a.<span class="hljs-built_in">size</span>());<br>  <span class="hljs-keyword">if</span>(isInverse)&#123;<br>    g = <span class="hljs-built_in">powmod</span>(g,M<span class="hljs-number">-2</span>);<br>    LL invLen = <span class="hljs-built_in">powmod</span>(<span class="hljs-built_in">LL</span>(a.<span class="hljs-built_in">size</span>()),M<span class="hljs-number">-2</span>);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> &amp;x:a) x=x*invLen%M;<br>  &#125;<br>  <span class="hljs-built_in">bitreverse</span>(a);<br>  <span class="hljs-function">vector&lt;LL&gt; <span class="hljs-title">w</span><span class="hljs-params">(a.size(),<span class="hljs-number">1</span>)</span></span>;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i!=w.<span class="hljs-built_in">size</span>();++i) w[i] = w[i<span class="hljs-number">-1</span>]*g%M;<br>  <span class="hljs-keyword">auto</span> addMod = [](LL x,LL y)&#123;<span class="hljs-built_in"><span class="hljs-keyword">return</span></span> (x+=y)&gt;=M?x-=M:x;&#125;;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> step=<span class="hljs-number">2</span>,half = <span class="hljs-number">1</span>;half!=a.<span class="hljs-built_in">size</span>();step&lt;&lt;=<span class="hljs-number">1</span>,half&lt;&lt;=<span class="hljs-number">1</span>)&#123;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>,wstep=a.<span class="hljs-built_in">size</span>()/step;i!=a.<span class="hljs-built_in">size</span>();i+=step)&#123;<br>      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=i;j!=i+half;++j)&#123;<br>        LL t = (a[j+half]*w[wstep*(j-i)])%M;<br>        a[j+half]=<span class="hljs-built_in">addMod</span>(a[j],M-t);<br>        a[j]=<span class="hljs-built_in">addMod</span>(a[j],t);<br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;<br><span class="hljs-function">vector&lt;LL&gt; <span class="hljs-title">mul</span><span class="hljs-params">(vector&lt;LL&gt; a,vector&lt;LL&gt; b)</span></span>&#123;<br>  <span class="hljs-keyword">int</span> sz=<span class="hljs-number">1</span>,tot = a.<span class="hljs-built_in">size</span>()+b.<span class="hljs-built_in">size</span>()<span class="hljs-number">-1</span>;<br>  <span class="hljs-keyword">while</span>(sz&lt;tot) sz*=<span class="hljs-number">2</span>;<br>  a.<span class="hljs-built_in">resize</span>(sz);b.<span class="hljs-built_in">resize</span>(sz);<br>  <span class="hljs-built_in">ntt</span>(a);<span class="hljs-built_in">ntt</span>(b);<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i!=sz;++i) a[i] = a[i]*b[i]%M;<br>  <span class="hljs-built_in">ntt</span>(a,<span class="hljs-number">1</span>);<br>  a.<span class="hljs-built_in">resize</span>(tot);<br>  <span class="hljs-keyword">return</span> a;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>关于多项式乘法，求逆，带余除法的理论基础见下图，取自 <a target="_blank" rel="noopener" href="https://cp-algorithms.com/algebra/polynomial.html">cp-algorithm</a></p>
-<p><img src="mulInv.png" srcset="/img/loading.gif" lazyload alt="mulInv"></p>
-<p><img src="divRem.png" srcset="/img/loading.gif" lazyload alt="divRem"></p>
+<figure>
+<img src="mulInv.png" srcset="/img/loading.gif" lazyload alt="mulInv" /><figcaption aria-hidden="true">mulInv</figcaption>
+</figure>
+<figure>
+<img src="divRem.png" srcset="/img/loading.gif" lazyload alt="divRem" /><figcaption aria-hidden="true">divRem</figcaption>
+</figure>
 <p>与之对应的还有快速 Mobius 变换</p>
-<p>—————————————— 分割线 ——————————————</p>
-<h2 id="多项式（多项式全家桶-已全部-AC）"><a href="#多项式（多项式全家桶-已全部-AC）" class="headerlink" title="多项式（多项式全家桶 已全部 AC）"></a>多项式（<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/training/3015#problems">多项式全家桶</a> 已全部 AC）</h2><ul>
+<p>---------------------------- 分割线 ----------------------------</p>
+<h2 id="多项式多项式全家桶-已全部-ac">多项式（<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/training/3015#problems">多项式全家桶</a> 已全部 AC）</h2>
+<ul>
 <li>仅包含乘法的四大多项式底层基类分别为：PolyBaseNTT, PolyBaseMFT3(弃用，被后面两个淘汰了), PolyBaseMFT4, PolyBaseFFT</li>
 <li>PolyBaseNTT：基于固定的 NTT-friendly（原根一般为 3）模数快速数论变化（看具体题目，一般为 998244353）</li>
 <li>PolyBaseMFT3：基于三个固定的 NTT-friendly 且原根为 3 的三模数（469762049, 998244353, 1004535809），利用 crt 求解任意模数多项式乘法（已被淘汰，请勿使用）</li>
 <li>PolyBaseMFT4：基于四个固定的 NTT-friendly 且原根为 3 的四模数（595591169, 645922817, 897581057, 998244353），利用 crt 求解任意模数多项式乘法</li>
 <li>PolyBaseFFT：基于 FFT 求解任意模数多项式乘法（需要注意精度）</li>
-<li>通过模板继承拓展得到全面的多项式类 Poly (加减乘除余，转置乘法，求导，积分，指数，对数，求逆，开方，一点求值，多点求值，快速幂模，内积，一个首一多项式的次方模 $x^n$ 先取对数乘以次数再取指数得到，三角函数，反三角函数)，这个过程学到了很多东西</li>
-<li>多项式静态函数：$O(n \log^2 n)$ 计算 $\sum_{i = 1}^n \frac{a_i}{1 - b_i}$</li>
-<li>多项式静态函数：$O(k \log k \log n)$ 求 $k$ 阶常系数递推公式的第 $n$ 项</li>
-<li>多项式静态函数：模自然数方幂和 $O(k \log k)$ 得到前 $k$ 个答案</li>
-<li>多项式静态函数：Lagrange 插值：先分治求 $g(x) = \prod(x - x_i)$，再求 $g’(x)$ 在 $x$ 处的多点求值，再分治即可。</li>
-<li>求阶乘 $n! \mod p$：基于多点求值 $O(\sqrt{n} \log^2 n)$ 求 $\sqrt{n}$ 个点之后暴力</li>
-<li>求阶乘 $n! \mod p$：min_25 用点求点 $O(\sqrt{n} \log n)$ 求 $\sqrt{n}$ 个点之后暴力</li>
+<li>通过模板继承拓展得到全面的多项式类 Poly (加减乘除余，转置乘法，求导，积分，指数，对数，求逆，开方，一点求值，多点求值，快速幂模，内积，一个首一多项式的次方模 <span class="math inline">\(x^n\)</span> 先取对数乘以次数再取指数得到，三角函数，反三角函数)，这个过程学到了很多东西</li>
+<li>多项式静态函数：<span class="math inline">\(O(n \log^2 n)\)</span> 计算 <span class="math inline">\(\sum_{i = 1}^n \frac{a_i}{1 - b_i}\)</span></li>
+<li>多项式静态函数：<span class="math inline">\(O(k \log k \log n)\)</span> 求 <span class="math inline">\(k\)</span> 阶常系数递推公式的第 <span class="math inline">\(n\)</span> 项</li>
+<li>多项式静态函数：模自然数方幂和 <span class="math inline">\(O(k \log k)\)</span> 得到前 <span class="math inline">\(k\)</span> 个答案</li>
+<li>多项式静态函数：Lagrange 插值：先分治求 <span class="math inline">\(g(x) = \prod(x - x_i)\)</span>，再求 <span class="math inline">\(g&#39;(x)\)</span> 在 <span class="math inline">\(x\)</span> 处的多点求值，再分治即可。</li>
+<li>求阶乘 <span class="math inline">\(n! \mod p\)</span>：基于多点求值 <span class="math inline">\(O(\sqrt{n} \log^2 n)\)</span> 求 <span class="math inline">\(\sqrt{n}\)</span> 个点之后暴力</li>
+<li>求阶乘 <span class="math inline">\(n! \mod p\)</span>：min_25 用点求点 <span class="math inline">\(O(\sqrt{n} \log n)\)</span> 求 <span class="math inline">\(\sqrt{n}\)</span> 个点之后暴力</li>
 </ul>
 <blockquote>
 <p>无运算的多项式底层基类：PolyBase（standard 在取余时，特别重要不可省略）</p>
 </blockquote>
-<h3 id="使用准则"><a href="#使用准则" class="headerlink" title="使用准则"></a>使用准则</h3><ul>
-<li>多项式项数 $N &lt; 4 \cdot 10^6$</li>
-<li>$M$ 要是超了 int，那就只能用 ModLL 版本 4 模数 Poly</li>
-<li>否则，要是 $M$ 不固定就用使用 ModInt 的 FFT 版 Poly</li>
-<li>否则，当 $M$ 为固定的 NTT-friendly 素数时，使用 NTT 版 Poly</li>
+<h3 id="使用准则">使用准则</h3>
+<ul>
+<li>多项式项数 <span class="math inline">\(N &lt; 4 \cdot 10^6\)</span></li>
+<li><span class="math inline">\(M\)</span> 要是超了 int，那就只能用 ModLL 版本 4 模数 Poly</li>
+<li>否则，要是 <span class="math inline">\(M\)</span> 不固定就用使用 ModInt 的 FFT 版 Poly</li>
+<li>否则，当 <span class="math inline">\(M\)</span> 为固定的 NTT-friendly 素数时，使用 NTT 版 Poly</li>
 <li>否则，使用 MInt 的 FFT 版 Poly</li>
 </ul>
-<h3 id="极简版多项式模板（polyS）"><a href="#极简版多项式模板（polyS）" class="headerlink" title="极简版多项式模板（polyS）"></a>极简版多项式模板（polyS）</h3><p>由于多项式模板一直扩展，动则 1000+ 行，实在有点搞，所以就搞了一个极简版的。</p>
-<h3 id="4-次-FFT-原理"><a href="#4-次-FFT-原理" class="headerlink" title="4 次 FFT 原理"></a>4 次 FFT 原理</h3><p>我们本来要求 $A \dot B$，然后我们把它拆成 $A = A_1 + 2^{d} A_2, B = B_1 + 2^d B_2$，那么</p>
-<script type="math/tex; mode=display">
-AB = A_1 B_1 + (A_1 B_2 + A_2 B_1) 2^d + A_2 B_2 2^{2d}</script><p>于是我们只需计算 $(A_1 + i A_2)(B_1 + i B_2)$ 和 $(A_1 + i A_2)(B_1 - i B_2)$ 即可，但是注意到 $dft((B_1 + i B_2))[j] = \overline{dft((B_1 + i B_2))[n - j]}$ 所以本来需要 5 次 FFT，现在只需要 4 次即可。</p>
+<h3 id="极简版多项式模板polys">极简版多项式模板（polyS）</h3>
+<p>由于多项式模板一直扩展，动则 1000+ 行，实在有点搞，所以就搞了一个极简版的。</p>
+<h3 id="次-fft-原理">4 次 FFT 原理</h3>
+<p>我们本来要求 <span class="math inline">\(A \dot B\)</span>，然后我们把它拆成 <span class="math inline">\(A = A_1 + 2^{d} A_2, B = B_1 + 2^d B_2\)</span>，那么 <span class="math display">\[
+AB = A_1 B_1 + (A_1 B_2 + A_2 B_1) 2^d + A_2 B_2 2^{2d}
+\]</span></p>
+<p>于是我们只需计算 <span class="math inline">\((A_1 + i A_2)(B_1 + i B_2)\)</span> 和 <span class="math inline">\((A_1 + i A_2)(B_1 - i B_2)\)</span> 即可，但是注意到 <span class="math inline">\(dft((B_1 + i B_2))[j] = \overline{dft((B_1 + i B_2))[n - j]}\)</span> 所以本来需要 5 次 FFT，现在只需要 4 次即可。</p>
 <blockquote>
-<p>其实本质上，我们可以只做 3.5 次 FFT，因为 2 次 dft 我们可以得到 $A_1, A_2, B_1, B_2$ 的 dft 值，然后我们最后只需 3 次实数版 idft 即可（算作 1.5 次）！所以总的来说是 3.5 次。但是实现的时候也没办法搞 0.5 次，可惜。</p>
+<p>其实本质上，我们可以只做 3.5 次 FFT，因为 2 次 dft 我们可以得到 <span class="math inline">\(A_1, A_2, B_1, B_2\)</span> 的 dft 值，然后我们最后只需 3 次实数版 idft 即可（算作 1.5 次）！所以总的来说是 3.5 次。但是实现的时候也没办法搞 0.5 次，可惜。</p>
 </blockquote>
-<h3 id="min-25-用点求点原理（其实可以用下降幂更简洁的处理）"><a href="#min-25-用点求点原理（其实可以用下降幂更简洁的处理）" class="headerlink" title="min_25 用点求点原理（其实可以用下降幂更简洁的处理）"></a>min_25 用点求点原理（其实可以用下降幂更简洁的处理）</h3><p>学习资料：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zzqsblog/p/8408691.html">zzqsblog</a>, <a target="_blank" rel="noopener" href="https://www.cnblogs.com/bztMinamoto/p/10661226.html">bztMinamoto</a></p>
-<p>我们令 $s = \sqrt{n}$ 然后 $\displaystyle g_{s}(x) = \sum_{i = 1}^{s}(x + i)$，我们想要得到 $g_s(0), g_s(s), \cdots g_s((s - 1)s)$ 的值。然后 $n! = \prod_{i = 0}^{s - 1} g_s(i s) \cdot \prod_{i = s^2 + 1}^n i$</p>
+<h3 id="min_25-用点求点原理其实可以用下降幂更简洁的处理">min_25 用点求点原理（其实可以用下降幂更简洁的处理）</h3>
+<p>学习资料：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zzqsblog/p/8408691.html">zzqsblog</a>, <a target="_blank" rel="noopener" href="https://www.cnblogs.com/bztMinamoto/p/10661226.html">bztMinamoto</a></p>
+<p>我们令 <span class="math inline">\(s = \sqrt{n}\)</span> 然后 <span class="math inline">\(\displaystyle g_{s}(x) = \sum_{i = 1}^{s}(x + i)\)</span>，我们想要得到 <span class="math inline">\(g_s(0), g_s(s), \cdots g_s((s - 1)s)\)</span> 的值。然后 <span class="math inline">\(n! = \prod_{i = 0}^{s - 1} g_s(i s) \cdot \prod_{i = s^2 + 1}^n i\)</span></p>
 <p>现在假设我们已经得到了</p>
-<script type="math/tex; mode=display">
-g_d(0), g_d(s), \cdots g_d(d s)</script><blockquote>
-<p>一个 $d$ 次多项式由它在 $d + 1$ 个不同点的取值唯一决定（多于 d + 1 个点也可以）</p>
-</blockquote>
-<ol>
-<li><p>我们如何求</p>
-<script type="math/tex; mode=display">
-g_{d + 1}(0), g_{d + 1}(s), \cdots g_{d + 1}((d + 1) s)</script><p>注意到 $g_{d + 1}(x) = g_{d}(x) \cdot (x + d + 1)$ 即可 $O(d)$ 计算出 前 $d + 1$ 个，最后一个直接暴力计算即可。</p>
-</li>
-<li><p>我们如何求</p>
-</li>
-</ol>
-<script type="math/tex; mode=display">
-g_{2d}(0), g_{2d}(s), \cdots g_{2d}(2d s)</script><p>同样我们注意到 $g_{2d}(x) = g_{d}(x) \cdot g_d(x + d)$ 如果我们设 $h(i) = g_d(i s)$，（那么很关键的一点 $g_d(is + d) = g((d / s + i) s = h(d / s + i)$，卧槽， $d / s$ 在模 p 意义下得到就可以了，而且肯定大于 d，否则矛盾！）那么问题就转化成如何根据一个 $d$ 次多项式的值：$h(0), h(1), \cdots, h(d)$ 求</p>
-<script type="math/tex; mode=display">
-h(d + 0), \cdots h(d + d)</script><p>以及</p>
-<script type="math/tex; mode=display">
-h(d / s + 0), \cdots h(d / s + d)</script><p>我们不妨对于任意的给定的 $k &gt; d$，先求出</p>
-<script type="math/tex; mode=display">
-h(k + 0), h(k + 1), \cdots h(k + d)</script><p>注意到根据 Lagrange 插值多项式</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-h(x) &= \sum_{i = 0}^{d} h(i) \prod_{j = 0, j \neq i}^{d} \frac{x - j}{i - j} \\
-&= \sum_{i = 0}^d (-1)^{d - i} h(i) \binom{x}{i} \binom{x - i - 1}{d - i} \\
-&=  \left(\prod_{i = x - d}^x i \right) \sum_{i = 0}^d \frac{h(i)}{i!(d - i)!(-1)^{d - i}} \cdot \frac{1}{(x - i)}
-\end{aligned}</script><p>注意到这里的卷积跟我们普通的卷积不一致，左边长度为 $d + 1$ 的多项式乘以右边长度为 $2d + 1$ 的多项式，然后次数为 $d, \cdots 2d$ 这 $d + 1$ 位是有效的。</p>
-<ol>
-<li>不能写成除以阶乘的形式，因为 x 有可能很大。</li>
-<li>为了保证 $d/s &lt; 2 d$，我们需要使用 Wilson 定理即 $(p - 1)! = -1$</li>
-</ol>
-<h3 id="分治-FFT"><a href="#分治-FFT" class="headerlink" title="分治 FFT"></a>分治 FFT</h3><p>已知 $f_i = \sum_{j=1}^i f_{i-j} g_j$ 和 $f_0$ 求 $f$</p>
-<p>这个显然可以分治来做，其实用生成函数推理可知 $f = \frac{f_0}{1 - g}$</p>
-<h3 id="下降幂与点值"><a href="#下降幂与点值" class="headerlink" title="下降幂与点值"></a>下降幂与点值</h3><p>设 n 次多项式 $f(x) = \sum_{i = 0}^n b_i x^{\underline{i}}$，则</p>
-<script type="math/tex; mode=display">
-\frac{f(m)}{m!} = \sum_{i = 0}^m b_i \frac{1}{(m - i)!} \qquad 0 \leq m \leq n</script><p>因此 $EGF(f) = b e^x$，反过来也一样  $b = EGF(f) e^{-x}$（注意这里可以简单的多点求值，可以求更多的点）</p>
+<p><span class="math display">\[
+g_d(0), g_d(s), \cdots g_d(d s)
+\]</span></p>
 <blockquote>
-<p>下降幂与连续点值有 $O(n \log n)$ 的转化。而普通多项式跟连续点值却没有，可以认为普通多项式要的连续其实是类似 FFT 那样的连续。但是注意到以连续点求连续点有 $O(n \log n)$ 的做法</p>
+<p>一个 <span class="math inline">\(d\)</span> 次多项式由它在 <span class="math inline">\(d + 1\)</span> 个不同点的取值唯一决定（多于 d + 1 个点也可以）</p>
 </blockquote>
-<h3 id="Binom"><a href="#Binom" class="headerlink" title="Binom"></a>Binom</h3><p>这里的单例很秀的一点就是用了 const 引用，但是却不妨碍我修改它的值！这样的好处：</p>
+<ol type="1">
+<li><p>我们如何求</p>
+<p><span class="math display">\[
+g_{d + 1}(0), g_{d + 1}(s), \cdots g_{d + 1}((d + 1) s)
+\]</span></p>
+<p>注意到 <span class="math inline">\(g_{d + 1}(x) = g_{d}(x) \cdot (x + d + 1)\)</span> 即可 <span class="math inline">\(O(d)\)</span> 计算出 前 <span class="math inline">\(d + 1\)</span> 个，最后一个直接暴力计算即可。</p></li>
+<li><p>我们如何求</p></li>
+</ol>
+<p><span class="math display">\[
+g_{2d}(0), g_{2d}(s), \cdots g_{2d}(2d s)
+\]</span></p>
+<p>同样我们注意到 <span class="math inline">\(g_{2d}(x) = g_{d}(x) \cdot g_d(x + d)\)</span> 如果我们设 <span class="math inline">\(h(i) = g_d(i s)\)</span>，（那么很关键的一点 <span class="math inline">\(g_d(is + d) = g((d / s + i) s = h(d / s + i)\)</span>，卧槽， <span class="math inline">\(d / s\)</span> 在模 p 意义下得到就可以了，而且肯定大于 d，否则矛盾！）那么问题就转化成如何根据一个 <span class="math inline">\(d\)</span> 次多项式的值：<span class="math inline">\(h(0), h(1), \cdots, h(d)\)</span> 求</p>
+<p><span class="math display">\[
+h(d + 0), \cdots h(d + d)
+\]</span></p>
+<p>以及</p>
+<p><span class="math display">\[
+h(d / s + 0), \cdots h(d / s + d)
+\]</span></p>
+<p>我们不妨对于任意的给定的 <span class="math inline">\(k &gt; d\)</span>，先求出</p>
+<p><span class="math display">\[
+h(k + 0), h(k + 1), \cdots h(k + d)
+\]</span></p>
+<p>注意到根据 Lagrange 插值多项式</p>
+<p><span class="math display">\[
+\begin{aligned}
+h(x) &amp;= \sum_{i = 0}^{d} h(i) \prod_{j = 0, j \neq i}^{d} \frac{x - j}{i - j} \\
+&amp;= \sum_{i = 0}^d (-1)^{d - i} h(i) \binom{x}{i} \binom{x - i - 1}{d - i} \\
+&amp;=  \left(\prod_{i = x - d}^x i \right) \sum_{i = 0}^d \frac{h(i)}{i!(d - i)!(-1)^{d - i}} \cdot \frac{1}{(x - i)}
+\end{aligned}
+\]</span></p>
+<p>注意到这里的卷积跟我们普通的卷积不一致，左边长度为 <span class="math inline">\(d + 1\)</span> 的多项式乘以右边长度为 <span class="math inline">\(2d + 1\)</span> 的多项式，然后次数为 <span class="math inline">\(d, \cdots 2d\)</span> 这 <span class="math inline">\(d + 1\)</span> 位是有效的。</p>
+<ol type="1">
+<li>不能写成除以阶乘的形式，因为 x 有可能很大。</li>
+<li>为了保证 <span class="math inline">\(d/s &lt; 2 d\)</span>，我们需要使用 Wilson 定理即 <span class="math inline">\((p - 1)! = -1\)</span></li>
+</ol>
+<h3 id="分治-fft">分治 FFT</h3>
+<p>已知 <span class="math inline">\(f_i = \sum_{j=1}^i f_{i-j} g_j\)</span> 和 <span class="math inline">\(f_0\)</span> 求 <span class="math inline">\(f\)</span></p>
+<p>这个显然可以分治来做，其实用生成函数推理可知 <span class="math inline">\(f = \frac{f_0}{1 - g}\)</span></p>
+<h3 id="下降幂与点值">下降幂与点值</h3>
+<p>设 n 次多项式 <span class="math inline">\(f(x) = \sum_{i = 0}^n b_i x^{\underline{i}}\)</span>，则</p>
+<p><span class="math display">\[
+\frac{f(m)}{m!} = \sum_{i = 0}^m b_i \frac{1}{(m - i)!} \qquad 0 \leq m \leq n
+\]</span></p>
+<p>因此 <span class="math inline">\(EGF(f) = b e^x\)</span>，反过来也一样 <span class="math inline">\(b = EGF(f) e^{-x}\)</span>（注意这里可以简单的多点求值，可以求更多的点）</p>
+<blockquote>
+<p>下降幂与连续点值有 <span class="math inline">\(O(n \log n)\)</span> 的转化。而普通多项式跟连续点值却没有，可以认为普通多项式要的连续其实是类似 FFT 那样的连续。但是注意到以连续点求连续点有 <span class="math inline">\(O(n \log n)\)</span> 的做法</p>
+</blockquote>
+<h3 id="binom">Binom</h3>
+<p>这里的单例很秀的一点就是用了 const 引用，但是却不妨碍我修改它的值！这样的好处：</p>
 <ul>
 <li>对于 <code>MInt&lt;M&gt;</code> 直接初始化了，不用在 setMod</li>
 <li>对于 <code>ModInt, ModLL</code> 这些本来就要 setMod，那就给它调用 setMod 重新刷新 Binom 的值</li>
@@ -462,11 +509,16 @@ h(x) &= \sum_{i = 0}^{d} h(i) \prod_{j = 0, j \neq i}^{d} \frac{x - j}{i - j} \\
 <p>源代码在换 mod 的时候会有 bug，于 2021-7-24 重构 Poly，通过继承 vector 方式而非 vector 变量的方式的时候发现了这个 bug 并修复了</p>
 </blockquote>
 <p><strong>注意事项</strong>：如果利用了 vector 这种结构，然后再用引用可能会因扩容而导致 RE，可以通过预先申请较大的内存的做法，此后不要随便用 <code>.back()</code> 这类不确定的调用</p>
-<h3 id="Lagrange-反演"><a href="#Lagrange-反演" class="headerlink" title="Lagrange 反演"></a><a target="_blank" rel="noopener" href="https://users.math.msu.edu/users/magyarp/Math880/Lagrange.pdf">Lagrange 反演</a></h3><p>若 $f(x), g(x) \in F[[x]]$ 且 $f(g(x) = x$，则</p>
-<script type="math/tex; mode=display">
-[x^n] g(x) = \frac{1}{n} [x^{-1}] \frac{1}{f(x)^n}</script><p>特别地，若 $f(x) = \frac{x}{\phi(x)}$，则</p>
-<script type="math/tex; mode=display">
-[x^n] g(x) = \frac{1}{n} [x^{n-1}] \phi(x)^n</script>
+<h3 id="lagrange-反演"><a target="_blank" rel="noopener" href="https://users.math.msu.edu/users/magyarp/Math880/Lagrange.pdf">Lagrange 反演</a></h3>
+<p>若 <span class="math inline">\(f(x), g(x) \in F[[x]]\)</span> 且 <span class="math inline">\(f(g(x) = x\)</span>，则</p>
+<p><span class="math display">\[
+[x^n] g(x) = \frac{1}{n} [x^{-1}] \frac{1}{f(x)^n}
+\]</span></p>
+<p>特别地，若 <span class="math inline">\(f(x) = \frac{x}{\phi(x)}\)</span>，则</p>
+<p><span class="math display">\[
+[x^n] g(x) = \frac{1}{n} [x^{n-1}] \phi(x)^n
+\]</span></p>
+
               
             </div>
             <hr/>

@@ -18,12 +18,12 @@
   <meta name="author" content="izlyforever">
   <meta name="keywords" content="math, cpp, python, sagemath">
   
-    <meta name="description" content="显然，我们只需考虑 $0 \leq a &lt; n$ 的情形。这个问题应该很早就被人考虑好了，不过无所谓吧（反正只是个博文而已）。以下内容都是独立完成的。并可看作 二次剩余和 Gauss 互反律 这篇博文的延续。最后再给出方程的一个解（如果存在的话）。">
+    <meta name="description" content="显然，我们只需考虑 \(0 \leq a &lt; n\) 的情形。这个问题应该很早就被人考虑好了，不过无所谓吧（反正只是个博文而已）。以下内容都是独立完成的。并可看作 二次剩余和 Gauss 互反律 这篇博文的延续。最后再给出方程的一个解（如果存在的话）。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="$x^2 \equiv a \mod n$ 何时有解">
 <meta property="og:url" content="http://izlyforever.com/quadraticModEquation/index.html">
 <meta property="og:site_name" content="记录程序和数学的点滴">
-<meta property="og:description" content="显然，我们只需考虑 $0 \leq a &lt; n$ 的情形。这个问题应该很早就被人考虑好了，不过无所谓吧（反正只是个博文而已）。以下内容都是独立完成的。并可看作 二次剩余和 Gauss 互反律 这篇博文的延续。最后再给出方程的一个解（如果存在的话）。">
+<meta property="og:description" content="显然，我们只需考虑 \(0 \leq a &lt; n\) 的情形。这个问题应该很早就被人考虑好了，不过无所谓吧（反正只是个博文而已）。以下内容都是独立完成的。并可看作 二次剩余和 Gauss 互反律 这篇博文的延续。最后再给出方程的一个解（如果存在的话）。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-05-28T13:21:52.000Z">
 <meta property="article:modified_time" content="2022-06-25T09:14:02.558Z">
@@ -223,7 +223,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          5.5k 字
+          5.9k 字
         
       </span>
     
@@ -235,7 +235,7 @@
         
         
           <!-- compatible with older versions-->
-          47 分钟
+          49 分钟
         
       </span>
     
@@ -286,82 +286,88 @@
             
             <div class="markdown-body">
               
-              <p>显然，我们只需考虑 $0 \leq a &lt; n$ 的情形。这个问题应该很早就被人考虑好了，不过无所谓吧（反正只是个博文而已）。以下内容都是独立完成的。并可看作 <a href="../quadraticResidueAndGaussReciprocity">二次剩余和 Gauss 互反律</a> 这篇博文的延续。最后再给出方程的一个解（如果存在的话）。</p>
+              <p>显然，我们只需考虑 <span class="math inline">\(0 \leq a &lt; n\)</span> 的情形。这个问题应该很早就被人考虑好了，不过无所谓吧（反正只是个博文而已）。以下内容都是独立完成的。并可看作 <a href="../quadraticResidueAndGaussReciprocity">二次剩余和 Gauss 互反律</a> 这篇博文的延续。最后再给出方程的一个解（如果存在的话）。</p>
 <span id="more"></span>
-<p>记 $A_n =  \{0 &lt; x &lt; n \mid \gcd(x,n) = 1\}$，则 $A_n$ 关于 $\mod n$ 的乘法构成一个群（根据 Euler 定理 $|A_n| = \psi(n)$）</p>
-<p>所以若 $\gcd(a,n)= 1$，则任意 $x \in A_n$，存在唯一 $y \in A_n$ 使得 $xy \equiv a \mod n$</p>
-<p>若 $x^2 \equiv a \mod n$ 无解，则 $\prod_{x \in A_n} x = a^{\frac{\psi(n)}{2}} \mod n$</p>
-<p>若 $x^2 \equiv a \mod n$ 有解，设 $0 &lt; a_1 &lt; a_2 &lt; \cdots &lt; a_r &lt; n$ 是全部解。则 $\prod_{x \in A_n} x = a^{\frac{\psi(n)-r}{2}} a_1 \cdots a_r  \mod n$，注意到 $r$ 只与 $n$ 有关，与 $a$ 无关。</p>
+<p>记 <span class="math inline">\(A_n = \{0 &lt; x &lt; n \mid \gcd(x,n) = 1\}\)</span>，则 <span class="math inline">\(A_n\)</span> 关于 <span class="math inline">\(\mod n\)</span> 的乘法构成一个群（根据 Euler 定理 <span class="math inline">\(|A_n| = \psi(n)\)</span>）</p>
+<p>所以若 <span class="math inline">\(\gcd(a,n)= 1\)</span>，则任意 <span class="math inline">\(x \in A_n\)</span>，存在唯一 <span class="math inline">\(y \in A_n\)</span> 使得 <span class="math inline">\(xy \equiv a \mod n\)</span></p>
+<p>若 <span class="math inline">\(x^2 \equiv a \mod n\)</span> 无解，则 <span class="math inline">\(\prod_{x \in A_n} x = a^{\frac{\psi(n)}{2}} \mod n\)</span></p>
+<p>若 <span class="math inline">\(x^2 \equiv a \mod n\)</span> 有解，设 <span class="math inline">\(0 &lt; a_1 &lt; a_2 &lt; \cdots &lt; a_r &lt; n\)</span> 是全部解。则 <span class="math inline">\(\prod_{x \in A_n} x = a^{\frac{\psi(n)-r}{2}} a_1 \cdots a_r \mod n\)</span>，注意到 <span class="math inline">\(r\)</span> 只与 <span class="math inline">\(n\)</span> 有关，与 <span class="math inline">\(a\)</span> 无关。</p>
 <blockquote>
-<p>用 $[\frac{a}{n}] = 1$ 表示有解，用 $[\frac{a}{n}] = 0$ 表示无解。</p>
+<p>用 <span class="math inline">\([\frac{a}{n}] = 1\)</span> 表示有解，用 <span class="math inline">\([\frac{a}{n}] = 0\)</span> 表示无解。</p>
 </blockquote>
 <p>为了考虑这个问题，我们分情况讨论</p>
-<h2 id="x-2-equiv-a-mod-2-m-gcd-a-p-m-1-何时有解"><a href="#x-2-equiv-a-mod-2-m-gcd-a-p-m-1-何时有解" class="headerlink" title="$x^2 \equiv a \mod 2^m,  \gcd(a,p^m) = 1$ 何时有解"></a>$x^2 \equiv a \mod 2^m,  \gcd(a,p^m) = 1$ 何时有解</h2><p>当 $m=1,2$ 时，有解当且仅当 $a=1$</p>
-<p>当 $m \geq 3$ 时，$2^m | (a_2 -a_1)(a_2+a_1)$, 若 $(a_2-a_1)$ 和 $a_2+a_1$ 都是 <code>4</code> 的倍数，则 $a_1,a_2$ 也是 <code>2</code> 的倍数矛盾于 $\gcd(a,2^m) = 1$。所以 $2^{m-1} \mid a_2+a_1)$ 或者 $2^{m-1} \mid (a_2-a_1)$。所以 $0 &lt; a_1 &lt; 2^{m-2}$，$a_2 = 2^{m-1} - a_1, a_3 = 2^{m-1}+a_1, a_4 = 2^m-a_1$。</p>
-<p>但是，若 $x$ 是奇数，则 $x^2 \equiv 1\mod 8$ ，令一方面 $\gcd(a,2^m) = 1$ 当且仅当 $a \equiv \mod 2$，而且每一个解对应 4 个 $x$。</p>
-<p>即 $1^2,2^2,\cdots,(2^m-1)^2 \mod 2^m$，只有 $2^{m-3}$ 个数，但是小于 $2^m$ 且模 8 为 1 的数也只有，$2^{m-3}$ 个。因此，</p>
-<p>有解 <strong>当且仅当</strong> $a \equiv 1 \mod 8$</p>
-<h2 id="x-2-equiv-a-mod-p-m-p-gt-2-gcd-a-p-m-1-何时有解"><a href="#x-2-equiv-a-mod-p-m-p-gt-2-gcd-a-p-m-1-何时有解" class="headerlink" title="$x^2 \equiv a \mod p^m,\;p&gt;2, \gcd(a,p^m) = 1$ 何时有解"></a>$x^2 \equiv a \mod p^m,\;p&gt;2, \gcd(a,p^m) = 1$ 何时有解</h2><p>因为 $p^m \mid (a_2-a_1)(a_2+a_1)$，若$(a_2-a_1)$ 和 $a_2+a_1$ 都是 $p$ 的倍数，则 $a_1, a_2$ 也是 $p$ 的倍数矛盾于 $\gcd(a,p^m) = 1$，所以 $a_2 = p^m - a_1$。从而 $r=2, \; a_1a_2 \equiv -a \mod p^m$，所以</p>
+<h2 id="x2-equiv-a-mod-2m-gcdapm-1-何时有解"><span class="math inline">\(x^2 \equiv a \mod 2^m, \gcd(a,p^m) = 1\)</span> 何时有解</h2>
+<p>当 <span class="math inline">\(m=1,2\)</span> 时，有解当且仅当 <span class="math inline">\(a=1\)</span></p>
+<p>当 <span class="math inline">\(m \geq 3\)</span> 时，<span class="math inline">\(2^m | (a_2 -a_1)(a_2+a_1)\)</span>, 若 <span class="math inline">\((a_2-a_1)\)</span> 和 <span class="math inline">\(a_2+a_1\)</span> 都是 <code>4</code> 的倍数，则 <span class="math inline">\(a_1,a_2\)</span> 也是 <code>2</code> 的倍数矛盾于 <span class="math inline">\(\gcd(a,2^m) = 1\)</span>。所以 <span class="math inline">\(2^{m-1} \mid a_2+a_1)\)</span> 或者 <span class="math inline">\(2^{m-1} \mid (a_2-a_1)\)</span>。所以 <span class="math inline">\(0 &lt; a_1 &lt; 2^{m-2}\)</span>，<span class="math inline">\(a_2 = 2^{m-1} - a_1, a_3 = 2^{m-1}+a_1, a_4 = 2^m-a_1\)</span>。</p>
+<p>但是，若 <span class="math inline">\(x\)</span> 是奇数，则 <span class="math inline">\(x^2 \equiv 1\mod 8\)</span> ，令一方面 <span class="math inline">\(\gcd(a,2^m) = 1\)</span> 当且仅当 <span class="math inline">\(a \equiv \mod 2\)</span>，而且每一个解对应 4 个 <span class="math inline">\(x\)</span>。</p>
+<p>即 <span class="math inline">\(1^2,2^2,\cdots,(2^m-1)^2 \mod 2^m\)</span>，只有 <span class="math inline">\(2^{m-3}\)</span> 个数，但是小于 <span class="math inline">\(2^m\)</span> 且模 8 为 1 的数也只有，<span class="math inline">\(2^{m-3}\)</span> 个。因此，</p>
+<p>有解 <strong>当且仅当</strong> <span class="math inline">\(a \equiv 1 \mod 8\)</span></p>
+<h2 id="x2-equiv-a-mod-pmp2-gcdapm-1-何时有解"><span class="math inline">\(x^2 \equiv a \mod p^m,\;p&gt;2, \gcd(a,p^m) = 1\)</span> 何时有解</h2>
+<p>因为 <span class="math inline">\(p^m \mid (a_2-a_1)(a_2+a_1)\)</span>，若<span class="math inline">\((a_2-a_1)\)</span> 和 <span class="math inline">\(a_2+a_1\)</span> 都是 <span class="math inline">\(p\)</span> 的倍数，则 <span class="math inline">\(a_1, a_2\)</span> 也是 <span class="math inline">\(p\)</span> 的倍数矛盾于 <span class="math inline">\(\gcd(a,p^m) = 1\)</span>，所以 <span class="math inline">\(a_2 = p^m - a_1\)</span>。从而 <span class="math inline">\(r=2, \; a_1a_2 \equiv -a \mod p^m\)</span>，所以</p>
 <ul>
-<li><p>若 $x^2 \equiv a \mod p^m$ 无解，则 $\prod_{x \in A_n} x = a^{\frac{p^{m-1}(p-1)}{2}} \mod p^m$</p>
-</li>
-<li><p>若 $x^2 \equiv a \mod p^m$ 有解，则 $\prod_{x \in A_n} x = -a^{\frac{p^{m-1}(p-1)}{2}} \mod p^m$</p>
-</li>
+<li><p>若 <span class="math inline">\(x^2 \equiv a \mod p^m\)</span> 无解，则 <span class="math inline">\(\prod_{x \in A_n} x = a^{\frac{p^{m-1}(p-1)}{2}} \mod p^m\)</span></p></li>
+<li><p>若 <span class="math inline">\(x^2 \equiv a \mod p^m\)</span> 有解，则 <span class="math inline">\(\prod_{x \in A_n} x = -a^{\frac{p^{m-1}(p-1)}{2}} \mod p^m\)</span></p></li>
 </ul>
-<p>取 $a=1$，则 $\prod_{x \in A_n} x = -1 \mod p^m$，即</p>
-<script type="math/tex; mode=display">
-[\frac{a}{p^m}] =  (1 \equiv a^{\frac{p^{m-1}(p-1)}{2}} \mod p^m)?</script><h2 id="x-2-equiv-a-p-i-mod-p-m-i-lt-m-gcd-a-p-m-1-何时有解"><a href="#x-2-equiv-a-p-i-mod-p-m-i-lt-m-gcd-a-p-m-1-何时有解" class="headerlink" title="$x^2 \equiv a p^i \mod p^m, \; i&lt;m, \; \gcd(a,p^m) = 1$ 何时有解"></a>$x^2 \equiv a p^i \mod p^m, \; i&lt;m, \; \gcd(a,p^m) = 1$ 何时有解</h2><p>若 $i=2k-1$ 为奇数，则 $p^k \mid x$，从而 $p^{i+1} \mid ap^i$，矛盾于 $\gcd(a,p^m) = 1$</p>
-<p>所以 $i$ 为偶数，显然此时上式有解当且仅当 $x^2 \equiv a \mod p^{m-i},\gcd(a,p^{m-i}) = 1$ 有解</p>
-<p>综上</p>
-<script type="math/tex; mode=display">
+<p>取 <span class="math inline">\(a=1\)</span>，则 <span class="math inline">\(\prod_{x \in A_n} x = -1 \mod p^m\)</span>，即 <span class="math display">\[
+[\frac{a}{p^m}] =  (1 \equiv a^{\frac{p^{m-1}(p-1)}{2}} \mod p^m)?
+\]</span></p>
+<h2 id="x2-equiv-a-pi-mod-pm-im-gcdapm-1-何时有解"><span class="math inline">\(x^2 \equiv a p^i \mod p^m, \; i&lt;m, \; \gcd(a,p^m) = 1\)</span> 何时有解</h2>
+<p>若 <span class="math inline">\(i=2k-1\)</span> 为奇数，则 <span class="math inline">\(p^k \mid x\)</span>，从而 <span class="math inline">\(p^{i+1} \mid ap^i\)</span>，矛盾于 <span class="math inline">\(\gcd(a,p^m) = 1\)</span></p>
+<p>所以 <span class="math inline">\(i\)</span> 为偶数，显然此时上式有解当且仅当 <span class="math inline">\(x^2 \equiv a \mod p^{m-i},\gcd(a,p^{m-i}) = 1\)</span> 有解</p>
+<p>综上 <span class="math display">\[
 [ \frac{a}{p^m} ] = \left\{ \begin{array}{cc}
-1 & a=0 \\
-1 & p=2,\; a \equiv 1 \mod 8 \\
--1 & p=2,\; a \not \equiv 1 \mod 8 \\
-(1 \equiv a^{\frac{p^{m-1}(p-1)}{2}} \mod p^m)? & p>2,\; \gcd(a,p^m) = 1\\
--1 & \gcd(a,p^m) = p^i, i \equiv 1 \mod 2 \\
-[\frac{ap^{-i}}{p^{m-i}}] & \gcd(a,p^m) = p^i, i \equiv 0 \mod 2 \\
-\end{array} \right.</script><h2 id="x-2-equiv-a-mod-m-1m-2-gcd-m-1-m-2-1-何时有解"><a href="#x-2-equiv-a-mod-m-1m-2-gcd-m-1-m-2-1-何时有解" class="headerlink" title="$x^2 \equiv a \mod m_1m_2, \gcd(m_1,m_2)=1$ 何时有解"></a>$x^2 \equiv a \mod m_1m_2, \gcd(m_1,m_2)=1$ 何时有解</h2><p>考虑</p>
-<script type="math/tex; mode=display">
+1 &amp; a=0 \\
+1 &amp; p=2,\; a \equiv 1 \mod 8 \\
+-1 &amp; p=2,\; a \not \equiv 1 \mod 8 \\
+(1 \equiv a^{\frac{p^{m-1}(p-1)}{2}} \mod p^m)? &amp; p&gt;2,\; \gcd(a,p^m) = 1\\
+-1 &amp; \gcd(a,p^m) = p^i, i \equiv 1 \mod 2 \\
+[\frac{ap^{-i}}{p^{m-i}}] &amp; \gcd(a,p^m) = p^i, i \equiv 0 \mod 2 \\
+\end{array} \right.
+\]</span></p>
+<h2 id="x2-equiv-a-mod-m_1m_2-gcdm_1m_21-何时有解"><span class="math inline">\(x^2 \equiv a \mod m_1m_2, \gcd(m_1,m_2)=1\)</span> 何时有解</h2>
+<p>考虑 <span class="math display">\[
 \begin{aligned}
 x \equiv a_1^2 \mod m_1 \\
 x \equiv a_2^2 \mod m_2
-\end{aligned}</script><p>则，存在 $t_1,t_2$ 使得，$t_1m_1 + t_2m_2 = 1$，所以 $t_1^2 m_1^2 + t_2^2 m_2^2 + 2 t_1 m_1 t_2 m_2=1$, 所以 $x \equiv (t_2m_2 a_1)^2$ 且 $x \equiv (t_1 m_1 a_2)^2$，所以</p>
-<script type="math/tex; mode=display">
-x \equiv (t_2 m_2 a_1)^2 + (t_1 m_1 a_2)^2 \equiv (t_2 m_2 a_1 + t_1 m_1 a_2)^2 \mod m_1 m_2</script><p>令一方面若 $x \equiv a^2 \mod m_1 m_2$，则 $x \equiv (a \mod m_i)^2 \mod m_i$</p>
-<p>即 $x^2 = a \mod m_1 m_2$ <strong>有解当且仅当</strong> $[\frac{a}{m_1}] = [\frac{a}{m_2}] = 1$</p>
+\end{aligned}
+\]</span></p>
+<p>则，存在 <span class="math inline">\(t_1,t_2\)</span> 使得，<span class="math inline">\(t_1m_1 + t_2m_2 = 1\)</span>，所以 <span class="math inline">\(t_1^2 m_1^2 + t_2^2 m_2^2 + 2 t_1 m_1 t_2 m_2=1\)</span>, 所以 <span class="math inline">\(x \equiv (t_2m_2 a_1)^2\)</span> 且 <span class="math inline">\(x \equiv (t_1 m_1 a_2)^2\)</span>，所以 <span class="math display">\[
+x \equiv (t_2 m_2 a_1)^2 + (t_1 m_1 a_2)^2 \equiv (t_2 m_2 a_1 + t_1 m_1 a_2)^2 \mod m_1 m_2
+\]</span> 令一方面若 <span class="math inline">\(x \equiv a^2 \mod m_1 m_2\)</span>，则 <span class="math inline">\(x \equiv (a \mod m_i)^2 \mod m_i\)</span></p>
+<p>即 <span class="math inline">\(x^2 = a \mod m_1 m_2\)</span> <strong>有解当且仅当</strong> <span class="math inline">\([\frac{a}{m_1}] = [\frac{a}{m_2}] = 1\)</span></p>
 <blockquote>
-<p>最终方案：$n = p_1^{m_1} \cdots p_r^{m_r}, \; p_1&lt; \cdots &lt;p_r$, $[\frac{a}{m}] = \prod [\frac{a}{p_i^{m_i}}]$</p>
+<p>最终方案：<span class="math inline">\(n = p_1^{m_1} \cdots p_r^{m_r}, \; p_1&lt; \cdots &lt;p_r\)</span>, <span class="math inline">\([\frac{a}{m}] = \prod [\frac{a}{p_i^{m_i}}]\)</span></p>
 </blockquote>
-<h2 id="判断是否有解的-sagemath-代码"><a href="#判断是否有解的-sagemath-代码" class="headerlink" title="判断是否有解的 sagemath 代码"></a>判断是否有解的 sagemath 代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># modSqrtSymbol.ipynb</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">modSqrtSymbol</span>(<span class="hljs-params">an,n</span>):</span><br>  <span class="hljs-keyword">for</span> p,m <span class="hljs-keyword">in</span> factor(n):<br>    a = an%p^m<br>    <span class="hljs-keyword">if</span> a == <span class="hljs-number">0</span>:  <span class="hljs-keyword">continue</span><br>    flag = <span class="hljs-literal">True</span><br>    <span class="hljs-keyword">while</span> a%p == <span class="hljs-number">0</span>:<br>      a//=p<br>      m-=<span class="hljs-number">1</span><br>      flag = <span class="hljs-keyword">not</span> flag<br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> flag:  <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br>    <span class="hljs-keyword">if</span> p == <span class="hljs-number">2</span>:<br>      <span class="hljs-keyword">if</span> a%<span class="hljs-number">8</span> != <span class="hljs-number">1</span>:  <span class="hljs-keyword">return</span>  <span class="hljs-literal">False</span><br>    <span class="hljs-keyword">else</span>:<br>      <span class="hljs-keyword">if</span> power_mod(a,p^(m-<span class="hljs-number">1</span>)*(p-<span class="hljs-number">1</span>)//<span class="hljs-number">2</span>,p^m) != <span class="hljs-number">1</span>:<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br></code></pre></td></tr></table></figure>
+<h2 id="判断是否有解的-sagemath-代码">判断是否有解的 sagemath 代码</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># modSqrtSymbol.ipynb</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">modSqrtSymbol</span>(<span class="hljs-params">an,n</span>):</span><br>  <span class="hljs-keyword">for</span> p,m <span class="hljs-keyword">in</span> factor(n):<br>    a = an%p^m<br>    <span class="hljs-keyword">if</span> a == <span class="hljs-number">0</span>:  <span class="hljs-keyword">continue</span><br>    flag = <span class="hljs-literal">True</span><br>    <span class="hljs-keyword">while</span> a%p == <span class="hljs-number">0</span>:<br>      a//=p<br>      m-=<span class="hljs-number">1</span><br>      flag = <span class="hljs-keyword">not</span> flag<br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> flag:  <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br>    <span class="hljs-keyword">if</span> p == <span class="hljs-number">2</span>:<br>      <span class="hljs-keyword">if</span> a%<span class="hljs-number">8</span> != <span class="hljs-number">1</span>:  <span class="hljs-keyword">return</span>  <span class="hljs-literal">False</span><br>    <span class="hljs-keyword">else</span>:<br>      <span class="hljs-keyword">if</span> power_mod(a,p^(m-<span class="hljs-number">1</span>)*(p-<span class="hljs-number">1</span>)//<span class="hljs-number">2</span>,p^m) != <span class="hljs-number">1</span>:<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br></code></pre></td></tr></table></figure>
 <blockquote>
-<p>因为 <code>factor</code> 复杂度是 $O(\sqrt{n})$， 所以整体复杂度 $O(\sqrt{n})$</p>
+<p>因为 <code>factor</code> 复杂度是 <span class="math inline">\(O(\sqrt{n})\)</span>， 所以整体复杂度 <span class="math inline">\(O(\sqrt{n})\)</span></p>
 </blockquote>
-<h2 id="求出-x-2-equiv-a-mod-n-的一个解"><a href="#求出-x-2-equiv-a-mod-n-的一个解" class="headerlink" title="求出 $x^2 \equiv a \mod n$ 的一个解"></a>求出 $x^2 \equiv a \mod n$ 的一个解</h2><blockquote>
-<p>本来是想求全部解的，但是考虑到如果 $\gcd(a,n) \neq 1$ 则解的个数实在太多，就不想求全部解了，当然如果真的有这个需要，求全部解也不难。</p>
-<p>另外，无论是是否有解还是求全部解都可以直接暴力做，只是复杂度为 $O(n)$ ，效率太低。</p>
+<h2 id="求出-x2-equiv-a-mod-n-的一个解">求出 <span class="math inline">\(x^2 \equiv a \mod n\)</span> 的一个解</h2>
+<blockquote>
+<p>本来是想求全部解的，但是考虑到如果 <span class="math inline">\(\gcd(a,n) \neq 1\)</span> 则解的个数实在太多，就不想求全部解了，当然如果真的有这个需要，求全部解也不难。</p>
+<p>另外，无论是是否有解还是求全部解都可以直接暴力做，只是复杂度为 <span class="math inline">\(O(n)\)</span> ，效率太低。</p>
 </blockquote>
-<h3 id="求-x-2-equiv-a-mod-2-m-的全部解，不妨设-a-equiv-1-mod-8"><a href="#求-x-2-equiv-a-mod-2-m-的全部解，不妨设-a-equiv-1-mod-8" class="headerlink" title="求 $x^2 \equiv a \mod 2^m$ 的全部解，不妨设 $a \equiv 1 \mod 8$"></a>求 $x^2 \equiv a \mod 2^m$ 的全部解，不妨设 $a \equiv 1 \mod 8$</h3><p>若 $m=1$，则 $x=1$，若 $m=2$，则 $x = 1, 3$，若 $m=3$，则 $x=1,3,5,7$，若 $m \geq 4$，不妨设 $x_{m-1}$ 是满足方程 $x^2 \equiv a \mod 2^{m-1}$的最小正整数解，即 $x_{m-1}^2 = a + 2^{m-1}k$</p>
+<h3 id="求-x2-equiv-a-mod-2m-的全部解不妨设-a-equiv-1-mod-8">求 <span class="math inline">\(x^2 \equiv a \mod 2^m\)</span> 的全部解，不妨设 <span class="math inline">\(a \equiv 1 \mod 8\)</span></h3>
+<p>若 <span class="math inline">\(m=1\)</span>，则 <span class="math inline">\(x=1\)</span>，若 <span class="math inline">\(m=2\)</span>，则 <span class="math inline">\(x = 1, 3\)</span>，若 <span class="math inline">\(m=3\)</span>，则 <span class="math inline">\(x=1,3,5,7\)</span>，若 <span class="math inline">\(m \geq 4\)</span>，不妨设 <span class="math inline">\(x_{m-1}\)</span> 是满足方程 <span class="math inline">\(x^2 \equiv a \mod 2^{m-1}\)</span>的最小正整数解，即 <span class="math inline">\(x_{m-1}^2 = a + 2^{m-1}k\)</span></p>
 <ul>
-<li><p>若 $k$ 是偶数，则必然是 $x_{m-1}^2 \equiv a \mod 2^m$ 的解，最小的解就是 $\min(x_{m-1},2^{m-2}-x_{m-1})$，但由于 $x_{m-1} \leq 2^{m-3}$，所以 $x_m=x_{m-1}$</p>
-</li>
-<li><p>若 $k$ 为奇数，则 $(2^{m-2} - x_{m-1})^2 = 2^{2m-4} - 2^{m-1} + x_{m-1}^2 \equiv a \mod 2^m$，且 $0&lt;2^{m-2}-x_{m-1}&lt;2^{m-2}$，所以 $x_m =2^{m-2} - x_{m-1}$</p>
-</li>
+<li><p>若 <span class="math inline">\(k\)</span> 是偶数，则必然是 <span class="math inline">\(x_{m-1}^2 \equiv a \mod 2^m\)</span> 的解，最小的解就是 <span class="math inline">\(\min(x_{m-1},2^{m-2}-x_{m-1})\)</span>，但由于 <span class="math inline">\(x_{m-1} \leq 2^{m-3}\)</span>，所以 <span class="math inline">\(x_m=x_{m-1}\)</span></p></li>
+<li><p>若 <span class="math inline">\(k\)</span> 为奇数，则 <span class="math inline">\((2^{m-2} - x_{m-1})^2 = 2^{2m-4} - 2^{m-1} + x_{m-1}^2 \equiv a \mod 2^m\)</span>，且 <span class="math inline">\(0&lt;2^{m-2}-x_{m-1}&lt;2^{m-2}\)</span>，所以 <span class="math inline">\(x_m =2^{m-2} - x_{m-1}\)</span></p></li>
 </ul>
-<p>所以经过 $m$ 步就可找到所有解就是 $x_m, 2^{m-1} - x_m,2^{m-1} + x_m, 2^m - x_m$</p>
-<h3 id="求-x-2-equiv-a-mod-p-m-p-gt-2-的全部解，其中-gcd-a-p-m-1"><a href="#求-x-2-equiv-a-mod-p-m-p-gt-2-的全部解，其中-gcd-a-p-m-1" class="headerlink" title="求 $x^2 \equiv a \mod p^m, \; p&gt;2$ 的全部解，其中 $\gcd(a,p^m) = 1$"></a>求 $x^2 \equiv a \mod p^m, \; p&gt;2$ 的全部解，其中 $\gcd(a,p^m) = 1$</h3><p>令 $q = \frac{\psi(p^m)}{2} = p^{m-1}\frac{p-1}{2}$，若 $q$ 是奇数，则 $(a^{\frac{q+1}{2}})^2 = a^q a \equiv a\mod p^m$，从而解就是 $a^{\frac{q+1}{2}},p^m-a^{\frac{q+1}{2}}$</p>
-<p>否则，记 $q = 2^{i}q’$（想模仿上面 $q$ 是奇数的情况），我们找一个非二次剩余 $b$，即 $b^q \equiv -1 \mod p^m$。我们记 $x = a^{\frac{q’+1}{2}},\;y = b^{q’}, \; t= a^{q’}$。则</p>
-<p>$x^2 = ta, t^{2^i} = 1, y^{2^i}=-1$。我们想保持 $x^2 = ta$，让 $t$ 变成 1。就打到了我们的目的。</p>
-<p>若 $t^{2^{s}} = -1, t^{2^{s+1}} = 1$, 则 $s&lt;i$，那么 $(y^{2^{i-s}}t)^{2^{s}} = y^{2^i}t^{2^{s}} = 1$，并且 $(y^{2^{i-s-1}}x)^2 = (y^{2^{i-s}}t)a$，我们更新 $t = y^{2^{i-s}}t$，更新 $x=y^{2^{i-s-1}}x$。重复上述过程直到 $t=1$。</p>
-<p>我们也可以类似 $p=2$ 的情况，经过 $m$ 步得到全部解，只是 $m=1$ 的时候是困难的，并且和上述分析一致，所以就没用 $p=2$ 时的方法。若 $x_{m-1}$ 满足 $x_{m-1}^2 = a + p^{m-1}k$</p>
+<p>所以经过 <span class="math inline">\(m\)</span> 步就可找到所有解就是 <span class="math inline">\(x_m, 2^{m-1} - x_m,2^{m-1} + x_m, 2^m - x_m\)</span></p>
+<h3 id="求-x2-equiv-a-mod-pm-p2-的全部解其中-gcdapm-1">求 <span class="math inline">\(x^2 \equiv a \mod p^m, \; p&gt;2\)</span> 的全部解，其中 <span class="math inline">\(\gcd(a,p^m) = 1\)</span></h3>
+<p>令 <span class="math inline">\(q = \frac{\psi(p^m)}{2} = p^{m-1}\frac{p-1}{2}\)</span>，若 <span class="math inline">\(q\)</span> 是奇数，则 <span class="math inline">\((a^{\frac{q+1}{2}})^2 = a^q a \equiv a\mod p^m\)</span>，从而解就是 <span class="math inline">\(a^{\frac{q+1}{2}},p^m-a^{\frac{q+1}{2}}\)</span></p>
+<p>否则，记 <span class="math inline">\(q = 2^{i}q&#39;\)</span>（想模仿上面 <span class="math inline">\(q\)</span> 是奇数的情况），我们找一个非二次剩余 <span class="math inline">\(b\)</span>，即 <span class="math inline">\(b^q \equiv -1 \mod p^m\)</span>。我们记 <span class="math inline">\(x = a^{\frac{q&#39;+1}{2}},\;y = b^{q&#39;}, \; t= a^{q&#39;}\)</span>。则</p>
+<p><span class="math inline">\(x^2 = ta, t^{2^i} = 1, y^{2^i}=-1\)</span>。我们想保持 <span class="math inline">\(x^2 = ta\)</span>，让 <span class="math inline">\(t\)</span> 变成 1。就打到了我们的目的。</p>
+<p>若 <span class="math inline">\(t^{2^{s}} = -1, t^{2^{s+1}} = 1\)</span>, 则 <span class="math inline">\(s&lt;i\)</span>，那么 <span class="math inline">\((y^{2^{i-s}}t)^{2^{s}} = y^{2^i}t^{2^{s}} = 1\)</span>，并且 <span class="math inline">\((y^{2^{i-s-1}}x)^2 = (y^{2^{i-s}}t)a\)</span>，我们更新 <span class="math inline">\(t = y^{2^{i-s}}t\)</span>，更新 <span class="math inline">\(x=y^{2^{i-s-1}}x\)</span>。重复上述过程直到 <span class="math inline">\(t=1\)</span>。</p>
+<p>我们也可以类似 <span class="math inline">\(p=2\)</span> 的情况，经过 <span class="math inline">\(m\)</span> 步得到全部解，只是 <span class="math inline">\(m=1\)</span> 的时候是困难的，并且和上述分析一致，所以就没用 <span class="math inline">\(p=2\)</span> 时的方法。若 <span class="math inline">\(x_{m-1}\)</span> 满足 <span class="math inline">\(x_{m-1}^2 = a + p^{m-1}k\)</span></p>
 <ul>
-<li><p>若 $k$ 是偶数，$(x_{m-1} - \frac{k}{2}p^{m-1})^2 \equiv a \mod p^m$</p>
-</li>
-<li><p>若 $k$ 是奇数，$(x_{m-1} + \frac{p-k}{2}p^{m-1})^2 \equiv a \mod p^m$</p>
-</li>
+<li><p>若 <span class="math inline">\(k\)</span> 是偶数，<span class="math inline">\((x_{m-1} - \frac{k}{2}p^{m-1})^2 \equiv a \mod p^m\)</span></p></li>
+<li><p>若 <span class="math inline">\(k\)</span> 是奇数，<span class="math inline">\((x_{m-1} + \frac{p-k}{2}p^{m-1})^2 \equiv a \mod p^m\)</span></p></li>
 </ul>
-<p>对一般的 $n = p_1^{m_1} \cdots p_r ^{m_r}$，我们对每个 $(a, p_i ^m)$ 给出一个解，再用 <a href="../chineseRemainTheorem">中国剩余定理</a> 拼出最终解。</p>
-<h3 id="x-2-equiv-a-mod-n-的一个解的-Sagemath-代码"><a href="#x-2-equiv-a-mod-n-的一个解的-Sagemath-代码" class="headerlink" title="$x^2 \equiv a \mod n$ 的一个解的 Sagemath 代码"></a>$x^2 \equiv a \mod n$ 的一个解的 Sagemath 代码</h3><blockquote>
+<p>对一般的 <span class="math inline">\(n = p_1^{m_1} \cdots p_r ^{m_r}\)</span>，我们对每个 <span class="math inline">\((a, p_i ^m)\)</span> 给出一个解，再用 <a href="../chineseRemainTheorem">中国剩余定理</a> 拼出最终解。</p>
+<h3 id="x2-equiv-a-mod-n-的一个解的-sagemath-代码"><span class="math inline">\(x^2 \equiv a \mod n\)</span> 的一个解的 Sagemath 代码</h3>
+<blockquote>
 <p>需要用到上面的 <code>modSqrtSymbol</code> 函数</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># modSqrt.ipynb</span><br><br><span class="hljs-comment"># find one x s.t. x^2 = a mod 2^m, gcd(a,2) = 1 and 0 &lt; a &lt; 2^m and must have an answer</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">modSqrt2Core</span>(<span class="hljs-params">a,m</span>):</span><br>  x = <span class="hljs-number">1</span><br>  <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">4</span>,m+<span class="hljs-number">1</span>):<br>    <span class="hljs-keyword">if</span> (x*x-a)%(<span class="hljs-number">1</span>&lt;&lt;i) != <span class="hljs-number">0</span>:<br>      x = (<span class="hljs-number">1</span>&lt;&lt;i-<span class="hljs-number">2</span>)-x<br>  <span class="hljs-keyword">return</span> x<br><br><span class="hljs-comment"># find one x s.t. x^2 = a mod p^m, gcd(a,p)=1, p&gt;2 and  0 &lt; a &lt; p^m and must have an answer</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">modSqrtPCore</span>(<span class="hljs-params">a,p,m</span>):</span><br>  n = p^m<br>  q = p^(m-<span class="hljs-number">1</span>)*(p-<span class="hljs-number">1</span>)&gt;&gt;<span class="hljs-number">1</span><br>  <span class="hljs-keyword">if</span> q%<span class="hljs-number">2</span> == <span class="hljs-number">1</span>:<br>    <span class="hljs-keyword">return</span> power_mod(a,(q+<span class="hljs-number">1</span>)&gt;&gt;<span class="hljs-number">1</span>,n)<br>  b=randint(<span class="hljs-number">0</span>,n-<span class="hljs-number">1</span>)<br>  <span class="hljs-keyword">while</span>(power_mod(b,q,n)==<span class="hljs-number">1</span>):<br>    b=randint(<span class="hljs-number">0</span>,n-<span class="hljs-number">1</span>)<br>  ni = q&amp;(-q)<br>  q //= ni<br>  x = power_mod(a,(q+<span class="hljs-number">1</span>)&gt;&gt;<span class="hljs-number">1</span>,n)<br>  y = power_mod(b,q,n)<br>  t = power_mod(a,q,n)<br>  <span class="hljs-comment"># x^2 = ta mod n, y^ni = -1 mod n</span><br>  <span class="hljs-keyword">while</span> t != <span class="hljs-number">1</span>:<br>    ns = <span class="hljs-number">1</span>;tt=t*t;<br>    <span class="hljs-keyword">while</span> tt!=<span class="hljs-number">1</span>:<br>        tt=(tt*tt)%n<br>        ns&lt;&lt;=<span class="hljs-number">1</span><br>    <span class="hljs-comment"># t^ns = -1 mod n</span><br>    t = power_mod(y,ni//ns,n)*t%n<br>    x = power_mod(y,ni//(ns*<span class="hljs-number">2</span>),n)*x%n<br>  <span class="hljs-keyword">return</span> x<br><br><span class="hljs-comment"># find one x s.t. x^2 = a mod p^m and must have an answer</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">modPowerSqrt</span>(<span class="hljs-params">a,p,m</span>):</span><br>  n = p^m<br>  a %= n<br>  <span class="hljs-keyword">if</span> a == <span class="hljs-number">0</span>:<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span><br>  time = <span class="hljs-number">0</span><br>  <span class="hljs-keyword">while</span> a%p==<span class="hljs-number">0</span>:<br>    a//=p<br>    m-=<span class="hljs-number">1</span><br>    time+=<span class="hljs-number">1</span><br>  <span class="hljs-keyword">if</span> a == <span class="hljs-number">0</span>:<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>**(time//<span class="hljs-number">2</span>)*(modSqrt2Core(a,m) <span class="hljs-keyword">if</span> p==<span class="hljs-number">2</span> <span class="hljs-keyword">else</span> modSqrtPCore(a,p,m))<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">modSqrt</span>(<span class="hljs-params">a,n</span>):</span><br>  <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> modSqrtSymbol(a,n):<br>    <span class="hljs-keyword">return</span> []<br>  fact = <span class="hljs-built_in">list</span>(factor(n))<br>  x = [modPowerSqrt(a,p,m) <span class="hljs-keyword">for</span> p,m <span class="hljs-keyword">in</span> fact]<br>  m = [p^m <span class="hljs-keyword">for</span> p,m <span class="hljs-keyword">in</span> fact]<br>  <span class="hljs-keyword">return</span> crt(x,m)<br><br><span class="hljs-comment"># 测试几个样例</span><br>a,m = <span class="hljs-number">17</span>,<span class="hljs-number">2</span>**<span class="hljs-number">8</span><br>x =  modSqrt(a,m)<br><span class="hljs-built_in">print</span>(x,x*x%m,a,m)<br><br>a,m = <span class="hljs-number">15</span>,<span class="hljs-number">7</span>**<span class="hljs-number">8</span><br>x =  modSqrt(a,m)<br><span class="hljs-built_in">print</span>(x,x*x%m,a,m)<br><br>a,m = <span class="hljs-number">16</span>,<span class="hljs-number">3</span>*<span class="hljs-number">5</span>*<span class="hljs-number">5</span>*<span class="hljs-number">7</span>*<span class="hljs-number">7</span>*<span class="hljs-number">7</span><br>x =  modSqrt(a,m)<br><span class="hljs-built_in">print</span>(x,x*x%m,a,m)<br></code></pre></td></tr></table></figure>

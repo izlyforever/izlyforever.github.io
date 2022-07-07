@@ -222,7 +222,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          652 字
+          660 字
         
       </span>
     
@@ -288,21 +288,25 @@
               <p>整体二分是 由 许昊然 于 2013 年集训队论文《浅谈数据结构题的几个非经典解法》提出的一类<strong>离线算法</strong>。</p>
 <p>学习资料：<a target="_blank" rel="noopener" href="https://oi-wiki.org/misc/parallel-binsearch/">oi-wiki</a>，<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/237500272">知乎</a></p>
 <span id="more"></span>
-<h2 id="不修改版本"><a href="#不修改版本" class="headerlink" title="不修改版本"></a>不修改版本</h2><p>看了 OI-wiki 老半天，终于懂了，其它就是求一个区间 $[L, R]$ 中小于某个数的个数，可以转化成，求 $[1, R]$ 的答案减去 $[1, L - 1]$ 的答案，而最合适的数据结构就是 树状数组了。然后我们对原始区间的所有数分到两边去，为了保留原始的位置，我们存一下位置和值。那么大于估计答案 m 的值放在右边，否则放在左边。注意到右边所有的数都是大于 m 的。因此我们就需要看一下这个区间里有多少个值放在了左边，我们需要把它减掉！就是这样结束了。</p>
-<p>模板例题：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3834">https://www.luogu.com.cn/problem/P3834</a> 的<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/50387237">提交</a></p>
+<h2 id="不修改版本">不修改版本</h2>
+<p>看了 OI-wiki 老半天，终于懂了，其它就是求一个区间 <span class="math inline">\([L, R]\)</span> 中小于某个数的个数，可以转化成，求 <span class="math inline">\([1, R]\)</span> 的答案减去 <span class="math inline">\([1, L - 1]\)</span> 的答案，而最合适的数据结构就是 树状数组了。然后我们对原始区间的所有数分到两边去，为了保留原始的位置，我们存一下位置和值。那么大于估计答案 m 的值放在右边，否则放在左边。注意到右边所有的数都是大于 m 的。因此我们就需要看一下这个区间里有多少个值放在了左边，我们需要把它减掉！就是这样结束了。</p>
+<p>模板例题：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3834" class="uri">https://www.luogu.com.cn/problem/P3834</a> 的<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/50387237">提交</a></p>
 <blockquote>
-<p>注意到我们可以把 $a$ 中数组的添加操作，当作修改操作！这样就通了！</p>
+<p>注意到我们可以把 <span class="math inline">\(a\)</span> 中数组的添加操作，当作修改操作！这样就通了！</p>
 </blockquote>
-<h2 id="单点更新版本"><a href="#单点更新版本" class="headerlink" title="单点更新版本"></a>单点更新版本</h2><p>例题：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2617">https://www.luogu.com.cn/problem/P2617</a> 的<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/50387288">提交</a> 比用真在线不离散化动态开点的做法要快不少</p>
+<h2 id="单点更新版本">单点更新版本</h2>
+<p>例题：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2617" class="uri">https://www.luogu.com.cn/problem/P2617</a> 的<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/50387288">提交</a> 比用真在线不离散化动态开点的做法要快不少</p>
 <blockquote>
 <p>用 <code>k = -1</code> 表示修改，可以节省内存，且更加优雅</p>
 </blockquote>
-<h2 id="区间更新版本"><a href="#区间更新版本" class="headerlink" title="区间更新版本"></a>区间更新版本</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3332">https://www.luogu.com.cn/problem/P3332</a> 求第 k 大，我们把所有的数取负数就是求第 k 小了 0.0。机智如我！另外我们可以用区间修改的树状数组替代线段树，nice，<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/50388333">提交</a></p>
+<h2 id="区间更新版本">区间更新版本</h2>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3332" class="uri">https://www.luogu.com.cn/problem/P3332</a> 求第 k 大，我们把所有的数取负数就是求第 k 小了 0.0。机智如我！另外我们可以用区间修改的树状数组替代线段树，nice，<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/50388333">提交</a></p>
 <blockquote>
 <p>这题如果强制在线，可以线段树套权值线段树也可以做就是写的比较恶心人</p>
 </blockquote>
-<h2 id="拓展应用"><a href="#拓展应用" class="headerlink" title="拓展应用"></a>拓展应用</h2><p>待补</p>
-<p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/agc002/tasks/agc002_d?lang=en">https://atcoder.jp/contests/agc002/tasks/agc002_d?lang=en</a></p>
+<h2 id="拓展应用">拓展应用</h2>
+<p>待补</p>
+<p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/agc002/tasks/agc002_d?lang=en" class="uri">https://atcoder.jp/contests/agc002/tasks/agc002_d?lang=en</a></p>
 
               
             </div>

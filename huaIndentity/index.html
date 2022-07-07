@@ -18,12 +18,12 @@
   <meta name="author" content="izlyforever">
   <meta name="keywords" content="math, cpp, python, sagemath">
   
-    <meta name="description" content="华罗庚恒等式有两个，都看似奇怪但都有其深刻的应用(数学内部的)  若在一个环中 $a,b,1-ab$ 都可逆，则  \left( (a-b^{-1})^{-1} - a^{-1} \right)^{-1} &#x3D; aba - a 若在一个环中  a &#x3D; \left( b^{-1} - (a-1)^{-1}b^{-1}(a-1) \right) \left (a^{-1} b^{-1}a-(a-1)^{">
+    <meta name="description" content="华罗庚恒等式有两个，都看似奇怪但都有其深刻的应用(数学内部的)  若在一个环中 \(a,b,1-ab\) 都可逆，则 \[ \left( (a-b^{-1})^{-1} - a^{-1} \right)^{-1} &#x3D; aba - a \] 若在一个环中 \[ a &#x3D; \left( b^{-1} - (a-1)^{-1}b^{-1}(a-1) \right) \left (a^{-1} b^{-1}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="华罗庚恒等式">
 <meta property="og:url" content="http://izlyforever.com/huaIndentity/index.html">
 <meta property="og:site_name" content="记录程序和数学的点滴">
-<meta property="og:description" content="华罗庚恒等式有两个，都看似奇怪但都有其深刻的应用(数学内部的)  若在一个环中 $a,b,1-ab$ 都可逆，则  \left( (a-b^{-1})^{-1} - a^{-1} \right)^{-1} &#x3D; aba - a 若在一个环中  a &#x3D; \left( b^{-1} - (a-1)^{-1}b^{-1}(a-1) \right) \left (a^{-1} b^{-1}a-(a-1)^{">
+<meta property="og:description" content="华罗庚恒等式有两个，都看似奇怪但都有其深刻的应用(数学内部的)  若在一个环中 \(a,b,1-ab\) 都可逆，则 \[ \left( (a-b^{-1})^{-1} - a^{-1} \right)^{-1} &#x3D; aba - a \] 若在一个环中 \[ a &#x3D; \left( b^{-1} - (a-1)^{-1}b^{-1}(a-1) \right) \left (a^{-1} b^{-1}">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2016-03-22T04:06:31.000Z">
 <meta property="article:modified_time" content="2022-06-25T09:14:02.541Z">
@@ -222,7 +222,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.5k 字
+          1.6k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
           <!-- compatible with older versions-->
-          13 分钟
+          14 分钟
         
       </span>
     
@@ -286,54 +286,69 @@
             <div class="markdown-body">
               
               <p>华罗庚恒等式有两个，都看似奇怪但都有其深刻的应用(数学内部的)</p>
-<ol>
-<li><p>若在一个环中 $a,b,1-ab$ 都可逆，则</p>
-<script type="math/tex; mode=display">
-\left( (a-b^{-1})^{-1} - a^{-1} \right)^{-1} = aba - a</script></li>
-<li><p>若在一个环中</p>
-<script type="math/tex; mode=display">
-a = \left( b^{-1} - (a-1)^{-1}b^{-1}(a-1) \right) \left (a^{-1} b^{-1}a-(a-1)^{-1}b^{-1}(a-1) \right)^{-1}</script></li>
+<ol type="1">
+<li><p>若在一个环中 <span class="math inline">\(a,b,1-ab\)</span> 都可逆，则 <span class="math display">\[
+\left( (a-b^{-1})^{-1} - a^{-1} \right)^{-1} = aba - a
+\]</span></p></li>
+<li><p>若在一个环中 <span class="math display">\[
+a = \left( b^{-1} - (a-1)^{-1}b^{-1}(a-1) \right) \left (a^{-1} b^{-1}a-(a-1)^{-1}b^{-1}(a-1) \right)^{-1}
+\]</span></p></li>
 </ol>
 <span id="more"></span>
 <p>上面两个恒等式直接验算即知，可是华老当初怎么想到这两个很奇怪的恒等式呢，怎么导入的，有什么应用呢？</p>
 <p>当然以下也只是我的个人猜测加上 Wikipedia 的一些参考。</p>
-<h2 id="在环中-1-ba-可逆当且仅当-1-ab-可逆"><a href="#在环中-1-ba-可逆当且仅当-1-ab-可逆" class="headerlink" title="在环中,  1-ba 可逆当且仅当 1-ab 可逆"></a>在环中,  1-ba 可逆当且仅当 1-ab 可逆</h2><script type="math/tex; mode=display">
-(1-ba)^{-1} = 1+ b(1-ab)^{-1}a</script><p>上面恒等式直接证明是显然的，应用却 666，6 到要吐。<br>问题在于为什么想到这样奇怪的式子呢？思路怎么来的呢？<br>我们知道，当 $0&lt;x&lt;1$ 时，</p>
-<script type="math/tex; mode=display">
-\frac{1}{1-x} = \sum_{n=0}^{\infty} {x^n}</script><p>因此，形式上我们有</p>
+<h2 id="在环中-1-ba-可逆当且仅当-1-ab-可逆">在环中, 1-ba 可逆当且仅当 1-ab 可逆</h2>
+<p><span class="math display">\[
+(1-ba)^{-1} = 1+ b(1-ab)^{-1}a
+\]</span></p>
+<p>上面恒等式直接证明是显然的，应用却 666，6 到要吐。 问题在于为什么想到这样奇怪的式子呢？思路怎么来的呢？ 我们知道，当 <span class="math inline">\(0&lt;x&lt;1\)</span> 时， <span class="math display">\[
+\frac{1}{1-x} = \sum_{n=0}^{\infty} {x^n}
+\]</span> 因此，形式上我们有</p>
 <p>讲上述不等式应用到矩阵形式即可得到 Sherman–Morrison 恒等式</p>
-<h2 id="在环中，若-a-b-ab-1-可逆，则"><a href="#在环中，若-a-b-ab-1-可逆，则" class="headerlink" title="在环中，若 $a,b,ab-1$ 可逆，则"></a>在环中，若 $a,b,ab-1$ 可逆，则</h2><p>由上面恒等式我们知道</p>
-<script type="math/tex; mode=display">
-(ab-1)^{-1} = a(ba-1)^{-1}b - 1</script><p>因此</p>
-<script type="math/tex; mode=display">
-\begin{aligned} (a-b^{-1})^{-1} &= \left((ab-1)b^{-1} \right)^{-1} \\
-&= b\left( a(ba-1)^{-1}b - 1 \right) \\
-&= ba(ba-1)^{-1}b - b  \\
-&= (ba-1)^{-1}b
-\end{aligned}</script><p>注意到</p>
-<script type="math/tex; mode=display">
-\begin{aligned}  (ba-1)^{-1}b - a^{-1} &= (ba-1)^{-1}baa^{-1} - a^{-1} \\
-&= (ba-1)^{-1}a^{-1} \\
-&= (aba-a)^{-1}
-\end{aligned}</script><p>因此，华罗庚等式 1： $ \left( (a-b^{-1})^{-1} - a^{-1} \right)^{-1} = aba - a$ 得证。</p>
-<h2 id="一个重要恒等式"><a href="#一个重要恒等式" class="headerlink" title="一个重要恒等式"></a>一个重要恒等式</h2><script type="math/tex; mode=display">
-b^{-1} - a^{-1} = ( b+b(a-b)^{-1}b )^{-1}</script><p>上面恒等式与逆算子连续性有关系。<br>证明：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}  (b^{-1} - a^{-1})^{-1} &= (1-ba^{-1})^{-1}b \\
-&=(1+b(1-a^{-1}b)^{-1}a^{-1})b \\
-&= b+b(a-b)^{-1}b
-\end{aligned}</script><h2 id="华罗庚恒等式-2-证明"><a href="#华罗庚恒等式-2-证明" class="headerlink" title="华罗庚恒等式 2 证明"></a>华罗庚恒等式 2 证明</h2><script type="math/tex; mode=display">
+<h2 id="在环中若-abab-1-可逆则">在环中，若 <span class="math inline">\(a,b,ab-1\)</span> 可逆，则</h2>
+<p>由上面恒等式我们知道 <span class="math display">\[
+(ab-1)^{-1} = a(ba-1)^{-1}b - 1
+\]</span> 因此 <span class="math display">\[
+\begin{aligned} (a-b^{-1})^{-1} &amp;= \left((ab-1)b^{-1} \right)^{-1} \\
+&amp;= b\left( a(ba-1)^{-1}b - 1 \right) \\
+&amp;= ba(ba-1)^{-1}b - b  \\
+&amp;= (ba-1)^{-1}b
+\end{aligned}
+\]</span></p>
+<p>注意到</p>
+<p><span class="math display">\[
+\begin{aligned}  (ba-1)^{-1}b - a^{-1} &amp;= (ba-1)^{-1}baa^{-1} - a^{-1} \\
+&amp;= (ba-1)^{-1}a^{-1} \\
+&amp;= (aba-a)^{-1}
+\end{aligned}
+\]</span> 因此，华罗庚等式 1： $ ( (a-b<sup>{-1})</sup>{-1} - a^{-1} )^{-1} = aba - a$ 得证。</p>
+<h2 id="一个重要恒等式">一个重要恒等式</h2>
+<p><span class="math display">\[
+b^{-1} - a^{-1} = ( b+b(a-b)^{-1}b )^{-1}
+\]</span></p>
+<p>上面恒等式与逆算子连续性有关系。 证明： <span class="math display">\[
+\begin{aligned}  (b^{-1} - a^{-1})^{-1} &amp;= (1-ba^{-1})^{-1}b \\
+&amp;=(1+b(1-a^{-1}b)^{-1}a^{-1})b \\
+&amp;= b+b(a-b)^{-1}b
+\end{aligned}
+\]</span></p>
+<h2 id="华罗庚恒等式-2-证明">华罗庚恒等式 2 证明</h2>
+<p><span class="math display">\[
 \begin{aligned}
-a \left( a^{-1}b^{-1}a - (a-1)^{-1} b^{-1}(a-1) \right) &=
+a \left( a^{-1}b^{-1}a - (a-1)^{-1} b^{-1}(a-1) \right) &amp;=
 (b^{-1}a- a(a-1)^{-1} b^{-1} (a-1) \\
-&= ( 1-a(a-1)^{-1} )b^{-1}a + (a-1+1) (a-1)b^{-1} )^{-1} \\
-&= -(a-1)^{-1}b^{-1}a + b^{-1} + (a-1)b^{-1} \\
-&= b^{-1} - (a-1)^{-1} b^{-1}(a-1)
-\end{aligned}</script><h2 id="华罗庚恒等式的意义"><a href="#华罗庚恒等式的意义" class="headerlink" title="华罗庚恒等式的意义"></a>华罗庚恒等式的意义</h2><ol>
-<li>华罗庚第一个恒等式可以用来证明一个 Hua’s Theorem：除环间中保持加法和幺元以及逆元的映射必然是除环间的同态或者反同态。</li>
+&amp;= ( 1-a(a-1)^{-1} )b^{-1}a + (a-1+1) (a-1)b^{-1} )^{-1} \\
+&amp;= -(a-1)^{-1}b^{-1}a + b^{-1} + (a-1)b^{-1} \\
+&amp;= b^{-1} - (a-1)^{-1} b^{-1}(a-1)
+\end{aligned}
+\]</span></p>
+<h2 id="华罗庚恒等式的意义">华罗庚恒等式的意义</h2>
+<ol type="1">
+<li>华罗庚第一个恒等式可以用来证明一个 Hua's Theorem：除环间中保持加法和幺元以及逆元的映射必然是除环间的同态或者反同态。</li>
 <li>华罗庚第二个恒等式可以证明 Cartan-Brauer-Hua Theorem 即一个除环的真子除环的单位群如果是原除环的单位群的正规子群，则该子除环一定包含于除环的中心。</li>
 </ol>
-<h2 id="最后用一句广为流传的话结尾"><a href="#最后用一句广为流传的话结尾" class="headerlink" title="最后用一句广为流传的话结尾"></a>最后用一句广为流传的话结尾</h2><blockquote>
+<h2 id="最后用一句广为流传的话结尾">最后用一句广为流传的话结尾</h2>
+<blockquote>
 <p>龙生龙，凤生凤，华罗庚的学生会打洞（矩阵打洞）</p>
 </blockquote>
 

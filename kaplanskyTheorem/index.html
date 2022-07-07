@@ -18,12 +18,12 @@
   <meta name="author" content="izlyforever">
   <meta name="keywords" content="math, cpp, python, sagemath">
   
-    <meta name="description" content="(非交换)环中有一个有趣的（Kaplansky）定理说：  如果环 $R$ 中元素 $a$ 有不止一个右逆，那么 $a$ 有无数多个右逆。  像极了出轨只有零次，或者无数次。">
+    <meta name="description" content="(非交换)环中有一个有趣的（Kaplansky）定理说：  如果环 \(R\) 中元素 \(a\) 有不止一个右逆，那么 \(a\) 有无数多个右逆。  像极了出轨只有零次，或者无数次。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kaplansky 定理">
 <meta property="og:url" content="http://izlyforever.com/kaplanskyTheorem/index.html">
 <meta property="og:site_name" content="记录程序和数学的点滴">
-<meta property="og:description" content="(非交换)环中有一个有趣的（Kaplansky）定理说：  如果环 $R$ 中元素 $a$ 有不止一个右逆，那么 $a$ 有无数多个右逆。  像极了出轨只有零次，或者无数次。">
+<meta property="og:description" content="(非交换)环中有一个有趣的（Kaplansky）定理说：  如果环 \(R\) 中元素 \(a\) 有不止一个右逆，那么 \(a\) 有无数多个右逆。  像极了出轨只有零次，或者无数次。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2017-03-25T06:30:42.000Z">
 <meta property="article:modified_time" content="2022-06-25T09:14:02.545Z">
@@ -222,7 +222,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          710 字
+          770 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
           <!-- compatible with older versions-->
-          6 分钟
+          7 分钟
         
       </span>
     
@@ -287,22 +287,25 @@
               
               <p>(非交换)环中有一个有趣的（Kaplansky）定理说：</p>
 <blockquote>
-<p>如果环 $R$ 中元素 $a$ 有不止一个右逆，那么 $a$ 有无数多个右逆。</p>
+<p>如果环 <span class="math inline">\(R\)</span> 中元素 <span class="math inline">\(a\)</span> 有不止一个右逆，那么 <span class="math inline">\(a\)</span> 有无数多个右逆。</p>
 </blockquote>
 <p><strong>像极了出轨只有零次，或者无数次。</strong></p>
 <span id="more"></span>
 <blockquote>
-<p>(Kaplansky) Suppose an element $a$ in a ring $R$ has more than one right inverse. Show that $a$ has infinitely many right inverses.</p>
+<p>(Kaplansky) Suppose an element <span class="math inline">\(a\)</span> in a ring <span class="math inline">\(R\)</span> has more than one right inverse. Show that <span class="math inline">\(a\)</span> has infinitely many right inverses.</p>
 </blockquote>
-<h2 id="Kaplansky-若环-R-中元素-a-有不止一个右逆，那么它有无数个右逆"><a href="#Kaplansky-若环-R-中元素-a-有不止一个右逆，那么它有无数个右逆" class="headerlink" title="(Kaplansky) 若环 $R$ 中元素 $a$ 有不止一个右逆，那么它有无数个右逆"></a>(Kaplansky) 若环 $R$ 中元素 $a$ 有不止一个右逆，那么它有无数个右逆</h2><p>证明：（反证法）设 $a$ 的所有右逆构成的集合为 $A = \lbrace x \in R \mid a x = 1 \rbrace$.</p>
-<p>若 $A$ 有限，不妨设 $A = \lbrace x_1,x_2,\cdots,x_n \rbrace, (n&gt;1)$ , 则</p>
-<script type="math/tex; mode=display">
-a(1- x_i a + x_1) = a-(a x_i) a + a x_1 = 1</script><p>并且, 若 $1 - x_i a + x_1 = 1 - x_j a + x_1$, 即 $x_i a = x_j a,$ 那么 $x_i = x_i(a x_i)=(x_j a) x_j$, 也就是说</p>
-<script type="math/tex; mode=display">
-A = \lbrace x_1,x_2,\cdots,x_n \rbrace =  \lbrace 1- x_1 a + x_1,1- x_2 a + x_1,\cdots,1- x_n a + x_1 \rbrace</script><p>所以存在 $k$ 使得 $1 - x_k a + x_1 = x_1$，即 $x_k a = 1$ 所以对任意 $1 \leq i \leq n$,</p>
-<script type="math/tex; mode=display">
-x_i = (x_k a) x_i = x_k (a x_i) = x_k</script><p>即所有 $x_i$ 都相同，矛盾与 $A$ 中元素个数大于 1，证毕。</p>
-<h2 id="等价叙述：-如果环-R-中元素-a-有右逆而没有左逆，那么-a-有无穷多个右逆"><a href="#等价叙述：-如果环-R-中元素-a-有右逆而没有左逆，那么-a-有无穷多个右逆" class="headerlink" title="等价叙述： 如果环 $R$ 中元素 $a$ 有右逆而没有左逆，那么 $a$ 有无穷多个右逆"></a>等价叙述： 如果环 $R$ 中元素 $a$ 有右逆而没有左逆，那么 $a$ 有无穷多个右逆</h2><blockquote>
+<h2 id="kaplansky-若环-r-中元素-a-有不止一个右逆那么它有无数个右逆">(Kaplansky) 若环 <span class="math inline">\(R\)</span> 中元素 <span class="math inline">\(a\)</span> 有不止一个右逆，那么它有无数个右逆</h2>
+<p>证明：（反证法）设 <span class="math inline">\(a\)</span> 的所有右逆构成的集合为 <span class="math inline">\(A = \lbrace x \in R \mid a x = 1 \rbrace\)</span>.</p>
+<p>若 <span class="math inline">\(A\)</span> 有限，不妨设 <span class="math inline">\(A = \lbrace x_1,x_2,\cdots,x_n \rbrace, (n&gt;1)\)</span> , 则 <span class="math display">\[
+a(1- x_i a + x_1) = a-(a x_i) a + a x_1 = 1
+\]</span> 并且, 若 <span class="math inline">\(1 - x_i a + x_1 = 1 - x_j a + x_1\)</span>, 即 <span class="math inline">\(x_i a = x_j a,\)</span> 那么 <span class="math inline">\(x_i = x_i(a x_i)=(x_j a) x_j\)</span>, 也就是说 <span class="math display">\[
+A = \lbrace x_1,x_2,\cdots,x_n \rbrace =  \lbrace 1- x_1 a + x_1,1- x_2 a + x_1,\cdots,1- x_n a + x_1 \rbrace
+\]</span> 所以存在 <span class="math inline">\(k\)</span> 使得 <span class="math inline">\(1 - x_k a + x_1 = x_1\)</span>，即 <span class="math inline">\(x_k a = 1\)</span> 所以对任意 <span class="math inline">\(1 \leq i \leq n\)</span>, <span class="math display">\[
+x_i = (x_k a) x_i = x_k (a x_i) = x_k
+\]</span></p>
+<p>即所有 <span class="math inline">\(x_i\)</span> 都相同，矛盾与 <span class="math inline">\(A\)</span> 中元素个数大于 1，证毕。</p>
+<h2 id="等价叙述-如果环-r-中元素-a-有右逆而没有左逆那么-a-有无穷多个右逆">等价叙述： 如果环 <span class="math inline">\(R\)</span> 中元素 <span class="math inline">\(a\)</span> 有右逆而没有左逆，那么 <span class="math inline">\(a\)</span> 有无穷多个右逆</h2>
+<blockquote>
 <p>通俗的讲就是，如果你喜欢一个不喜欢你的人，那你不仅仅只喜欢这个人。</p>
 </blockquote>
 

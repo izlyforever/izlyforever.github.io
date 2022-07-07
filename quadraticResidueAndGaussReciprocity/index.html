@@ -223,7 +223,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          3k 字
+          3.1k 字
         
       </span>
     
@@ -289,76 +289,108 @@
               <p>从二次剩余问题，引入 Legendre 符号，由此一步步导出 Gauss 互反律，最后延伸到 Jacobi 符号，整个步骤确实连贯优美，脍炙人口。</p>
 <span id="more"></span>
 <p>寒假回家好好调整了一下状态，回学校后感觉还不错，效率也蛮高。发现理图虽然比较破，但是还是很不错的，哈哈哈。每次读潘承洞先生的《数论基础》都觉得受益匪浅，我把自己很喜欢的部分写入到该文中。</p>
-<h2 id="二次剩余"><a href="#二次剩余" class="headerlink" title="二次剩余"></a>二次剩余</h2><p>考虑如下形式二次同余式</p>
-<script type="math/tex; mode=display">
-x^2 \equiv  a \; \mod \; p</script><p>其中 $p$ 是奇素数，$a$ 是非负整数。若上述方程有解，则称 $a$ 是 $p$ 的二次剩余，记作 $a\; R \; p$，否则称 $a$ 是 $p$ 的二次非剩余，记作 $a \; \overline{R}\; p$ 。$p=2$ 时就没啥意思了，所以 <strong>仅考虑奇素数。</strong></p>
-<p>经过简单推理很容易发现，在模 $p$ 的简化系中，二次剩余与二次非剩余各占一半。且容易知道，$1^2,2^2,\cdots,(\frac{p-1}{2})^2$ 都是 $p$ 二次剩余。</p>
-<h2 id="Legendre-符号"><a href="#Legendre-符号" class="headerlink" title="Legendre 符号"></a>Legendre 符号</h2><script type="math/tex; mode=display">
-\left( \frac{a}{p} \right) = \left\{ \begin{array}{cc} 1, & a\; R\; p \\
-0, & p \mid a \\
--1, & a\; \overline{R}\; p. \end{array} \right.</script><h3 id="定理-1-quad-frac-a-p-p-1-equiv-a-frac-p-1-2-mod-p"><a href="#定理-1-quad-frac-a-p-p-1-equiv-a-frac-p-1-2-mod-p" class="headerlink" title="定理 1: $ \quad -(\frac{a}{p}) (p-1)! \equiv a^{\frac{p-1}{2}} \mod p $"></a>定理 1: $ \quad -(\frac{a}{p}) (p-1)! \equiv a^{\frac{p-1}{2}} \mod p $</h3><p><strong>Proof</strong>: 对于 $p \mid a$ 的情形，结论显然。下面考虑 $(p,a)=1$ 的情形，令</p>
-<script type="math/tex; mode=display">
- S = \lbrace 1,2,\cdots,p-1 \rbrace</script><p>对任意的 $ x \in S $ 必存在唯一的 $ y \in S $ 为下面同余式的解</p>
-<script type="math/tex; mode=display">
-yx \equiv a \; \mod p</script><p>当 $ (\frac{a}{p}) = -1 $ 时，同余式 $ x^2 = a \; \mod p$ 无解，所以 $y \neq x $ .因此集合 $S$ 中的元素可以分成 $\frac{p-1}{2} $ 对，我们就有</p>
-<script type="math/tex; mode=display">
-(p-1)! \equiv a^{\frac{p-1}{2}} \;\mod p</script><p>当 $ (\frac{a}{p}) = 1 $ 时，同余式 $ x^2 = a \; \mod p $有两个解 $x_0$ 和 $p - x_0$.在$S$中去掉这两个数外剩下$p-3$个数分出 $\frac{p-3}{2}$对，则有</p>
-<script type="math/tex; mode=display">
-(p-1)! \equiv a^{\frac{p-3}{2}}x_0(p-x_0) \equiv - a^{\frac{p-1}{2}} \; \mod p</script><p> 证毕。</p>
-<h2 id="推论-2-Wilson-定理"><a href="#推论-2-Wilson-定理" class="headerlink" title="推论 2 (Wilson 定理)"></a>推论 2 (Wilson 定理)</h2><script type="math/tex; mode=display">
-(p-1)! \equiv -1 \;\mod p</script><p><strong>Proof</strong>: <strong>定理 1</strong> 中取 $a=1$ 即可。</p>
-<h2 id="推论-3-Euler-判别法"><a href="#推论-3-Euler-判别法" class="headerlink" title="推论 3(Euler 判别法)"></a>推论 3(Euler 判别法)</h2><script type="math/tex; mode=display">
-\left( \frac{a}{p} \right ) \equiv a^{\frac{p-1}{2}} \; \mod \;p</script><p><strong>Proof</strong>: 由 <strong>定理 1</strong> 和 <strong>推论 2</strong> 显然。Euler 判别法不仅有理论价值(下面都是推论 3 的直接推论)，由于快速幂的存在，使得 Euler 判别法在计算时有相当好的效果。</p>
-<h2 id="推论-4-Format-小定理-设-a-p-1-则"><a href="#推论-4-Format-小定理-设-a-p-1-则" class="headerlink" title="推论 4(Format 小定理) 设 $(a,p)=1$ ,则"></a>推论 4(Format 小定理) 设 $(a,p)=1$ ,则</h2><script type="math/tex; mode=display">
-a^{p-1} \equiv 1 \;\mod p</script><h2 id="推论-5：-frac-1-p-1-frac-p-1-2"><a href="#推论-5：-frac-1-p-1-frac-p-1-2" class="headerlink" title="推论 5：$(\frac{-1}{p}) = (-1)^{\frac{p-1}{2}}$"></a>推论 5：$(\frac{-1}{p}) = (-1)^{\frac{p-1}{2}}$</h2><h2 id="推论-6：-frac-ab-p-frac-a-p-frac-b-p"><a href="#推论-6：-frac-ab-p-frac-a-p-frac-b-p" class="headerlink" title="推论 6：$(\frac{ab}{p}) =(\frac{a}{p})(\frac{b}{p}) $"></a>推论 6：$(\frac{ab}{p}) =(\frac{a}{p})(\frac{b}{p}) $</h2><blockquote>
-<p>推论 6 说明，我们求 Legendre 符号，只需求 $ (\frac{2}{p}),(\frac{q}{p}) $ 即可</p>
+<h2 id="二次剩余">二次剩余</h2>
+<p>考虑如下形式二次同余式 <span class="math display">\[
+x^2 \equiv  a \; \mod \; p
+\]</span> 其中 <span class="math inline">\(p\)</span> 是奇素数，<span class="math inline">\(a\)</span> 是非负整数。若上述方程有解，则称 <span class="math inline">\(a\)</span> 是 <span class="math inline">\(p\)</span> 的二次剩余，记作 <span class="math inline">\(a\; R \; p\)</span>，否则称 <span class="math inline">\(a\)</span> 是 <span class="math inline">\(p\)</span> 的二次非剩余，记作 <span class="math inline">\(a \; \overline{R}\; p\)</span> 。<span class="math inline">\(p=2\)</span> 时就没啥意思了，所以 <strong>仅考虑奇素数。</strong></p>
+<p>经过简单推理很容易发现，在模 <span class="math inline">\(p\)</span> 的简化系中，二次剩余与二次非剩余各占一半。且容易知道，<span class="math inline">\(1^2,2^2,\cdots,(\frac{p-1}{2})^2\)</span> 都是 <span class="math inline">\(p\)</span> 二次剩余。</p>
+<h2 id="legendre-符号">Legendre 符号</h2>
+<p><span class="math display">\[
+\left( \frac{a}{p} \right) = \left\{ \begin{array}{cc} 1, &amp; a\; R\; p \\
+0, &amp; p \mid a \\
+-1, &amp; a\; \overline{R}\; p. \end{array} \right.
+\]</span></p>
+<h3 id="定理-1---p-1-a-p">定理 1: $ -() (p-1)! a^{} p $</h3>
+<p><strong>Proof</strong>: 对于 <span class="math inline">\(p \mid a\)</span> 的情形，结论显然。下面考虑 <span class="math inline">\((p,a)=1\)</span> 的情形，令 <span class="math display">\[
+ S = \lbrace 1,2,\cdots,p-1 \rbrace
+\]</span> 对任意的 $ x S $ 必存在唯一的 $ y S $ 为下面同余式的解</p>
+<p><span class="math display">\[
+yx \equiv a \; \mod p
+\]</span></p>
+<p>当 $ () = -1 $ 时，同余式 $ x^2 = a ; p$ 无解，所以 $y x $ .因此集合 <span class="math inline">\(S\)</span> 中的元素可以分成 $ $ 对，我们就有 <span class="math display">\[
+(p-1)! \equiv a^{\frac{p-1}{2}} \;\mod p
+\]</span></p>
+<p>当 $ () = 1 $ 时，同余式 $ x^2 = a ; p $有两个解 <span class="math inline">\(x_0\)</span> 和 <span class="math inline">\(p - x_0\)</span>.在<span class="math inline">\(S\)</span>中去掉这两个数外剩下<span class="math inline">\(p-3\)</span>个数分出 <span class="math inline">\(\frac{p-3}{2}\)</span>对，则有 <span class="math display">\[
+(p-1)! \equiv a^{\frac{p-3}{2}}x_0(p-x_0) \equiv - a^{\frac{p-1}{2}} \; \mod p
+\]</span></p>
+<p>证毕。</p>
+<h2 id="推论-2-wilson-定理">推论 2 (Wilson 定理)</h2>
+<p><span class="math display">\[
+(p-1)! \equiv -1 \;\mod p
+\]</span></p>
+<p><strong>Proof</strong>: <strong>定理 1</strong> 中取 <span class="math inline">\(a=1\)</span> 即可。</p>
+<h2 id="推论-3euler-判别法">推论 3(Euler 判别法)</h2>
+<p><span class="math display">\[
+\left( \frac{a}{p} \right ) \equiv a^{\frac{p-1}{2}} \; \mod \;p
+\]</span></p>
+<p><strong>Proof</strong>: 由 <strong>定理 1</strong> 和 <strong>推论 2</strong> 显然。Euler 判别法不仅有理论价值(下面都是推论 3 的直接推论)，由于快速幂的存在，使得 Euler 判别法在计算时有相当好的效果。</p>
+<h2 id="推论-4format-小定理-设-ap1-则">推论 4(Format 小定理) 设 <span class="math inline">\((a,p)=1\)</span> ,则</h2>
+<p><span class="math display">\[
+a^{p-1} \equiv 1 \;\mod p
+\]</span></p>
+<h2 id="推论-5frac-1p--1fracp-12">推论 5：<span class="math inline">\((\frac{-1}{p}) = (-1)^{\frac{p-1}{2}}\)</span></h2>
+<h2 id="推论-6">推论 6：$() =()() $</h2>
+<blockquote>
+<p>推论 6 说明，我们求 Legendre 符号，只需求 $ (),() $ 即可</p>
 </blockquote>
-<h2 id="定理-7：-frac-2-p-1-frac-p-2-1-8"><a href="#定理-7：-frac-2-p-1-frac-p-2-1-8" class="headerlink" title="定理 7：$(\frac{2}{p}) = (-1)^{\frac{p^2-1}{8}}$"></a>定理 7：$(\frac{2}{p}) = (-1)^{\frac{p^2-1}{8}}$</h2><p><strong>Proof</strong>:</p>
-<script type="math/tex; mode=display">
-2^{\frac{p-1}{2}}(\frac{p-1}{2})! = 2 \cdot 4 \cdots (p-1) \equiv (\frac{p-1}{2})!(-1)^{1+2+\cdots+\frac{p-1}{2}}\;\mod p</script><p>其中最后一个等价是因为：</p>
-<script type="math/tex; mode=display">
+<h2 id="定理-7frac2p--1fracp2-18">定理 7：<span class="math inline">\((\frac{2}{p}) = (-1)^{\frac{p^2-1}{8}}\)</span></h2>
+<p><strong>Proof</strong>: <span class="math display">\[
+2^{\frac{p-1}{2}}(\frac{p-1}{2})! = 2 \cdot 4 \cdots (p-1) \equiv (\frac{p-1}{2})!(-1)^{1+2+\cdots+\frac{p-1}{2}}\;\mod p
+\]</span></p>
+<p>其中最后一个等价是因为：</p>
+<p><span class="math display">\[
 \begin{aligned}
 p-1 \equiv (-1)^1 \mod p \\
 2 \equiv (-1)^2 \mod p \\
 p-3 \equiv (-1)^3 \mod p \\
 \cdots
 (\frac{2}{p}) \equiv 2^{\frac{p-1}{2}} \equiv (-1)^{\frac{p^2-1}{8}} \;\mod p
-\end{aligned}</script><p>证毕。</p>
-<h2 id="定理-8：-Gauss-二次互反律-设-p-q-为不同的奇素数，则有"><a href="#定理-8：-Gauss-二次互反律-设-p-q-为不同的奇素数，则有" class="headerlink" title="定理 8：(Gauss 二次互反律) 设 $p,q$ 为不同的奇素数，则有"></a>定理 8：(Gauss 二次互反律) 设 $p,q$ 为不同的奇素数，则有</h2><script type="math/tex; mode=display">
-(\frac{p}{q}) (\frac{q}{p}) = (-1)^{\frac{(p-1)(q-1)}{4}}</script><blockquote>
+\end{aligned}
+\]</span></p>
+<p>证毕。</p>
+<h2 id="定理-8gauss-二次互反律-设-pq-为不同的奇素数则有">定理 8：(Gauss 二次互反律) 设 <span class="math inline">\(p,q\)</span> 为不同的奇素数，则有</h2>
+<p><span class="math display">\[
+(\frac{p}{q}) (\frac{q}{p}) = (-1)^{\frac{(p-1)(q-1)}{4}}
+\]</span></p>
+<blockquote>
 <p>证明太长了，下次一定吧 0.0</p>
 </blockquote>
-<h2 id="Jacobi-符号"><a href="#Jacobi-符号" class="headerlink" title="Jacobi 符号"></a>Jacobi 符号</h2><blockquote>
+<h2 id="jacobi-符号">Jacobi 符号</h2>
+<blockquote>
 <p>Jacobi 符号的引入只是为了让计算更加简洁！</p>
 </blockquote>
-<p> 我们在计算用 Gauss 二次互反律求 $(\frac{a}{q})$ 时，由于 $a$ 要因式分解成很多项，所以直接用不是很方便。因此我们引入 Jacobi 符号:</p>
-<p>设 $Q =  q_1 \cdots q_s$ 是正奇数，其中 $q_1 \leq \cdots \leq q_s$  是奇素数（手算时候可以保证严格小于），我们定义：</p>
-<script type="math/tex; mode=display">
-(\frac{a}{Q}) = (\frac{a}{q_1}) \cdots (\frac{1}{q_s})</script><ul>
-<li>$Q$ 为奇素数时，Jacobi 符号就是 Legendre 符号</li>
-<li>$(\frac{a}{Q}) = 1$ 并不等价于 $x^2 \equiv a \mod Q$ 有解！</li>
-<li>$(\frac{a}{Q})$ 是 $a$ 的可乘函数，周期为 $Q$ 的周期函数</li>
-<li>当 $(a,Q)&gt;1$ 时，$(\frac{a}{Q})=0$</li>
-<li>当 $(a,Q)= 1$ 时，$(\frac{a^2}{Q})=1$；特别地，$(\frac{1}{Q}) = 1$</li>
-<li>$(\frac{-1}{Q}) = (-1)^{\frac{Q-1}{2}}$</li>
-<li>$(\frac{2}{Q}) = (-1)^{\frac{Q^2-1}{8}}$</li>
-<li>$(\frac{P}{Q}) = (-1)^{\frac{(P-1)(Q-1)}{4}} (\frac{Q}{P})$，其中 $P,Q$ 都是正奇数。</li>
+<p>我们在计算用 Gauss 二次互反律求 <span class="math inline">\((\frac{a}{q})\)</span> 时，由于 <span class="math inline">\(a\)</span> 要因式分解成很多项，所以直接用不是很方便。因此我们引入 Jacobi 符号:</p>
+<p>设 <span class="math inline">\(Q = q_1 \cdots q_s\)</span> 是正奇数，其中 <span class="math inline">\(q_1 \leq \cdots \leq q_s\)</span> 是奇素数（手算时候可以保证严格小于），我们定义： <span class="math display">\[
+(\frac{a}{Q}) = (\frac{a}{q_1}) \cdots (\frac{1}{q_s})
+\]</span></p>
+<ul>
+<li><span class="math inline">\(Q\)</span> 为奇素数时，Jacobi 符号就是 Legendre 符号</li>
+<li><span class="math inline">\((\frac{a}{Q}) = 1\)</span> 并不等价于 <span class="math inline">\(x^2 \equiv a \mod Q\)</span> 有解！</li>
+<li><span class="math inline">\((\frac{a}{Q})\)</span> 是 <span class="math inline">\(a\)</span> 的可乘函数，周期为 <span class="math inline">\(Q\)</span> 的周期函数</li>
+<li>当 <span class="math inline">\((a,Q)&gt;1\)</span> 时，<span class="math inline">\((\frac{a}{Q})=0\)</span></li>
+<li>当 <span class="math inline">\((a,Q)= 1\)</span> 时，<span class="math inline">\((\frac{a^2}{Q})=1\)</span>；特别地，<span class="math inline">\((\frac{1}{Q}) = 1\)</span></li>
+<li><span class="math inline">\((\frac{-1}{Q}) = (-1)^{\frac{Q-1}{2}}\)</span></li>
+<li><span class="math inline">\((\frac{2}{Q}) = (-1)^{\frac{Q^2-1}{8}}\)</span></li>
+<li><span class="math inline">\((\frac{P}{Q}) = (-1)^{\frac{(P-1)(Q-1)}{4}} (\frac{Q}{P})\)</span>，其中 <span class="math inline">\(P,Q\)</span> 都是正奇数。</li>
 <li>写程序计算时可以避免做质因数分解！！！</li>
 </ul>
 <blockquote>
 <p>注意到 Jacobi 符号只是为了简化 Legendre 符号的计算的！</p>
 </blockquote>
-<h2 id="计算例子"><a href="#计算例子" class="headerlink" title="计算例子"></a>计算例子</h2><p>判断二次同余式 $x^2 \equiv 888 \mod 1999$ 是否有解。</p>
-<script type="math/tex; mode=display">
+<h2 id="计算例子">计算例子</h2>
+<p>判断二次同余式 <span class="math inline">\(x^2 \equiv 888 \mod 1999\)</span> 是否有解。 <span class="math display">\[
 \begin{aligned}
-(\frac{888}{1999}) &= (\frac{4}{1999}) (\frac{2}{1999}) (\frac{111}{1999}) \\
-&= (-1) ^{\frac{1999^2 -1}{8}}  (\frac{111}{1999}) \\
-&= (-1)^{\frac{(1999-1)(111-1)}{4}} (\frac{1999}{111}) \\
-&= -(\frac{1}{111}) = -1
-\end{aligned}</script><blockquote>
+(\frac{888}{1999}) &amp;= (\frac{4}{1999}) (\frac{2}{1999}) (\frac{111}{1999}) \\
+&amp;= (-1) ^{\frac{1999^2 -1}{8}}  (\frac{111}{1999}) \\
+&amp;= (-1)^{\frac{(1999-1)(111-1)}{4}} (\frac{1999}{111}) \\
+&amp;= -(\frac{1}{111}) = -1
+\end{aligned}
+\]</span></p>
+<blockquote>
 <p>如果取模的数不是素数，那么就把它分解素因数，然后每个单独判断即可。</p>
 </blockquote>
-<h2 id="Jacobi-符号-Python-程序"><a href="#Jacobi-符号-Python-程序" class="headerlink" title="Jacobi 符号 Python 程序"></a>Jacobi 符号 Python 程序</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> math<br><span class="hljs-comment"># a是整数，Q是正奇数</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">Jacobi</span>(<span class="hljs-params">a,Q</span>):</span><br>  <span class="hljs-comment"># print(a,Q)  # 需要看过程就取消本行最前面的注释</span><br>  a%=Q<br>  <span class="hljs-keyword">if</span> math.gcd(a,Q) &gt; <span class="hljs-number">1</span>:  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span><br>  <span class="hljs-keyword">while</span> a%<span class="hljs-number">4</span>==<span class="hljs-number">0</span>: a//=<span class="hljs-number">4</span><br>  f = <span class="hljs-keyword">lambda</span> n:<span class="hljs-number">1</span>-<span class="hljs-number">2</span>*(n&amp;<span class="hljs-number">1</span>)<br>  ans = <span class="hljs-number">1</span><br>  <span class="hljs-keyword">if</span> a%<span class="hljs-number">2</span>==<span class="hljs-number">0</span>: a//=<span class="hljs-number">2</span>;ans = f((Q**<span class="hljs-number">2</span>-<span class="hljs-number">1</span>)//<span class="hljs-number">8</span>)<br>  <span class="hljs-comment"># 此时a也是正奇数了</span><br>  <span class="hljs-keyword">if</span> a == <span class="hljs-number">1</span>:  <span class="hljs-keyword">return</span> ans<br>  <span class="hljs-keyword">return</span> ans*f((a-<span class="hljs-number">1</span>)*(Q-<span class="hljs-number">1</span>)//<span class="hljs-number">4</span>)*Jacobi(Q,a)<br><br><span class="hljs-built_in">print</span>(Jacobi(<span class="hljs-number">888</span>,<span class="hljs-number">1999</span>))<br></code></pre></td></tr></table></figure>
+<h2 id="jacobi-符号-python-程序">Jacobi 符号 Python 程序</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> math<br><span class="hljs-comment"># a是整数，Q是正奇数</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">Jacobi</span>(<span class="hljs-params">a,Q</span>):</span><br>  <span class="hljs-comment"># print(a,Q)  # 需要看过程就取消本行最前面的注释</span><br>  a%=Q<br>  <span class="hljs-keyword">if</span> math.gcd(a,Q) &gt; <span class="hljs-number">1</span>:  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span><br>  <span class="hljs-keyword">while</span> a%<span class="hljs-number">4</span>==<span class="hljs-number">0</span>: a//=<span class="hljs-number">4</span><br>  f = <span class="hljs-keyword">lambda</span> n:<span class="hljs-number">1</span>-<span class="hljs-number">2</span>*(n&amp;<span class="hljs-number">1</span>)<br>  ans = <span class="hljs-number">1</span><br>  <span class="hljs-keyword">if</span> a%<span class="hljs-number">2</span>==<span class="hljs-number">0</span>: a//=<span class="hljs-number">2</span>;ans = f((Q**<span class="hljs-number">2</span>-<span class="hljs-number">1</span>)//<span class="hljs-number">8</span>)<br>  <span class="hljs-comment"># 此时a也是正奇数了</span><br>  <span class="hljs-keyword">if</span> a == <span class="hljs-number">1</span>:  <span class="hljs-keyword">return</span> ans<br>  <span class="hljs-keyword">return</span> ans*f((a-<span class="hljs-number">1</span>)*(Q-<span class="hljs-number">1</span>)//<span class="hljs-number">4</span>)*Jacobi(Q,a)<br><br><span class="hljs-built_in">print</span>(Jacobi(<span class="hljs-number">888</span>,<span class="hljs-number">1999</span>))<br></code></pre></td></tr></table></figure>
 
               
             </div>

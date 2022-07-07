@@ -227,7 +227,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          8.4k 字
+          8.5k 字
         
       </span>
     
@@ -239,7 +239,7 @@
         
         
           <!-- compatible with older versions-->
-          71 分钟
+          72 分钟
         
       </span>
     
@@ -292,32 +292,25 @@
               
               <p>Mac M1 上装 ubuntu 的想法已经破灭（不会再去浪费时间了），Hyper-V 也弃坑了，双系统才是正途</p>
 <span id="more"></span>
-<h2 id="Win-Ubuntu-双系统"><a href="#Win-Ubuntu-双系统" class="headerlink" title="Win/Ubuntu 双系统"></a>Win/Ubuntu 双系统</h2><p>在另外一台 华为笔记本 上装 ubuntu 双系统</p>
-<ul>
-<li>清华/交大/中科大/腾讯 镜像站下 Ubuntu</li>
-<li>用 Ultraiso 写入 U 盘</li>
-<li>在 Windows 用自带的磁盘工具开好空间 128G</li>
-<li>进入 BIOS 安装，切记不要自动登录，会很麻烦</li>
-<li>进入 software update 选择中科大源</li>
-</ul>
+<h2 id="winubuntu-双系统">Win/Ubuntu 双系统</h2>
+<p>在另外一台 华为笔记本 上装 ubuntu 双系统 - 清华/交大/中科大/腾讯 镜像站下 Ubuntu - 用 Ultraiso 写入 U 盘 - 在 Windows 用自带的磁盘工具开好空间 128G - 进入 BIOS 安装，切记不要自动登录，会很麻烦 - 进入 software update 选择中科大源</p>
 <blockquote>
 <p>之前 微软 开源三板斧：github, vscode, wsl 用的挺好的。但是 wsl 无法开启音视频，从而选择了双系统。</p>
 </blockquote>
-<h2 id="Hyper-V-装-Ubuntu"><a href="#Hyper-V-装-Ubuntu" class="headerlink" title="Hyper-V 装 Ubuntu"></a>Hyper-V 装 Ubuntu</h2><blockquote>
+<h2 id="hyper-v-装-ubuntu">Hyper-V 装 Ubuntu</h2>
+<blockquote>
 <p>Windows 10 家庭普通版也能使用，网上有<a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv4542085">简单教程</a></p>
 </blockquote>
 <ul>
-<li>Hyper-V 全屏：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/22cffcc4d5b9">https://www.jianshu.com/p/22cffcc4d5b9</a></li>
-<li>Hyper-V 物理机/虚拟机 共享复制粘贴：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/kendoziyu/p/14741360.html">https://www.cnblogs.com/kendoziyu/p/14741360.html</a></li>
+<li>Hyper-V 全屏：https://www.jianshu.com/p/22cffcc4d5b9</li>
+<li>Hyper-V 物理机/虚拟机 共享复制粘贴：https://www.cnblogs.com/kendoziyu/p/14741360.html</li>
 </ul>
 <blockquote>
 <p>最后网络把我搞的心态爆炸，直接全给它删了，毁灭吧，烦了</p>
 </blockquote>
-<h2 id="装好系统后准备工作"><a href="#装好系统后准备工作" class="headerlink" title="装好系统后准备工作"></a>装好系统后准备工作</h2><ol>
-<li>修改 ubuntu 的 <code>/etc/default/grub</code> 的默认选择延迟为 5s。然后 <code>sudo update-grub</code><blockquote>
-<p>如果要默认 windows 可以修改对应的 BIOS 为 windows 优先启动，启动 Ubuntu 可以通过 BIOS 进入</p>
-</blockquote>
-</li>
+<h2 id="装好系统后准备工作">装好系统后准备工作</h2>
+<ol type="1">
+<li>修改 ubuntu 的 <code>/etc/default/grub</code> 的默认选择延迟为 5s。然后 <code>sudo update-grub</code> &gt; 如果要默认 windows 可以修改对应的 BIOS 为 windows 优先启动，启动 Ubuntu 可以通过 BIOS 进入</li>
 <li>更换上交镜像源, 或者中科大镜像源（直接再 <code>Software &amp; Update</code> 中选即可，不用手动改 <code>/etc/apt/sources.list</code>）</li>
 <li>设置中搜索 font，开启 Large Text</li>
 <li>apt update, apt install, apt upgrade</li>
@@ -326,8 +319,7 @@
 <li><del>安装 <a target="_blank" rel="noopener" href="https://deepin-wine.i-m.dev/">deepin-wine</a> 以及 <a target="_blank" rel="noopener" href="https://gitee.com/wszqkzqk/deepin-wine-for-ubuntu">deep wine for ubuntu</a>，然后就能用 <code>apt install com.</code> tab 之后就能看到一些本来 ubuntu 无法安装的软件</del></li>
 <li><del>安装 tweak, gnome</del></li>
 <li><code>alias open=nautilus</code>（ubuntu 22.04 不再需要）</li>
-<li>利用 scp 文件传输（目标机器需要开启端口）<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt-get update<br>sudo apt-get install openssh-server<br>sudo ufw allow 22<br></code></pre></td></tr></table></figure>
-然后保持两台电脑在一个局域网上然后查看各自 ip，然后推流： <code>scp -r xxx/ username@10.xxx.xxx.xxx:~</code> 就可以把本机 xxx/ 下所有文件传输到对应 ip 的机器上。也可以拉流：<code>scp -r username@10.xxx.xxx.xxx:xxx/ .</code></li>
+<li>利用 scp 文件传输（目标机器需要开启端口） <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt-get update<br>sudo apt-get install openssh-server<br>sudo ufw allow 22<br></code></pre></td></tr></table></figure> 然后保持两台电脑在一个局域网上然后查看各自 ip，然后推流： <code>scp -r xxx/ username@10.xxx.xxx.xxx:~</code> 就可以把本机 xxx/ 下所有文件传输到对应 ip 的机器上。也可以拉流：<code>scp -r username@10.xxx.xxx.xxx:xxx/ .</code></li>
 <li>kill 杀死进程需要配合 top 查看 pid，<strong>但是 pkill 可以直接根据进程名杀死进程</strong></li>
 <li>按住一个 htop 比 top 好用不少，mac 上也可以用 homebrew 安装</li>
 <li>Ubuntu 显示时间到秒：<code>gsettings set org.gnome.desktop.interface clock-show-seconds true</code></li>
@@ -336,186 +328,152 @@
 <blockquote>
 <p><code>sudo apt-cache search</code> 是个好东西， <code>sudo apt install -y</code> 也是</p>
 </blockquote>
-<h3 id="笔记本设置盒盖不休眠"><a href="#笔记本设置盒盖不休眠" class="headerlink" title="笔记本设置盒盖不休眠"></a>笔记本设置盒盖不休眠</h3><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/3fe469fc60c9">https://www.jianshu.com/p/3fe469fc60c9</a></p>
+<h3 id="笔记本设置盒盖不休眠">笔记本设置盒盖不休眠</h3>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/3fe469fc60c9" class="uri">https://www.jianshu.com/p/3fe469fc60c9</a></p>
 <p>如果设置了不用 笔记本 的显示器，貌似就不用这么设置了</p>
-<h2 id="升级"><a href="#升级" class="headerlink" title="升级"></a>升级</h2><ul>
-<li>18.04 —&gt; 20.04：<code>sudo sed -i &#39;s/binoic/focal/g&#39; /etc/apt/sources.list</code> 然后 <code>sudo apt update</code> 再 <code>sudo apt -y dist-upgrade</code></li>
-<li>20.04 —&gt; 22.04 同理（<code>s/binoic/focal/g</code> 改成 <code>s/focal/jammy/g</code>），<strong>有风险</strong></li>
+<h2 id="升级">升级</h2>
+<ul>
+<li>18.04 --&gt; 20.04：<code>sudo sed -i 's/binoic/focal/g' /etc/apt/sources.list</code> 然后 <code>sudo apt update</code> 再 <code>sudo apt -y dist-upgrade</code></li>
+<li>20.04 --&gt; 22.04 同理（<code>s/binoic/focal/g</code> 改成 <code>s/focal/jammy/g</code>），<strong>有风险</strong></li>
 </ul>
-<h2 id="低版本-Ubuntu-安装高版本软件"><a href="#低版本-Ubuntu-安装高版本软件" class="headerlink" title="低版本 Ubuntu 安装高版本软件"></a>低版本 Ubuntu 安装高版本软件</h2><ul>
+<h2 id="低版本-ubuntu-安装高版本软件">低版本 Ubuntu 安装高版本软件</h2>
+<ul>
 <li><a target="_blank" rel="noopener" href="https://codeantenna.com/a/ioXufiRy3V">Ubuntu下安装高版本clang-format 11, 12, 13</a></li>
 </ul>
-<h2 id="问题收集"><a href="#问题收集" class="headerlink" title="问题收集"></a>问题收集</h2><h3 id="无法外接显示器"><a href="#无法外接显示器" class="headerlink" title="无法外接显示器"></a>无法外接显示器</h3><p><a target="_blank" rel="noopener" href="https://askubuntu.com/a/1251457">https://askubuntu.com/a/1251457</a></p>
-<h3 id="网络问题"><a href="#网络问题" class="headerlink" title="网络问题"></a>网络问题</h3><p>如果无法连接 wifi，三种方式联网</p>
+<h2 id="问题收集">问题收集</h2>
+<h3 id="无法外接显示器">无法外接显示器</h3>
+<p><a target="_blank" rel="noopener" href="https://askubuntu.com/a/1251457" class="uri">https://askubuntu.com/a/1251457</a></p>
+<h3 id="网络问题">网络问题</h3>
+<p>如果无法连接 wifi，三种方式联网</p>
 <ul>
-<li>有线</li>
-<li>安卓手机 Usb 连接到电脑，然后手机个人热点里设置 usb 共享网络</li>
-<li><p>安卓手机蓝牙连接电脑，然后手机个人热点里设置蓝牙共享网络</p>
-</li>
-<li><p>ubuntu 18.04 切记关闭 secure boot</p>
-</li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/tianzhenba/article/details/119331967">安装驱动</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43557907/article/details/122471195">有 wifi 图标无 wifi 列表</a></li>
+<li><p>有线</p></li>
+<li><p>安卓手机 Usb 连接到电脑，然后手机个人热点里设置 usb 共享网络</p></li>
+<li><p>安卓手机蓝牙连接电脑，然后手机个人热点里设置蓝牙共享网络</p></li>
+<li><p>ubuntu 18.04 切记关闭 secure boot</p></li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/tianzhenba/article/details/119331967">安装驱动</a></p></li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43557907/article/details/122471195">有 wifi 图标无 wifi 列表</a></p></li>
 </ul>
-<p>也可以连好网络后可参考 <a target="_blank" rel="noopener" href="https://juejin.cn/post/7022521662880874527">https://juejin.cn/post/7022521662880874527</a> 再不行可参考 <a target="_blank" rel="noopener" href="https://blog.rottenwifi.com/ubuntu-no-wifi-adapter-found/">https://blog.rottenwifi.com/ubuntu-no-wifi-adapter-found/</a>，可能需要安装：backport-iwlwifi-dkms，如果还是不行，建议重新换个镜像安装（一般是硬件不匹配导致的），<strong>是在不行换镜像</strong></p>
-<h3 id="VPN-配置"><a href="#VPN-配置" class="headerlink" title="VPN 配置"></a>VPN 配置</h3><ul>
+<p>也可以连好网络后可参考 <a target="_blank" rel="noopener" href="https://juejin.cn/post/7022521662880874527" class="uri">https://juejin.cn/post/7022521662880874527</a> 再不行可参考 <a target="_blank" rel="noopener" href="https://blog.rottenwifi.com/ubuntu-no-wifi-adapter-found/" class="uri">https://blog.rottenwifi.com/ubuntu-no-wifi-adapter-found/</a>，可能需要安装：backport-iwlwifi-dkms，如果还是不行，建议重新换个镜像安装（一般是硬件不匹配导致的），<strong>是在不行换镜像</strong></p>
+<h3 id="vpn-配置">VPN 配置</h3>
+<ul>
 <li>安装 openfortivpn</li>
 <li>编辑 <code>/etc/openfortivpn/config</code> 如下</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">host =<br>port = 10443<br>username =<br>password =<br>trusted-cert = 这行先不用写, 第一次会报错, 说要把一个 cert 字串加入到 trusted-cert 中, 到时加这一行, copy-paste 屏幕中的 cert<br></code></pre></td></tr></table></figure>
-<h3 id="安装完无法进入系统"><a href="#安装完无法进入系统" class="headerlink" title="安装完无法进入系统"></a>安装完无法进入系统</h3><p>可参考：<a target="_blank" rel="noopener" href="https://www.dell.com/support/kbdoc/zh-cn/000123893/%E6%89%8B%E5%8A%A8-nomodeset-%E5%86%85%E6%A0%B8%E5%BC%95%E5%AF%BC-%E8%A1%8C%E9%80%89%E9%A1%B9-%E7%94%A8%E4%BA%8E-linux-%E5%BC%95%E5%AF%BC">https://www.dell.com/support/kbdoc/zh-cn/000123893/%E6%89%8B%E5%8A%A8-nomodeset-%E5%86%85%E6%A0%B8%E5%BC%95%E5%AF%BC-%E8%A1%8C%E9%80%89%E9%A1%B9-%E7%94%A8%E4%BA%8E-linux-%E5%BC%95%E5%AF%BC</a></p>
+<h3 id="安装完无法进入系统">安装完无法进入系统</h3>
+<p>可参考：<a target="_blank" rel="noopener" href="https://www.dell.com/support/kbdoc/zh-cn/000123893/%E6%89%8B%E5%8A%A8-nomodeset-%E5%86%85%E6%A0%B8%E5%BC%95%E5%AF%BC-%E8%A1%8C%E9%80%89%E9%A1%B9-%E7%94%A8%E4%BA%8E-linux-%E5%BC%95%E5%AF%BC" class="uri">https://www.dell.com/support/kbdoc/zh-cn/000123893/%E6%89%8B%E5%8A%A8-nomodeset-%E5%86%85%E6%A0%B8%E5%BC%95%E5%AF%BC-%E8%A1%8C%E9%80%89%E9%A1%B9-%E7%94%A8%E4%BA%8E-linux-%E5%BC%95%E5%AF%BC</a></p>
 <blockquote>
 <p>如果还不行，可以尝试进入 BIOS 关闭 safe boot</p>
 </blockquote>
-<h3 id="重装-win10-后，Ubuntu-找不到了"><a href="#重装-win10-后，Ubuntu-找不到了" class="headerlink" title="重装 win10 后，Ubuntu 找不到了"></a>重装 win10 后，Ubuntu 找不到了</h3><p>可参考：<a target="_blank" rel="noopener" href="https://bktus.com/zh-cn/archives/2920">https://bktus.com/zh-cn/archives/2920</a></p>
-<h3 id="僵尸鼠标"><a href="#僵尸鼠标" class="headerlink" title="僵尸鼠标"></a>僵尸鼠标</h3><p>开启后多一个僵尸鼠标：<a target="_blank" rel="noopener" href="https://forum.ubuntu.org.cn/viewtopic.php?t=491536">https://forum.ubuntu.org.cn/viewtopic.php?t=491536</a></p>
-<h3 id="登陆后花屏"><a href="#登陆后花屏" class="headerlink" title="登陆后花屏"></a>登陆后花屏</h3><p>可参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/supe_tan/article/details/78336133">https://blog.csdn.net/supe_tan/article/details/78336133</a></p>
-<h3 id="删除安装失败的包"><a href="#删除安装失败的包" class="headerlink" title="删除安装失败的包"></a>删除安装失败的包</h3><p><code>sudo dpkg --configure -a</code> 查看安装失败的包，删除掉它们 <code>sudo dpkg --remove --force-remove-reinstreq package_name</code></p>
-<p>也可参考 <a target="_blank" rel="noopener" href="https://ubuntuqa.com/article/10754.html">https://ubuntuqa.com/article/10754.html</a> 操作</p>
-<h3 id="system-program-problem-detected"><a href="#system-program-problem-detected" class="headerlink" title="system program problem detected"></a>system program problem detected</h3><p><code>out of sight, out of mind</code>，不让它显示就行了</p>
+<h3 id="重装-win10-后ubuntu-找不到了">重装 win10 后，Ubuntu 找不到了</h3>
+<p>可参考：<a target="_blank" rel="noopener" href="https://bktus.com/zh-cn/archives/2920" class="uri">https://bktus.com/zh-cn/archives/2920</a></p>
+<h3 id="僵尸鼠标">僵尸鼠标</h3>
+<p>开启后多一个僵尸鼠标：<a target="_blank" rel="noopener" href="https://forum.ubuntu.org.cn/viewtopic.php?t=491536" class="uri">https://forum.ubuntu.org.cn/viewtopic.php?t=491536</a></p>
+<h3 id="登陆后花屏">登陆后花屏</h3>
+<p>可参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/supe_tan/article/details/78336133" class="uri">https://blog.csdn.net/supe_tan/article/details/78336133</a></p>
+<h3 id="删除安装失败的包">删除安装失败的包</h3>
+<p><code>sudo dpkg --configure -a</code> 查看安装失败的包，删除掉它们 <code>sudo dpkg --remove --force-remove-reinstreq package_name</code></p>
+<p>也可参考 <a target="_blank" rel="noopener" href="https://ubuntuqa.com/article/10754.html" class="uri">https://ubuntuqa.com/article/10754.html</a> 操作</p>
+<h3 id="system-program-problem-detected">system program problem detected</h3>
+<p><code>out of sight, out of mind</code>，不让它显示就行了</p>
 <p>先删除 <code>/var/crash/</code> 中的所有文件，再把 <code>/etc/default/apport</code> 中的 <code>enable=1</code> 改成 <code>enable=0</code></p>
-<h3 id="Ubuntu-开机慢"><a href="#Ubuntu-开机慢" class="headerlink" title="Ubuntu 开机慢"></a>Ubuntu 开机慢</h3><p>参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35251760/article/details/111037280">https://blog.csdn.net/qq_35251760/article/details/111037280</a></p>
-<h3 id="开机自启动"><a href="#开机自启动" class="headerlink" title="开机自启动"></a>开机自启动</h3><p>在 <code>/etc/init.d/</code> 中新建一个 <code>my.sh</code>，然后参考其它的 <code>.sh</code> 的写法，写好之后记得 <code>./my.sh</code> 跑一下确保本身无误（没权限的话 <code>chmod +x</code>）</p>
-<p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/Areas/p/13439000.html">https://www.cnblogs.com/Areas/p/13439000.html</a></p>
-<h3 id="windows-时间差了-8h"><a href="#windows-时间差了-8h" class="headerlink" title="windows 时间差了 8h"></a>windows 时间差了 8h</h3><p>管理员权限打开 PowerShell 然后输入：<br><code>reg add HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation /v RealTimeIsUniversal /t REG_DWORD /d 1</code></p>
-<p>参考：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/cf445a2c55e8">https://www.jianshu.com/p/cf445a2c55e8</a></p>
-<h3 id="apt-key"><a href="#apt-key" class="headerlink" title="apt-key"></a>apt-key</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt-key list<br>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys  xxxxxx<br></code></pre></td></tr></table></figure>
+<h3 id="ubuntu-开机慢">Ubuntu 开机慢</h3>
+<p>参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35251760/article/details/111037280" class="uri">https://blog.csdn.net/qq_35251760/article/details/111037280</a></p>
+<h3 id="开机自启动">开机自启动</h3>
+<p>在 <code>/etc/init.d/</code> 中新建一个 <code>my.sh</code>，然后参考其它的 <code>.sh</code> 的写法，写好之后记得 <code>./my.sh</code> 跑一下确保本身无误（没权限的话 <code>chmod +x</code>）</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/Areas/p/13439000.html" class="uri">https://www.cnblogs.com/Areas/p/13439000.html</a></p>
+<h3 id="windows-时间差了-8h">windows 时间差了 8h</h3>
+<p>管理员权限打开 PowerShell 然后输入： <code>reg add HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation /v RealTimeIsUniversal /t REG_DWORD /d 1</code></p>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/cf445a2c55e8" class="uri">https://www.jianshu.com/p/cf445a2c55e8</a></p>
+<h3 id="apt-key">apt-key</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt-key list<br>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys  xxxxxx<br></code></pre></td></tr></table></figure>
 <blockquote>
-<p><code>keyserver.ubuntu.com</code> 有时需要改成 <code>ktp://keyserver.ubuntu.com:80</code> 或者 <code>ktps://pgp.mit.edu</code>，可参考这里：<a target="_blank" rel="noopener" href="https://superuser.com/questions/1250681/why-am-i-unable-to-fetch-pgp-keys-from-commandline">https://superuser.com/questions/1250681/why-am-i-unable-to-fetch-pgp-keys-from-commandline</a></p>
+<p><code>keyserver.ubuntu.com</code> 有时需要改成 <code>ktp://keyserver.ubuntu.com:80</code> 或者 <code>ktps://pgp.mit.edu</code>，可参考这里：<a target="_blank" rel="noopener" href="https://superuser.com/questions/1250681/why-am-i-unable-to-fetch-pgp-keys-from-commandline" class="uri">https://superuser.com/questions/1250681/why-am-i-unable-to-fetch-pgp-keys-from-commandline</a></p>
 </blockquote>
 <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9580f677ee70">ubuntu添加源后，更新提示缺少公钥</a>，详细可参考<a target="_blank" rel="noopener" href="https://manpages.ubuntu.com/manpages/xenial/man8/apt-key.8.html">官方文档</a></p>
-<p>再不行的话: <a target="_blank" rel="noopener" href="https://einverne.github.io/post/2019/09/gpg-keyserver-receive-failed-server-indicated-a-failure.html">https://einverne.github.io/post/2019/09/gpg-keyserver-receive-failed-server-indicated-a-failure.html</a></p>
-<h3 id="GPG"><a href="#GPG" class="headerlink" title="GPG"></a>GPG</h3><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/348007824">GPG 入门</a> 和 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/76861431">github 上使用</a></p>
-<h2 id="zsh-配置"><a href="#zsh-配置" class="headerlink" title="zsh 配置"></a>zsh 配置</h2><p>先参考 <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000039860436">oh my zsh 安装详解</a>，再看 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/62419420">字体安装</a>，然后 terminal 选择 custom command: <code>/usr/bin/zsh</code>，最后还需要把 VScode 的 terminal 中<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/150183367">添加字体</a> 为 <code>Noto Mono for Powerline</code></p>
+<p>再不行的话: <a target="_blank" rel="noopener" href="https://einverne.github.io/post/2019/09/gpg-keyserver-receive-failed-server-indicated-a-failure.html" class="uri">https://einverne.github.io/post/2019/09/gpg-keyserver-receive-failed-server-indicated-a-failure.html</a></p>
+<h3 id="gpg">GPG</h3>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/348007824">GPG 入门</a> 和 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/76861431">github 上使用</a></p>
+<h2 id="zsh-配置">zsh 配置</h2>
+<p>先参考 <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000039860436">oh my zsh 安装详解</a>，再看 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/62419420">字体安装</a>，然后 terminal 选择 custom command: <code>/usr/bin/zsh</code>，最后还需要把 VScode 的 terminal 中<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/150183367">添加字体</a> 为 <code>Noto Mono for Powerline</code></p>
 <p>添加下面配置</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">ZSH_THEME=&quot;agnoster&quot;<br>plugins=(git zsh-syntax-highlighting zsh-autosuggestions)<br></code></pre></td></tr></table></figure>
-<h2 id="拓展分区大小"><a href="#拓展分区大小" class="headerlink" title="拓展分区大小"></a>拓展分区大小</h2><p>用着用着就觉得 Ubuntu 比 Windows 用的多，而且给同事一个用户账号导致空间不足，然后我去查了一下分区方式。总结下来步骤如下</p>
+<h2 id="拓展分区大小">拓展分区大小</h2>
+<p>用着用着就觉得 Ubuntu 比 Windows 用的多，而且给同事一个用户账号导致空间不足，然后我去查了一下分区方式。总结下来步骤如下</p>
 <ul>
 <li>win + r 打开 diskmgmt.msc 然后压缩出一块（未分配的）空间出来</li>
 <li>找一个有 ubuntu 的 U 盘作为引导盘，然后开机的时候进入 BIOS，然后调整 U 盘作为启动盘</li>
 <li>然后它默认有 gparted，然后 sudo gparted 就可以拓展 Ubuntu 的分区，点确定。重启即可</li>
 </ul>
-<h2 id="弱网环境"><a href="#弱网环境" class="headerlink" title="弱网环境"></a>弱网环境</h2><p>查看当前的网络情况</p>
+<h2 id="弱网环境">弱网环境</h2>
+<p>查看当前的网络情况</p>
 <p><code>nload -m</code> 一般会出现一个 <code>Device lo [127.0.0.1]</code> 还有另外一个 Device（这一个后面会用，比如我的是 <code>wlp1s0</code>），如果没有安装就 sudo apt 安装一下。</p>
 <p>然后进行弱网设置</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo tc qdisc add dev wlp1s0 root netem delay 500ms       #设置500ms的延迟<br>sudo tc qdisc add dev wlp1s0 root netem loss 50%          #设置50%的丢包率<br>sudo tc qdisc add dev wlp1s0 root netem delay 500ms loss 50%  #同时设置<br>sudo tc qdisc del dev wlp1s0 root               #删除设置<br></code></pre></td></tr></table></figure>
-<h2 id="小功能合集"><a href="#小功能合集" class="headerlink" title="小功能合集"></a>小功能合集</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">df # 查看各个分区大小<br>find . -type f | wc -l  #统计文件个数 https://blog.csdn.net/e15273/article/details/78824570<br>adduser xxx # 创建用户，并且创建用户目录<br>passwd xxx<br></code></pre></td></tr></table></figure>
-<h2 id="perf-的使用"><a href="#perf-的使用" class="headerlink" title="perf 的使用"></a>perf 的使用</h2><p>首先直接输入 perf 会提示你安装一些 tool，安装好之后，</p>
-<ul>
-<li>设置 <code>/etc/sysctl.conf</code>，添加一句 <code>kernel.perf_event_paranoid = -1</code>，然后 <code>sudo sysctl -p /etc/sysctl.conf</code>，</li>
-<li>再 <code>sudo sh -c &quot;echo 0 &gt; /proc/sys/kernel/kptr_restrict&quot;</code>，不然没有符号</li>
-</ul>
-<p>使用和现实可以用 <a target="_blank" rel="noopener" href="https://github.com/jlfwong/speedscope/wiki/Importing-from-perf-(linux">speedscope</a>) 或者 <a target="_blank" rel="noopener" href="https://github.com/brendangregg/FlameGraph">FlameGraph</a> 可以参考 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/gnivor/p/12535005.html">Linux笔记-性能调优工具perf</a></p>
-<h2 id="Vi-m-入门"><a href="#Vi-m-入门" class="headerlink" title="Vi(m) 入门"></a>Vi(m) 入门</h2><p>所有类 Unix 系统都自带 vi，所以学习 vi 收益满满！</p>
+<h2 id="小功能合集">小功能合集</h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">df # 查看各个分区大小<br>find . -type f | wc -l  #统计文件个数 https://blog.csdn.net/e15273/article/details/78824570<br>adduser xxx # 创建用户，并且创建用户目录<br>passwd xxx<br></code></pre></td></tr></table></figure>
+<h2 id="perf-的使用">perf 的使用</h2>
+<p>首先直接输入 perf 会提示你安装一些 tool，安装好之后， - 设置 <code>/etc/sysctl.conf</code>，添加一句 <code>kernel.perf_event_paranoid = -1</code>，然后 <code>sudo sysctl -p /etc/sysctl.conf</code>， - 再 <code>sudo sh -c "echo 0 &gt; /proc/sys/kernel/kptr_restrict"</code>，不然没有符号</p>
+<p>使用和现实可以用 <a target="_blank" rel="noopener" href="https://github.com/jlfwong/speedscope/wiki/Importing-from-perf-(linux)">speedscope</a> 或者 <a target="_blank" rel="noopener" href="https://github.com/brendangregg/FlameGraph">FlameGraph</a> 可以参考 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/gnivor/p/12535005.html">Linux笔记-性能调优工具perf</a></p>
+<h2 id="vim-入门">Vi(m) 入门</h2>
+<p>所有类 Unix 系统都自带 vi，所以学习 vi 收益满满！</p>
 <blockquote>
 <p>参考：<a target="_blank" rel="noopener" href="https://codeshellme.github.io/2020/04/vim-use/">如何高效使用Vim</a>，<a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-vim.html">Linux vi/vim | 菜鸟教程</a></p>
 </blockquote>
-<h3 id="vi-m-工作模式图解"><a href="#vi-m-工作模式图解" class="headerlink" title="vi(m) 工作模式图解"></a>vi(m) 工作模式图解</h3><p><img src="vim-vi-workmodel.png" srcset="/img/loading.gif" lazyload alt="vimWorkMod"></p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>常见命令（区分大小写)</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>gg</code></td>
-<td>移动到当前文件的第一行</td>
-</tr>
-<tr>
-<td><code>G</code></td>
-<td>移动到当前文件的最后一行</td>
-</tr>
-<tr>
-<td><code>M</code></td>
-<td>移动到当前文件的中间一行</td>
-</tr>
-<tr>
-<td><code>Ctrl + o</code></td>
-<td>移动到上一次编辑的地方</td>
-</tr>
-<tr>
-<td><code>:n</code> ， 其中 n 为数字</td>
-<td>输入一个 <code>:</code>，再输入一个 <code>数字</code>，按回车，快速跳到某一行</td>
-</tr>
-<tr>
-<td><code>ndd</code>，其中 n 为数字（不写默认为 1）</td>
-<td>删除光标所在的行，并且内容在剪切板</td>
-</tr>
-<tr>
-<td><code>nyy</code>，其中 n 为数字（不写默认为 1）</td>
-<td>复制光标所在的行，并且内容在剪切板</td>
-</tr>
-<tr>
-<td><code>D</code></td>
-<td>删除 <code>光标</code> 到行 <code>末尾</code> 所有的内容，并且内容在剪切板</td>
-</tr>
-<tr>
-<td><code>p</code></td>
-<td>粘贴剪切板的内容到光标处</td>
-</tr>
-<tr>
-<td><code>/word</code></td>
-<td>向光标之下寻找一个名称为 word 的字符串</td>
-</tr>
-<tr>
-<td><code>?word</code></td>
-<td>向光标之上寻找一个字符串名称为 word 的字符串。</td>
-</tr>
-<tr>
-<td><code>n</code></td>
-<td>这个 n 是英文按键。继续搜索下一个目标</td>
-</tr>
-<tr>
-<td><code>N</code></td>
-<td>这个 N 是英文按键。与 n 刚好相反</td>
-</tr>
-<tr>
-<td><code>Ctrl + v</code></td>
-<td>进入列选择模式</td>
-</tr>
-<tr>
-<td><code>Shift + v</code></td>
-<td>进入行选择模式</td>
-</tr>
-<tr>
-<td><code>u</code></td>
-<td>复原前一个动作</td>
-</tr>
-<tr>
-<td><code>Ctrl+r</code></td>
-<td>重做上一个动作</td>
-</tr>
-<tr>
-<td><code>Ctrl+n</code></td>
-<td>常规（Normal）补全</td>
-</tr>
-<tr>
-<td><code>Ctrl+o</code></td>
-<td>全能（Omni）补全</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="vimrc-超简洁设置"><a href="#vimrc-超简洁设置" class="headerlink" title=".vimrc 超简洁设置"></a><code>.vimrc</code> 超简洁设置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">syntax on    &quot; 语法高亮<br>set nu       &quot; 行数显示<br>set ts=4     &quot; tab 宽度<br>set spell    &quot; 语法拼写检测<br>set noexpandtab       &quot; 不将 tab 转换成空格<br></code></pre></td></tr></table></figure>
-<h3 id="vi-m-键盘图"><a href="#vi-m-键盘图" class="headerlink" title="vi(m)键盘图"></a>vi(m)键盘图</h3><p><img src="vi-vim.png" srcset="/img/loading.gif" lazyload alt="vim-vim"></p>
-<h3 id="vi-m-命令思维导图"><a href="#vi-m-命令思维导图" class="headerlink" title="vi(m) 命令思维导图"></a>vi(m) 命令思维导图</h3><p><img src="vim.png" srcset="/img/loading.gif" lazyload alt="vim"></p>
-<h2 id="Linux-Shell-入门"><a href="#Linux-Shell-入门" class="headerlink" title="Linux Shell 入门"></a>Linux Shell 入门</h2><p>在一般情况下，人们并不区分 Bourne Shell 和 Bourne Again Shell，所以，像 <code>#!/bin/sh</code>，它同样也可以改为 <code>#!/bin/bash</code>。</p>
+<h3 id="vim-工作模式图解">vi(m) 工作模式图解</h3>
+<figure>
+<img src="vim-vi-workmodel.png" srcset="/img/loading.gif" lazyload alt="vimWorkMod" /><figcaption aria-hidden="true">vimWorkMod</figcaption>
+</figure>
+<div class="line-block">常见命令（区分大小写) | 含义 |<br />
+-- --------------------------------- | ---------------------------------------------------- |<br />
+<code>gg</code> | 移动到当前文件的第一行 |<br />
+<code>G</code> | 移动到当前文件的最后一行 |<br />
+<code>M</code> | 移动到当前文件的中间一行 |<br />
+<code>Ctrl + o</code> | 移动到上一次编辑的地方 |<br />
+<code>:n</code> ， 其中 n 为数字 | 输入一个 <code>:</code>，再输入一个 <code>数字</code>，按回车，快速跳到某一行 |<br />
+<code>ndd</code>，其中 n 为数字（不写默认为 1） | 删除光标所在的行，并且内容在剪切板 |<br />
+<code>nyy</code>，其中 n 为数字（不写默认为 1） | 复制光标所在的行，并且内容在剪切板 |<br />
+<code>D</code> | 删除 <code>光标</code> 到行 <code>末尾</code> 所有的内容，并且内容在剪切板 |<br />
+<code>p</code> | 粘贴剪切板的内容到光标处 |<br />
+<code>/word</code> | 向光标之下寻找一个名称为 word 的字符串 |<br />
+<code>?word</code> | 向光标之上寻找一个字符串名称为 word 的字符串。 |<br />
+<code>n</code> | 这个 n 是英文按键。继续搜索下一个目标 |<br />
+<code>N</code> | 这个 N 是英文按键。与 n 刚好相反 |<br />
+<code>Ctrl + v</code> | 进入列选择模式 |<br />
+<code>Shift + v</code> | 进入行选择模式 |<br />
+<code>u</code> | 复原前一个动作 |<br />
+<code>Ctrl+r</code> | 重做上一个动作 |<br />
+<code>Ctrl+n</code> | 常规（Normal）补全 |<br />
+<code>Ctrl+o</code> | 全能（Omni）补全 |</div>
+<h3 id="vimrc-超简洁设置"><code>.vimrc</code> 超简洁设置</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">syntax on    &quot; 语法高亮<br>set nu       &quot; 行数显示<br>set ts=4     &quot; tab 宽度<br>set spell    &quot; 语法拼写检测<br>set noexpandtab       &quot; 不将 tab 转换成空格<br></code></pre></td></tr></table></figure>
+<h3 id="vim键盘图">vi(m)键盘图</h3>
+<figure>
+<img src="vi-vim.png" srcset="/img/loading.gif" lazyload alt="vim-vim" /><figcaption aria-hidden="true">vim-vim</figcaption>
+</figure>
+<h3 id="vim-命令思维导图">vi(m) 命令思维导图</h3>
+<figure>
+<img src="vim.png" srcset="/img/loading.gif" lazyload alt="vim" /><figcaption aria-hidden="true">vim</figcaption>
+</figure>
+<h2 id="linux-shell-入门">Linux Shell 入门</h2>
+<p>在一般情况下，人们并不区分 Bourne Shell 和 Bourne Again Shell，所以，像 <code>#!/bin/sh</code>，它同样也可以改为 <code>#!/bin/bash</code>。</p>
 <blockquote>
 <p>参考：<a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-shell.html">Shell 教程 | 菜鸟教程</a>，<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/65106362">这些Shell编程必备知识你都掌握了吗？</a></p>
 </blockquote>
-<h3 id="Hello-Shell"><a href="#Hello-Shell" class="headerlink" title="Hello Shell"></a>Hello Shell</h3><p><code>vim test.sh</code> 编辑下面内容</p>
+<h3 id="hello-shell">Hello Shell</h3>
+<p><code>vim test.sh</code> 编辑下面内容</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">!/bin/bash</span><br>echo &quot;Hello Shell &quot;<br></code></pre></td></tr></table></figure>
 <p><code>esc</code> + <code>:wq</code> 保存，执行下面命令</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#使脚本具有执行权限</span><br>$ chmod +x test.sh<br><span class="hljs-comment">#执行脚本，若报错则输入 chmod u+x test.sh</span><br>$ ./test.sh<br><span class="hljs-comment">#无执行权限时</span><br>$ sh ./test.sh<br></code></pre></td></tr></table></figure>
-<h3 id="Shell-变量"><a href="#Shell-变量" class="headerlink" title="Shell 变量"></a>Shell 变量</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell">hello=123 # 变量定义<br>readonly my_blog=&quot;izlyforever.com&quot; #只读变量（常量）定义<br>echo $my_blog   #变量引用方式一，不推荐<br>echo $&#123;my_blog&#125; #变量引用方式二，推荐<br>for skill in C++ Python SageMath; do<br>    echo &quot;I am good at $&#123;skill&#125;Script&quot;<br>done<br>unset my_blog   #删除变量<br></code></pre></td></tr></table></figure>
+<h3 id="shell-变量">Shell 变量</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell">hello=123 # 变量定义<br>readonly my_blog=&quot;izlyforever.com&quot; #只读变量（常量）定义<br>echo $my_blog   #变量引用方式一，不推荐<br>echo $&#123;my_blog&#125; #变量引用方式二，推荐<br>for skill in C++ Python SageMath; do<br>    echo &quot;I am good at $&#123;skill&#125;Script&quot;<br>done<br>unset my_blog   #删除变量<br></code></pre></td></tr></table></figure>
 <blockquote>
 <p>变量定义 <code>=</code> 两边不能有空格！</p>
 </blockquote>
-<h3 id="Shell-字符串"><a href="#Shell-字符串" class="headerlink" title="Shell 字符串"></a>Shell 字符串</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">myBlog=&#x27;izlyforever.com&#x27; #单引号里的任何字符都会原样输出, 不支持转义<br>str=&quot;My Blog is \&quot;$myBlog\&quot;! \n&quot;<br>echo -e $str # -e 开启转义<br>echo &#x27;hello, &#x27; $&#123;myBlog&#125; &quot; Welcome!&quot; #单引号双引号都可以做字符拼接<br>echo $&#123;#myBlog&#125; #获取字符串长度<br>echo $&#123;myBlog:0:6&#125;<br></code></pre></td></tr></table></figure>
-<h3 id="Shell-传递参数"><a href="#Shell-传递参数" class="headerlink" title="Shell 传递参数"></a>Shell 传递参数</h3><ul>
+<h3 id="shell-字符串">Shell 字符串</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">myBlog=&#x27;izlyforever.com&#x27; #单引号里的任何字符都会原样输出, 不支持转义<br>str=&quot;My Blog is \&quot;$myBlog\&quot;! \n&quot;<br>echo -e $str # -e 开启转义<br>echo &#x27;hello, &#x27; $&#123;myBlog&#125; &quot; Welcome!&quot; #单引号双引号都可以做字符拼接<br>echo $&#123;#myBlog&#125; #获取字符串长度<br>echo $&#123;myBlog:0:6&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="shell-传递参数">Shell 传递参数</h3>
+<ul>
 <li><code>$n</code>：传入参数，例如：<code>$0 $1 $2</code> 分别表示，脚本名，第一个参数，第二个参数</li>
 <li><code>$#</code>：脚本后面跟的参数个数（不包含脚本名)</li>
 <li><code>$@</code>：所有参数，并且可以被遍历</li>
@@ -523,8 +481,10 @@
 <li><code>\$$</code>：当前脚本的进程 ID (没有 <code>\</code>)</li>
 <li><code>$?</code>：上一条命令的退出状态</li>
 </ul>
-<h3 id="Shell-数组"><a href="#Shell-数组" class="headerlink" title="Shell 数组"></a>Shell 数组</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">array=(A B &quot;cpp&quot; D)<br>echo $&#123;array[2]&#125;<br>echo &quot;数组元素个数为: $&#123;#array[*]&#125;&quot; # @* 都对应着全部内容<br>echo &quot;数组元素为: $&#123;array[@]&#125;&quot;<br>echo $&#123;array[@]:1:4&#125;<br>echo $&#123;array[@]::3&#125;<br></code></pre></td></tr></table></figure>
-<h3 id="Shell-运算符"><a href="#Shell-运算符" class="headerlink" title="Shell 运算符"></a>Shell 运算符</h3><ul>
+<h3 id="shell-数组">Shell 数组</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">array=(A B &quot;cpp&quot; D)<br>echo $&#123;array[2]&#125;<br>echo &quot;数组元素个数为: $&#123;#array[*]&#125;&quot; # @* 都对应着全部内容<br>echo &quot;数组元素为: $&#123;array[@]&#125;&quot;<br>echo $&#123;array[@]:1:4&#125;<br>echo $&#123;array[@]::3&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="shell-运算符">Shell 运算符</h3>
+<ul>
 <li>算数运算符： <code>+ - * / % = == !=</code></li>
 <li>关系运算符：<code>-eq -ne -ge -lt -gt -le</code></li>
 <li>布尔运算符：<code>! -o -a</code> （取否，or，and）</li>
@@ -537,35 +497,40 @@
 <p>expr 是一款表达式计算工具，使用它能完成表达式的求值操作</p>
 <p>条件表达式要放在方括号之间，并且要有空格，例如L：<code>[$a==$b]</code> 是错误的，必须写成 <code>[ $a == $b ]</code></p>
 </blockquote>
-<h3 id="Shell-printf-命令"><a href="#Shell-printf-命令" class="headerlink" title="Shell printf 命令"></a>Shell printf 命令</h3><p><code>printf  format-string  [arguments...]</code></p>
-<p>例如： <code>printf &quot;%-8s = %10.4f\n&quot; pi 3.141592653</code></p>
+<h3 id="shell-printf-命令">Shell printf 命令</h3>
+<p><code>printf  format-string  [arguments...]</code></p>
+<p>例如： <code>printf "%-8s = %10.4f\n" pi 3.141592653</code></p>
 <blockquote>
 <p><code>%s %c %d %f</code> 都是格式替代符</p>
 <p><code>%-8s</code> 指一个宽度为 8 个字符（<code>-</code> 表示左对齐，没有则表示右对齐），如果不足则自动以空格填充，超过也会将内容全部显示出来。</p>
 </blockquote>
-<h3 id="Shell-流程控制"><a href="#Shell-流程控制" class="headerlink" title="Shell 流程控制"></a>Shell 流程控制</h3><h4 id="条件控制"><a href="#条件控制" class="headerlink" title="条件控制"></a>条件控制</h4><ul>
-<li><p><code>if else-if else</code> 已经在上面例子中提过了。</p>
-</li>
+<h3 id="shell-流程控制">Shell 流程控制</h3>
+<h4 id="条件控制">条件控制</h4>
+<ul>
+<li><p><code>if else-if else</code> 已经在上面例子中提过了。</p></li>
 <li><p><code>case esac</code> 的奇葩写法，吐了</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs shell">echo &#x27;输入 1 到 4 之间的数字:&#x27;<br>echo &#x27;你输入的数字为:&#x27;<br>read aNum<br>case $aNum in<br>  1)  echo &#x27;你选择了 1&#x27;<br>  ;;<br>  2)  echo &#x27;你选择了 2&#x27;<br>  ;;<br>  3)  echo &#x27;你选择了 3&#x27;<br>  ;;<br>  4)  echo &#x27;你选择了 4&#x27;<br>  ;;<br>  *)  echo &#x27;你没有输入 1 到 4 之间的数字&#x27;<br>  ;;<br>esac<br></code></pre></td></tr></table></figure>
 <blockquote>
 <p><code>read</code> 输入快乐啊！</p>
-</blockquote>
-</li>
+</blockquote></li>
 </ul>
-<h4 id="循环控制：for-while-until-break-continue"><a href="#循环控制：for-while-until-break-continue" class="headerlink" title="循环控制：for while until break continue"></a>循环控制：<code>for while until break continue</code></h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 例子来自 https://www.runoob.com/linux/linux-shell-process-control.html</span><br>for str in &#x27;This is a string&#x27;<br>do<br>  echo $str<br>done<br>for((i=1;i&lt;=5;i++));do<br>  echo &quot;这是第 $i 次调用&quot;;<br>done<br><br>echo &#x27;按下 &lt;CTRL-D&gt; 退出&#x27;<br>echo -n &#x27;输入你最喜欢的网站名: &#x27;<br>while read FILM<br>do<br>  echo &quot;是的！$FILM 是一个好网站&quot;<br>done<br><br>a=0<br>until [ ! $a -lt 10 ]<br>do<br>  echo $a<br>  a=`expr $a + 1`<br>done<br></code></pre></td></tr></table></figure>
-<h3 id="Shell-函数"><a href="#Shell-函数" class="headerlink" title="Shell 函数"></a>Shell 函数</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs shell">funWithParam()&#123;<br>  echo &quot;第一个参数为 $1 !&quot;<br>  echo &quot;第二个参数为 $2 !&quot;<br>  echo &quot;参数总数有 $# 个!&quot;<br>  echo &quot;作为一个字符串输出所有参数 $* !&quot;<br>&#125;<br>echo &quot;-----函数开始执行-----&quot;<br>funWithParam 3 . 1 4 1 5 9 2<br>echo &quot;-----函数执行完毕-----&quot;<br></code></pre></td></tr></table></figure>
-<h3 id="Shell-输入-输出重定向和文件包含-特别好用！"><a href="#Shell-输入-输出重定向和文件包含-特别好用！" class="headerlink" title="Shell 输入/输出重定向和文件包含(特别好用！)"></a>Shell 输入/输出重定向和文件包含(特别好用！)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">echo <span class="hljs-string">&quot;菜鸟教程：www.runoob.com&quot;</span> &gt; users<br>cat users<br>echo <span class="hljs-string">&quot;菜鸟教程：www.runoob.com&quot;</span> &gt;&gt; users<br>cat users<br></code></pre></td></tr></table></figure>
+<h4 id="循环控制for-while-until-break-continue">循环控制：<code>for while until break continue</code></h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 例子来自 https://www.runoob.com/linux/linux-shell-process-control.html</span><br>for str in &#x27;This is a string&#x27;<br>do<br>  echo $str<br>done<br>for((i=1;i&lt;=5;i++));do<br>  echo &quot;这是第 $i 次调用&quot;;<br>done<br><br>echo &#x27;按下 &lt;CTRL-D&gt; 退出&#x27;<br>echo -n &#x27;输入你最喜欢的网站名: &#x27;<br>while read FILM<br>do<br>  echo &quot;是的！$FILM 是一个好网站&quot;<br>done<br><br>a=0<br>until [ ! $a -lt 10 ]<br>do<br>  echo $a<br>  a=`expr $a + 1`<br>done<br></code></pre></td></tr></table></figure>
+<h3 id="shell-函数">Shell 函数</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs shell">funWithParam()&#123;<br>  echo &quot;第一个参数为 $1 !&quot;<br>  echo &quot;第二个参数为 $2 !&quot;<br>  echo &quot;参数总数有 $# 个!&quot;<br>  echo &quot;作为一个字符串输出所有参数 $* !&quot;<br>&#125;<br>echo &quot;-----函数开始执行-----&quot;<br>funWithParam 3 . 1 4 1 5 9 2<br>echo &quot;-----函数执行完毕-----&quot;<br></code></pre></td></tr></table></figure>
+<h3 id="shell-输入输出重定向和文件包含特别好用">Shell 输入/输出重定向和文件包含(特别好用！)</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">echo <span class="hljs-string">&quot;菜鸟教程：www.runoob.com&quot;</span> &gt; users<br>cat users<br>echo <span class="hljs-string">&quot;菜鸟教程：www.runoob.com&quot;</span> &gt;&gt; users<br>cat users<br></code></pre></td></tr></table></figure>
 <ul>
-<li><p>test2.sh 中调用 test.sh：<code>source ./test.sh</code></p>
-</li>
+<li><p>test2.sh 中调用 test.sh：<code>source ./test.sh</code></p></li>
 <li><p>管道运算符 <code>|</code>，是 unix 一个很强大的功能。</p>
 <p>command 1 | command 2</p>
 <p>把第一个命令 command 1 执行的结果作为 command 2 的输入，例如:</p>
-<p><code>$ ls -s|sort -nr</code></p>
-</li>
+<p><code>$ ls -s|sort -nr</code></p></li>
 </ul>
-<h2 id="获取文件拓展名"><a href="#获取文件拓展名" class="headerlink" title="获取文件拓展名"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/kuangsyx/p/12595888.html">获取文件拓展名</a></h2><h2 id="Shell-通配符"><a href="#Shell-通配符" class="headerlink" title="Shell 通配符"></a><a target="_blank" rel="noopener" href="https://www.ibm.com/docs/en/i/7.3?topic=expansions-parameter">Shell 通配符</a></h2><h3 id="Linux-工具"><a href="#Linux-工具" class="headerlink" title="Linux 工具"></a>Linux 工具</h3><ul>
+<h2 id="获取文件拓展名"><a target="_blank" rel="noopener" href="https://www.cnblogs.com/kuangsyx/p/12595888.html">获取文件拓展名</a></h2>
+<h2 id="shell-通配符"><a target="_blank" rel="noopener" href="https://www.ibm.com/docs/en/i/7.3?topic=expansions-parameter">Shell 通配符</a></h2>
+<h3 id="linux-工具">Linux 工具</h3>
+<ul>
 <li><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-remote-login.html">Linux 远程登录</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-forget-password.html">Linux 忘记密码解决方法</a></li>
 </ul>

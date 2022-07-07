@@ -18,12 +18,12 @@
   <meta name="author" content="izlyforever">
   <meta name="keywords" content="math, cpp, python, sagemath">
   
-    <meta name="description" content="最近在整理李代数（Lie Algebra） 内容时，里面提到了 Jordan 分解，这里就详细介绍并证明几个相关结果。  若矩阵 $A,B$ 可交换，则它们有公共特征向量。 若矩阵 $A,B$ 可以对角化，则它们可以同时对角化，当且仅当 $A,B$ 交换 每一个矩阵 $A$ 都可以唯一分解成 $A&#x3D;B+C$, 其中 $B$ 可对角化（半单部分），$C$ 幂零。且 $B,C$ 都可以写成 $A$ 的">
+    <meta name="description" content="最近在整理李代数（Lie Algebra） 内容时，里面提到了 Jordan 分解，这里就详细介绍并证明几个相关结果。  若矩阵 \(A,B\) 可交换，则它们有公共特征向量。 若矩阵 \(A,B\) 可以对角化，则它们可以同时对角化，当且仅当 \(A,B\) 交换 每一个矩阵 \(A\) 都可以唯一分解成 \(A&#x3D;B+C\), 其中 \(B\) 可对角化（半单部分），\(C\) 幂零。且 \(B">
 <meta property="og:type" content="article">
 <meta property="og:title" content="矩阵的 Jordan 分解">
 <meta property="og:url" content="http://izlyforever.com/jordanDecompositionOfMatrix/index.html">
 <meta property="og:site_name" content="记录程序和数学的点滴">
-<meta property="og:description" content="最近在整理李代数（Lie Algebra） 内容时，里面提到了 Jordan 分解，这里就详细介绍并证明几个相关结果。  若矩阵 $A,B$ 可交换，则它们有公共特征向量。 若矩阵 $A,B$ 可以对角化，则它们可以同时对角化，当且仅当 $A,B$ 交换 每一个矩阵 $A$ 都可以唯一分解成 $A&#x3D;B+C$, 其中 $B$ 可对角化（半单部分），$C$ 幂零。且 $B,C$ 都可以写成 $A$ 的">
+<meta property="og:description" content="最近在整理李代数（Lie Algebra） 内容时，里面提到了 Jordan 分解，这里就详细介绍并证明几个相关结果。  若矩阵 \(A,B\) 可交换，则它们有公共特征向量。 若矩阵 \(A,B\) 可以对角化，则它们可以同时对角化，当且仅当 \(A,B\) 交换 每一个矩阵 \(A\) 都可以唯一分解成 \(A&#x3D;B+C\), 其中 \(B\) 可对角化（半单部分），\(C\) 幂零。且 \(B">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2016-04-08T08:20:49.000Z">
 <meta property="article:modified_time" content="2022-06-25T09:14:02.545Z">
@@ -222,7 +222,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.9k 字
+          2.2k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
           <!-- compatible with older versions-->
-          16 分钟
+          19 分钟
         
       </span>
     
@@ -286,31 +286,37 @@
             <div class="markdown-body">
               
               <p>最近在整理李代数（Lie Algebra） 内容时，里面提到了 Jordan 分解，这里就详细介绍并证明几个相关结果。</p>
-<ol>
-<li>若矩阵 $A,B$ 可交换，则它们有公共特征向量。</li>
-<li>若矩阵 $A,B$ 可以对角化，则它们可以同时对角化，当且仅当 $A,B$ 交换</li>
-<li>每一个矩阵 $A$ 都可以唯一分解成 $A=B+C$, 其中 $B$ 可对角化（半单部分），$C$ 幂零。且 $B,C$ 都可以写成 $A$ 的无常数项的多项式。</li>
+<ol type="1">
+<li>若矩阵 <span class="math inline">\(A,B\)</span> 可交换，则它们有公共特征向量。</li>
+<li>若矩阵 <span class="math inline">\(A,B\)</span> 可以对角化，则它们可以同时对角化，当且仅当 <span class="math inline">\(A,B\)</span> 交换</li>
+<li>每一个矩阵 <span class="math inline">\(A\)</span> 都可以唯一分解成 <span class="math inline">\(A=B+C\)</span>, 其中 <span class="math inline">\(B\)</span> 可对角化（半单部分），<span class="math inline">\(C\)</span> 幂零。且 <span class="math inline">\(B,C\)</span> 都可以写成 <span class="math inline">\(A\)</span> 的无常数项的多项式。</li>
 </ol>
 <span id="more"></span>
 <p>下面证明这三个结果并给出说明其意义。</p>
-<h2 id="若矩阵-A-B-可交换，则它们有公共特征向量"><a href="#若矩阵-A-B-可交换，则它们有公共特征向量" class="headerlink" title="若矩阵 $A,B$ 可交换，则它们有公共特征向量"></a>若矩阵 $A,B$ 可交换，则它们有公共特征向量</h2><p><strong>证明</strong>：我们设 $V$ 为 $n$ 阶列向量全体。设 $\lambda$ 为 $B$ 的一个特征值。设</p>
-<script type="math/tex; mode=display">
-W = \lbrace x \in V \mid Bx = \lambda x \rbrace</script><p>则对任意 $x \in W$,</p>
-<script type="math/tex; mode=display">
-B(Ax) = A(Bx)=A(\lambda x)=\lambda(Ax)</script><p>即 $Ax \in W$。即 $W$ 是 $A$ 的不变子空间，因此，$A$ 在 $W$ 中有特征值 $\mu$ 对应的特征向量 $v$ 即为所求。</p>
-<h2 id="若矩阵-A-B-可以对角化，则它们可以同时对角化，当且仅当-A-B-交换"><a href="#若矩阵-A-B-可以对角化，则它们可以同时对角化，当且仅当-A-B-交换" class="headerlink" title="若矩阵 $A,B$ 可以对角化，则它们可以同时对角化，当且仅当 $A,B$ 交换"></a>若矩阵 $A,B$ 可以对角化，则它们可以同时对角化，当且仅当 $A,B$ 交换</h2><p><strong>证明</strong>：$\rightarrow$ 是显然的。现证 $\leftarrow$ 若 $A,B$ 交换。<br>由条件知，存在可逆矩阵 $P$ 使得 $P^{-1}AP = diag(a_1 E_{n_1},\cdots,a_s E_{n_s})$。由 $A,B$ 交换知，$P^{-1}AP P^{-1}BP = P^{-1}BP P^{-1}AP$。因此</p>
-<script type="math/tex; mode=display">
+<h2 id="若矩阵-ab-可交换则它们有公共特征向量">若矩阵 <span class="math inline">\(A,B\)</span> 可交换，则它们有公共特征向量</h2>
+<p><strong>证明</strong>：我们设 <span class="math inline">\(V\)</span> 为 <span class="math inline">\(n\)</span> 阶列向量全体。设 <span class="math inline">\(\lambda\)</span> 为 <span class="math inline">\(B\)</span> 的一个特征值。设 <span class="math display">\[
+W = \lbrace x \in V \mid Bx = \lambda x \rbrace
+\]</span> 则对任意 <span class="math inline">\(x \in W\)</span>, <span class="math display">\[
+B(Ax) = A(Bx)=A(\lambda x)=\lambda(Ax)
+\]</span> 即 <span class="math inline">\(Ax \in W\)</span>。即 <span class="math inline">\(W\)</span> 是 <span class="math inline">\(A\)</span> 的不变子空间，因此，<span class="math inline">\(A\)</span> 在 <span class="math inline">\(W\)</span> 中有特征值 <span class="math inline">\(\mu\)</span> 对应的特征向量 <span class="math inline">\(v\)</span> 即为所求。</p>
+<h2 id="若矩阵-ab-可以对角化则它们可以同时对角化当且仅当-ab-交换">若矩阵 <span class="math inline">\(A,B\)</span> 可以对角化，则它们可以同时对角化，当且仅当 <span class="math inline">\(A,B\)</span> 交换</h2>
+<p><strong>证明</strong>：<span class="math inline">\(\rightarrow\)</span> 是显然的。现证 <span class="math inline">\(\leftarrow\)</span> 若 <span class="math inline">\(A,B\)</span> 交换。 由条件知，存在可逆矩阵 <span class="math inline">\(P\)</span> 使得 <span class="math inline">\(P^{-1}AP = diag(a_1 E_{n_1},\cdots,a_s E_{n_s})\)</span>。由 <span class="math inline">\(A,B\)</span> 交换知，<span class="math inline">\(P^{-1}AP P^{-1}BP = P^{-1}BP P^{-1}AP\)</span>。因此 <span class="math display">\[
 P^{-1}BP = \left(\begin{matrix}
-B_1 \\  & B_2 \\ & & \ddots \\ & & & B_s
-\end{matrix}\right)</script><p>因为 $B$ 可对角化，因此 $B$ 的最小多项式无重根。所以 $B_i$ 的最小多项式也无重根。因此 $B_i$ 可对角化，存在可逆矩阵 $Q_i$ 使得 $Q_i^{-1}B_iQ_i$ 为对角阵。令 $Q = diag(Q_1,\cdots,Q_s)$，$T=PQ$，则 $T^{-1}BT$ 为对角阵。</p>
-<script type="math/tex; mode=display">
-T^{-1}AT = diag(Q_1^{-1},\cdots,Q_s^{-1})diag(a_1 E_{n_1},\cdots,a_s E_{n_s}) diag(Q_1,\cdots,Q_s) = diag(a_1 E_{n_1},\cdots,a_s E_{n_s})</script><h2 id="Jodan-分解"><a href="#Jodan-分解" class="headerlink" title="Jodan 分解"></a>Jodan 分解</h2><p>每一个矩阵 $A$ 都可以唯一分解成 $A=B+C$, 其中 $B$ 可对角化，$C$ 幂零。且 $B,C$ 都可以写成 $A$ 的无常数项的多项式。</p>
-<p>证明：首先对任意矩阵，我们有 Jordan 标准型：对任意矩阵 $A$，存在可逆矩阵 $P$ 使得</p>
-<script type="math/tex; mode=display">
-P^{-1} A P = \left(\begin{matrix} J_1(\lambda_1) \\  & J_2(\lambda_2) \\ & & \ddots \\ & & & J_s(\lambda_s) \end{matrix}\right) = \left(\begin{matrix} \lambda_1 E_{n_1} \\  & \lambda_2 E_{n_2} \\ & & \ddots \\ & & & \lambda_s E_{n_s} \end{matrix}\right) + \left(\begin{matrix} J_1(0) \\  & J_2(0) \\ & & \ddots \\ & & & J_s(0) \end{matrix} \right)</script><p>由于 $J_i(\lambda_i)$ 的化零多项式为 $f_i(\lambda) = |\lambda I_i -  J_i(\lambda_i)|$。由中国剩余定理知。存在多项式 $f(\lambda)$ 满足 $f(\lambda) = \lambda_i (mod \; f_i),i=1,\cdots,s$ 且 $f(\lambda)= 0 (mod \lambda)$。此时</p>
-<script type="math/tex; mode=display">
-P^{-1} f(A) P = \left(\begin{matrix} \lambda_1 E_{n_1} \\  & \lambda_2 E_{n_2} \\ & & \ddots \\ & & & \lambda_s E_{n_s} \end{matrix}\right)</script><p>令 $B=f(A)，C=A-B$ 即为所求。上面的 $B,C$ 是唯一的，因为，若存在 $B_1,C_1$ 也满足上述条件，则 $A,B,C,B_1,C_1$彼此交换，$B-B_1 = C_1 - C$ 是幂零的，因此 $B=B_1,C=C_1$。</p>
-<p>对于 Jordan 分解，我们可以将一个矩阵分为所谓的半单部分和幂零部分，而由第二条结论知道，如果 $A_1,A_2$ 可交换，那么 $A_1+A_2$ 的半单部分即为 $B_1+B_2$。或者说的更明了一点就是，如果 $A,B$ 可交换，且可以对角化，则 $A+B$ 也可以对角化。</p>
+B_1 \\  &amp; B_2 \\ &amp; &amp; \ddots \\ &amp; &amp; &amp; B_s
+\end{matrix}\right)
+\]</span> 因为 <span class="math inline">\(B\)</span> 可对角化，因此 <span class="math inline">\(B\)</span> 的最小多项式无重根。所以 <span class="math inline">\(B_i\)</span> 的最小多项式也无重根。因此 <span class="math inline">\(B_i\)</span> 可对角化，存在可逆矩阵 <span class="math inline">\(Q_i\)</span> 使得 <span class="math inline">\(Q_i^{-1}B_iQ_i\)</span> 为对角阵。令 <span class="math inline">\(Q = diag(Q_1,\cdots,Q_s)\)</span>，<span class="math inline">\(T=PQ\)</span>，则 <span class="math inline">\(T^{-1}BT\)</span> 为对角阵。 <span class="math display">\[
+T^{-1}AT = diag(Q_1^{-1},\cdots,Q_s^{-1})diag(a_1 E_{n_1},\cdots,a_s E_{n_s}) diag(Q_1,\cdots,Q_s) = diag(a_1 E_{n_1},\cdots,a_s E_{n_s})
+\]</span></p>
+<h2 id="jodan-分解">Jodan 分解</h2>
+<p>每一个矩阵 <span class="math inline">\(A\)</span> 都可以唯一分解成 <span class="math inline">\(A=B+C\)</span>, 其中 <span class="math inline">\(B\)</span> 可对角化，<span class="math inline">\(C\)</span> 幂零。且 <span class="math inline">\(B,C\)</span> 都可以写成 <span class="math inline">\(A\)</span> 的无常数项的多项式。</p>
+<p>证明：首先对任意矩阵，我们有 Jordan 标准型：对任意矩阵 <span class="math inline">\(A\)</span>，存在可逆矩阵 <span class="math inline">\(P\)</span> 使得 <span class="math display">\[
+P^{-1} A P = \left(\begin{matrix} J_1(\lambda_1) \\  &amp; J_2(\lambda_2) \\ &amp; &amp; \ddots \\ &amp; &amp; &amp; J_s(\lambda_s) \end{matrix}\right) = \left(\begin{matrix} \lambda_1 E_{n_1} \\  &amp; \lambda_2 E_{n_2} \\ &amp; &amp; \ddots \\ &amp; &amp; &amp; \lambda_s E_{n_s} \end{matrix}\right) + \left(\begin{matrix} J_1(0) \\  &amp; J_2(0) \\ &amp; &amp; \ddots \\ &amp; &amp; &amp; J_s(0) \end{matrix} \right)
+\]</span></p>
+<p>由于 <span class="math inline">\(J_i(\lambda_i)\)</span> 的化零多项式为 <span class="math inline">\(f_i(\lambda) = |\lambda I_i - J_i(\lambda_i)|\)</span>。由中国剩余定理知。存在多项式 <span class="math inline">\(f(\lambda)\)</span> 满足 <span class="math inline">\(f(\lambda) = \lambda_i (mod \; f_i),i=1,\cdots,s\)</span> 且 <span class="math inline">\(f(\lambda)= 0 (mod \lambda)\)</span>。此时</p>
+<p><span class="math display">\[
+P^{-1} f(A) P = \left(\begin{matrix} \lambda_1 E_{n_1} \\  &amp; \lambda_2 E_{n_2} \\ &amp; &amp; \ddots \\ &amp; &amp; &amp; \lambda_s E_{n_s} \end{matrix}\right)
+\]</span> 令 <span class="math inline">\(B=f(A)，C=A-B\)</span> 即为所求。上面的 <span class="math inline">\(B,C\)</span> 是唯一的，因为，若存在 <span class="math inline">\(B_1,C_1\)</span> 也满足上述条件，则 <span class="math inline">\(A,B,C,B_1,C_1\)</span>彼此交换，<span class="math inline">\(B-B_1 = C_1 - C\)</span> 是幂零的，因此 <span class="math inline">\(B=B_1,C=C_1\)</span>。</p>
+<p>对于 Jordan 分解，我们可以将一个矩阵分为所谓的半单部分和幂零部分，而由第二条结论知道，如果 <span class="math inline">\(A_1,A_2\)</span> 可交换，那么 <span class="math inline">\(A_1+A_2\)</span> 的半单部分即为 <span class="math inline">\(B_1+B_2\)</span>。或者说的更明了一点就是，如果 <span class="math inline">\(A,B\)</span> 可交换，且可以对角化，则 <span class="math inline">\(A+B\)</span> 也可以对角化。</p>
 <blockquote>
 <p>想到写这些完全是因为李代数忘掉 Lie 括号本身就是一个线性空间。</p>
 </blockquote>

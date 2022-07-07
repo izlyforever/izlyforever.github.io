@@ -18,12 +18,12 @@
   <meta name="author" content="izlyforever">
   <meta name="keywords" content="math, cpp, python, sagemath">
   
-    <meta name="description" content="自然数方幂和公式关于自然数方幂和公式，网上的求解版本有很多种。这里介绍一种不为人知，十分简洁明了的求解方法，该公式并非原创，但是整个证明过程和方法完全原创。它的思想来源于我高中时在一本数学竞赛书中的数列例题(书名忘了…)，正因为一本本这样的书，让我大学选择了数学系，现在依然在学习数学。">
+    <meta name="description" content="自然数方幂和公式 关于自然数方幂和公式，网上的求解版本有很多种。这里介绍一种不为人知，十分简洁明了的求解方法，该公式并非原创，但是整个证明过程和方法完全原创。它的思想来源于我高中时在一本数学竞赛书中的数列例题(书名忘了...)，正因为一本本这样的书，让我大学选择了数学系，现在依然在学习数学。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="自然数方幂和公式及其快速算法">
 <meta property="og:url" content="http://izlyforever.com/powSum/index.html">
 <meta property="og:site_name" content="记录程序和数学的点滴">
-<meta property="og:description" content="自然数方幂和公式关于自然数方幂和公式，网上的求解版本有很多种。这里介绍一种不为人知，十分简洁明了的求解方法，该公式并非原创，但是整个证明过程和方法完全原创。它的思想来源于我高中时在一本数学竞赛书中的数列例题(书名忘了…)，正因为一本本这样的书，让我大学选择了数学系，现在依然在学习数学。">
+<meta property="og:description" content="自然数方幂和公式 关于自然数方幂和公式，网上的求解版本有很多种。这里介绍一种不为人知，十分简洁明了的求解方法，该公式并非原创，但是整个证明过程和方法完全原创。它的思想来源于我高中时在一本数学竞赛书中的数列例题(书名忘了...)，正因为一本本这样的书，让我大学选择了数学系，现在依然在学习数学。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2016-05-21T08:11:36.000Z">
 <meta property="article:modified_time" content="2022-06-25T09:14:02.556Z">
@@ -222,7 +222,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          4.4k 字
+          4.6k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
           <!-- compatible with older versions-->
-          37 分钟
+          39 分钟
         
       </span>
     
@@ -285,66 +285,95 @@
             
             <div class="markdown-body">
               
-              <h2 id="自然数方幂和公式"><a href="#自然数方幂和公式" class="headerlink" title="自然数方幂和公式"></a>自然数方幂和公式</h2><p>关于自然数方幂和公式，网上的求解版本有很多种。这里介绍一种不为人知，十分简洁明了的求解方法，该公式并非原创，但是整个证明过程和方法完全原创。它的思想来源于我高中时在一本数学竞赛书中的数列例题(书名忘了…)，正因为一本本这样的书，让我大学选择了数学系，现在依然在学习数学。</p>
+              <h2 id="自然数方幂和公式">自然数方幂和公式</h2>
+<p>关于自然数方幂和公式，网上的求解版本有很多种。这里介绍一种不为人知，十分简洁明了的求解方法，该公式并非原创，但是整个证明过程和方法完全原创。它的思想来源于我高中时在一本数学竞赛书中的数列例题(书名忘了...)，正因为一本本这样的书，让我大学选择了数学系，现在依然在学习数学。</p>
 <span id="more"></span>
-<h2 id="若-a-n-n-n-1-求其前-n-项和-S-n"><a href="#若-a-n-n-n-1-求其前-n-项和-S-n" class="headerlink" title="若 $a_n = n(n-1)$ 求其前 $n$ 项和 $S_n$"></a>若 $a_n = n(n-1)$ 求其前 $n$ 项和 $S_n$</h2><script type="math/tex; mode=display">
-a_n = n(n-1) ＝ \frac{(n+1)n(n-1) -n(n-1)(n-2)}{3}</script><p>所以</p>
-<script type="math/tex; mode=display">
-S_n =\frac{(n+1)n(n-1)}{3}</script><blockquote>
+<h2 id="若-a_n-nn-1-求其前-n-项和-s_n">若 <span class="math inline">\(a_n = n(n-1)\)</span> 求其前 <span class="math inline">\(n\)</span> 项和 <span class="math inline">\(S_n\)</span></h2>
+<p><span class="math display">\[
+a_n = n(n-1) ＝ \frac{(n+1)n(n-1) -n(n-1)(n-2)}{3}
+\]</span></p>
+<p>所以</p>
+<p><span class="math display">\[
+S_n =\frac{(n+1)n(n-1)}{3}
+\]</span></p>
+<blockquote>
 <p>受到上面做法的启发，我们推广到一般形式：</p>
 </blockquote>
-<h2 id="若-a-n-A-n-p-，则其前-n-项和-S-n-＝-frac-A-n-1-p-1-p-1"><a href="#若-a-n-A-n-p-，则其前-n-项和-S-n-＝-frac-A-n-1-p-1-p-1" class="headerlink" title="若 $a_n = A_n ^p$，则其前 $n$ 项和 $S_n ＝ \frac{ A_{n+1} ^{p+1}}{p+1}$"></a>若 $a_n = A_n ^p$，则其前 $n$ 项和 $S_n ＝ \frac{ A_{n+1} ^{p+1}}{p+1}$</h2><script type="math/tex; mode=display">
-a_n = A_n ^p ＝ \frac{A_{n+1} ^{p+1} -A_n ^{p+1}}{p+1}</script><p>所以</p>
-<script type="math/tex; mode=display">
-S_n = \frac{A_{n+1} ^{p+1}}{p+1}</script><p>由上面的结论，我们可以直奔主题了</p>
-<h2 id="求-1-2-2-2-dots-n-2"><a href="#求-1-2-2-2-dots-n-2" class="headerlink" title="求 $1^2+2^2+ \dots + n^2$"></a>求 $1^2+2^2+ \dots + n^2$</h2><p>由</p>
-<script type="math/tex; mode=display">
-n^2 = n(n-1) + n</script><p>知</p>
-<script type="math/tex; mode=display">
-1^2+2^2+ \dots + n^2 = \frac{(n+1)n(n-1)}{3} + \frac{(n+1)n}{2} = \frac{n(n+1)(2n+1)}{6}</script><blockquote>
+<h2 id="若-a_n-a_n-p则其前-n-项和-s_n-frac-a_n1-p1p1">若 <span class="math inline">\(a_n = A_n ^p\)</span>，则其前 <span class="math inline">\(n\)</span> 项和 <span class="math inline">\(S_n ＝ \frac{ A_{n+1} ^{p+1}}{p+1}\)</span></h2>
+<p><span class="math display">\[
+a_n = A_n ^p ＝ \frac{A_{n+1} ^{p+1} -A_n ^{p+1}}{p+1}
+\]</span></p>
+<p>所以</p>
+<p><span class="math display">\[
+S_n = \frac{A_{n+1} ^{p+1}}{p+1}
+\]</span></p>
+<p>由上面的结论，我们可以直奔主题了</p>
+<h2 id="求-1222-dots-n2">求 <span class="math inline">\(1^2+2^2+ \dots + n^2\)</span></h2>
+<p>由 <span class="math display">\[
+n^2 = n(n-1) + n
+\]</span> 知 <span class="math display">\[
+1^2+2^2+ \dots + n^2 = \frac{(n+1)n(n-1)}{3} + \frac{(n+1)n}{2} = \frac{n(n+1)(2n+1)}{6}
+\]</span></p>
+<blockquote>
 <p>同理我们可以推广上面做法</p>
 </blockquote>
-<h2 id="求-1-p-2-p-dots-n-p"><a href="#求-1-p-2-p-dots-n-p" class="headerlink" title="求$1^p+2^p+ \dots + n^p$"></a>求$1^p+2^p+ \dots + n^p$</h2><p>设</p>
-<script type="math/tex; mode=display">
-n^p = a_p A_n ^p + a_{p-1} A_n ^{p-1} + a_{p-2} A_n ^{p-2} + \cdots + a_1 A_n ^1</script><p>则</p>
-<script type="math/tex; mode=display">
-1^p+2^p+ \dots + n^p = \frac{a_p A_{n+1} ^{p+1}}{p+1} + \frac{a_{p-1} A_{n+1} ^{p}}{p} + \cdots + \frac{a_1 A_{n+1} ^2}{2}</script><p>因此问题的关键就转化成如何求解数组 $a_k ,k=1,2,\cdots,p$<br>我们发现当 $n＝k$ 时成立</p>
-<script type="math/tex; mode=display">
-k^p = a_k A_k ^k + a_{k-1} A_k ^{k-1} + \cdots a_1 A_{k} ^1</script><p>令 $b_k = k! \cdot a_k$ 则</p>
-<script type="math/tex; mode=display">
-k^p = b_k + b_{k-1} C_k ^{k-1} + \cdots b_1 C_{k} ^1</script><p>即</p>
-<script type="math/tex; mode=display">
-k^p = \sum _{j=1} ^k b_j C _{k} ^j</script><p>应用二项式反演 [我的博文](../inverseFormulaAndItsMatrixForm）</p>
-<script type="math/tex; mode=display">
-b_k = \sum _{j=1} ^k (-1)^{k-j} C _{k} ^j j^p</script><p>因此最终，我们有公式</p>
-<script type="math/tex; mode=display">
-1^p+2^p+ \dots + n^p = \sum _{k=1} ^p \; (\; \sum_{j=1} ^ {k} (-1)^{k-j} C_k^j j^p \;) \; C _{n+1} ^{k+1}</script><blockquote>
+<h2 id="求1p2p-dots-np">求<span class="math inline">\(1^p+2^p+ \dots + n^p\)</span></h2>
+<p>设</p>
+<p><span class="math display">\[
+n^p = a_p A_n ^p + a_{p-1} A_n ^{p-1} + a_{p-2} A_n ^{p-2} + \cdots + a_1 A_n ^1
+\]</span> 则</p>
+<p><span class="math display">\[
+1^p+2^p+ \dots + n^p = \frac{a_p A_{n+1} ^{p+1}}{p+1} + \frac{a_{p-1} A_{n+1} ^{p}}{p} + \cdots + \frac{a_1 A_{n+1} ^2}{2}
+\]</span> 因此问题的关键就转化成如何求解数组 <span class="math inline">\(a_k ,k=1,2,\cdots,p\)</span> 我们发现当 <span class="math inline">\(n＝k\)</span> 时成立 <span class="math display">\[
+k^p = a_k A_k ^k + a_{k-1} A_k ^{k-1} + \cdots a_1 A_{k} ^1
+\]</span> 令 <span class="math inline">\(b_k = k! \cdot a_k\)</span> 则</p>
+<p><span class="math display">\[
+k^p = b_k + b_{k-1} C_k ^{k-1} + \cdots b_1 C_{k} ^1
+\]</span> 即</p>
+<p><span class="math display">\[
+k^p = \sum _{j=1} ^k b_j C _{k} ^j
+\]</span> 应用二项式反演 [我的博文](../inverseFormulaAndItsMatrixForm）</p>
+<p><span class="math display">\[
+b_k = \sum _{j=1} ^k (-1)^{k-j} C _{k} ^j j^p
+\]</span> 因此最终，我们有公式</p>
+<p><span class="math display">\[
+1^p+2^p+ \dots + n^p = \sum _{k=1} ^p \; (\; \sum_{j=1} ^ {k} (-1)^{k-j} C_k^j j^p \;) \; C _{n+1} ^{k+1}
+\]</span></p>
+<blockquote>
 <p>妙呀，帅的呀，猛的呀，不谈了呀，哈哈哈</p>
 <p>这个东西本质叫 离散微积分，也叫下降幂。</p>
 </blockquote>
 <p>生成函数，离散微积分，上升幂下降幂，Stirling 数，牛顿多项式，特别的有用</p>
-<h2 id="自然数方幂和快速算法"><a href="#自然数方幂和快速算法" class="headerlink" title="自然数方幂和快速算法"></a>自然数方幂和快速算法</h2><p>这次写的目的是因为上次是从数学上完美的解决了这个问题，这次我们要从计算上完美的解决这个问题，当然这归功于我看到的一份 <a target="_blank" rel="noopener" href="http://codeforces.com/profile/sgtlaugh">sgtlaugh</a> 的代码。经过解读体会到其中的奥秘，特此记录。一句话，简直不敢相信。</p>
+<h2 id="自然数方幂和快速算法">自然数方幂和快速算法</h2>
+<p>这次写的目的是因为上次是从数学上完美的解决了这个问题，这次我们要从计算上完美的解决这个问题，当然这归功于我看到的一份 <a target="_blank" rel="noopener" href="http://codeforces.com/profile/sgtlaugh">sgtlaugh</a> 的代码。经过解读体会到其中的奥秘，特此记录。一句话，简直不敢相信。 &gt; 如果有人说他能在 <span class="math inline">\(O(k)\)</span> 时空复杂度求解 <span class="math inline">\(\sum_{i=1}^n i^k\)</span>，你肯定会说这怎么可能别忽悠我了，那我只能说，因为你没看过这篇博文。</p>
+<h2 id="首先预处理ok-复杂度-求-sum_i1n-ik-其中-n-leq-k">首先预处理，<span class="math inline">\(O(k)\)</span> 复杂度 求 <span class="math inline">\(\sum_{i=1}^n i^k\)</span> 其中 <span class="math inline">\(n \leq k\)</span></h2>
+<p>我之前一直以为要用 <span class="math inline">\(k \log k\)</span> 的复杂度才能解决这个问题，其实我们只需对所有素数 <span class="math inline">\(p\)</span> 计算 <span class="math inline">\(p^k\)</span> 即可。对于一般的 <span class="math inline">\(i\)</span> 我们先预处理 其最小素因子 <span class="math inline">\(sp[i]\)</span>。计算 <span class="math inline">\(sp[i]^k \cdot (i/sp[i])^k\)</span> 即可（具体可见最后代码）。由于素数的阶为 <span class="math inline">\(O(\frac{k}{\log k})\)</span> 因此整个复杂度即为 <span class="math inline">\(O(k)\)</span>。</p>
+<h2 id="再由-lagrange-插值多项式得出最终答案">再由 Lagrange 插值多项式得出最终答案</h2>
+<p>因为我们知道 <span class="math inline">\(\sum_{i=1} ^n i^k\)</span> 一定是一个关于 <span class="math inline">\(n\)</span> 的次数为 <span class="math inline">\(k+1\)</span> 的多项式。因此，我们只需计算其在 <span class="math inline">\(0,\cdots,k+1\)</span> 上的取值，用 Lagrange 插值多项式即可知道答案。</p>
 <blockquote>
-<p>如果有人说他能在 $O(k)$ 时空复杂度求解 $\sum_{i=1}^n i^k$，你肯定会说这怎么可能别忽悠我了，那我只能说，因为你没看过这篇博文。</p>
+<p>对于一个次数不超过 <span class="math inline">\(n\)</span> 的多项式 <span class="math inline">\(f(x)\)</span>，其在不同位置 <span class="math inline">\(x_0,\cdots,x_n\)</span> 的取值唯一决定了这个多项式:</p>
 </blockquote>
-<h2 id="首先预处理，-O-k-复杂度-求-sum-i-1-n-i-k-其中-n-leq-k"><a href="#首先预处理，-O-k-复杂度-求-sum-i-1-n-i-k-其中-n-leq-k" class="headerlink" title="首先预处理，$O(k)$ 复杂度 求 $\sum_{i=1}^n i^k$ 其中 $n \leq k$"></a>首先预处理，$O(k)$ 复杂度 求 $\sum_{i=1}^n i^k$ 其中 $n \leq k$</h2><p>我之前一直以为要用 $k \log k$ 的复杂度才能解决这个问题，其实我们只需对所有素数 $p$ 计算 $p^k$ 即可。对于一般的 $i$ 我们先预处理 其最小素因子 $sp[i]$。计算 $sp[i]^k \cdot (i/sp[i])^k$ 即可（具体可见最后代码）。由于素数的阶为 $O(\frac{k}{\log k})$ 因此整个复杂度即为 $O(k)$。</p>
-<h2 id="再由-Lagrange-插值多项式得出最终答案"><a href="#再由-Lagrange-插值多项式得出最终答案" class="headerlink" title="再由 Lagrange 插值多项式得出最终答案"></a>再由 Lagrange 插值多项式得出最终答案</h2><p>因为我们知道 $\sum_{i=1} ^n i^k$ 一定是一个关于 $n$ 的次数为 $k+1$ 的多项式。因此，我们只需计算其在 $0,\cdots,k+1$ 上的取值，用 Lagrange 插值多项式即可知道答案。</p>
+<p><span class="math display">\[
+f(x) = \sum_{i=0} ^n f(x_i) \prod_{j=0,j \neq i} ^n \frac{x-x_j}{x_i - x_j}
+\]</span></p>
+<h3 id="具体到本问题我们取-xn-mk1-x_ii-那么">具体到本问题，我们取 <span class="math inline">\(x=n, m=k+1, x_i=i\)</span> 那么</h3>
+<p><span class="math display">\[
+f(n) = \sum_{i=0} ^m (-1)^{m-i} f(x_i) {n \choose i}  {n-i-1 \choose m-i }
+\]</span></p>
+<h2 id="例题codeforces-622f">例题：Codeforces 622F</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> LL;<br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e6</span>+<span class="hljs-number">6</span>;<br><span class="hljs-keyword">const</span> LL mod = <span class="hljs-number">1e9</span>+<span class="hljs-number">7</span>;<br><span class="hljs-keyword">int</span> sp[N],p[N];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">spf</span><span class="hljs-params">()</span></span>&#123; <span class="hljs-comment">// samllest prime factor</span><br>  <span class="hljs-keyword">int</span> cnt=<span class="hljs-number">0</span>;p[cnt++]=<span class="hljs-number">2</span>;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i&lt;N;i+=<span class="hljs-number">2</span>) sp[i]=<span class="hljs-number">2</span>;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;N;i+=<span class="hljs-number">2</span>) sp[i]=i;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">3</span>;i&lt;N;i+=<span class="hljs-number">2</span>)&#123;<br>    <span class="hljs-keyword">if</span>(sp[i]==i)    p[cnt++] = i;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>;j &lt; cnt &amp;&amp; p[j]&lt;=sp[i] &amp;&amp; i * p[j] &lt; N; ++j) &#123;<br>      sp[i * p[j]] = p[j];<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">return</span> cnt;<br>&#125;<br><span class="hljs-function">LL <span class="hljs-title">pow_mod</span><span class="hljs-params">(LL x,LL n,LL p)</span></span>&#123;<br>  LL r=<span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">while</span>(n)&#123;<br>    <span class="hljs-keyword">if</span>(n&amp;<span class="hljs-number">1</span>) r=r*x%p;<br>    n&gt;&gt;=<span class="hljs-number">1</span>;  x=x*x%p;<br>  &#125;<br>  <span class="hljs-keyword">return</span> r;<br>&#125;<br>LL inv[N],AP[N],AS[N],f[N];<br><span class="hljs-function">LL <span class="hljs-title">getpowsum</span><span class="hljs-params">(LL n,<span class="hljs-keyword">int</span> k)</span></span>&#123; <span class="hljs-comment">// mod &gt; k</span><br>  <span class="hljs-keyword">if</span>(k==<span class="hljs-number">0</span>)    <span class="hljs-keyword">return</span> n%mod;<br>  <span class="hljs-keyword">if</span>(p[<span class="hljs-number">0</span>]!=<span class="hljs-number">2</span>) <span class="hljs-built_in">spf</span>();<br>  <span class="hljs-keyword">int</span> nk=k+<span class="hljs-number">1</span>;<br>  f[<span class="hljs-number">0</span>]=<span class="hljs-number">0</span>;f[<span class="hljs-number">1</span>]=<span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i&lt;=nk;++i)&#123;<br>    <span class="hljs-keyword">if</span>(sp[i]==i) f[i]=<span class="hljs-built_in">pow_mod</span>(i,k,mod);<br>    <span class="hljs-keyword">else</span>         f[i]=f[sp[i]]*f[i/sp[i]]%mod;<br>  &#125;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=nk;++i)&#123;<br>    f[i]+=f[i<span class="hljs-number">-1</span>];<br>    <span class="hljs-keyword">if</span>(f[i]&gt;=mod) f[i]-=mod;<br>  &#125;<br>  <span class="hljs-keyword">if</span>(n&lt;=nk) <span class="hljs-keyword">return</span> f[n];<br>  LL tmp = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i&lt;=nk;++i)    tmp=tmp*i%mod;<br>  inv[nk] = <span class="hljs-built_in">pow_mod</span>(tmp,mod<span class="hljs-number">-2</span>,mod);<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=nk<span class="hljs-number">-1</span>;i&gt;=<span class="hljs-number">0</span>;--i) inv[i]=inv[i+<span class="hljs-number">1</span>]*(i+<span class="hljs-number">1</span>)%mod;<br>  AP[<span class="hljs-number">0</span>]=AS[nk]=<span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=nk;++i)   AP[i]=AP[i<span class="hljs-number">-1</span>]*(n+<span class="hljs-number">1</span>-i)%mod;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=nk<span class="hljs-number">-1</span>;i&gt;=<span class="hljs-number">0</span>;--i) AS[i]=AS[i+<span class="hljs-number">1</span>]*(n-i<span class="hljs-number">-1</span>)%mod;<br>  LL res = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=nk;++i)&#123; <span class="hljs-comment">// because f(i)=0</span><br>    LL x = f[i]*AP[i]%mod*AS[i]%mod*inv[i]%mod*inv[nk-i]%mod;<br>    <span class="hljs-keyword">if</span>((nk-i)&amp;<span class="hljs-number">1</span>) res-=x; <span class="hljs-comment">// be careful</span><br>    <span class="hljs-keyword">else</span>        res+=x;<br>  &#125;<br>  <span class="hljs-keyword">return</span> (res%mod+mod)%mod;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>  LL n;<br>  <span class="hljs-keyword">int</span> k;<br>  <span class="hljs-keyword">while</span>(cin&gt;&gt;n&gt;&gt;k)&#123;<br>    cout&lt;&lt;<span class="hljs-built_in">getpowsum</span>(n,k)&lt;&lt;endl;<br>  &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 <blockquote>
-<p>对于一个次数不超过 $n$ 的多项式 $f(x)$，其在不同位置 $x_0,\cdots,x_n$ 的取值唯一决定了这个多项式:</p>
-</blockquote>
-<script type="math/tex; mode=display">
-f(x) = \sum_{i=0} ^n f(x_i) \prod_{j=0,j \neq i} ^n \frac{x-x_j}{x_i - x_j}</script><h3 id="具体到本问题，我们取-x-n-m-k-1-x-i-i-那么"><a href="#具体到本问题，我们取-x-n-m-k-1-x-i-i-那么" class="headerlink" title="具体到本问题，我们取 $x=n, m=k+1, x_i=i$ 那么"></a>具体到本问题，我们取 $x=n, m=k+1, x_i=i$ 那么</h3><script type="math/tex; mode=display">
-f(n) = \sum_{i=0} ^m (-1)^{m-i} f(x_i) {n \choose i}  {n-i-1 \choose m-i }</script><h2 id="例题：Codeforces-622F"><a href="#例题：Codeforces-622F" class="headerlink" title="例题：Codeforces 622F"></a>例题：Codeforces 622F</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> LL;<br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">1e6</span>+<span class="hljs-number">6</span>;<br><span class="hljs-keyword">const</span> LL mod = <span class="hljs-number">1e9</span>+<span class="hljs-number">7</span>;<br><span class="hljs-keyword">int</span> sp[N],p[N];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">spf</span><span class="hljs-params">()</span></span>&#123; <span class="hljs-comment">// samllest prime factor</span><br>  <span class="hljs-keyword">int</span> cnt=<span class="hljs-number">0</span>;p[cnt++]=<span class="hljs-number">2</span>;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i&lt;N;i+=<span class="hljs-number">2</span>) sp[i]=<span class="hljs-number">2</span>;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;N;i+=<span class="hljs-number">2</span>) sp[i]=i;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">3</span>;i&lt;N;i+=<span class="hljs-number">2</span>)&#123;<br>    <span class="hljs-keyword">if</span>(sp[i]==i)    p[cnt++] = i;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>;j &lt; cnt &amp;&amp; p[j]&lt;=sp[i] &amp;&amp; i * p[j] &lt; N; ++j) &#123;<br>      sp[i * p[j]] = p[j];<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">return</span> cnt;<br>&#125;<br><span class="hljs-function">LL <span class="hljs-title">pow_mod</span><span class="hljs-params">(LL x,LL n,LL p)</span></span>&#123;<br>  LL r=<span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">while</span>(n)&#123;<br>    <span class="hljs-keyword">if</span>(n&amp;<span class="hljs-number">1</span>) r=r*x%p;<br>    n&gt;&gt;=<span class="hljs-number">1</span>;  x=x*x%p;<br>  &#125;<br>  <span class="hljs-keyword">return</span> r;<br>&#125;<br>LL inv[N],AP[N],AS[N],f[N];<br><span class="hljs-function">LL <span class="hljs-title">getpowsum</span><span class="hljs-params">(LL n,<span class="hljs-keyword">int</span> k)</span></span>&#123; <span class="hljs-comment">// mod &gt; k</span><br>  <span class="hljs-keyword">if</span>(k==<span class="hljs-number">0</span>)    <span class="hljs-keyword">return</span> n%mod;<br>  <span class="hljs-keyword">if</span>(p[<span class="hljs-number">0</span>]!=<span class="hljs-number">2</span>) <span class="hljs-built_in">spf</span>();<br>  <span class="hljs-keyword">int</span> nk=k+<span class="hljs-number">1</span>;<br>  f[<span class="hljs-number">0</span>]=<span class="hljs-number">0</span>;f[<span class="hljs-number">1</span>]=<span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i&lt;=nk;++i)&#123;<br>    <span class="hljs-keyword">if</span>(sp[i]==i) f[i]=<span class="hljs-built_in">pow_mod</span>(i,k,mod);<br>    <span class="hljs-keyword">else</span>         f[i]=f[sp[i]]*f[i/sp[i]]%mod;<br>  &#125;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=nk;++i)&#123;<br>    f[i]+=f[i<span class="hljs-number">-1</span>];<br>    <span class="hljs-keyword">if</span>(f[i]&gt;=mod) f[i]-=mod;<br>  &#125;<br>  <span class="hljs-keyword">if</span>(n&lt;=nk) <span class="hljs-keyword">return</span> f[n];<br>  LL tmp = <span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i&lt;=nk;++i)    tmp=tmp*i%mod;<br>  inv[nk] = <span class="hljs-built_in">pow_mod</span>(tmp,mod<span class="hljs-number">-2</span>,mod);<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=nk<span class="hljs-number">-1</span>;i&gt;=<span class="hljs-number">0</span>;--i) inv[i]=inv[i+<span class="hljs-number">1</span>]*(i+<span class="hljs-number">1</span>)%mod;<br>  AP[<span class="hljs-number">0</span>]=AS[nk]=<span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=nk;++i)   AP[i]=AP[i<span class="hljs-number">-1</span>]*(n+<span class="hljs-number">1</span>-i)%mod;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=nk<span class="hljs-number">-1</span>;i&gt;=<span class="hljs-number">0</span>;--i) AS[i]=AS[i+<span class="hljs-number">1</span>]*(n-i<span class="hljs-number">-1</span>)%mod;<br>  LL res = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=nk;++i)&#123; <span class="hljs-comment">// because f(i)=0</span><br>    LL x = f[i]*AP[i]%mod*AS[i]%mod*inv[i]%mod*inv[nk-i]%mod;<br>    <span class="hljs-keyword">if</span>((nk-i)&amp;<span class="hljs-number">1</span>) res-=x; <span class="hljs-comment">// be careful</span><br>    <span class="hljs-keyword">else</span>        res+=x;<br>  &#125;<br>  <span class="hljs-keyword">return</span> (res%mod+mod)%mod;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>  LL n;<br>  <span class="hljs-keyword">int</span> k;<br>  <span class="hljs-keyword">while</span>(cin&gt;&gt;n&gt;&gt;k)&#123;<br>    cout&lt;&lt;<span class="hljs-built_in">getpowsum</span>(n,k)&lt;&lt;endl;<br>  &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<blockquote>
-<p>实际上我们可以不求 $\mod p$ 后的答案，利用大数类得到标准答案，但是这时因为数字实在太大，每次乘法的用时过大，因此仅适合 $k&lt;n$ 的情况</p>
+<p>实际上我们可以不求 <span class="math inline">\(\mod p\)</span> 后的答案，利用大数类得到标准答案，但是这时因为数字实在太大，每次乘法的用时过大，因此仅适合 <span class="math inline">\(k&lt;n\)</span> 的情况</p>
 </blockquote>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs cpp">cpp_int f[N];<br><span class="hljs-function">cpp_int <span class="hljs-title">getpowsum</span><span class="hljs-params">(LL n,<span class="hljs-keyword">int</span> k)</span></span>&#123;<br>  <span class="hljs-keyword">if</span>(k==<span class="hljs-number">0</span>)    <span class="hljs-keyword">return</span> <span class="hljs-built_in">cpp_int</span>(n);<br>  <span class="hljs-keyword">if</span>(p[<span class="hljs-number">0</span>]!=<span class="hljs-number">2</span>) <span class="hljs-built_in">spf</span>();<br>  <span class="hljs-keyword">int</span> nk=<span class="hljs-number">2</span>*k+<span class="hljs-number">1</span>;<br>  f[<span class="hljs-number">0</span>]=<span class="hljs-number">0</span>;f[<span class="hljs-number">1</span>]=<span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">2</span>;i&lt;=nk+<span class="hljs-number">1</span>;++i)&#123;<br>    <span class="hljs-keyword">if</span>(sp[i]==i) f[i]=<span class="hljs-built_in">pow</span>(<span class="hljs-built_in">cpp_int</span>(i),k);<br>    <span class="hljs-keyword">else</span>         f[i]=f[sp[i]]*f[i/sp[i]];<br>  &#125;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=nk;++i) f[i]+=f[i<span class="hljs-number">-1</span>];<br>  <span class="hljs-keyword">if</span>(n&lt;=nk)   <span class="hljs-keyword">return</span> f[n];<br>  cpp_int res = <span class="hljs-number">0</span>,tl=<span class="hljs-number">1</span>,tr=<span class="hljs-number">1</span>;<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=nk<span class="hljs-number">-1</span>;i&gt;=<span class="hljs-number">0</span>;--i) tr=tr*(n-i<span class="hljs-number">-1</span>)/(nk-i);<br>  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;=nk;++i)&#123;<br>    <span class="hljs-keyword">if</span>((nk-i)&amp;<span class="hljs-number">1</span>) res -= f[i]*tl*tr;<br>    <span class="hljs-keyword">else</span>         res += f[i]*tl*tr;<br>    tl = tl*(n-i)/(i+<span class="hljs-number">1</span>);<br>    tr = tr*(nk-i)/(n-i<span class="hljs-number">-1</span>);<br>  &#125;<br>  <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
 <blockquote>
-<p>其实如果我们知道最终的上界，求出多个 $\mod p$ 后的答案，再用中国剩余定理貌似很不错。</p>
+<p>其实如果我们知道最终的上界，求出多个 <span class="math inline">\(\mod p\)</span> 后的答案，再用中国剩余定理貌似很不错。</p>
 </blockquote>
-<h3 id="该方法可以推广成求-sum-i-1-n-f-i-k-，其中-f-x-是多项式。具体分析即可"><a href="#该方法可以推广成求-sum-i-1-n-f-i-k-，其中-f-x-是多项式。具体分析即可" class="headerlink" title="该方法可以推广成求 $\sum_{i=1}^n f(i)^k$，其中 $f(x)$ 是多项式。具体分析即可"></a>该方法可以推广成求 $\sum_{i=1}^n f(i)^k$，其中 $f(x)$ 是多项式。具体分析即可</h3><p>这种情况一般很难再做到 $O(k)$ 时间复杂度，而变成了 $O(k \log k) \deg f$ 复杂度。</p>
-<h3 id="如果求所有-f-k-sum-i-1-n-i-k-k-0-cdots-m-，可以在-O-m-log-m-复杂度求出"><a href="#如果求所有-f-k-sum-i-1-n-i-k-k-0-cdots-m-，可以在-O-m-log-m-复杂度求出" class="headerlink" title="如果求所有 $f(k) = \sum_{i = 1}^n i^k, k = 0, \cdots, m$，可以在 $O(m \log m)$ 复杂度求出"></a>如果求所有 $f(k) = \sum_{i = 1}^n i^k, k = 0, \cdots, m$，可以在 $O(m \log m)$ 复杂度求出</h3><p>$\frac{f(k)}{k!}$ 是 $\sum_{i = 1}^n e^{ix} = e^x \frac{e^{nx} - 1}{e^x - 1}$ 的 $x^k$ 的系数。注意到 $e^x - 1$ 的常数项系数为 0，所以不可逆，要分子分母同时除以 $x$，所以求它们的时候要多预算一位。</p>
-<p>这里用幂生成函数而非常规生成函数是因为 $\sum_{i = 1}^n \frac{1}{1 - i x}$ 不好计算，维护分子分母分治可以在 $O(n \log^2 n)$ 计算出结果。</p>
+<h3 id="该方法可以推广成求-sum_i1n-fik其中-fx-是多项式具体分析即可">该方法可以推广成求 <span class="math inline">\(\sum_{i=1}^n f(i)^k\)</span>，其中 <span class="math inline">\(f(x)\)</span> 是多项式。具体分析即可</h3>
+<p>这种情况一般很难再做到 <span class="math inline">\(O(k)\)</span> 时间复杂度，而变成了 <span class="math inline">\(O(k \log k) \deg f\)</span> 复杂度。</p>
+<h3 id="如果求所有-fk-sum_i-1n-ik-k-0-cdots-m可以在-om-log-m-复杂度求出">如果求所有 <span class="math inline">\(f(k) = \sum_{i = 1}^n i^k, k = 0, \cdots, m\)</span>，可以在 <span class="math inline">\(O(m \log m)\)</span> 复杂度求出</h3>
+<p><span class="math inline">\(\frac{f(k)}{k!}\)</span> 是 <span class="math inline">\(\sum_{i = 1}^n e^{ix} = e^x \frac{e^{nx} - 1}{e^x - 1}\)</span> 的 <span class="math inline">\(x^k\)</span> 的系数。注意到 <span class="math inline">\(e^x - 1\)</span> 的常数项系数为 0，所以不可逆，要分子分母同时除以 <span class="math inline">\(x\)</span>，所以求它们的时候要多预算一位。</p>
+<p>这里用幂生成函数而非常规生成函数是因为 <span class="math inline">\(\sum_{i = 1}^n \frac{1}{1 - i x}\)</span> 不好计算，维护分子分母分治可以在 <span class="math inline">\(O(n \log^2 n)\)</span> 计算出结果。</p>
 
               
             </div>
