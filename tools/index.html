@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://izlyforever.com/img/izlyforever_qrcode.png">
 <meta property="article:published_time" content="2021-07-27T10:59:02.000Z">
-<meta property="article:modified_time" content="2022-06-25T09:14:02.581Z">
+<meta property="article:modified_time" content="2022-08-09T00:29:30.281Z">
 <meta property="article:author" content="izlyforever">
 <meta property="article:tag" content="tool">
 <meta name="twitter:card" content="summary_large_image">
@@ -224,7 +224,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          4.8k 字
+          4.9k 字
         
       </span>
     
@@ -280,7 +280,7 @@
                 
                   
                     <!-- compatible with older versions-->
-                    最后更新于：2022年6月25日 下午
+                    最后更新于：2022年8月9日 早上
                   
                 
               </p>
@@ -345,6 +345,8 @@
 <h3 id="添加-ssh-并复制到剪切板">添加 SSH 并复制到剪切板</h3>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs git">ssh-keygen -t rsa -C &quot;your_email@example.com&quot;<br><br>clip &lt; ~/.ssh/id_rsa.pub<br></code></pre></td></tr></table></figure>
 <p>然后把它粘贴到自己的 setting 的 SSH 中</p>
+<h3 id="ssh-验证">SSH 验证</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs git">ssh-agent bash<br>ssh-add ~/.ssh/id_rsa<br>ssh -T git@github.com<br></code></pre></td></tr></table></figure>
 <h3 id="unset">unset</h3>
 <p>取消 config，例如</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs git">git config --global --unset user.name<br>git config --global --unset user.email<br></code></pre></td></tr></table></figure>
