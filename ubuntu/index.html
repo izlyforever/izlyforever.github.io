@@ -18,18 +18,18 @@
   <meta name="author" content="izlyforever">
   <meta name="keywords" content="math, cpp, python, sagemath">
   
-    <meta name="description" content="Mac M1 上装 ubuntu 的想法已经破灭（不会再去浪费时间了），Hyper-V 也弃坑了，双系统才是正途">
+    <meta name="description" content="Mac M1 上装 ubuntu 的想法已经破灭（不会再去浪费时间了，最多花钱用 PD），Windows 的 Hyper-V 也弃坑了，双系统也算了。最终选择了 WMware Player。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ubuntu 踩坑日记">
 <meta property="og:url" content="http://izlyforever.com/ubuntu/index.html">
 <meta property="og:site_name" content="记录程序和数学的点滴">
-<meta property="og:description" content="Mac M1 上装 ubuntu 的想法已经破灭（不会再去浪费时间了），Hyper-V 也弃坑了，双系统才是正途">
+<meta property="og:description" content="Mac M1 上装 ubuntu 的想法已经破灭（不会再去浪费时间了，最多花钱用 PD），Windows 的 Hyper-V 也弃坑了，双系统也算了。最终选择了 WMware Player。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://izlyforever.com/ubuntu/vim-vi-workmodel.png">
 <meta property="og:image" content="http://izlyforever.com/ubuntu/vi-vim.png">
 <meta property="og:image" content="http://izlyforever.com/ubuntu/vim.png">
 <meta property="article:published_time" content="2021-08-28T06:40:19.000Z">
-<meta property="article:modified_time" content="2022-08-09T00:27:51.000Z">
+<meta property="article:modified_time" content="2022-08-29T03:27:38.320Z">
 <meta property="article:author" content="izlyforever">
 <meta property="article:tag" content="note">
 <meta property="article:tag" content="tool">
@@ -239,7 +239,7 @@
         
         
           <!-- compatible with older versions-->
-          71 分钟
+          70 分钟
         
       </span>
     
@@ -283,21 +283,65 @@
                 
                   
                     <!-- compatible with older versions-->
-                    最后更新于：2022年8月9日 早上
+                    最后更新于：2022年8月29日 上午
                   
                 
               </p>
             
             <div class="markdown-body">
               
-              <p>Mac M1 上装 ubuntu 的想法已经破灭（不会再去浪费时间了），Hyper-V 也弃坑了，双系统才是正途</p>
+              <p>Mac M1 上装 ubuntu 的想法已经破灭（不会再去浪费时间了，最多花钱用 PD），Windows 的 Hyper-V 也弃坑了，双系统也算了。最终选择了 WMware Player。</p>
 <span id="more"></span>
-<h2 id="winubuntu-双系统">Win/Ubuntu 双系统</h2>
-<p>在另外一台 华为笔记本 上装 ubuntu 双系统 - 清华/交大/中科大/腾讯 镜像站下 Ubuntu - 用 Ultraiso 写入 U 盘 - 在 Windows 用自带的磁盘工具开好空间 128G - 进入 BIOS 安装，切记不要自动登录，会很麻烦 - 进入 software update 选择中科大源</p>
+<p>微软开源三板斧：github, vscode, wsl 用的挺好的。但是 wsl 无法开启音视频，从而选择了只能选择双系统或者虚拟机了。考虑到双系统还是不方便。WMware Player 有免费版，所以还是 WMware Player 吧。而且虚拟机好迁移。</p>
 <blockquote>
-<p>之前 微软 开源三板斧：github, vscode, wsl 用的挺好的。但是 wsl 无法开启音视频，从而选择了双系统。</p>
+<p>后来我写好脚本做系统安装完后的初始化，然后把虚拟机备份。供换电脑使用</p>
 </blockquote>
-<h2 id="hyper-v-装-ubuntu">Hyper-V 装 Ubuntu</h2>
+<h2 id="zsh-配置">zsh 配置</h2>
+<p>先参考 <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000039860436">oh my zsh 安装详解</a>，再看 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/62419420">字体安装</a>，然后 terminal 选择 custom command: <code>/usr/bin/zsh</code></p>
+<p>添加下面配置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">ZSH_THEME=&quot;essembeh&quot;<br>plugins=(git zsh-syntax-highlighting zsh-autosuggestions)<br>DISABLE_AUTO_UPDATE=&quot;true&quot;<br></code></pre></td></tr></table></figure>
+<h2 id="升级">升级</h2>
+<ul>
+<li>18.04 --&gt; 20.04：<code>sudo sed -i 's/binoic/focal/g' /etc/apt/sources.list</code> 然后 <code>sudo apt update</code> 再 <code>sudo apt -y dist-upgrade</code></li>
+<li>20.04 --&gt; 22.04 同理（<code>s/binoic/focal/g</code> 改成 <code>s/focal/jammy/g</code>），<strong>有风险</strong></li>
+</ul>
+<h2 id="低版本-ubuntu-安装高版本软件">低版本 Ubuntu 安装高版本软件</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://codeantenna.com/a/ioXufiRy3V">Ubuntu下安装高版本clang-format 11, 12, 13</a></li>
+</ul>
+<h2 id="perf-的使用">perf 的使用</h2>
+<p>首先直接输入 perf 会提示你安装一些 tool，安装好之后， - 设置 <code>/etc/sysctl.conf</code>，添加一句 <code>kernel.perf_event_paranoid = -1</code>，然后 <code>sudo sysctl -p /etc/sysctl.conf</code>， - 再 <code>sudo sh -c "echo 0 &gt; /proc/sys/kernel/kptr_restrict"</code>，不然没有符号</p>
+<p>使用和现实可以用 <a target="_blank" rel="noopener" href="https://github.com/jlfwong/speedscope/wiki/Importing-from-perf-(linux)">speedscope</a> 或者 <a target="_blank" rel="noopener" href="https://github.com/brendangregg/FlameGraph">FlameGraph</a> 可以参考 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/gnivor/p/12535005.html">Linux笔记-性能调优工具perf</a></p>
+<h2 id="vpn-配置">VPN 配置</h2>
+<ul>
+<li>安装 openfortivpn</li>
+<li>编辑 <code>/etc/openfortivpn/config</code> 如下</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">host =<br>port = 10443<br>username =<br>password =<br>trusted-cert = 这行先不用写, 第一次会报错, 说要把一个 cert 字串加入到 trusted-cert 中, 到时加这一行, copy-paste 屏幕中的 cert<br></code></pre></td></tr></table></figure>
+<h2 id="弱网环境">弱网环境</h2>
+<p>查看当前的网络情况</p>
+<p><code>nload -m</code> 一般会出现一个 <code>Device lo [127.0.0.1]</code> 还有另外一个 Device（这一个后面会用，比如我的是 <code>wlp1s0</code>），如果没有安装就 sudo apt 安装一下。</p>
+<p>然后进行弱网设置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo tc qdisc add dev wlp1s0 root netem delay 500ms       #设置500ms的延迟<br>sudo tc qdisc add dev wlp1s0 root netem loss 50%          #设置50%的丢包率<br>sudo tc qdisc add dev wlp1s0 root netem delay 500ms loss 50%  #同时设置<br>sudo tc qdisc del dev wlp1s0 root               #删除设置<br></code></pre></td></tr></table></figure>
+<h2 id="apt-key">apt-key</h2>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt-key list<br>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys  xxxxxx<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p><code>keyserver.ubuntu.com</code> 有时需要改成 <code>ktp://keyserver.ubuntu.com:80</code> 或者 <code>ktps://pgp.mit.edu</code>，可参考这里：<a target="_blank" rel="noopener" href="https://superuser.com/questions/1250681/why-am-i-unable-to-fetch-pgp-keys-from-commandline" class="uri">https://superuser.com/questions/1250681/why-am-i-unable-to-fetch-pgp-keys-from-commandline</a></p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9580f677ee70">ubuntu添加源后，更新提示缺少公钥</a>，详细可参考<a target="_blank" rel="noopener" href="https://manpages.ubuntu.com/manpages/xenial/man8/apt-key.8.html">官方文档</a></p>
+<p>再不行的话: <a target="_blank" rel="noopener" href="https://einverne.github.io/post/2019/09/gpg-keyserver-receive-failed-server-indicated-a-failure.html" class="uri">https://einverne.github.io/post/2019/09/gpg-keyserver-receive-failed-server-indicated-a-failure.html</a></p>
+<h2 id="gpg">GPG</h2>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/348007824">GPG 入门</a> 和 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/76861431">github 上使用</a></p>
+<h2 id="开机自启动">开机自启动</h2>
+<p>在 <code>/etc/init.d/</code> 中新建一个 <code>my.sh</code>，然后参考其它的 <code>.sh</code> 的写法，写好之后记得 <code>./my.sh</code> 跑一下确保本身无误（没权限的话 <code>chmod +x</code>）</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/Areas/p/13439000.html" class="uri">https://www.cnblogs.com/Areas/p/13439000.html</a></p>
+<h2 id="system-program-problem-detected">system program problem detected</h2>
+<p><code>out of sight, out of mind</code>，不让它显示就行了</p>
+<p>先删除 <code>/var/crash/</code> 中的所有文件，再把 <code>/etc/default/apport</code> 中的 <code>enable=1</code> 改成 <code>enable=0</code></p>
+<h2 id="删除安装失败的包">删除安装失败的包</h2>
+<p><code>sudo dpkg --configure -a</code> 查看安装失败的包，删除掉它们 <code>sudo dpkg --remove --force-remove-reinstreq package_name</code></p>
+<p>也可参考 <a target="_blank" rel="noopener" href="https://ubuntuqa.com/article/10754.html" class="uri">https://ubuntuqa.com/article/10754.html</a> 操作</p>
+<h2 id="hyper-v弃">Hyper-V（弃）</h2>
 <blockquote>
 <p>Windows 10 家庭普通版也能使用，网上有<a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv4542085">简单教程</a></p>
 </blockquote>
@@ -308,7 +352,7 @@
 <blockquote>
 <p>最后网络把我搞的心态爆炸，直接全给它删了，毁灭吧，烦了</p>
 </blockquote>
-<h2 id="装好系统后准备工作">装好系统后准备工作</h2>
+<h2 id="双系统弃">双系统（弃）</h2>
 <ol type="1">
 <li>修改 ubuntu 的 <code>/etc/default/grub</code> 的默认选择延迟为 5s。然后 <code>sudo update-grub</code> &gt; 如果要默认 windows 可以修改对应的 BIOS 为 windows 优先启动，启动 Ubuntu 可以通过 BIOS 进入</li>
 <li>更换上交镜像源, 或者中科大镜像源（直接再 <code>Software &amp; Update</code> 中选即可，不用手动改 <code>/etc/apt/sources.list</code>）</li>
@@ -327,16 +371,6 @@
 <h3 id="笔记本设置盒盖不休眠">笔记本设置盒盖不休眠</h3>
 <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/3fe469fc60c9" class="uri">https://www.jianshu.com/p/3fe469fc60c9</a></p>
 <p>如果设置了不用 笔记本 的显示器，貌似就不用这么设置了</p>
-<h2 id="升级">升级</h2>
-<ul>
-<li>18.04 --&gt; 20.04：<code>sudo sed -i 's/binoic/focal/g' /etc/apt/sources.list</code> 然后 <code>sudo apt update</code> 再 <code>sudo apt -y dist-upgrade</code></li>
-<li>20.04 --&gt; 22.04 同理（<code>s/binoic/focal/g</code> 改成 <code>s/focal/jammy/g</code>），<strong>有风险</strong></li>
-</ul>
-<h2 id="低版本-ubuntu-安装高版本软件">低版本 Ubuntu 安装高版本软件</h2>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://codeantenna.com/a/ioXufiRy3V">Ubuntu下安装高版本clang-format 11, 12, 13</a></li>
-</ul>
-<h2 id="问题收集">问题收集</h2>
 <h3 id="无法外接显示器">无法外接显示器</h3>
 <p><a target="_blank" rel="noopener" href="https://askubuntu.com/a/1251457" class="uri">https://askubuntu.com/a/1251457</a></p>
 <h3 id="网络问题">网络问题</h3>
@@ -350,12 +384,6 @@
 <li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43557907/article/details/122471195">有 wifi 图标无 wifi 列表</a></p></li>
 </ul>
 <p>也可以连好网络后可参考 <a target="_blank" rel="noopener" href="https://juejin.cn/post/7022521662880874527" class="uri">https://juejin.cn/post/7022521662880874527</a> 再不行可参考 <a target="_blank" rel="noopener" href="https://blog.rottenwifi.com/ubuntu-no-wifi-adapter-found/" class="uri">https://blog.rottenwifi.com/ubuntu-no-wifi-adapter-found/</a>，可能需要安装：backport-iwlwifi-dkms，如果还是不行，建议重新换个镜像安装（一般是硬件不匹配导致的），<strong>是在不行换镜像</strong></p>
-<h3 id="vpn-配置">VPN 配置</h3>
-<ul>
-<li>安装 openfortivpn</li>
-<li>编辑 <code>/etc/openfortivpn/config</code> 如下</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">host =<br>port = 10443<br>username =<br>password =<br>trusted-cert = 这行先不用写, 第一次会报错, 说要把一个 cert 字串加入到 trusted-cert 中, 到时加这一行, copy-paste 屏幕中的 cert<br></code></pre></td></tr></table></figure>
 <h3 id="安装完无法进入系统">安装完无法进入系统</h3>
 <p>可参考：<a target="_blank" rel="noopener" href="https://www.dell.com/support/kbdoc/zh-cn/000123893/%E6%89%8B%E5%8A%A8-nomodeset-%E5%86%85%E6%A0%B8%E5%BC%95%E5%AF%BC-%E8%A1%8C%E9%80%89%E9%A1%B9-%E7%94%A8%E4%BA%8E-linux-%E5%BC%95%E5%AF%BC" class="uri">https://www.dell.com/support/kbdoc/zh-cn/000123893/%E6%89%8B%E5%8A%A8-nomodeset-%E5%86%85%E6%A0%B8%E5%BC%95%E5%AF%BC-%E8%A1%8C%E9%80%89%E9%A1%B9-%E7%94%A8%E4%BA%8E-linux-%E5%BC%95%E5%AF%BC</a></p>
 <blockquote>
@@ -367,50 +395,20 @@
 <p>开启后多一个僵尸鼠标：<a target="_blank" rel="noopener" href="https://forum.ubuntu.org.cn/viewtopic.php?t=491536" class="uri">https://forum.ubuntu.org.cn/viewtopic.php?t=491536</a></p>
 <h3 id="登陆后花屏">登陆后花屏</h3>
 <p>可参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/supe_tan/article/details/78336133" class="uri">https://blog.csdn.net/supe_tan/article/details/78336133</a></p>
-<h3 id="删除安装失败的包">删除安装失败的包</h3>
-<p><code>sudo dpkg --configure -a</code> 查看安装失败的包，删除掉它们 <code>sudo dpkg --remove --force-remove-reinstreq package_name</code></p>
-<p>也可参考 <a target="_blank" rel="noopener" href="https://ubuntuqa.com/article/10754.html" class="uri">https://ubuntuqa.com/article/10754.html</a> 操作</p>
-<h3 id="system-program-problem-detected">system program problem detected</h3>
-<p><code>out of sight, out of mind</code>，不让它显示就行了</p>
-<p>先删除 <code>/var/crash/</code> 中的所有文件，再把 <code>/etc/default/apport</code> 中的 <code>enable=1</code> 改成 <code>enable=0</code></p>
 <h3 id="ubuntu-开机慢">Ubuntu 开机慢</h3>
 <p>参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35251760/article/details/111037280" class="uri">https://blog.csdn.net/qq_35251760/article/details/111037280</a></p>
-<h3 id="开机自启动">开机自启动</h3>
-<p>在 <code>/etc/init.d/</code> 中新建一个 <code>my.sh</code>，然后参考其它的 <code>.sh</code> 的写法，写好之后记得 <code>./my.sh</code> 跑一下确保本身无误（没权限的话 <code>chmod +x</code>）</p>
-<p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/Areas/p/13439000.html" class="uri">https://www.cnblogs.com/Areas/p/13439000.html</a></p>
 <h3 id="windows-时间差了-8h">windows 时间差了 8h</h3>
 <p>管理员权限打开 PowerShell 然后输入： <code>reg add HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation /v RealTimeIsUniversal /t REG_DWORD /d 1</code></p>
 <p>参考：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/cf445a2c55e8" class="uri">https://www.jianshu.com/p/cf445a2c55e8</a></p>
-<h3 id="apt-key">apt-key</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt-key list<br>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys  xxxxxx<br></code></pre></td></tr></table></figure>
-<blockquote>
-<p><code>keyserver.ubuntu.com</code> 有时需要改成 <code>ktp://keyserver.ubuntu.com:80</code> 或者 <code>ktps://pgp.mit.edu</code>，可参考这里：<a target="_blank" rel="noopener" href="https://superuser.com/questions/1250681/why-am-i-unable-to-fetch-pgp-keys-from-commandline" class="uri">https://superuser.com/questions/1250681/why-am-i-unable-to-fetch-pgp-keys-from-commandline</a></p>
-</blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9580f677ee70">ubuntu添加源后，更新提示缺少公钥</a>，详细可参考<a target="_blank" rel="noopener" href="https://manpages.ubuntu.com/manpages/xenial/man8/apt-key.8.html">官方文档</a></p>
-<p>再不行的话: <a target="_blank" rel="noopener" href="https://einverne.github.io/post/2019/09/gpg-keyserver-receive-failed-server-indicated-a-failure.html" class="uri">https://einverne.github.io/post/2019/09/gpg-keyserver-receive-failed-server-indicated-a-failure.html</a></p>
-<h3 id="gpg">GPG</h3>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/348007824">GPG 入门</a> 和 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/76861431">github 上使用</a></p>
-<h2 id="zsh-配置">zsh 配置</h2>
-<p>先参考 <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000039860436">oh my zsh 安装详解</a>，再看 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/62419420">字体安装</a>，然后 terminal 选择 custom command: <code>/usr/bin/zsh</code>，最后还需要把 VScode 的 terminal 中<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/150183367">添加字体</a> 为 <code>Noto Mono for Powerline</code></p>
-<p>添加下面配置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">ZSH_THEME=&quot;agnoster&quot;<br>plugins=(git zsh-syntax-highlighting zsh-autosuggestions)<br></code></pre></td></tr></table></figure>
-<h2 id="拓展分区大小">拓展分区大小</h2>
+<h3 id="拓展分区大小">拓展分区大小</h3>
 <p>用着用着就觉得 Ubuntu 比 Windows 用的多，而且给同事一个用户账号导致空间不足，然后我去查了一下分区方式。总结下来步骤如下</p>
 <ul>
 <li>win + r 打开 diskmgmt.msc 然后压缩出一块（未分配的）空间出来</li>
 <li>找一个有 ubuntu 的 U 盘作为引导盘，然后开机的时候进入 BIOS，然后调整 U 盘作为启动盘</li>
 <li>然后它默认有 gparted，然后 sudo gparted 就可以拓展 Ubuntu 的分区，点确定。重启即可</li>
 </ul>
-<h2 id="弱网环境">弱网环境</h2>
-<p>查看当前的网络情况</p>
-<p><code>nload -m</code> 一般会出现一个 <code>Device lo [127.0.0.1]</code> 还有另外一个 Device（这一个后面会用，比如我的是 <code>wlp1s0</code>），如果没有安装就 sudo apt 安装一下。</p>
-<p>然后进行弱网设置</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo tc qdisc add dev wlp1s0 root netem delay 500ms       #设置500ms的延迟<br>sudo tc qdisc add dev wlp1s0 root netem loss 50%          #设置50%的丢包率<br>sudo tc qdisc add dev wlp1s0 root netem delay 500ms loss 50%  #同时设置<br>sudo tc qdisc del dev wlp1s0 root               #删除设置<br></code></pre></td></tr></table></figure>
-<h2 id="小功能合集">小功能合集</h2>
+<h3 id="小功能合集">小功能合集</h3>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">df # 查看各个分区大小<br>find . -type f | wc -l  #统计文件个数 https://blog.csdn.net/e15273/article/details/78824570<br>adduser xxx # 创建用户，并且创建用户目录<br>passwd xxx<br></code></pre></td></tr></table></figure>
-<h2 id="perf-的使用">perf 的使用</h2>
-<p>首先直接输入 perf 会提示你安装一些 tool，安装好之后， - 设置 <code>/etc/sysctl.conf</code>，添加一句 <code>kernel.perf_event_paranoid = -1</code>，然后 <code>sudo sysctl -p /etc/sysctl.conf</code>， - 再 <code>sudo sh -c "echo 0 &gt; /proc/sys/kernel/kptr_restrict"</code>，不然没有符号</p>
-<p>使用和现实可以用 <a target="_blank" rel="noopener" href="https://github.com/jlfwong/speedscope/wiki/Importing-from-perf-(linux)">speedscope</a> 或者 <a target="_blank" rel="noopener" href="https://github.com/brendangregg/FlameGraph">FlameGraph</a> 可以参考 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/gnivor/p/12535005.html">Linux笔记-性能调优工具perf</a></p>
 <h2 id="vim-入门">Vi(m) 入门</h2>
 <p>所有类 Unix 系统都自带 vi，所以学习 vi 收益满满！</p>
 <blockquote>
